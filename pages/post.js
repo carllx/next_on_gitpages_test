@@ -3,6 +3,9 @@ import Link from 'next/link'
 import Head from 'next/head'
 import fetch from 'isomorphic-fetch'
 
+
+
+
 export default class extends Component {
   static async getInitialProps ({ query }) {
     // fetch single post detail
