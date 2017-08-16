@@ -1,0 +1,27 @@
+{
+  "main": "server.js",
+  "dependencies": {
+    "express": "^4.15.4",
+    "glamor": "^2.20.40",
+    "glamorous": "^1.0.0",
+    "isomorphic-fetch": "^2.2.1",
+    "material-ui": "^0.18.7",
+    "next": "^3.0.1-beta.21",
+    "react": "^15.5.4",
+    "react-dom": "^15.5.4",
+    "react-jss": "^7.0.2",
+    "react-tap-event-plugin": "^2.0.1",
+    "serve": "^5.2.2"
+  },
+  "scripts": {
+    "dev": "node .",
+    "build": "next build",
+    "preexport": "npm run build",
+    "export": "next export",
+    "prestart": "npm run export",
+    "start": "serve out"
+  },
+  "name": "",
+  "description": "## How to use",
+  "version": ""
+}
