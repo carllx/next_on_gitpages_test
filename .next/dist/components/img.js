@@ -133,7 +133,7 @@ var IMG = function (_Component) {
 		key: 'fethImg',
 		value: function () {
 			var _ref = (0, _asyncToGenerator3.default)(_regenerator2.default.mark(function _callee() {
-				var src, response, isOk;
+				var h, w, src, response, isOk;
 				return _regenerator2.default.wrap(function _callee$(_context) {
 					while (1) {
 						switch (_context.prev = _context.next) {
@@ -145,26 +145,30 @@ var IMG = function (_Component) {
         w_200
         /v1502792912/00_Tempio_Malatestiano_gwfwy4.jpg
         */
+								h = window.innerHeight;
+								w = window.innerWidth;
 								src = 'http://res.cloudinary.com/responsivebreakpoints/image/upload/' + 'c_crop,' + (
 								// `h_${this.props.h},`+
-								'h_' + window.innerHeight + ',') + ('w_' + window.innerWidth + '/') + (
+								'h_' + h + ',') + ('w_' + w + '/') + (
 								// `w_${this.props.w}/`+
 								'' + this.props.org);
-								_context.next = 3;
+								_context.next = 5;
 								return fetch(src);
 
-							case 3:
+							case 5:
 								response = _context.sent;
-								_context.next = 6;
+								_context.next = 8;
 								return response.ok;
 
-							case 6:
+							case 8:
 								isOk = _context.sent;
 
 								if (isOk) this.setState({ onload: true });
 								this.setState({ src: src });
+								this.setState({ w: w });
+								this.setState({ h: h });
 
-							case 9:
+							case 13:
 							case 'end':
 								return _context.stop();
 						}
@@ -184,22 +188,26 @@ var IMG = function (_Component) {
 			return _react2.default.createElement('div', {
 				__source: {
 					fileName: _jsxFileName,
-					lineNumber: 100
+					lineNumber: 104
 				}
 			}, _react2.default.createElement(BGContainer, {
 				w: this.state.w,
-				h: this.state.h,
-				active: this.state.onload,
-				src: this.state.src, __source: {
+				h: this.state.h
+				// active={this.state.onload}
+				, src: this.state.src,
+				__source: {
 					fileName: _jsxFileName,
-					lineNumber: 101
+					lineNumber: 105
 				}
-			}, _react2.default.createElement(Loading, {
-				w: this.state.w,
-				h: this.state.h,
-				onload: this.state.onload, __source: {
+			}, _react2.default.createElement(Loading
+			// w={this.state.w}
+			// h={this.state.h}
+			// onload={this.state.onload}
+
+			, {
+				__source: {
 					fileName: _jsxFileName,
-					lineNumber: 107
+					lineNumber: 112
 				}
 			}, !this.state.onload ? 'Loading....' : 'WE \'RECOMMING..')));
 		}

@@ -80,19 +80,23 @@ class IMG extends Component {
     	w_200
     	/v1502792912/00_Tempio_Malatestiano_gwfwy4.jpg
     	*/
+        const h = window.innerHeight;
+        const w = window.innerWidth;
     	const src =
     	`http://res.cloudinary.com/responsivebreakpoints/image/upload/`+
     	`c_crop,`+
     	// `h_${this.props.h},`+
-    	`h_${window.innerHeight},`+
-    	`w_${window.innerWidth}/`+
+    	`h_${h},`+
+    	`w_${w}/`+
     	// `w_${this.props.w}/`+
     	`${this.props.org}`;
 
 	    const response = await fetch( src );
 	    const isOk = await response.ok;
 	    if(isOk) this.setState({onload:true});
-	    this.setState({src:src});
+        this.setState({src:src});
+        this.setState({w:w});
+	    this.setState({h:h});
 	}
 
 	render(){
@@ -101,13 +105,16 @@ class IMG extends Component {
 				<BGContainer
 				 w={this.state.w}
 			 	 h={this.state.h}
-				 active={this.state.onload}
-				 src={this.state.src}>
+				 // active={this.state.onload}
+				 src={this.state.src}
+                 >
 
 					<Loading
-					 w={this.state.w}
-			 		 h={this.state.h}
-					 onload={this.state.onload}>{!this.state.onload?'Loading....':'WE \'RECOMMING..'}</Loading>
+					 // w={this.state.w}
+			 		 // h={this.state.h}
+					 // onload={this.state.onload}
+                     >
+                     {!this.state.onload?'Loading....':'WE \'RECOMMING..'}</Loading>
 
 				</BGContainer>
 			</div>

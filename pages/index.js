@@ -50,6 +50,7 @@ export default class extends Component {
 
        }
        this.onScorll = debounce(this.handleScroll ,500 );
+       this.onReSize = debounce(this.handleReSize ,500 );
 
 
     }
@@ -61,7 +62,7 @@ export default class extends Component {
     const response = await fetch('http://jsonplaceholder.typicode.com/posts?_page=1')
     const postList = await response.json();
     return { postList }
-  }
+  };
 
   // shouldComponentUpdate(){
   //   return false
@@ -74,42 +75,44 @@ export default class extends Component {
 
     if(isScrollUp) {
       console.log('↑');
-
     }else{
       console.log('↓');
     }
     // 刷新当前scroll所在位置
     this.prevScrollY = ScrollY;
 
-    }
+   }
+
+  handleReSize=()=>{
+
+    this.setState({h : window.innerHeight})
+    this.setState({w : window.innerWidth})
+    console.log('resize!')
+
+  }
 
 
-    componentWillMount(){
+  componentWillMount(){
 
-      if (typeof window == 'undefined') {return};
+    if (typeof window == 'undefined') {return};
 
+    setREM();
 
+    window.removeEventListener('scroll', this.onScorll, false);
+    window.removeEventListener('resize', this.onReSize);
 
-
-
-
-
-
-      setREM();
-
-      window.removeEventListener('scroll', this.onScorll, false);
-
-    }
+  }
 
 
 
   componentDidMount(){
 
-
+    window.addEventListener('scroll', this.onScorll, false)
+    window.addEventListener('resize', this.onReSize );
 
     // SCROLL
     this.prevScrollY = window.scrollY;
-    window.addEventListener('scroll', this.onScorll, false)
+
 
 
     // 检测移动硬件
