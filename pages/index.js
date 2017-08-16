@@ -226,6 +226,7 @@ export default class extends Component {
             <p>试用构建图片自动裁剪系统,于服务器中</p>
 
             <h3>2017-8-16</h3>
+            <p>把项目托管至git</p>
             <p>尝试修复git log中文现实问题</p>
             <p></p>
           </glamorous.Div>
