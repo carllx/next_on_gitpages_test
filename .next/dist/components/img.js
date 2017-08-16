@@ -54,6 +54,8 @@ var _ui = require('../utils/ui');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+var _jsxFileName = 'E:\\data\\working\\Sito\\Pages chengcestudio nextjs_pages\\components\\img.js';
+
 // import fetch from 'isomorphic-fetch'
 
 var BGContainer = _glamorous2.default.div({
@@ -121,18 +123,10 @@ var IMG = function (_Component) {
 
 		return _this;
 	}
-	// static async getInitialProps () {
-
-	// 	// fetch list of posts
-	// 	// 只支持外部文件url请求
-	// 	const response = await fetch('http://jsonplaceholder.typicode.com/posts?_page=1')
-	// 	const postList = await response.json();
-	// 	return { postList }
-	// }
 
 	(0, _createClass3.default)(IMG, [{
-		key: 'componentDidMount',
-		value: function componentDidMount() {
+		key: 'componentWillMount',
+		value: function componentWillMount() {
 			this.fethImg();
 		}
 	}, {
@@ -144,8 +138,8 @@ var IMG = function (_Component) {
 					while (1) {
 						switch (_context.prev = _context.next) {
 							case 0:
-								/*test
-         	http://res.cloudinary.com/responsivebreakpoints/image/upload/
+								/*
+        http://res.cloudinary.com/responsivebreakpoints/image/upload/
         c_crop,
         h_403,
         w_200
@@ -187,14 +181,27 @@ var IMG = function (_Component) {
 	}, {
 		key: 'render',
 		value: function render() {
-			return _react2.default.createElement('div', null, _react2.default.createElement(BGContainer, {
+			return _react2.default.createElement('div', {
+				__source: {
+					fileName: _jsxFileName,
+					lineNumber: 100
+				}
+			}, _react2.default.createElement(BGContainer, {
 				w: this.state.w,
 				h: this.state.h,
 				active: this.state.onload,
-				src: this.state.src }, _react2.default.createElement(Loading, {
+				src: this.state.src, __source: {
+					fileName: _jsxFileName,
+					lineNumber: 101
+				}
+			}, _react2.default.createElement(Loading, {
 				w: this.state.w,
 				h: this.state.h,
-				onload: this.state.onload }, !this.state.onload ? 'Loading....' : 'WE \'RECOMMING..')));
+				onload: this.state.onload, __source: {
+					fileName: _jsxFileName,
+					lineNumber: 107
+				}
+			}, !this.state.onload ? 'Loading....' : 'WE \'RECOMMING..')));
 		}
 	}]);
 
