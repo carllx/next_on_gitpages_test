@@ -72,12 +72,14 @@ var ZhoFont = _glamor.css.fontFace({
 var LogoZAI = _glamorous2.default.div({
 
   fontFamily: ZaiFont,
-  // display      :'inline-block',
-  fontSize: '0.8em',
+
   lineHeight: '0.8em', //为了和右边对齐
   display: 'flex',
   alignItems: 'flex-end',
   padding: '0 0.1em 0 0'
+}, function (props) {
+
+  fontSize: props.size ? props.size + 'em' : '0.8em';
 });
 
 var LogoRight = _glamorous2.default.div({
@@ -85,23 +87,22 @@ var LogoRight = _glamorous2.default.div({
   fontFamily: ZhoFont,
   fontSize: '0.3em'
 
-  // display    :'inline-block',
-  // paddingLeft:'0.5rem',
-  // float      :'right',
 });
 
 var LogoContainer = _glamorous2.default.div({
+
+  color: _ui.ui.color.primary_on_dark,
+  backgroundColor: _ui.ui.color.secondary,
 
   display: 'flex',
   flexDirection: 'row',
   justifyContent: 'center',
   alignItems: 'flex-end',
-  // alignItems:'baseline',    
+  // alignItems:'baseline',
   position: 'fixed',
   zIndex: 2,
   textAlign: 'left',
-  color: _ui.ui.color.primary_on_dark,
-  backgroundColor: _ui.ui.color.secondary,
+
   boxShadow: '0 9px 46px 8px rgba(0,0,0,.14),0 11px 15px -7px rgba(0,0,0,.12),0 24px 38px 3px rgba(0,0,0,.2)',
   padding: '0.5em 0.5em 0.5em 0.5em'
 }, function (props) {
@@ -152,35 +153,36 @@ var Logo = function (_Component) {
   (0, _createClass3.default)(Logo, [{
     key: 'render',
     value: function render() {
+
       return _react2.default.createElement('div', {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 114
+          lineNumber: 131
         }
       }, _react2.default.createElement(LogoContainer, (0, _extends3.default)({}, this.props, {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 115
+          lineNumber: 132
         }
       }), _react2.default.createElement(LogoZAI, {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 116
+          lineNumber: 133
         }
       }, 'ZAI'), _react2.default.createElement(LogoRight, {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 117
+          lineNumber: 134
         }
       }, _react2.default.createElement('div', {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 118
+          lineNumber: 135
         }
       }, 'Zhong Art'), _react2.default.createElement('div', {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 119
+          lineNumber: 136
         }
       }, 'Internazionale'))));
     }
@@ -190,15 +192,3 @@ var Logo = function (_Component) {
 }(_react.Component);
 
 exports.default = Logo;
-
-//  const Logo = ()=>(
-//     <div>
-//       <LogoContainer>
-//         <LogoZAI>{'ZAI'}</LogoZAI>
-//         <LogoRight>
-//         <div>{'Zhong Art'}</div>
-//         <div>{'Internazionale'}</div>
-//       </LogoRight>
-//       </LogoContainer>
-//     </div>
-// );

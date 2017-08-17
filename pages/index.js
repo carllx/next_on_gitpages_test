@@ -55,15 +55,26 @@ export default class extends Component {
 
     }
 
-  static async getInitialProps () {
+  // static async getInitialProps () {
 
-    // fetch list of posts
-    // 只支持外部文件url请求
-    const response = await fetch('http://jsonplaceholder.typicode.com/posts?_page=1')
-    const postList = await response.json();
-    return { postList }
-  };
+  //   // fetch list of posts
+  //   // 只支持外部文件url请求
+  //   const response = await fetch('http://jsonplaceholder.typicode.com/posts?_page=1')
+  //   const postList = await response.json();
+  //   return { postList }
 
+
+
+  // };
+  getInitialState(){
+
+    if (typeof window != 'undefined') {
+      return { h: window.innerHeight }
+    }else{
+      return {name: 'Mary'}
+    }
+
+  }
   // shouldComponentUpdate(){
   //   return false
   // }
@@ -97,7 +108,7 @@ export default class extends Component {
     if (typeof window == 'undefined') {return};
 
     setREM();
-
+    console.log(this.state.h)
     window.removeEventListener('scroll', this.onScorll, false);
     window.removeEventListener('resize', this.onReSize);
 
@@ -106,7 +117,7 @@ export default class extends Component {
 
 
   componentDidMount(){
-
+    console.log(this.state.h)
     window.addEventListener('scroll', this.onScorll, false)
     window.addEventListener('resize', this.onReSize );
 

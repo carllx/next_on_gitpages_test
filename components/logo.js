@@ -5,6 +5,10 @@ import glamorous from 'glamorous'
 
 import {ui}  from '../utils/ui'
 
+
+
+
+
 // FONT
 
 const ZaiFont = css.fontFace({
@@ -28,17 +32,23 @@ const ZhoFont = css.fontFace({
 })
 
 
+
+
+
+
 // ELEMENT
 
 const LogoZAI = glamorous.div({
 
 	fontFamily      :ZaiFont,
-	// display      :'inline-block',
-  fontSize        :`0.8em`,
+
   lineHeight      :`0.8em`,//为了和右边对齐
   display         :'flex',
   alignItems      :'flex-end',
   padding         :'0 0.1em 0 0',
+},(props)=>{
+
+  fontSize        :props.size?`${props.size}em`:`0.8em`
 });
 
 const LogoRight = glamorous.div({
@@ -46,24 +56,24 @@ const LogoRight = glamorous.div({
     fontFamily    :ZhoFont,
     fontSize      :`0.3em`,
 
-    // display    :'inline-block',
-    // paddingLeft:'0.5rem',
-    // float      :'right',
+
 });
 
 const LogoContainer = glamorous.div({
-    
+
+    color          :ui.color.primary_on_dark,
+    backgroundColor:ui.color.secondary,
+
     display       :'flex',
     flexDirection :'row',
     justifyContent:'center',
     alignItems    :'flex-end',
-    // alignItems:'baseline',    
+    // alignItems:'baseline',
   	position       :'fixed',
-  	zIndex         :2,    
+  	zIndex         :2,
     textAlign      :'left',
-    color          :ui.color.primary_on_dark,
-    backgroundColor:ui.color.secondary,
-    boxShadow      :`0 9px 46px 8px rgba(0,0,0,.14),0 11px 15px -7px rgba(0,0,0,.12),0 24px 38px 3px rgba(0,0,0,.2)`,    
+
+    boxShadow      :`0 9px 46px 8px rgba(0,0,0,.14),0 11px 15px -7px rgba(0,0,0,.12),0 24px 38px 3px rgba(0,0,0,.2)`,
     padding        :'0.5em 0.5em 0.5em 0.5em',
   },(props)=>{
 
@@ -71,7 +81,7 @@ const LogoContainer = glamorous.div({
 
     if(props.device == 'isDesktop'){
       return ({
-        fontSize      :'1rem',
+        fontSize      : '1rem',
         width         : 'auto',
       })
     }else if(props.device =='isMobile'){
@@ -88,7 +98,7 @@ const LogoContainer = glamorous.div({
         fontSize      :'1rem',
         width         :'auto',
 
-        
+
       })
     }
 
@@ -100,17 +110,24 @@ const LogoContainer = glamorous.div({
 )
 
 
+
+
+
+
+
+
 class Logo extends Component {
+
   constructor (props) {
+
       super(props)
       this.state = {}
-      
+
   }
 
-
   render(){
-    return(
 
+    return(
       <div>
         <LogoContainer {...this.props}>
           <LogoZAI>{'ZAI'}</LogoZAI>
@@ -122,24 +139,9 @@ class Logo extends Component {
       </div>
 
       );
-      
 
   }
-    
+
 }
 
-
 export default Logo
-
-
-//  const Logo = ()=>(
-//     <div>
-//       <LogoContainer>
-//         <LogoZAI>{'ZAI'}</LogoZAI>
-//         <LogoRight>
-//         <div>{'Zhong Art'}</div>
-//         <div>{'Internazionale'}</div>
-//       </LogoRight>
-//       </LogoContainer>
-//     </div>
-// );

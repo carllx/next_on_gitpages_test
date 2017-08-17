@@ -56,6 +56,7 @@ const Loading = glamorous.div({
 	})
 )
 
+
 class IMG extends Component {
 
 	constructor (props) {
