@@ -1,12 +1,29 @@
-# Static export example
+# ZhongArt on Next
 
-## How to use
+## How to dev
 
-Download the example [or clone the repo](https://github.com/zeit/next.js):
+CMD
 
 ```bash
-curl https://codeload.github.com/zeit/next.js/tar.gz/master | tar -xz --strip=2 next.js-master/examples/with-static-export
-cd with-static-export
+npm run dev
+```
+chrome :[localhost:3000/](http://localhost:3000/):
+
+递交
+```bash
+git add . && git commit -m "...." && git push origin master
+```
+
+
+
+## 输出
+在 out 目录
+```bash
+npm run preexport
+
+//如果递交失败
+npm run prestart
+npm run preexport
 ```
 
 > This example requires [Node.js 8](https://nodejs.org/en/download/current/) or a later version.<br>

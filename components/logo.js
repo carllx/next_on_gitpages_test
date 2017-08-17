@@ -36,19 +36,16 @@ const ZhoFont = css.fontFace({
 
 
 
+
 // ELEMENT
 
 const LogoZAI = glamorous.div({
 
-	fontFamily      :ZaiFont,
-
+  fontFamily      :ZaiFont,
   lineHeight      :`0.8em`,//为了和右边对齐
   display         :'flex',
   alignItems      :'flex-end',
   padding         :'0 0.1em 0 0',
-},(props)=>{
-
-  fontSize        :props.size?`${props.size}em`:`0.8em`
 });
 
 const LogoRight = glamorous.div({
@@ -56,63 +53,73 @@ const LogoRight = glamorous.div({
     fontFamily    :ZhoFont,
     fontSize      :`0.3em`,
 
-
 });
 
-const LogoContainer = glamorous.div({
 
-    color          :ui.color.primary_on_dark,
-    backgroundColor:ui.color.secondary,
+/**
+ * Logo组件,
+ * @param  {float}  fontSize
+ * @param  {string} color  [description]
+ * @param  {string} bg_color  [description]
+ * @return {component}
+ */
 
-    display       :'flex',
-    flexDirection :'row',
+function isMobile_Logo(){
+  return ({
+    fontSize      : '1rem',
+  })
+}
+
+const _Logo = glamorous.div({
+// alignItems:'baseline',
+    display:       'flex',
+    flexDirection: 'row',
     justifyContent:'center',
-    alignItems    :'flex-end',
-    // alignItems:'baseline',
-  	position       :'fixed',
-  	zIndex         :2,
-    textAlign      :'left',
-
-    boxShadow      :`0 9px 46px 8px rgba(0,0,0,.14),0 11px 15px -7px rgba(0,0,0,.12),0 24px 38px 3px rgba(0,0,0,.2)`,
-    padding        :'0.5em 0.5em 0.5em 0.5em',
+    alignItems:    'flex-end',
+    position:      'fixed',
+    zIndex:2,
+    textAlign:     'left',
+    boxShadow:     `0 9px 46px 8px rgba(0,0,0,.14),0 11px 15px -7px rgba(0,0,0,.12),0 24px 38px 3px rgba(0,0,0,.2)`,
+    padding:       '0.5em 0.5em 0.5em 0.5em'
   },(props)=>{
 
-    let isLandscape = props.isLandscape;
-
-    if(props.device == 'isDesktop'){
-      return ({
-        fontSize      : '1rem',
-        width         : 'auto',
-      })
-    }else if(props.device =='isMobile'){
-      return ({
-        fontSize      : isLandscape?'0.8rem':'1rem',
-        width         : isLandscape?'auto':'100%',
-
-        left          : isLandscape?'50%':0,
-        top           : isLandscape?'0%':0,
-        transform     : isLandscape?'translate(-50%, 0)' :0,
-      })
-    }else if(props.device =='isTablet'){
-      return ({
-        fontSize      :'1rem',
-        width         :'auto',
-
-
-      })
+    const Default = {
+      fontSize:        props.size?`${props.size}rem`:`0.8rem`,
+      color:           props.color,
+      backgroundColor: props.bg_color
     }
 
+    const isLandscape = props.isLandscape;
+
+    const isDesktop ={
+      fontSize       : props.size?`${props.size}rem`:`0.8rem`
+    }
+
+    const isMobile ={
+      fontSize:  isLandscape?'0.8rem':            '1rem',
+      width:     isLandscape?'auto':              '100%',
+      left:      isLandscape?'50%':               0,
+      top:       isLandscape?'0%':                0,
+      transform: isLandscape?'translate(-50%, 0)':0,
+    }
+
+    const isTablet ={
+      fontSize: '1rem',
+    }
+    switch (props.device){
+      case 'isDesktop':
+        return Object.assign(Default,isDesktop);
+
+
+      case 'isMobile':
+        return Object.assign(Default,isMobile);
+        break;
+      case 'isTablet':
+        return Object.assign(Default,isTablet);
+        break;
+    }
   }
-    // width         :props.isCenter? '100%':'auto',
-    // left          :props.isCenter? '50%':0,
-    // top           :props.isCenter? '0%':0,
-    // transform     :props.isCenter? 'translate(-50%, 0)':0 ,
 )
-
-
-
-
-
 
 
 
@@ -129,13 +136,13 @@ class Logo extends Component {
 
     return(
       <div>
-        <LogoContainer {...this.props}>
+        <_Logo {...this.props}>
           <LogoZAI>{'ZAI'}</LogoZAI>
           <LogoRight>
             <div>{'Zhong Art'}</div>
             <div>{'Internazionale'}</div>
           </LogoRight>
-        </LogoContainer>
+        </_Logo>
       </div>
 
       );

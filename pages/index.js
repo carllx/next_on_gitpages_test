@@ -7,13 +7,17 @@ import glamorous from 'glamorous'
 import Post from '../components/post'
 import Nav from '../components/nav'
 import IMG from '../components/img'
+import Logo from '../components/logo'
 
 import {isMobile  ,isTablet , isLandscape, getLanguer, setREM }  from '../utils/device'
 import {throttle, debounce}  from '../utils/throttle'
 
 import {ui}  from '../utils/ui'
 
-
+/**
+ * [fontSize description]
+ * @type {String}
+ */
 css.global(
 
   'html, body', {
@@ -21,6 +25,10 @@ css.global(
     color:ui.color.secondary_on_light,
   },
 )
+/**
+ * [color description]
+ * @type {[type]}
+ */
 css.global(
 
   'h1,h2,h3',{
@@ -105,7 +113,7 @@ export default class extends Component {
 
   componentWillMount(){
 
-    if (typeof window == 'undefined') {return};
+    if (typeof window == 'undefined') return;
 
     setREM();
     console.log(this.state.h)
@@ -152,9 +160,10 @@ export default class extends Component {
       // console.log(this.state)
     }
 
-    console.log('方向:',window.screen.orientation,
-                  '\n高度:',window.innerHeight,
-                  '\n宽度:',window.innerWidth
+    console.log(
+                  '方向:   ',window.screen.orientation,
+                  '\n高度: ',window.innerHeight,
+                  '\n宽度: ',window.innerWidth
                   );
 
   }
@@ -168,6 +177,12 @@ export default class extends Component {
         </Head>
 
         <Nav device= {this.state.device} isLandscape={this.state.isLandscape} language= {this.state.language}/>
+        <Logo
+         device={this.state.device}
+         isLandscape = {this.state.isLandscape}
+         color={ui.color.primary_on_dark}
+         bg_color={ui.color.secondary}
+         />
         <IMG
          w={this.state.w}
          h={this.state.h}

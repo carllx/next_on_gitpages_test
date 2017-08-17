@@ -33,9 +33,6 @@ const BGContainer = glamorous.div({
 		//在这里找渐变模板 https://webgradients.com/
 		backgroundImage:props.src?`url(${props.src})`:'linear-gradient(to right, #d7d2cc 0%, #304352 100%)',
 
-
-
-
 	})
 )
 

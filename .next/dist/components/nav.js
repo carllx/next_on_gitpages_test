@@ -51,15 +51,15 @@ var _jsxFileName = 'E:\\data\\working\\Sito\\Pages chengcestudio nextjs_pages\\c
 
 // glamor
 // css.global(
-// 	'@font-face', { 
+// 	'@font-face', {
 // 		fontFamily: 'fontZai', src: "url('../static/SFElectrotome-Bold.woff') format('woff')"
 // 	}
 // );
-// 
+//
 // let abc = css({
 //   // 'color': 'red',
-//   // ':hover': { color: 'blue' },  
-//   // 'html.ie9 & span.title': { fontWeight: 'bold' }, 
+//   // ':hover': { color: 'blue' },
+//   // 'html.ie9 & span.title': { fontWeight: 'bold' },
 //   // '@media(min-width: 300px)': { fontSize: 20 }
 // })
 
@@ -164,30 +164,12 @@ var Nav = function (_Component) {
 					fileName: _jsxFileName,
 					lineNumber: 118
 				}
-			}, LinkItems), _react2.default.createElement(_logo2.default, { device: this.props.device, isLandscape: this.props.isLandscape, __source: {
-					fileName: _jsxFileName,
-					lineNumber: 124
-				}
-			}));
+			}, LinkItems));
 		}
 	}]);
 
 	return Nav;
 }(_react.Component);
 
+;
 exports.default = Nav;
-// <Link href= '/index'>
-// 		<a>主页</a>
-// 	</Link>
-// 	<Link href= '/artista'>
-// 		<a>艺术家</a>
-// 	</Link>
-// 	<Link href= '/mostre'>
-// 		<a>展览</a>
-// 	</Link>
-// 	<Link href= '/eventi'>
-// 		<a>新闻</a>
-// 	</Link>
-// 	<Link href= '/about'>
-// 		<a>关于</a>
-// 	</Link>

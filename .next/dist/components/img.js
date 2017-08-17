@@ -188,7 +188,7 @@ var IMG = function (_Component) {
 			return _react2.default.createElement('div', {
 				__source: {
 					fileName: _jsxFileName,
-					lineNumber: 105
+					lineNumber: 102
 				}
 			}, _react2.default.createElement(BGContainer, {
 				w: this.state.w,
@@ -197,7 +197,7 @@ var IMG = function (_Component) {
 				, src: this.state.src,
 				__source: {
 					fileName: _jsxFileName,
-					lineNumber: 106
+					lineNumber: 103
 				}
 			}, _react2.default.createElement(Loading
 			// w={this.state.w}
@@ -207,7 +207,7 @@ var IMG = function (_Component) {
 			, {
 				__source: {
 					fileName: _jsxFileName,
-					lineNumber: 113
+					lineNumber: 110
 				}
 			}, !this.state.onload ? 'Loading....' : 'WE \'RECOMMING..')));
 		}

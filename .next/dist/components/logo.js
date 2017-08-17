@@ -28,6 +28,10 @@ var _inherits2 = require('next\\node_modules\\babel-runtime/helpers/inherits');
 
 var _inherits3 = _interopRequireDefault(_inherits2);
 
+var _assign = require('next\\node_modules\\babel-runtime/core-js/object/assign');
+
+var _assign2 = _interopRequireDefault(_assign);
+
 var _link = require('next\\dist\\lib\\link.js');
 
 var _link2 = _interopRequireDefault(_link);
@@ -72,14 +76,10 @@ var ZhoFont = _glamor.css.fontFace({
 var LogoZAI = _glamorous2.default.div({
 
   fontFamily: ZaiFont,
-
   lineHeight: '0.8em', //为了和右边对齐
   display: 'flex',
   alignItems: 'flex-end',
   padding: '0 0.1em 0 0'
-}, function (props) {
-
-  fontSize: props.size ? props.size + 'em' : '0.8em';
 });
 
 var LogoRight = _glamorous2.default.div({
@@ -89,53 +89,68 @@ var LogoRight = _glamorous2.default.div({
 
 });
 
-var LogoContainer = _glamorous2.default.div({
+/**
+ * Logo组件,
+ * @param  {float}  fontSize
+ * @param  {string} color  [description]
+ * @param  {string} bg_color  [description]
+ * @return {component}
+ */
 
-  color: _ui.ui.color.primary_on_dark,
-  backgroundColor: _ui.ui.color.secondary,
+function isMobile_Logo() {
+  return {
+    fontSize: '1rem'
+  };
+}
 
+var _Logo = _glamorous2.default.div({
+  // alignItems:'baseline',
   display: 'flex',
   flexDirection: 'row',
   justifyContent: 'center',
   alignItems: 'flex-end',
-  // alignItems:'baseline',
   position: 'fixed',
   zIndex: 2,
   textAlign: 'left',
-
   boxShadow: '0 9px 46px 8px rgba(0,0,0,.14),0 11px 15px -7px rgba(0,0,0,.12),0 24px 38px 3px rgba(0,0,0,.2)',
   padding: '0.5em 0.5em 0.5em 0.5em'
 }, function (props) {
 
+  var Default = {
+    fontSize: props.size ? props.size + 'rem' : '0.8rem',
+    color: props.color,
+    backgroundColor: props.bg_color
+  };
+
   var isLandscape = props.isLandscape;
 
-  if (props.device == 'isDesktop') {
-    return {
-      fontSize: '1rem',
-      width: 'auto'
-    };
-  } else if (props.device == 'isMobile') {
-    return {
-      fontSize: isLandscape ? '0.8rem' : '1rem',
-      width: isLandscape ? 'auto' : '100%',
+  var isDesktop = {
+    fontSize: props.size ? props.size + 'rem' : '0.8rem'
+  };
 
-      left: isLandscape ? '50%' : 0,
-      top: isLandscape ? '0%' : 0,
-      transform: isLandscape ? 'translate(-50%, 0)' : 0
-    };
-  } else if (props.device == 'isTablet') {
-    return {
-      fontSize: '1rem',
-      width: 'auto'
+  var isMobile = {
+    fontSize: isLandscape ? '0.8rem' : '1rem',
+    width: isLandscape ? 'auto' : '100%',
+    left: isLandscape ? '50%' : 0,
+    top: isLandscape ? '0%' : 0,
+    transform: isLandscape ? 'translate(-50%, 0)' : 0
+  };
 
-    };
+  var isTablet = {
+    fontSize: '1rem'
+  };
+  switch (props.device) {
+    case 'isDesktop':
+      return (0, _assign2.default)(Default, isDesktop);
+
+    case 'isMobile':
+      return (0, _assign2.default)(Default, isMobile);
+      break;
+    case 'isTablet':
+      return (0, _assign2.default)(Default, isTablet);
+      break;
   }
-}
-// width         :props.isCenter? '100%':'auto',
-// left          :props.isCenter? '50%':0,
-// top           :props.isCenter? '0%':0,
-// transform     :props.isCenter? 'translate(-50%, 0)':0 ,
-);
+});
 
 var Logo = function (_Component) {
   (0, _inherits3.default)(Logo, _Component);
@@ -157,32 +172,32 @@ var Logo = function (_Component) {
       return _react2.default.createElement('div', {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 131
+          lineNumber: 138
         }
-      }, _react2.default.createElement(LogoContainer, (0, _extends3.default)({}, this.props, {
+      }, _react2.default.createElement(_Logo, (0, _extends3.default)({}, this.props, {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 132
+          lineNumber: 139
         }
       }), _react2.default.createElement(LogoZAI, {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 133
+          lineNumber: 140
         }
       }, 'ZAI'), _react2.default.createElement(LogoRight, {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 134
+          lineNumber: 141
         }
       }, _react2.default.createElement('div', {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 135
+          lineNumber: 142
         }
       }, 'Zhong Art'), _react2.default.createElement('div', {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 136
+          lineNumber: 143
         }
       }, 'Internazionale'))));
     }

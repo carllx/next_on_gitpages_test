@@ -8,15 +8,15 @@ import {ui}  from '../utils/ui'
 
 // glamor
 // css.global(
-// 	'@font-face', { 
+// 	'@font-face', {
 // 		fontFamily: 'fontZai', src: "url('../static/SFElectrotome-Bold.woff') format('woff')"
 // 	}
 // );
-// 
+//
 // let abc = css({
 //   // 'color': 'red',
-//   // ':hover': { color: 'blue' },  
-//   // 'html.ie9 & span.title': { fontWeight: 'bold' }, 
+//   // ':hover': { color: 'blue' },
+//   // 'html.ie9 & span.title': { fontWeight: 'bold' },
 //   // '@media(min-width: 300px)': { fontSize: 20 }
 // })
 
@@ -35,7 +35,7 @@ const paths = [
 ]
 
 const AContainer = glamorous.div({
-    	
+
     	position: 'relative',
 		cursor: 'pointer',
 	    // color: 'rgba(0, 0, 0, 0.69)',
@@ -47,7 +47,7 @@ const AContainer = glamorous.div({
 const A = glamorous.div({
 
 		cursor: 'pointer',
-		
+
 	},(props)=>({
 
 	})
@@ -66,14 +66,14 @@ const NavContainer = glamorous.div({
 		alignItems:'center',
 		justifyContent:'space-around',
 	    backgroundColor:'white',
-	    
-	    
+
+
 	},(props)=>({
 		// isLandscape  --或 居中
 		left: props.isLandscape? 0:'50%',
 		top: props.isLandscape? 0:'100%',
 		transform: props.isLandscape? 'translate(0, 0)':'translate(-50%, -100%)' ,
-		width:props.isLandscape? 'auto':'100%',	
+		width:props.isLandscape? 'auto':'100%',
 		padding:props.isLandscape? '2em':'1em',
 		boxShadow: props.isLandscape? `0 16px 24px 2px rgba(0,0,0,.14),0 6px 30px 5px rgba(0,0,0,.12),0 8px 10px -5px rgba(0,0,0,.2)`:`0 -16px 24px 2px rgba(0,0,0,.14),0 -6px 30px 5px rgba(0,0,0,.12),0 -8px 10px -5px rgba(0,0,0,.2)`,
 
@@ -104,7 +104,7 @@ class Nav extends Component {
 	constructor (props) {
       super(props)
       this.state = {}
-      
+
     }
 
 	onClick = value => {
@@ -113,34 +113,19 @@ class Nav extends Component {
   	}
 	render(){
 		return(
-			<div onClick={this.onClick}>	
+			<div onClick={this.onClick}>
 				{/*<div>{this.state.h}</div>*/}
 				<NavContainer isLandscape = {this.props.isLandscape}>
-				
+
 					{LinkItems}
-				
+
 				</NavContainer>
 
-				<Logo device={this.props.device}  isLandscape = {this.props.isLandscape}/ >
+
 			</div>
 
 			);
-			
-	}
-}
+
+	};
+};
 export default Nav;
-// <Link href= '/index'>
-// 		<a>主页</a>
-// 	</Link>
-// 	<Link href= '/artista'>
-// 		<a>艺术家</a>
-// 	</Link>
-// 	<Link href= '/mostre'>
-// 		<a>展览</a>
-// 	</Link>
-// 	<Link href= '/eventi'>
-// 		<a>新闻</a>
-// 	</Link>
-// 	<Link href= '/about'>
-// 		<a>关于</a>
-// 	</Link>
