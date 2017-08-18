@@ -123,6 +123,9 @@ const _Logo = glamorous.div({
 
 
 
+
+
+
 class Logo extends Component {
 
   constructor (props) {

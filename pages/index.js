@@ -75,15 +75,6 @@ export default class extends Component {
 
 
   // };
-  getInitialState(){
-
-    if (typeof window != 'undefined') {
-      return { h: window.innerHeight }
-    }else{
-      return {name: 'Mary'}
-    }
-
-  }
   // shouldComponentUpdate(){
   //   return false
   // }
@@ -101,7 +92,8 @@ export default class extends Component {
     // 刷新当前scroll所在位置
     this.prevScrollY = ScrollY;
 
-   }
+   };
+
 
   handleReSize=()=>{
 
@@ -109,57 +101,55 @@ export default class extends Component {
     this.setState({w : window.innerWidth})
     console.log('resize!')
 
-  }
+  };
 
 
   componentWillMount(){
 
     if (typeof window == 'undefined') return;
-
     setREM();
-    console.log(this.state.h)
     window.removeEventListener('scroll', this.onScorll, false);
     window.removeEventListener('resize', this.onReSize);
 
   }
 
+  // componentWillUnmount(){
+  //   window.removeEventListener('scroll', this.onScorll, false);
+  //   window.removeEventListener('resize', this.onReSize);
+  // }
 
 
   componentDidMount(){
-    console.log(this.state.h)
+
     window.addEventListener('scroll', this.onScorll, false)
     window.addEventListener('resize', this.onReSize );
 
     // SCROLL
     this.prevScrollY = window.scrollY;
 
-
-
     // 检测移动硬件
-    if (typeof navigator !== 'undefined') {
-
-      // device
-      if(isMobile()==true){//isMobile
-        this.setState({device : 'isMobile'})
-      }else if (isTablet()==true){
-        this.setState({device : 'isTablet'})
-      }else{
-        this.setState({device : 'isDesktop'})
-      };
-      // direction
-      this.setState({isLandscape : (isLandscape()?true:false) })
-      // language
-      this.setState({language : getLanguer()})
-
-      // height width
-      this.setState({h : window.innerHeight})
-      this.setState({w : window.innerWidth})
-
-
-
-    }else{
-      // console.log(this.state)
+    if (typeof navigator === 'undefined') {
+      console.log(this.state)
+      return;
     }
+    // device
+    if(isMobile()==true){//isMobile
+      this.setState({device : 'isMobile'})
+    }else if (isTablet()==true){
+      this.setState({device : 'isTablet'})
+    }else{
+      this.setState({device : 'isDesktop'})
+    };
+    // direction
+    this.setState({isLandscape : (isLandscape()?true:false) })
+    // language
+    this.setState({language : getLanguer()})
+
+    // height width
+    this.setState({h : window.innerHeight})
+    this.setState({w : window.innerWidth})
+
+
 
     console.log(
                   '方向:   ',window.screen.orientation,
@@ -190,13 +180,14 @@ export default class extends Component {
           <Nav device= {this.state.device} isLandscape={this.state.isLandscape} language= {this.state.language}/>
         </NoSSR>
 
-
-        <IMG
-         w={this.state.w}
-         h={this.state.h}
-         org={'v1502792912/00_Tempio_Malatestiano_gwfwy4.jpg'}
-         active={'true'}/>
-
+        <NoSSR>
+          <IMG
+           w={this.state.w}
+           h={this.state.h}
+           org={'v1502792912/00_Tempio_Malatestiano_gwfwy4.jpg'}
+           active={'true'}
+           />
+        </NoSSR>
         <content onScroll={this.handleScroll}>
           <glamorous.Div fontSize='0.25rem' margin='10em 0.8em 0 0.8em'>
             <glamorous.Div display='flex' alignItems='center' justifyContent='center' width='100%' height='38em'>We are comming...</glamorous.Div>

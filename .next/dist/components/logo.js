@@ -172,32 +172,32 @@ var Logo = function (_Component) {
       return _react2.default.createElement('div', {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 138
+          lineNumber: 141
         }
       }, _react2.default.createElement(_Logo, (0, _extends3.default)({}, this.props, {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 139
+          lineNumber: 142
         }
       }), _react2.default.createElement(LogoZAI, {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 140
+          lineNumber: 143
         }
       }, 'ZAI'), _react2.default.createElement(LogoRight, {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 141
+          lineNumber: 144
         }
       }, _react2.default.createElement('div', {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 142
+          lineNumber: 145
         }
       }, 'Zhong Art'), _react2.default.createElement('div', {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 143
+          lineNumber: 146
         }
       }, 'Internazionale'))));
     }
