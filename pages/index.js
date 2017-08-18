@@ -3,6 +3,7 @@ import Head from 'next/head'
 import fetch from 'isomorphic-fetch'
 import { css } from 'glamor'
 import glamorous from 'glamorous'
+import NoSSR from 'react-no-ssr';
 
 import Post from '../components/post'
 import Nav from '../components/nav'
@@ -175,14 +176,21 @@ export default class extends Component {
         <Head>
           <title>中艺国际</title>
         </Head>
-
-        <Nav device= {this.state.device} isLandscape={this.state.isLandscape} language= {this.state.language}/>
-        <Logo
+        <NoSSR onSSR={<h2>中艺国际</h2>}>
+          <section>
+            <Logo
          device={this.state.device}
          isLandscape = {this.state.isLandscape}
          color={ui.color.primary_on_dark}
          bg_color={ui.color.secondary}
-         />
+          />
+          </section>
+        </NoSSR>
+        <NoSSR onSSR={<h2>中艺国际</h2>}>
+          <Nav device= {this.state.device} isLandscape={this.state.isLandscape} language= {this.state.language}/>
+        </NoSSR>
+
+
         <IMG
          w={this.state.w}
          h={this.state.h}
@@ -275,7 +283,9 @@ export default class extends Component {
             <p></p>
           </glamorous.Div>
         </content>
+
       </main>
+
     )
   }
 
