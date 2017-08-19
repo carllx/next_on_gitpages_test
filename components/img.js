@@ -25,44 +25,44 @@ const _IMG  = glamorous.div({
 
 
 const _BG_IMG = glamorous.div({
-        // fontSize:           '0.3rem',
-        zIndex:           1,
-        display:          'flex',
-        // flexDirection:    'row',
-        // alignItems:       'center',
-        justifyContent:   'space-around',
-        backgroundColor:  '#3b444f',
-        backgroundRepeat: 'no-repeat',
-        backgroundSize:   'cover',
-        overflow:         'hidden',
-        position:         'absolute',
-        left:             0,
-        top:              0,
-    },(props)=>({
-        // isLandscape  --或 居中
-        width:            props.w?`${props.w}`:'100%',
-        height:           props.h?`${props.h}`:'100%',
-        //在这里找渐变模板 https: //webgradients.com/
-        backgroundImage:  props.src?`url(${props.src})`:'linear-gradient(to right, #d7d2cc 0%, #304352 100%)',
-    })
+  // fontSize:           '0.3rem',
+  zIndex:           1,
+  display:          'flex',
+  // flexDirection:    'row',
+  // alignItems:       'center',
+  justifyContent:   'space-around',
+  backgroundColor:  '#3b444f',
+  backgroundRepeat: 'no-repeat',
+  backgroundSize:   'cover',
+  overflow:         'hidden',
+  position:         'absolute',
+  left:             0,
+  top:              0,
+},(props)=>({
+  // isLandscape  --或 居中
+  width:            props.w?`${props.w}`:'100%',
+  height:           props.h?`${props.h}`:'100%',
+  //在这里找渐变模板 https: //webgradients.com/
+  backgroundImage:  props.src?`url(${props.src})`:'linear-gradient(to right, #d7d2cc 0%, #304352 100%)',
+})
 )
 
 
 const Loading = glamorous.div({
 
-        fontWeight:     400,
-        flexDirection:  'row',
-        alignItems:     'center',
-        justifyContent: 'center',
-        display:        'flex',
-        backgroundColor:'rgba(0,0,0,.15)',
-        width:          '100%',
-        height:         '100%',
+    fontWeight:     400,
+    flexDirection:  'row',
+    alignItems:     'center',
+    justifyContent: 'center',
+    display:        'flex',
+    backgroundColor:'rgba(0,0,0,.15)',
+    width:          '100%',
+    height:         '100%',
 
-    },(props)=>({
-        fontSize:        props.size?props.size:'0.4em',
-        color:           props.color?props.color:ui.color.secondary_on_dark,
-    })
+},(props)=>({
+    fontSize:        props.size?props.size:'0.4em',
+    color:           props.color?props.color:ui.color.secondary_on_dark,
+})
 )
 
 

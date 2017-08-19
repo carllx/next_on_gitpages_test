@@ -58,8 +58,6 @@ var _ui = require('../utils/ui');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var _jsxFileName = 'E:\\data\\working\\Sito\\Pages chengcestudio nextjs_pages\\components\\img.js';
-
 // import fetch from 'isomorphic-fetch'
 //
 
@@ -212,31 +210,17 @@ var IMG = function (_Component) {
     }, {
         key: 'render',
         value: function render() {
-            return _react2.default.createElement('div', {
-                __source: {
-                    fileName: _jsxFileName,
-                    lineNumber: 125
-                }
-            }, _react2.default.createElement(_BG_IMG, {
+            return _react2.default.createElement('div', null, _react2.default.createElement(_BG_IMG, {
                 w: this.state.w,
                 h: this.state.h
                 // active={this.state.onload}
-                , src: this.state.src,
-                __source: {
-                    fileName: _jsxFileName,
-                    lineNumber: 126
-                }
+                , src: this.state.src
             }, _react2.default.createElement(Loading
             // w={this.state.w}
             // h={this.state.h}
             // onload={this.state.onload}
 
-            , {
-                __source: {
-                    fileName: _jsxFileName,
-                    lineNumber: 132
-                }
-            }, !this.state.onload ? this.state.per : 'WE \'RECOMMING..')));
+            , null, !this.state.onload ? this.state.per : 'WE \'RECOMMING..')));
         }
     }]);
 
