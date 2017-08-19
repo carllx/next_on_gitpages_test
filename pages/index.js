@@ -60,19 +60,7 @@ export default class extends Component {
        }
        this.onScorll = debounce(this.handleScroll ,500 );
        this.onReSize = debounce(this.handleReSize ,500 );
-
-
     }
-
-  // static async getInitialProps () {
-
-  //   // fetch list of posts
-  //   // 只支持外部文件url请求
-  //   const response = await fetch('http://jsonplaceholder.typicode.com/posts?_page=1')
-  //   const postList = await response.json();
-  //   return { postList }
-
-
 
   // };
   // shouldComponentUpdate(){
@@ -149,10 +137,10 @@ export default class extends Component {
     this.setState({h : window.innerHeight})
     this.setState({w : window.innerWidth})
 
-
+    const screen= window.orientation||window.screen.orientation.angle
 
     console.log(
-                  '方向:   ',window.screen.orientation,
+                  '方向:   ',screen.orientation,
                   '\n高度: ',window.innerHeight,
                   '\n宽度: ',window.innerWidth
                   );
@@ -166,18 +154,21 @@ export default class extends Component {
         <Head>
           <title>中艺国际</title>
         </Head>
-        <NoSSR onSSR={<h2>中艺国际</h2>}>
-          <section>
+
+        <NoSSR>
             <Logo
-         device={this.state.device}
-         isLandscape = {this.state.isLandscape}
-         color={ui.color.primary_on_dark}
-         bg_color={ui.color.secondary}
-          />
-          </section>
+             device={this.state.device}
+             isLandscape = {this.state.isLandscape}
+             color={ui.color.primary_on_dark}
+             bg_color={ui.color.secondary}
+            />
         </NoSSR>
+
         <NoSSR onSSR={<h2>中艺国际</h2>}>
-          <Nav device= {this.state.device} isLandscape={this.state.isLandscape} language= {this.state.language}/>
+          <Nav
+           device= {this.state.device}
+           isLandscape={this.state.isLandscape}
+           language= {this.state.language}/>
         </NoSSR>
 
         <NoSSR>
@@ -188,9 +179,21 @@ export default class extends Component {
            active={'true'}
            />
         </NoSSR>
+
         <content onScroll={this.handleScroll}>
-          <glamorous.Div fontSize='0.25rem' margin='10em 0.8em 0 0.8em'>
-            <glamorous.Div display='flex' alignItems='center' justifyContent='center' width='100%' height='38em'>We are comming...</glamorous.Div>
+          <glamorous.Div
+           fontSize='0.25rem'
+           margin='10em 0.8em 0 0.8em'>
+
+            <glamorous.Div
+             display='flex'
+             alignItems='center'
+             justifyContent='center'
+             width='100%'
+             height='38em'>
+              We are comming...
+            </glamorous.Div>
+
             <h2>设计特色</h2>
             <glamorous.Span color='#717171'>更新于2017-8-16</glamorous.Span>
             <h3>Z + AI</h3>
@@ -219,6 +222,8 @@ export default class extends Component {
             <p>{`我们非常在乎你未来的浏览方式,对已经成为主流的技术/方式, 我们会不惜进行改造,就如我们不会为求选用已经发展成熟的
               wordpress框架制作我们的网站,尽管它更简单和更有效率. 我们分析未来趋向,不惜花费大量的学习/排错成本,
               探索2017+最新的框架和开发语言, 所以我们可以不断为你提供最新的服务和更多的可能性`}</p>
+
+
 
             <h2>Change Log 网站进度</h2>
 

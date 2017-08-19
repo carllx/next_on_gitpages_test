@@ -58,18 +58,15 @@ var _ui = require('../utils/ui');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var _jsxFileName = 'E:\\data\\working\\Sito\\Pages chengcestudio nextjs_pages\\components\\img.js';
-
 // import fetch from 'isomorphic-fetch'
 var BGContainer = _glamorous2.default.div({
-    // fontSize:'0.3rem',
+    // fontSize:           '0.3rem',
     zIndex: 1,
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-around',
     backgroundColor: '#3b444f',
-    // backgroundPosition:'50%',
     backgroundRepeat: 'no-repeat',
     backgroundSize: 'cover',
     overflow: 'hidden',
@@ -81,24 +78,25 @@ var BGContainer = _glamorous2.default.div({
         // isLandscape  --或 居中
         width: props.w ? '' + props.w : '100%',
         height: props.h ? '' + props.h : '100%',
-        //在这里找渐变模板 https://webgradients.com/
+        //在这里找渐变模板 https: //webgradients.com/
         backgroundImage: props.src ? 'url(' + props.src + ')' : 'linear-gradient(to right, #d7d2cc 0%, #304352 100%)'
     };
 });
+
 var Loading = _glamorous2.default.div({
-    fontWeight: 100,
+
     padding: '0.3em 3em',
-    fontSize: '0.4em',
-    color: _ui.ui.color.secondary_on_light,
+    fontWeight: 100,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    display: 'flex',
-    backgroundColor: _ui.ui.color.primary
+    display: 'flex'
+
 }, function (props) {
     return {
-        // color:props.onload?ui.color.secondary_on_light:ui.color.secondary_on_dark,
-        // display:props.onload?'none':'flex',
+        fontSize: props.size ? props.size : '0.4em',
+        color: props.color ? props.color : _ui.ui.color.secondary_on_light,
+        backgroundColor: props.bg_color ? props.bg_color : _ui.ui.color.primary
     };
 });
 
@@ -192,31 +190,17 @@ var IMG = function (_Component) {
     }, {
         key: 'render',
         value: function render() {
-            return _react2.default.createElement('div', {
-                __source: {
-                    fileName: _jsxFileName,
-                    lineNumber: 103
-                }
-            }, _react2.default.createElement(BGContainer, {
+            return _react2.default.createElement('div', null, _react2.default.createElement(BGContainer, {
                 w: this.state.w,
                 h: this.state.h
                 // active={this.state.onload}
-                , src: this.state.src,
-                __source: {
-                    fileName: _jsxFileName,
-                    lineNumber: 104
-                }
+                , src: this.state.src
             }, _react2.default.createElement(Loading
             // w={this.state.w}
             // h={this.state.h}
             // onload={this.state.onload}
 
-            , {
-                __source: {
-                    fileName: _jsxFileName,
-                    lineNumber: 110
-                }
-            }, !this.state.onload ? this.state.per : 'WE \'RECOMMING..')));
+            , null, !this.state.onload ? this.state.per : 'WE \'RECOMMING..')));
         }
     }]);
 

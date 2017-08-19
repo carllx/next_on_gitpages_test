@@ -4,10 +4,6 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _extends2 = require('next\\node_modules\\babel-runtime/helpers/extends');
-
-var _extends3 = _interopRequireDefault(_extends2);
-
 var _getPrototypeOf = require('next\\node_modules\\babel-runtime/core-js/object/get-prototype-of');
 
 var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
@@ -49,9 +45,6 @@ var _glamorous2 = _interopRequireDefault(_glamorous);
 var _ui = require('../utils/ui');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var _jsxFileName = 'E:\\data\\working\\Sito\\Pages chengcestudio nextjs_pages\\components\\logo.js';
-
 
 // FONT
 
@@ -169,37 +162,7 @@ var Logo = function (_Component) {
     key: 'render',
     value: function render() {
 
-      return _react2.default.createElement('div', {
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 141
-        }
-      }, _react2.default.createElement(_Logo, (0, _extends3.default)({}, this.props, {
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 142
-        }
-      }), _react2.default.createElement(LogoZAI, {
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 143
-        }
-      }, 'ZAI'), _react2.default.createElement(LogoRight, {
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 144
-        }
-      }, _react2.default.createElement('div', {
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 145
-        }
-      }, 'Zhong Art'), _react2.default.createElement('div', {
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 146
-        }
-      }, 'Internazionale'))));
+      return _react2.default.createElement('div', null, _react2.default.createElement(_Logo, this.props, _react2.default.createElement(LogoZAI, null, 'ZAI'), _react2.default.createElement(LogoRight, null, _react2.default.createElement('div', null, 'Zhong Art'), _react2.default.createElement('div', null, 'Internazionale'))));
     }
   }]);
 

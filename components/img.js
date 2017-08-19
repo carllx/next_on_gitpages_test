@@ -7,43 +7,46 @@ import Logo from './logo'
 import {ui}  from '../utils/ui'
 // import fetch from 'isomorphic-fetch'
 const BGContainer = glamorous.div({
-        // fontSize:'0.3rem',
-        zIndex:1,
-        display:'flex',
-        flexDirection: 'row',
-        alignItems:'center',
-        justifyContent:'space-around',
-        backgroundColor   :'#3b444f',
-        // backgroundPosition:'50%',
-        backgroundRepeat  :'no-repeat',
-        backgroundSize    :'cover',
-        overflow          :'hidden',
-        position          :'absolute',
-        left: 0,
-        top: 0,
+        // fontSize:           '0.3rem',
+        zIndex:           1,
+        display:          'flex',
+        flexDirection:    'row',
+        alignItems:       'center',
+        justifyContent:   'space-around',
+        backgroundColor:  '#3b444f',
+        backgroundRepeat: 'no-repeat',
+        backgroundSize:   'cover',
+        overflow:         'hidden',
+        position:         'absolute',
+        left:             0,
+        top:              0,
     },(props)=>({
         // isLandscape  --或 居中
-        width:props.w?`${props.w}`:'100%',
-        height:props.h?`${props.h}`:'100%',
-        //在这里找渐变模板 https://webgradients.com/
-        backgroundImage:props.src?`url(${props.src})`:'linear-gradient(to right, #d7d2cc 0%, #304352 100%)',
+        width:            props.w?`${props.w}`:'100%',
+        height:           props.h?`${props.h}`:'100%',
+        //在这里找渐变模板 https: //webgradients.com/
+        backgroundImage:  props.src?`url(${props.src})`:'linear-gradient(to right, #d7d2cc 0%, #304352 100%)',
     })
 )
+
+
 const Loading = glamorous.div({
-        fontWeight: 100,
-        padding: '0.3em 3em',
-        fontSize: '0.4em',
-        color:ui.color.secondary_on_light,
-        flexDirection: 'row',
-        alignItems:'center',
-        justifyContent:'center',
-        display:'flex',
-        backgroundColor:ui.color.primary,
+
+        padding:        '0.3em 3em',
+        fontWeight:     100,
+        flexDirection:  'row',
+        alignItems:     'center',
+        justifyContent: 'center',
+        display:        'flex',
+
     },(props)=>({
-        // color:props.onload?ui.color.secondary_on_light:ui.color.secondary_on_dark,
-        // display:props.onload?'none':'flex',
+        fontSize:        props.size?props.size:'0.4em',
+        color:           props.color?props.color:ui.color.secondary_on_light,
+        backgroundColor: props.bg_color?props.bg_color:ui.color.primary,
     })
 )
+
+
 class IMG extends Component {
     constructor (props) {
       super(props); //url
@@ -103,7 +106,7 @@ class IMG extends Component {
             <div>
                 <BGContainer
                  w={this.state.w}
-                  h={this.state.h}
+                 h={this.state.h}
                  // active={this.state.onload}
                  src={this.state.src}
                  >

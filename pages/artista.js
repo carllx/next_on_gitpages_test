@@ -13,12 +13,12 @@ import Carta from '../components/carta'
 import {DEVICE}  from '../utils/device'
 import {default as dataArtists} from '../static/contents/artist'
 
-// css.global('html, body', 	
-//   { padding: '3rem 1rem', 
-//   margin: 0, 
-//   background: 'papayawhip', 
-//   minHeight: '100%', 
-//   fontFamily: 'Helvetica, Arial, sans-serif', 
+// css.global('html, body',
+//   { padding: '3rem 1rem',
+//   margin: 0,
+//   background: 'papayawhip',
+//   minHeight: '100%',
+//   fontFamily: 'Helvetica, Arial, sans-serif',
 //   fontSize: '24px' })
 
 
@@ -33,8 +33,6 @@ function ugent(){
 
 export default class extends Component {
 
-	
-
 
 	render () {
 	return (
@@ -42,8 +40,7 @@ export default class extends Component {
 	    <Head>
 	      <title>中艺国际-艺术家</title>
 	    </Head>
-	    
-	    
+
 
 	    <glamorous.Div paddingTop='21rem'>
 	    	<Carta />
