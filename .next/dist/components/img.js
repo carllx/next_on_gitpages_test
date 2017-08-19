@@ -73,19 +73,18 @@ var TitleT = _glamorous2.default.h1({
   var theme = _ref.theme;
   return {
     color: theme.main.color
-
   };
 });
 
 function TT() {
   return _react2.default.createElement(_glamorous.ThemeProvider, { theme: theme, __source: {
       fileName: _jsxFileName,
-      lineNumber: 24
+      lineNumber: 23
     }
   }, _react2.default.createElement(TitleT, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 25
+      lineNumber: 24
     }
   }, 'Hello!'));
 }
@@ -242,7 +241,7 @@ var IMG = function (_Component) {
       return _react2.default.createElement('div', {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 146
+          lineNumber: 145
         }
       }, _react2.default.createElement(_BG_IMG, {
         w: this.state.w,
@@ -251,7 +250,7 @@ var IMG = function (_Component) {
         , src: this.state.src,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 147
+          lineNumber: 146
         }
       }, _react2.default.createElement(Loading
       // w={this.state.w}
@@ -261,12 +260,12 @@ var IMG = function (_Component) {
       , {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 153
+          lineNumber: 152
         }
       }, !this.state.onload ? this.state.per : 'WE \'RECOMMING..')), _react2.default.createElement(TT, {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 162
+          lineNumber: 161
         }
       }));
     }
