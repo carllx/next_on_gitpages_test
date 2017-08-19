@@ -4,4 +4,5 @@ out/
 # git arm -r --cached .next/
 .next
 cancel/
+ps/
 
