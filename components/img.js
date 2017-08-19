@@ -18,7 +18,7 @@ const TitleT = glamorous.h1({
   color: theme.main.color
 }))
 
-export function TT( ){
+function TT( ){
   return(
     <ThemeProvider theme={theme}>
       <TitleT>{'Hello!'}</TitleT>

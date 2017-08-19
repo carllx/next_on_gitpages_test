@@ -3,7 +3,6 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.TT = TT;
 
 var _regenerator = require('next\\node_modules\\babel-runtime/regenerator');
 
