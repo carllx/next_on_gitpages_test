@@ -58,10 +58,27 @@ var _ui = require('../utils/ui');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+var _jsxFileName = 'E:\\data\\working\\Sito\\Pages chengcestudio nextjs_pages\\components\\img.js';
+
 // import fetch from 'isomorphic-fetch'
 //
 
-var _IMG = _glamorous2.default.div({});
+var _IMG = _glamorous2.default.div({
+    justifyContent: 'space-around',
+    backgroundColor: '#3b444f',
+    backgroundRepeat: 'no-repeat',
+    backgroundSize: 'cover',
+    overflow: 'hidden'
+
+}, function (props) {
+    return {
+        // isLandscape  --或 居中
+        width: props.w ? '' + props.w : '100%',
+        height: props.h ? '' + props.h : '100%',
+        //在这里找渐变模板 https: //webgradients.com/
+        backgroundImage: props.src ? 'url(' + props.src + ')' : 'linear-gradient(to right, #d7d2cc 0%, #304352 100%)'
+    };
+});
 
 var _BG_IMG = _glamorous2.default.div({
     // fontSize:           '0.3rem',
@@ -195,17 +212,31 @@ var IMG = function (_Component) {
     }, {
         key: 'render',
         value: function render() {
-            return _react2.default.createElement('div', null, _react2.default.createElement(_BG_IMG, {
+            return _react2.default.createElement('div', {
+                __source: {
+                    fileName: _jsxFileName,
+                    lineNumber: 125
+                }
+            }, _react2.default.createElement(_BG_IMG, {
                 w: this.state.w,
                 h: this.state.h
                 // active={this.state.onload}
-                , src: this.state.src
+                , src: this.state.src,
+                __source: {
+                    fileName: _jsxFileName,
+                    lineNumber: 126
+                }
             }, _react2.default.createElement(Loading
             // w={this.state.w}
             // h={this.state.h}
             // onload={this.state.onload}
 
-            , null, !this.state.onload ? this.state.per : 'WE \'RECOMMING..')));
+            , {
+                __source: {
+                    fileName: _jsxFileName,
+                    lineNumber: 132
+                }
+            }, !this.state.onload ? this.state.per : 'WE \'RECOMMING..')));
         }
     }]);
 

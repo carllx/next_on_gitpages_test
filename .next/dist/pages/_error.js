@@ -30,6 +30,9 @@ var _react2 = _interopRequireDefault(_react);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+var _jsxFileName = 'E:\\data\\working\\Sito\\Pages chengcestudio nextjs_pages\\pages\\_error.js?entry';
+
+
 var Error = function (_React$Component) {
   (0, _inherits3.default)(Error, _React$Component);
 
@@ -42,7 +45,12 @@ var Error = function (_React$Component) {
   (0, _createClass3.default)(Error, [{
     key: 'render',
     value: function render() {
-      return _react2.default.createElement('p', null, this.props.statusCode ? 'An error ' + this.props.statusCode + ' occurred on server' : 'An error occurred on client');
+      return _react2.default.createElement('p', {
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 10
+        }
+      }, this.props.statusCode ? 'An error ' + this.props.statusCode + ' occurred on server' : 'An error occurred on client');
     }
   }], [{
     key: 'getInitialProps',

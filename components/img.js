@@ -8,7 +8,20 @@ import {ui}  from '../utils/ui'
 // import fetch from 'isomorphic-fetch'
 //
 
-const _IMG  = glamorous.div({})
+const _IMG  = glamorous.div({
+  justifyContent:   'space-around',
+  backgroundColor:  '#3b444f',
+  backgroundRepeat: 'no-repeat',
+  backgroundSize:   'cover',
+  overflow:         'hidden',
+
+},(props)=>({
+  // isLandscape  --或 居中
+  width:            props.w?`${props.w}`:'100%',
+  height:           props.h?`${props.h}`:'100%',
+  //在这里找渐变模板 https: //webgradients.com/
+  backgroundImage:  props.src?`url(${props.src})`:'linear-gradient(to right, #d7d2cc 0%, #304352 100%)',
+}))
 
 
 const _BG_IMG = glamorous.div({
