@@ -1,11 +1,15 @@
 const fetch = require('isomorphic-fetch')
+const cp = require('recursive-copy')
 
 module.exports = {
   async exportPathMap () {
 
+    cp('./CNAME','./out/CNAME');
+
     // we fetch our list of posts, this allow us to dynamically generate the exported pages
     const response = await fetch('http://jsonplaceholder.typicode.com/posts?_page=1')
     const postList = await response.json()
+
     /*{
       "userId": 1,
       "id": 1,

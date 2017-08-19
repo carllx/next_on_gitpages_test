@@ -191,9 +191,14 @@ var _class = function (_Component) {
       this.setState({ h: window.innerHeight });
       this.setState({ w: window.innerWidth });
 
-      var screen = window.orientation || window.screen.orientation.angle;
-
-      console.log('方向:   ', screen.orientation, '\n高度: ', window.innerHeight, '\n宽度: ', window.innerWidth);
+      // const screen= window.orientation||window.screen.orientation.angle
+      // if(window.screen.orientation.angle!==undefined ){
+      //   console.log(
+      //                 '方向:   ',screen.orientation,
+      //                 '\n高度: ',window.innerHeight,
+      //                 '\n宽度: ',window.innerWidth
+      //                 );
+      // }
     }
   }, {
     key: 'render',

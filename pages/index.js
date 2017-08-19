@@ -137,13 +137,15 @@ export default class extends Component {
     this.setState({h : window.innerHeight})
     this.setState({w : window.innerWidth})
 
-    const screen= window.orientation||window.screen.orientation.angle
+    // const screen= window.orientation||window.screen.orientation.angle
+    // if(window.screen.orientation.angle!==undefined ){
+    //   console.log(
+    //                 '方向:   ',screen.orientation,
+    //                 '\n高度: ',window.innerHeight,
+    //                 '\n宽度: ',window.innerWidth
+    //                 );
+    // }
 
-    console.log(
-                  '方向:   ',screen.orientation,
-                  '\n高度: ',window.innerHeight,
-                  '\n宽度: ',window.innerWidth
-                  );
 
   }
 

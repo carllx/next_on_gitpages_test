@@ -6,12 +6,17 @@ import XHRProgress  from '../utils/Progress'
 import Logo from './logo'
 import {ui}  from '../utils/ui'
 // import fetch from 'isomorphic-fetch'
-const BGContainer = glamorous.div({
+//
+
+const _IMG  = glamorous.div({})
+
+
+const _BG_IMG = glamorous.div({
         // fontSize:           '0.3rem',
         zIndex:           1,
         display:          'flex',
-        flexDirection:    'row',
-        alignItems:       'center',
+        // flexDirection:    'row',
+        // alignItems:       'center',
         justifyContent:   'space-around',
         backgroundColor:  '#3b444f',
         backgroundRepeat: 'no-repeat',
@@ -32,17 +37,18 @@ const BGContainer = glamorous.div({
 
 const Loading = glamorous.div({
 
-        padding:        '0.3em 3em',
-        fontWeight:     100,
+        fontWeight:     400,
         flexDirection:  'row',
         alignItems:     'center',
         justifyContent: 'center',
         display:        'flex',
+        backgroundColor:'rgba(0,0,0,.15)',
+        width:          '100%',
+        height:         '100%',
 
     },(props)=>({
         fontSize:        props.size?props.size:'0.4em',
-        color:           props.color?props.color:ui.color.secondary_on_light,
-        backgroundColor: props.bg_color?props.bg_color:ui.color.primary,
+        color:           props.color?props.color:ui.color.secondary_on_dark,
     })
 )
 
@@ -104,7 +110,7 @@ class IMG extends Component {
     render(){
         return(
             <div>
-                <BGContainer
+                <_BG_IMG
                  w={this.state.w}
                  h={this.state.h}
                  // active={this.state.onload}
@@ -117,7 +123,7 @@ class IMG extends Component {
                      >
                         {!this.state.onload?this.state.per:'WE \'RECOMMING..'}
                      </Loading>
-                </BGContainer>
+                </_BG_IMG>
             </div>
             );
     }

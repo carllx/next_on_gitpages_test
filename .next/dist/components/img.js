@@ -59,12 +59,16 @@ var _ui = require('../utils/ui');
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 // import fetch from 'isomorphic-fetch'
-var BGContainer = _glamorous2.default.div({
+//
+
+var _IMG = _glamorous2.default.div({});
+
+var _BG_IMG = _glamorous2.default.div({
     // fontSize:           '0.3rem',
     zIndex: 1,
     display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'center',
+    // flexDirection:    'row',
+    // alignItems:       'center',
     justifyContent: 'space-around',
     backgroundColor: '#3b444f',
     backgroundRepeat: 'no-repeat',
@@ -85,18 +89,19 @@ var BGContainer = _glamorous2.default.div({
 
 var Loading = _glamorous2.default.div({
 
-    padding: '0.3em 3em',
-    fontWeight: 100,
+    fontWeight: 400,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    display: 'flex'
+    display: 'flex',
+    backgroundColor: 'rgba(0,0,0,.15)',
+    width: '100%',
+    height: '100%'
 
 }, function (props) {
     return {
         fontSize: props.size ? props.size : '0.4em',
-        color: props.color ? props.color : _ui.ui.color.secondary_on_light,
-        backgroundColor: props.bg_color ? props.bg_color : _ui.ui.color.primary
+        color: props.color ? props.color : _ui.ui.color.secondary_on_dark
     };
 });
 
@@ -190,7 +195,7 @@ var IMG = function (_Component) {
     }, {
         key: 'render',
         value: function render() {
-            return _react2.default.createElement('div', null, _react2.default.createElement(BGContainer, {
+            return _react2.default.createElement('div', null, _react2.default.createElement(_BG_IMG, {
                 w: this.state.w,
                 h: this.state.h
                 // active={this.state.onload}
