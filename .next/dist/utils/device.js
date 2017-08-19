@@ -93,7 +93,8 @@ module.exports.isGearVR = isGearVR;
  * @return {Boolean} True if landscape orientation.
  */
 module.exports.isLandscape = function () {
-  return window.orientation === 90 || window.screen.orientation.angle === 90 || window.orientation === -90 || window.screen.orientation.angle === -90 || window.innerHeight / window.innerWidth < 1;
+  if (!isMobile()) return;
+  return window.innerHeight / window.innerWidth < 1;
 };
 
 /**
