@@ -52,6 +52,9 @@ var _server = require('glamor/server');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+var _jsxFileName = 'E:\\data\\working\\Sito\\Pages chengcestudio nextjs_pages\\pages\\_document.js?entry';
+
+
 var MyDocument = function (_Document) {
   (0, _inherits3.default)(MyDocument, _Document);
 
@@ -131,7 +134,40 @@ var MyDocument = function (_Document) {
     key: 'render',
     value: function render() {
       this.polyfill();
-      return _react2.default.createElement('html', null, _react2.default.createElement(_document.Head, null, _react2.default.createElement('meta', { name: 'viewport', content: 'width=device-width,maximum-scale=1,minimum-scale=1,user-scalable=no' }), _react2.default.createElement('style', { dangerouslySetInnerHTML: { __html: this.props.css } })), _react2.default.createElement('body', null, _react2.default.createElement(_document.Main, null), _react2.default.createElement(_document.NextScript, null)));
+      return _react2.default.createElement('html', {
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 44
+        }
+      }, _react2.default.createElement(_document.Head, {
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 45
+        }
+      }, _react2.default.createElement('meta', { name: 'viewport', content: 'width=device-width,maximum-scale=1,minimum-scale=1,user-scalable=no', __source: {
+          fileName: _jsxFileName,
+          lineNumber: 46
+        }
+      }), _react2.default.createElement('style', { dangerouslySetInnerHTML: { __html: this.props.css }, __source: {
+          fileName: _jsxFileName,
+          lineNumber: 47
+        }
+      })), _react2.default.createElement('body', {
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 50
+        }
+      }, _react2.default.createElement(_document.Main, {
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 51
+        }
+      }), _react2.default.createElement(_document.NextScript, {
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 52
+        }
+      })));
     }
   }]);
 

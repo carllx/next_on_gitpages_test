@@ -3,12 +3,14 @@ import Head from 'next/head'
 import fetch from 'isomorphic-fetch'
 import { css } from 'glamor'
 import glamorous from 'glamorous'
+import {ThemeProvider} from 'glamorous'
 import NoSSR from 'react-no-ssr';
 
 import Post from '../components/post'
 import Nav from '../components/nav'
 import IMG from '../components/img'
 import Logo from '../components/logo'
+// import TT from '../components/TP'
 
 import {isMobile  ,isTablet , isLandscape, getLanguer, setREM }  from '../utils/device'
 import {throttle, debounce}  from '../utils/throttle'

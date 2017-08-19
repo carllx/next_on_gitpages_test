@@ -1,12 +1,32 @@
 import Link from 'next/link'
 import React, {Component} from 'react'
 import { rehydrate, css } from 'glamor'
-import glamorous,{withTheme} from 'glamorous'
+// import glamorous,{withTheme} from 'glamorous'
+import glamorous, {ThemeProvider} from 'glamorous'
 import XHRProgress  from '../utils/Progress'
 import Logo from './logo'
 import {ui}  from '../utils/ui'
 // import fetch from 'isomorphic-fetch'
 //
+const theme = {
+  main: {color: 'red'}
+}
+
+const TitleT = glamorous.h1({
+  fontSize: '5rem'
+}, ({theme}) => ({
+  color: theme.main.color
+}))
+
+export function TT( ){
+  return(
+    <ThemeProvider theme={theme}>
+      <TitleT>{'Hello!'}</TitleT>
+    </ThemeProvider>
+    );
+
+}
+
 
 const _IMG  = glamorous.div({
   justifyContent:   'space-around',
@@ -66,7 +86,7 @@ const Loading = glamorous.div({
 )
 
 
-class IMG extends Component {
+export default class IMG extends Component {
     constructor (props) {
       super(props); //url
       this.state = {//onload active
@@ -136,9 +156,11 @@ class IMG extends Component {
                      >
                         {!this.state.onload?this.state.per:'WE \'RECOMMING..'}
                      </Loading>
+
                 </_BG_IMG>
+                <TT/>
             </div>
             );
     }
 }
-export default IMG;
+

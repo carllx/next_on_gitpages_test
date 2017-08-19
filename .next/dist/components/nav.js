@@ -46,6 +46,9 @@ var _ui = require('../utils/ui');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+var _jsxFileName = 'E:\\data\\working\\Sito\\Pages chengcestudio nextjs_pages\\components\\nav.js';
+
+
 // glamor
 // css.global(
 // 	'@font-face', {
@@ -115,7 +118,20 @@ var NavContainer = _glamorous2.default.div({
 // );
 
 var LinkItems = paths.map(function (paths, index) {
-	return _react2.default.createElement(AContainer, { key: 'Container' + index }, _react2.default.createElement(_link2.default, { href: paths.url, key: 'A' + index }, _react2.default.createElement(A, null, paths.str)));
+	return _react2.default.createElement(AContainer, { key: 'Container' + index, __source: {
+			fileName: _jsxFileName,
+			lineNumber: 93
+		}
+	}, _react2.default.createElement(_link2.default, { href: paths.url, key: 'A' + index, __source: {
+			fileName: _jsxFileName,
+			lineNumber: 94
+		}
+	}, _react2.default.createElement(A, {
+		__source: {
+			fileName: _jsxFileName,
+			lineNumber: 95
+		}
+	}, paths.str)));
 });
 
 // extended component with theme prop
@@ -140,7 +156,15 @@ var Nav = function (_Component) {
 	(0, _createClass3.default)(Nav, [{
 		key: 'render',
 		value: function render() {
-			return _react2.default.createElement('div', { onClick: this.onClick }, _react2.default.createElement(NavContainer, { isLandscape: this.props.isLandscape }, LinkItems));
+			return _react2.default.createElement('div', { onClick: this.onClick, __source: {
+					fileName: _jsxFileName,
+					lineNumber: 116
+				}
+			}, _react2.default.createElement(NavContainer, { isLandscape: this.props.isLandscape, __source: {
+					fileName: _jsxFileName,
+					lineNumber: 118
+				}
+			}, LinkItems));
 		}
 	}]);
 
