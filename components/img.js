@@ -16,6 +16,9 @@ const TitleT = glamorous.h1({
   fontSize: '5rem'
 }, ({theme}) => ({
   color: theme.main.color
+
+
+
 }))
 
 function TT( ){
