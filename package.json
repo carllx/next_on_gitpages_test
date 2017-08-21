@@ -20,7 +20,8 @@
     "preexport": "npm run build",
     "export": "next export",
     "prestart": "npm run export",
-    "start": "serve out"
+    "start": "serve out",
+    "push":"git add . && git commit -m  \"IMG分离出Loader组件使用HOC function 引用img组件  \" && git push origin master"
   },
   "name": "",
   "description": "## How to use",

@@ -8,7 +8,7 @@ import NoSSR from 'react-no-ssr';
 
 import Post from '../components/post'
 import Nav from '../components/nav'
-import IMG from '../components/img'
+import {IMG} from '../components/img'
 import Logo from '../components/logo'
 // import TT from '../components/TP'
 

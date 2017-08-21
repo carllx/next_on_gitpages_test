@@ -22,7 +22,6 @@ const hh = glamorous.h1({
 // }
 
 
-
 export default function App() {
   return (
 
@@ -33,3 +32,8 @@ export default function App() {
 
 
     )}
+
+
+
+// action             = {type,text(is a state )}
+// action creator     = function: return {action};
