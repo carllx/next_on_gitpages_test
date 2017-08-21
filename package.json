@@ -21,9 +21,13 @@
     "export": "next export",
     "prestart": "npm run export",
     "start": "serve out",
-    "push":"git add . && git commit -m  \"IMG分离出Loader组件使用HOC function 引用img组件  \" && git push origin master"
+    "push":"git add . && git commit -m  \" %npm_package_config_commitmessage% \" && git push origin master",
+    "pushsito":"cd ../"
+  },
+  "config":{
+    "commitmessage":"IMG分离出Loader组件使用HOC function 引用img组件"
   },
   "name": "",
   "description": "## How to use",
-  "version": ""
+  "version": "0.0.1"
 }
