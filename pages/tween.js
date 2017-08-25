@@ -9,14 +9,14 @@ import {css} from 'glamor'
 
 
 
-const demo0 = {
+const demo0 =css({
     borderRadius: '4px',
     backgroundColor: 'rgb(240, 240, 232)',
     position: 'relative',
     margin: '5px 3px 10px',
     width: '450px',
     height: '50px',
-  }
+  })
 const demo0_block = {
     position: 'absolute',
     width: '50px',
@@ -50,11 +50,14 @@ export default class extends Component {
           Toggle
         </button>
 
-        <Motion style={{x: spring(this.state.open ? 400 : 0)}}>
+        <Motion style={{x: spring(
+                this.state.open ? 400 : 0,
+                {stiffness: 30, damping: 30}
+            )}}>
           {({x}) =>
             // children is a callback which should accept the current value of
             // `style`
-            <div style={demo0}>
+            <div {...demo0}>
                 <div
                     style = {
                     Object.assign({},
