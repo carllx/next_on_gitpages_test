@@ -1,71 +1,43 @@
 import React, {Component} from 'react'
 import glamorous from 'glamorous'
-// import Logo from './logo'
-// import {ui}  from '../utils/ui'
+
 import {debounce} from '../utils/throttle'
 import {mouseCenterElement} from '../utils/mouse'
 
 
 
 
-export const Cycle = glamorous.span({
-
-        background: 'rgba(0,0,0,.12)',
+const Cycle = glamorous.span({
 
         borderRadius: '50%',
         position: 'absolute',
-        // top: 0,
-        // left: 0,
-        // display: 'inline-block',
         height:    '247px',
         width:     '247px',
-        // transform: 'translate(-50%,-50%)',
-        // transformOrigin:'50% 50%',
-
+        background: 'rgba(0,0,0,.12)',
         backgroundColor:'rgba(33,33,33,.26)',
-        // pointerEvents: 'none',//
         transitionDuration: '.45s',
         transitionProperty: 'opacity,transform',
-        // animationDirection:'alternate',
         transitionTimingFunction: 'cubic-bezier(.4,0,1,1)',
 
     },(props)=>({
-        // left:      props.x,//-6.96774px;
-        // top:       props.y,//-101.968px;
         opacity:   props.active?1:0,
-
-        // height:    props.size?props.size+'px':'10px',//247.935px;
-        // width:     props.size?props.size+'px':'10px',//247.935px;
         transform: props.active?`scale(.9) `:`scale(0)`,
-
-        // transition: props.active?'all 0.3s cubic-bezier(.4,0,1,1)',
-        // opacity: props.active?'all 0.3s cubic-bezier(.4,0,1,1)',
-        top:props.active?props.y:0,
-        left:props.active?props.x:0,
-        // transform: props.active?`scale(${props.size*10},${props.size*10})`:`scale(0,0)`,
-        // left:props.x?props.x:0,
-        // top:props.y?props.y:0,
+        top:       props.active?props.y:0,
+        left:      props.active?props.x:0,
 
     })
 )
 
-
-
-
-
-
 const HOC_Button = function(Comp){
 
-    return class BB extends Component {
+    return class _Btn extends Component {
         constructor(props){
             super(props);
             this.state = {
-                x:0,
-                y:0,
+                x:     0,
+                y:     0,
                 active:false,
-                // size:1,
             };
-
             this.ms= 450;
 
         };
@@ -99,17 +71,7 @@ const HOC_Button = function(Comp){
 
             return(
                 <div>
-                    <Comp
-                     style={{
-                        overflow:'hidden',
-                        position: 'absolute',
-                        width:'247px',
-                        height:'3rem',
-                        fontSize:'2rem',
-                        }}
-
-                     onClick= {this.handleObtn}
-                     >
+                    <Comp onClick= {this.handleObtn}>
 
                         <Cycle
                          x= {this.state.x}
@@ -135,15 +97,13 @@ const HOC_Button = function(Comp){
 
 
 
-
-
-const KK = glamorous.div({
-
-
-    // margin:'.8em',
-
+const Basic = glamorous.div({
+    overflow:'hidden',
+    position: 'absolute',
+    width:'247px',
+    height:'3rem',
+    fontSize:'2rem',
+    backgroundColor:'pink',
 })
 
-export let Test =  HOC_Button(KK)
-
-
+export let Test =  HOC_Button(Basic)
