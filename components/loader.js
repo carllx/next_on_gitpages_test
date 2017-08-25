@@ -1,6 +1,5 @@
 import React, {Component} from 'react'
-import { rehydrate, css } from 'glamor'
-import glamorous, {ThemeProvider} from 'glamorous'
+import glamorous from 'glamorous'
 import XHRProgress  from '../utils/Progress'
 import Logo from './logo'
 import {ui}  from '../utils/ui'
@@ -8,39 +7,43 @@ import {ui}  from '../utils/ui'
 
 
 
-export const Loading = glamorous.div({
+const Loading = glamorous.div({
 
-    // position:       'absolute',
-    // zIndex:           2,
-    // left:             0,
-    // top:              0,
+    position:         'absolute',
+    left:             0,
+    top:              0,
+    zIndex:           1,
     fontWeight:     400,
     flexDirection:  'row',
     alignItems:     'center',
     justifyContent: 'center',
     display:        'flex',
     backgroundColor:'rgba(0,0,0,.15)',
-    width:          '100%',
-    height:         '100%',
 
 },(props)=>({
     fontSize:        props.size?props.size:'0.4em',
-    color:           props.color?props.color:ui.color.secondary_on_dark,
+    color:           props.color?props.color:ui.color.secondary_on_light,
+    // color:           props.color?props.color:ui.color.secondary_on_dark,
+    // 为了居中
+    //
+    width:props.w,
+    height:props.h,
 })
 )
 
 
-const HOC_WithLoad = function(Component){
+const HOC_WithLoad = function(Comp){
+
     return  class Bg_With_Loader extends Component {
         constructor (props) {
           super(props); //url
-          this.state = {//onload active
+          this.state = {//loaded active
             // w:this.state.w
             // h:this.state.h
 
             active:this.props.active,
-            onload:this.props.onload,
-            per: '0%',
+            loaded:this.props.loaded,
+            per: 0
           };
         }
         componentWillMount(){
@@ -52,6 +55,7 @@ const HOC_WithLoad = function(Component){
                 let percentComplete = Math.round(xhr.loaded / xhr.total * 100)
                 console.log(percentComplete,'%')
                 this.setState({per: `${percentComplete}%`});
+
             }else{
               console.log('@onProgress 该资源无法计算byte长度')
             }
@@ -83,7 +87,7 @@ const HOC_WithLoad = function(Component){
             XHR.onProgress = this.onProgress;
             let isOk = await XHR.send(src)
 
-            if(isOk==true) this.setState({onload:true});
+            if(isOk==true) this.setState({loaded:true});
             this.setState({src:src});
             this.setState({w:w});
             this.setState({h:h});
@@ -92,22 +96,22 @@ const HOC_WithLoad = function(Component){
             return(
                 <div>
 
-
-                    <Component
+                    <Comp
+                     w=      {this.state.w}
+                     h=      {this.state.h}
+                     loaded= {this.state.loaded}
+                     src=    {this.state.src}
+                     >
+                        {this.props.w}
+                    </Comp>
+                    <Loading
                      w={this.state.w}
                      h={this.state.h}
-                     // active={this.state.onload}
-                     src={this.state.src}
-                     >
-
-                         <Loading
-                             // w={this.state.w}
-                              // h={this.state.h}
-                             onload={this.state.onload}
-                        >
-                            {!this.state.onload?this.state.per:'WE \'RECOMMING..'}
-                        </Loading>
-                    </Component>
+                     loaded={this.state.loaded}
+                     per={this.state.per}
+                    >
+                        {this.state.loaded?'COMING SOON..':this.state.per+'%'}
+                    </Loading>
 
                 </div>
                 );

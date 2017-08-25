@@ -2,7 +2,7 @@ module.exports.ui = {
 	color:{
 		primary:"rgba(255, 255, 255 ,1)",
 		secondary:"rgb(33, 33, 33)",
-		notice_secondary:"rgb(50, 50, 50)",
+		secondary_secondary:"rgb(55, 55, 55)",
 		backdrop :"rgba(0, 0, 0, .50)",
 		disabled_on_light:'rgba(0,0,0,.38)',
 		secondary_on_light:'rgba(0,0,0,.54)',

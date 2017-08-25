@@ -51,7 +51,7 @@ const LogoZAI = glamorous.div({
 const LogoRight = glamorous.div({
 
     fontFamily    :ZhoFont,
-    fontSize      :`0.3em`,
+    fontSize      :`0.4em`,
 
 });
 
@@ -80,7 +80,7 @@ const _Logo = glamorous.div({
     zIndex:2,
     textAlign:     'left',
     boxShadow:     `0 9px 46px 8px rgba(0,0,0,.14),0 11px 15px -7px rgba(0,0,0,.12),0 24px 38px 3px rgba(0,0,0,.2)`,
-    padding:       '0.5em 0.5em 0.5em 0.5em'
+    padding:       '0.8em 1em 1em 0.8em'
   },(props)=>{
 
     const Default = {
@@ -92,7 +92,7 @@ const _Logo = glamorous.div({
     const isLandscape = props.isLandscape;
 
     const isDesktop ={
-      fontSize       : props.size?`${props.size}rem`:`0.8rem`
+      fontSize       : props.size?`${props.size}rem`:`0.5rem`
     }
 
     const isMobile ={

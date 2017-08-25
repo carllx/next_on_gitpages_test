@@ -40,7 +40,11 @@ const _IMG  = glamorous.div({
 
 
 const _BG_IMG = glamorous.div({
-  // fontSize:           '0.3rem',
+
+  position:         'absolute',
+  zIndex:           -1,
+  left:             0,
+  top:              0,
   zIndex:           1,
   display:          'flex',
 
@@ -49,15 +53,19 @@ const _BG_IMG = glamorous.div({
   backgroundRepeat: 'no-repeat',
   backgroundSize:   'cover',
   overflow:         'hidden',
-  position:         'absolute',
-  left:             0,
-  top:              0,
+
   width:            '100%',
   height:           '100%',
+
+  transitionProperty: 'opacity',
+  transitionTimingFunction: 'linear',//cubic-bezier(.4,0,.2,1)
+  transitionDuration: '600ms',
+
 },(props)=>({
   // isLandscape  --或 居中
 
   //在这里找渐变模板 https: //webgradients.com/
+  opacity: props.loaded?1:0,
   backgroundImage:  props.src?`url(${props.src})`:'linear-gradient(to right, #d7d2cc 0%, #304352 100%)',
 })
 )

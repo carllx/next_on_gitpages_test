@@ -10,6 +10,7 @@ import Post from '../components/post'
 import Nav from '../components/nav'
 import {IMG} from '../components/img'
 import Logo from '../components/logo'
+import {Test} from '../components/button'
 // import TT from '../components/TP'
 
 import {isMobile  ,isTablet , isLandscape, getLanguer, setREM }  from '../utils/device'
@@ -163,7 +164,7 @@ export default class extends Component {
              device={this.state.device}
              isLandscape = {this.state.isLandscape}
              color={ui.color.primary_on_dark}
-             bg_color={ui.color.secondary}
+             bg_color={ui.color.secondary_secondary}
             />
         </NoSSR>
 
@@ -183,19 +184,13 @@ export default class extends Component {
            />
         </NoSSR>
 
+
         <content onScroll={this.handleScroll}>
           <glamorous.Div
            fontSize='0.2rem'
            margin='10em 0.8em 0 0.8em'>
 
-            <glamorous.Div
-             display='flex'
-             alignItems='center'
-             justifyContent='center'
-             width='100%'
-             height='38em'>
-              We are comming...
-            </glamorous.Div>
+
 
             <h2>设计特色</h2>
             <glamorous.Span color='#717171'>更新于2017-8-16</glamorous.Span>
@@ -230,7 +225,9 @@ export default class extends Component {
 
             <h2>Change Log 网站进度</h2>
 
-
+            <NoSSR>
+              <Test/>
+            </NoSSR>
 
             <h4>2017-8-16</h4>
             <p>把项目托管至git</p>
