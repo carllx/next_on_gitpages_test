@@ -70,6 +70,8 @@ export function mousePositionElement(e) {
 
 export function mouseCenterElement(e){
     const mousePosDoc = mousePositionElement(e);
+    console.log(mousePosDoc)
+    // 目标元素的长宽
     const offsetW = e.currentTarget.offsetWidth;
     const offsetY = e.currentTarget.offsetHeight;
     return {

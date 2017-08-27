@@ -17,31 +17,38 @@ const defaultStyle_Ink = {
     width:          '247px',
     background:     'rgba(0,0,0,.12)',
     backgroundColor:'rgba(33,33,33,.26)',
-    transition:     `opacity,transform ${duration}ms cubic-bezier(.4,0,1,1)`,
+    transition:     `background,opacity,transform ${duration}ms cubic-bezier(.4,0,1,1)`,
     opacity:        0,
     transform:      'scale(0)'
 }
 const transitionStyles_Ink = {
-
-  'exiting' :{
-    opacity: 1 ,transform:'scale(10)'
-  },'exited' :{//no work ,已经不在了
-    opacity: 0 ,color:'red'
+  'entering':{
+    opacity: 0 ,transform:'scale(0)'
   },
+  'entered' :{
+    opacity: 1 ,transform:'scale(.9)',
+  },
+  'exiting' :{
+    opacity: 1 ,transform:'scale(10)',
+  },
+  // 'exited' :{//no work ,已经不在了
+  //   opacity: 0 ,background:'red'
+  // },
 };
 
 
 const InkTransition  = (props) => (
   <Transition
    {...props}
-
-   in={props.innnnn}
+   in={props.inn}
    // appear
    // unmountOnExit
    // mountOnEnter
    >
     {(status) => (
       <div style={{
+        left:props.x,
+        top:props.y,
         ...defaultStyle_Ink,
         ...transitionStyles_Ink[status]}}
       />)}
@@ -54,12 +61,23 @@ export class Btn extends Component {
         super(props);
         this.state = { items :[] };
     };
-    addItem =() =>{
-        //items 增加任意值为占位ID
-        let newItems= this.state.items.concat([{id:Math.random(),in:true}])
-        console.log('[addItem] try setState items:',newItems)
-        this.setState({items:newItems})
-        console.log('[addItem] state.items:',this.state.items)
+    addItem =(e) =>{
+
+      // 获取鼠标坐标
+      const position = mouseCenterElement(e);
+      const x = position.x;
+      const y = position.y;
+
+      // 构建 ink 状态
+      let newItems= this.state.items.concat([{
+        id:Math.random(),
+        in:true,
+        x:x,
+        y:y
+      }])
+      console.log('[addItem] try setState items:',newItems)
+      this.setState({items:newItems})
+      console.log('[addItem] state.items:',this.state.items)
     }
 
     toggleItemIn(){
@@ -73,28 +91,19 @@ export class Btn extends Component {
       // setState()
     }
 
-    handleRemove(){
+    handleRemove(id){
 
-        // ononExited的函数不能 handleRemove=()=>{}的形式
+        // onExited的函数不能 handleRemove=()=>{}的形式
         //
-        // const newItems = this.state.items.slice();//拷贝
-        // newItems.splice(i, 1);//删除数组的第一个就对了
-        //
-        //
-        // const match = value => value['id'] != id;
-        // const newItems = this.state.items.filter(match)
-        // this.setState({items: newItems});
-        //
-        //
-        //
-
+        const match = value => value['id'] != id;//将这个id的过滤掉
+        const newItems = this.state.items.slice().filter(match)
+        console.log('filter[]':newItems);
+        this.setState({items: newItems});
         console.log('[STATE:]onExiting - handleRemove');
 
-
-        let newItems = this.state.items.slice();
-        newItems.splice(0, 1);//删除数组的第一个就对了
-        // this.state.items = newItems
-        this.setState({items:newItems})
+        // let newItems = this.state.items.slice();//拷贝
+        // newItems.splice(0, 1);//删除数组的第一个就对了
+        // this.setState({items:newItems})
     }
     render() {
 
@@ -105,12 +114,16 @@ export class Btn extends Component {
            // onEntering = {()=>{console.log('[STATE:]onEntering')}}
            onEntered = {this.toggleItemIn.bind(this)}
            // onExit = {()=>{console.log('[STATE:]onExit')}}
-           onExiting = {this.handleRemove.bind(this)}
+           onExiting = {this.handleRemove.bind(this,item.id)}
            // onExited = {()=>{console.log('[STATE:]onExited')}}
            key = {item.id}
-           // in = {this.state.items[0].in}
-           in = {false}
-           innnnn = {this.state.items[0].in} //直接在 in 设置不能实现动态传递
+           x = {item.x}
+           y = {item.y}
+           // in = {false}
+           // 直接在 in 设置不能实现动态传递
+           // https://reactcommunity.org/react-transition-group/#Transition
+           // 需要特别处理
+           inn = {this.state.items[0].in}
            >
             {(status) => (
               <div style={{
@@ -122,7 +135,14 @@ export class Btn extends Component {
       return (
         <div>
             <div
-             style={{marginTop:'5rem',userSelect:'none'}}
+             style={{
+             overflow:'hidden',
+             position: 'absolute',
+             top:'300px',
+             userSelect:'none',
+             width:'10rem',
+             height:'19rem',
+             background:'pink'}}
              onClick={this.addItem}
              >
               Click to Enter

@@ -9,6 +9,7 @@ import {mouseCenterElement} from '../utils/mouse'
 
 const Cycle = glamorous.span({
 
+        // transformOrigin: 'center center';
         borderRadius: '50%',
         position: 'absolute',
         height:    '247px',
