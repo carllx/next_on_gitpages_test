@@ -57,6 +57,7 @@ export function findPos(obj) {
 // Mouse position relative to the element
 // not working on IE7 and below
 export function mousePositionElement(e) {
+
     var mousePosDoc = mousePositionDocument(e);
     var target = mouseTarget(e);
     var targetPos = findPos(target);

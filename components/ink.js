@@ -11,6 +11,7 @@ const duration = 300;
 
 
 const defaultStyle_Ink = {
+    pointerEvents: 'none',
     borderRadius:   '50%',
     position:       'absolute',
     height:         '1px',
@@ -69,12 +70,15 @@ export class Btn extends Component {
       const y = position.y;
 
       // 构建 ink 状态
-      let newItems= this.state.items.concat([{
+      const newItems= this.state.items.concat([{
         id:Math.random(),
         in:true,
         x:x,
         y:y
       }])
+      console.log('x:',x)//bug ,第二次是0
+      console.log('y:',y)
+      console.log('e:',e)
       console.log('[addItem] try setState items:',newItems)
       this.setState({items:newItems})
       console.log('[addItem] state.items:',this.state.items)
