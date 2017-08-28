@@ -4,7 +4,7 @@ import {css} from 'glamor'
 import Transition from 'react-transition-group/Transition';
 import TransitionGroup from 'react-transition-group/TransitionGroup';
 import {debounce} from '../utils/throttle';
-import {mouseCenterElement} from '../utils/mouse';
+import {mousePositionElement} from '../utils/mouse';
 
 
 const duration = 300;
@@ -13,8 +13,8 @@ const duration = 300;
 const defaultStyle_Ink = {
     borderRadius:   '50%',
     position:       'absolute',
-    height:         '247px',
-    width:          '247px',
+    height:         '1px',
+    width:          '1px',
     background:     'rgba(0,0,0,.12)',
     backgroundColor:'rgba(33,33,33,.26)',
     transition:     `background,opacity,transform ${duration}ms cubic-bezier(.4,0,1,1)`,
@@ -26,10 +26,10 @@ const transitionStyles_Ink = {
     opacity: 0 ,transform:'scale(0)'
   },
   'entered' :{
-    opacity: 1 ,transform:'scale(.9)',
+    opacity: 1 ,transform:'scale(100)',
   },
   'exiting' :{
-    opacity: 1 ,transform:'scale(10)',
+    opacity: 1 ,transform:'scale(600)',
   },
   // 'exited' :{//no work ,已经不在了
   //   opacity: 0 ,background:'red'
@@ -64,7 +64,7 @@ export class Btn extends Component {
     addItem =(e) =>{
 
       // 获取鼠标坐标
-      const position = mouseCenterElement(e);
+      const position = mousePositionElement(e);
       const x = position.x;
       const y = position.y;
 
@@ -135,15 +135,17 @@ export class Btn extends Component {
       return (
         <div>
             <div
+             onClick={this.addItem}
              style={{
              overflow:'hidden',
              position: 'absolute',
-             top:'300px',
              userSelect:'none',
+
+             top:'300px',
              width:'10rem',
              height:'19rem',
              background:'pink'}}
-             onClick={this.addItem}
+
              >
               Click to Enter
               <TransitionGroup>

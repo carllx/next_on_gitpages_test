@@ -68,14 +68,13 @@ export function mousePositionElement(e) {
     };
 }
 
-export function mouseCenterElement(e){
+
+//如果ink 圆形的初始半径>1 ,这里就要加上他的半径
+export function mouseCenterElement(e , r ){
     const mousePosDoc = mousePositionElement(e);
-    console.log(mousePosDoc)
-    // 目标元素的长宽
-    const offsetW = e.currentTarget.offsetWidth;
-    const offsetY = e.currentTarget.offsetHeight;
+
     return {
-                x: mousePosDoc.x - offsetW/2,
-                y: mousePosDoc.y - offsetW/2
+                x: mousePosDoc.x + r,
+                y: mousePosDoc.y + r
             }
 }
