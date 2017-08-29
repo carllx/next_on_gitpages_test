@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import Head from 'next/head'
 
 
-import {Btn} from '../components/ink.js'
+import {Ink_Btn} from '../components/ink.js'
 
 
 
@@ -22,7 +22,7 @@ export default class extends Component {
                 <title>try_Reat+Transition+Group</title>
             </Head>
 
-            <Btn/>
+            <Ink_Btn/>
         </main>
     )};
 }

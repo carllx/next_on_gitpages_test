@@ -29,7 +29,7 @@
     "pushdev": "git add . && git commit -m  \" %npm_package_config_commitmessage% \" && git push origin master"
   },
   "config": {
-    "commitmessage": "修复ink 鼠标点击过过快造成第二次焦点在0,0的问题"
+    "commitmessage": "破译wix,从服务器得到文件地址"
   },
   "name": "",
   "description": "## How to use",

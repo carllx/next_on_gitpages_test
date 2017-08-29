@@ -9,7 +9,7 @@ import NoSSR from 'react-no-ssr';
 import Post from '../components/post'
 import Nav from '../components/nav'
 import {IMG} from '../components/img'
-import Logo from '../components/logo'
+import Logo from '../components/logo.svg'
 import {Test} from '../components/button'
 // import TT from '../components/TP'
 
@@ -172,7 +172,8 @@ export default class extends Component {
           <Nav
            device= {this.state.device}
            isLandscape={this.state.isLandscape}
-           language= {this.state.language}/>
+           language= {this.state.language}
+           />
         </NoSSR>
 
         <NoSSR>
@@ -184,7 +185,7 @@ export default class extends Component {
            />
         </NoSSR>
 
-
+        <NoSSR>
         <content onScroll={this.handleScroll}>
           <glamorous.Div
            fontSize='0.2rem'
@@ -279,7 +280,7 @@ export default class extends Component {
             <p></p>
           </glamorous.Div>
         </content>
-
+        </NoSSR>
       </main>
 
     )

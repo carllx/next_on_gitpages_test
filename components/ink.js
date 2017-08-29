@@ -3,12 +3,14 @@ import glamorous from 'glamorous'
 import {css} from 'glamor'
 import Transition from 'react-transition-group/Transition';
 import TransitionGroup from 'react-transition-group/TransitionGroup';
+
 import {debounce} from '../utils/throttle';
 import {mousePositionElement} from '../utils/mouse';
 
 
-const duration = 300;
+const duration = 320;
 
+// UI
 
 const defaultStyle_Ink = {
     pointerEvents: 'none',
@@ -23,18 +25,11 @@ const defaultStyle_Ink = {
     transform:      'scale(0)'
 }
 const transitionStyles_Ink = {
-  'entering':{
-    opacity: 0 ,transform:'scale(0)'
-  },
-  'entered' :{
-    opacity: 1 ,transform:'scale(100)',
-  },
+  // entering, entered没有必要,
+  // 'exited'no work ,已经不在了
   'exiting' :{
     opacity: 1 ,transform:'scale(600)',
   },
-  // 'exited' :{//no work ,已经不在了
-  //   opacity: 0 ,background:'red'
-  // },
 };
 
 
@@ -57,18 +52,25 @@ const InkTransition  = (props) => (
 );
 
 
-export class Btn extends Component {
+export class Ink_Btn extends Component {
+
     constructor(props){
         super(props);
         this.state = { items :[] };
     };
+
+    // onExited的函数不接受 handleRemove=()=>{}的形式
+    //
+
     addItem =(e) =>{
 
       // 获取鼠标坐标
+      //
+      // 父元素position 是static , 使用mousePositionDocument
+      // 父元素position 是absolute , mousePositionElement
       const position = mousePositionElement(e);
       const x = position.x;
       const y = position.y;
-
       // 构建 ink 状态
       const newItems= this.state.items.concat([{
         id:Math.random(),
@@ -76,12 +78,9 @@ export class Btn extends Component {
         x:x,
         y:y
       }])
-      console.log('x:',x)//bug ,第二次是0
-      console.log('y:',y)
-      console.log('e:',e)
-      console.log('[addItem] try setState items:',newItems)
+      console.log('[addItem]' )
+
       this.setState({items:newItems})
-      console.log('[addItem] state.items:',this.state.items)
     }
 
     toggleItemIn(){
@@ -89,7 +88,6 @@ export class Btn extends Component {
       console.log('[STATE:]onEntered - toggleItemIn...')
       let newItems = this.state.items.slice();
       newItems[0].in =false;
-      console.log(newItems)
       this.state.items = newItems
       this.setState({items:newItems})
       // setState()
@@ -97,11 +95,10 @@ export class Btn extends Component {
 
     handleRemove(id){
 
-        // onExited的函数不能 handleRemove=()=>{}的形式
-        //
+
         const match = value => value['id'] != id;//将这个id的过滤掉
         const newItems = this.state.items.slice().filter(match)
-        console.log('filter[]':newItems);
+
         this.setState({items: newItems});
         console.log('[STATE:]onExiting - handleRemove');
 
@@ -142,10 +139,11 @@ export class Btn extends Component {
              onClick={this.addItem}
              style={{
              overflow:'hidden',
-             position: 'absolute',
+             // position: 'absolute',
              userSelect:'none',
 
-             top:'300px',
+             marginTop:'3000px',
+             // top:'300px',
              width:'10rem',
              height:'19rem',
              background:'pink'}}
@@ -162,24 +160,5 @@ export class Btn extends Component {
 }
 
 
-
-
-
-
-
-// appear:false
-// enter:true
-// exit:true
-// in:true
-// mountOnEnter:true
-// unmountOnExit:true
-// timeout:{…}
-// children:fn()
-// onEnter:noop()
-// onEntered:fn()
-// onEntering:noop()
-// onExit:noop()
-// onExited:onExited()
-// onExiting:noop()
 
 
