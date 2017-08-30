@@ -98,6 +98,16 @@ class Logo extends Component {
 
     return(
       <div {...css(logo_container)}>
+{/*        <glamorous.Div
+         position = 'fixed'
+         zIndex = '2'
+         top = '-5rem'
+         left = '-5rem'
+         width = '11rem'
+         height = '5rem'
+         background = '#212121'
+         transform = 'rotate(60deg)'
+        />*/}
         <svg
          {...css(svg_style)}
          // width="240px"
@@ -123,22 +133,18 @@ class Logo extends Component {
           <g id="LOGO">
             <polygon
              {...css(logo_l_top)}
-             class="st0"
              points="35,35 5,35 5,5 35,5"
             />
             <polygon
              {...css(logo_l_bottom)}
-             class="st1"
              points="5,35 5,5 35,5"
             />
             <polygon
              {...css(logo_s_top)}
-             class="st2"
              points="35,27.9 35,35 27.9,35 "
             />
             <polygon
              {...css(logo_s_bottom)}
-             class="st2"
              points="5,16.5 5,5 16.5,5 "
             />
           </g>

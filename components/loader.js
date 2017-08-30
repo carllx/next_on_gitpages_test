@@ -6,7 +6,10 @@ import {ui}  from '../utils/ui'
 
 
 
-
+/**
+ * Loading...的显示界面
+ * @param  {[type]} options.position:
+ */
 const Loading = glamorous.div({
 
     position:         'absolute',
@@ -71,12 +74,25 @@ const HOC_WithLoad = function(Comp){
         async fethImg () {
             const h = window.innerHeight;
             const w = window.innerWidth;
+
+            // [cloudinary] Vesion
+            //
+            // const src =
+            // `http://res.cloudinary.com/responsivebreakpoints/image/upload/`+
+            // `c_crop,`+
+            // `h_${h},`+
+            // `w_${w}/`+
+            // `${this.props.org}`;
+            //
+
+            // [WIX] Vesion
+            //
             const src =
-            `http://res.cloudinary.com/responsivebreakpoints/image/upload/`+
-            `c_crop,`+
-            `h_${h},`+
-            `w_${w}/`+
-            `${this.props.org}`;
+            `https://static.wixstatic.com/media/`
+            +`${this.props.org}/v1/fill/`
+            +`w_${w},h_${h}/`
+            +`${this.props.org}`;
+
             // const response = await fetch( src )
             //     .then(res => ProgressWithFetch(res.body.getReader()));
             // const isOk = await response.ok;
