@@ -12,7 +12,7 @@
 
 
 
-export default const artist =  [
+export const artist =  [
   {
     "artista": 'Enzo Cucchi.jpg',
     "id": 1,
