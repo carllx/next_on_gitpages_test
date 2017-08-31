@@ -24,12 +24,12 @@
     "export": "next export",
     "prestart": "npm run export",
     "start": "serve out",
-    "push": "git add . && git commit -m  \" %npm_package_config_commitmessage% \" && git push origin master  && npm run prestart && cd out/ && npm run export && git add . && git commit -m  \" %npm_package_config_commitmessage% \" && git push origin master",
+    "push": "npm run pushdev && npm run pushsito",
     "pushsito": "npm run prestart && cd out/ && node -e \"console.log('now path on :',process.cwd())\" && git add . && git commit -m  \" %npm_package_config_commitmessage% \" && git push origin master",
     "pushdev": "git add . && git commit -m  \" %npm_package_config_commitmessage% \" && git push origin master"
   },
   "config": {
-    "commitmessage": "修改logo , 主页组件分离 ,修复递交设置错误"
+    "commitmessage": "改进image , loader组件,引入svg 加载符号和简单动效"
   },
   "name": "",
   "description": "## How to use",

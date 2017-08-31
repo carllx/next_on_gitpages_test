@@ -57,8 +57,8 @@ export default class extends Component {
         device: '',
         isLandscape: '',
         language: '',
-        h:'',
-        w:'',
+        height:'',
+        width:'',
 
        }
        this.onScorll = debounce(this.handleScroll ,500 );
@@ -88,8 +88,8 @@ export default class extends Component {
 
   handleReSize=()=>{
 
-    this.setState({h : window.innerHeight})
-    this.setState({w : window.innerWidth})
+    this.setState({height : window.innerHeight})
+    this.setState({width : window.innerWidth})
     console.log('resize!')
 
   };
@@ -137,8 +137,8 @@ export default class extends Component {
     this.setState({language : getLanguer()})
 
     // height width
-    this.setState({h : window.innerHeight})
-    this.setState({w : window.innerWidth})
+    this.setState({height : window.innerHeight})
+    this.setState({width : window.innerWidth})
 
 
 
@@ -164,7 +164,11 @@ export default class extends Component {
 
 
 
-        <SectionWelcome dispaly ='none'/>
+        <SectionWelcome
+         width = {this.state.width}
+         height= {this.state.height}
+
+         />
 
 
 

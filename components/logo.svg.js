@@ -130,7 +130,7 @@ class Logo extends Component {
             </feMerge>
           </filter>
 
-          <g id="LOGO">
+          <g>
             <polygon
              {...css(logo_l_top)}
              points="35,35 5,35 5,5 35,5"
