@@ -145,7 +145,7 @@ const triangleDefaultStyle = css({
   fill:ui.color.secondary,
   width:'0.45rem',
   height:'0.45rem',
-  transformOrigin:'center center',
+  transformOrigin:'48% 48%',
   // opacity:0,
   animation: `${triangleKeyframe} 1s cubic-bezier(0.24, 0.49, 0.82, 0.6) infinite`
 })
@@ -168,7 +168,7 @@ class _Loading extends Component {
       <div
        {...css(triangleContainer)}
        style={{
-        opacity:!this.props.display?1:0 }}
+        opacity:this.props.display?1:0 }}
       >
         <svg
           {...css(triangleDefaultStyle)}

@@ -28,6 +28,7 @@ css.global(
   'html, body', {
     fontSize: '100%',
     color:ui.color.secondary_on_light,
+    margin:0
   },
 )
 /**
@@ -158,8 +159,8 @@ export default class extends Component {
 
         {/*服务器初始内容*/}
         <NoSSR onSSR={
-          <h2>服务器</h2>
-        }><div>客户端</div>
+          <p>服务器</p>
+        }><p>客户端</p>
         </NoSSR>
 
 
