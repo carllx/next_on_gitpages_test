@@ -14,11 +14,10 @@ import Logo from '../components/logo.svg'
 import {changelog,Concept} from '../components/changelog'
 // import TT from '../components/TP'
 
-import {isMobile  ,isTablet , isLandscape, getLanguer, setREM }  from '../utils/device'
+import {isMobile  ,isTablet , isLandscape, getLanguer,setREM }  from '../utils/device'
 import {throttle, debounce}  from '../utils/throttle'
 
-import {ui}  from '../utils/ui'
-
+import {ui  }  from '../utils/ui'
 /**
  * [fontSize description]
  * @type {String}
@@ -168,7 +167,6 @@ export default class extends Component {
         <SectionWelcome
          width = {this.state.width}
          height= {this.state.height}
-
          />
 
 

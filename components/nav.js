@@ -83,15 +83,10 @@ const NavContainer = glamorous.div({
 
 
 
-// const LinkItems = paths.map((paths,index) =>
-//   <Link href= {paths.url} >
-//   	<A>{paths.str}</A>
-//   </Link>
-// );
 
 const LinkItems = paths.map((paths,index) =>
 	<AContainer key={'Container'+ index}>
-		<Link href= {paths.url} key={'A'+ index}>
+		<Link href= {paths.url} key={'link'+ index}>
   			<A>{paths.str}</A>
   		</Link>
 	</AContainer>

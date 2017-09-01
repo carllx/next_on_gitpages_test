@@ -115,8 +115,6 @@ module.exports.getLanguer = function () {
 
 };
 
-
-
 /*
   设置html fontsize 单位
   使用bpr自动设置document fontsize生成rem单位,让所有设备按相同的比例显示
@@ -127,6 +125,7 @@ module.exports.getLanguer = function () {
   [amfe-lib-flexible(代码) -] (https://github.com/amfe/lib-flexible/blob/master/src/flexible.js)
 
 */
+
 module.exports.setREM = function () {
 
   const $doc = document.documentElement,
@@ -134,36 +133,14 @@ module.exports.setREM = function () {
         width = $doc.getBoundingClientRect().width,
         baseWidth = $doc.dataset.basewidth*1 || 640,
         ratio = width / baseWidth * 100,
-        rem = ratio < 100 ?  ratio < 50 ? 50 : ratio : 100,
-        event = 'onorientationchange' in window ? 'onorientationchange' : 'resize';
+        rem = width/10
 
-  // 一下针对iphone ,至于 mac retina就不知道了
-  if(isIOS ()==true){
-      // iOS下，对于2和3的屏，用2倍的方案，其余的用1倍方案
-      if (devicePixelRatio >= 3 && (!dpr || dpr >= 3)) {
-          dpr = 3;
-      } else if (devicePixelRatio >= 2 && (!dpr || dpr >= 2)){
-          dpr = 2;
-      } else {
-          dpr = 1;
-      }
-  } else {
-      // 其他设备下，仍旧使用1倍的方案
-      dpr = 1;
-  }
-  let dpr=0;
 
   $doc.style.fontSize = rem + 'px';
   console.log('bpr:',devicePixelRatio)
   console.log('fontSize:',rem + 'px')
 
-
-
 };
-
-
-
-
 
 /**
  * Check if running in a browser or spoofed browser (bundler).

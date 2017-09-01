@@ -45,50 +45,7 @@ const _IMG  = glamorous.div({
 
 
 
-/**
- * Backgroud Image
- *   @ opacity
- *   @ src
- */
 
-// const _BG_IMG = glamorous.div({
-
-//     position:         'absolute',
-//     zIndex:           -1,
-//     left:             0,
-//     top:              0,
-//     zIndex:           1,
-//     display:          'flex',
-
-//     justifyContent:   'space-around',
-//     backgroundColor:  '#3b444f',
-//     backgroundRepeat: 'no-repeat',
-//     backgroundSize:   'cover',
-//     overflow:         'hidden',
-
-//     width:            '100%',
-//     height:           '100%',
-
-//     transitionProperty: 'opacity',
-//     transitionTimingFunction: 'linear',//cubic-bezier(.4,0,.2,1)
-//     transitionDuration: '600ms',
-
-//   },(props)=>({
-//     // isLandscape  --或 居中
-
-//     //在这里找渐变模板 https: //webgradients.com/
-//     opacity: props.loaded?1:0,
-//     backgroundImage:  props.src?`url(${props.src})`:'white',
-//   })
-// )
-
-
-
-/**
- *  Loading style...的显示界面
- *  @src  {[type]} options.position:
- *
- */
 
 const _LoadingDefaultstyle = glamorous.div({
 
@@ -290,4 +247,47 @@ export default IMG_WithLoader;
 
 
 
+/**
+ * Backgroud Image
+ *   @ opacity
+ *   @ src
+ */
 
+// const _BG_IMG = glamorous.div({
+
+//     position:         'absolute',
+//     zIndex:           -1,
+//     left:             0,
+//     top:              0,
+//     zIndex:           1,
+//     display:          'flex',
+
+//     justifyContent:   'space-around',
+//     backgroundColor:  '#3b444f',
+//     backgroundRepeat: 'no-repeat',
+//     backgroundSize:   'cover',
+//     overflow:         'hidden',
+
+//     width:            '100%',
+//     height:           '100%',
+
+//     transitionProperty: 'opacity',
+//     transitionTimingFunction: 'linear',//cubic-bezier(.4,0,.2,1)
+//     transitionDuration: '600ms',
+
+//   },(props)=>({
+//     // isLandscape  --或 居中
+
+//     //在这里找渐变模板 https: //webgradients.com/
+//     opacity: props.loaded?1:0,
+//     backgroundImage:  props.src?`url(${props.src})`:'white',
+//   })
+// )
+
+
+
+/**
+ *  Loading style...的显示界面
+ *  @src  {[type]} options.position:
+ *
+ */

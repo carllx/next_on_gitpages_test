@@ -10,6 +10,10 @@ module.exports.ui = {
 		disabled_on_dark:'rgba(255,255,255,.38)',
 		secondary_on_dark:'rgba(255,255,255,.54)',
 		primary_on_dark:'rgba(255,255,255,.87)',
+		w1:"rgba(255, 255, 255 ,1)",
+		w1:"rgba(255, 255, 255 ,1)",
+		w1:"rgba(255, 255, 255 ,1)",
+		w1:"rgba(255, 255, 255 ,1)",
 	},
 	// breakpoint
 	breakpoints:{
@@ -21,3 +25,22 @@ module.exports.ui = {
 	},
 }
 
+
+
+
+
+
+
+
+
+//golden Ratio
+module.exports.gr = function( rooot , px ){
+  const goldenRatio =  (1+ Math.sqrt(5) )/2//1.618
+
+  if(px) return  result * px
+  // vw
+  let result = 10 / Math.pow( goldenRatio , rooot )
+  return result
+
+}
+// 584.628

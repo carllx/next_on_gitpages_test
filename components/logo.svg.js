@@ -2,10 +2,12 @@ import React, {Component} from 'react'
 import { rehydrate, css } from 'glamor'
 import glamorous from 'glamorous'
 
-import {ui}  from '../utils/ui'
+
+import {ui  ,gr}  from '../utils/ui'
 
 
 
+// const GR = gr()
 //////////
 // FONT //
 //////////
@@ -31,19 +33,12 @@ const ZhoFont = css.fontFace({
 // ELEMENT //
 /////////////
 
-const logo_default  = {filter:'url(#dropshadow)'}
-const logo_s_top    = css({...logo_default,fill:'#E6E6E6'});
-const logo_s_bottom = css({...logo_default,fill:'#E6E6E6'});
-const logo_l_top    = css({...logo_default,fill:'#B3B3B3'});
-const logo_l_bottom = css({...logo_default,fill:'#CCCCCC'});
-const svg_style = css({
-    width:"1rem",
-    height:"1rem"
-});
-const logo_container = css({
 
-    top:'.5rem',
-    left:'.2rem',
+
+const logo_container = css({
+    // fontSize :`${gr(1)}rem`,
+    top: `${gr(8)}rem`,
+    left:`${gr(8)}rem`,
     display:       'flex',
     flexDirection: 'row',
     justifyContent:'center',
@@ -53,32 +48,34 @@ const logo_container = css({
     textAlign:     'left',
 })
 
-const LogoRight = glamorous.div({
 
-    fontFamily    :ZhoFont,
-    fontSize      :`0.4em`,
-    color:'#B3B3B3',
-    marginBottom:'0.07rem',
-    marginLeft:'0.1rem',
+const logo_default  = {filter:'url(#dropshadow)'}
+const logo_s_top    = css({...logo_default,fill:'#E6E6E6'});
+const logo_s_bottom = css({...logo_default,fill:'#E6E6E6'});
+const logo_l_top    = css({...logo_default,fill:'#B3B3B3'});
+const logo_l_bottom = css({...logo_default,fill:'#CCCCCC'});
 
+const svg_style = css({
+    width:`${gr(5)}rem`,
+    height:`${gr(5)}rem`
 });
 
 
 
 
-/**
- * Logo组件,
- * @param  {float}  fontSize
- * @param  {string} color  [description]
- * @param  {string} bg_color  [description]
- * @return {component}
- */
+const LogoRight = glamorous.div({
 
-function isMobile_Logo(){
-  return ({
-    fontSize      : '1rem',
-  })
-}
+    fontSize      :`${gr(8)}rem`,
+    fontFamily    :ZhoFont,
+
+    color:'#B3B3B3',
+    marginBottom:`${gr(10)}rem`,
+    marginLeft:`${gr(9)}rem`,
+
+});
+
+
+
 
 
 
@@ -152,6 +149,7 @@ class Logo extends Component {
         </svg>
 
         <LogoRight>
+          <div>{'中艺国际'}</div>
           <div>{'Zhong Art'}</div>
           <div>{'Internazionale'}</div>
         </LogoRight>
