@@ -58,17 +58,16 @@ class SVG extends Component {
 	constructor (props) {
       super(props)
       this.state = {
-      	width:this.props.width,
-      	isLandscape:this.props.isLandscape
+      	// width:this.props.width,
+      	// isLandscape:this.props.isLandscape
 
       }
-
-
     }
 
+
 	render(){
-		const width = this.state.width;
-		const height = width*gr(5)-width*gr(8);
+		let width = this.props.width;
+		let height = width*gr(5)-width*gr(8);
 		return(
 			<svg
 			 {...css({
@@ -96,7 +95,7 @@ class SVG extends Component {
 				 {...SVG_style}
 				 filter='url(#dropshadow)'
 				 fill={ui.color.w_o1}
-				 display = {!this.state.isLandscape}
+				 display = {!this.props.isLandscape}
 				 stroke="none"
 				 points={
  				  `0,       ${width*gr(6)} `+//left_top
@@ -180,7 +179,10 @@ class Nav extends Component {
 
 	constructor (props) {
       super(props)
-      this.state = {}
+  //     this.state = {
+  //     	isLandscape: this.props.isLandscape,
+		// width : this.props.width,
+  //     }
     }
 
 	onClick = value => {
