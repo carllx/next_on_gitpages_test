@@ -33,7 +33,8 @@ export const ThreeInit = function () {
         wh = window.innerHeight;
 
     renderer = new THREE.WebGLRenderer({
-        canvas: document.getElementById('scene')
+        canvas: document.getElementById('scene'),
+        antialias: true
     });
     renderer.setSize(ww, wh);
 
