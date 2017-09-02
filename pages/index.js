@@ -12,7 +12,7 @@ import Nav from '../components/nav'
 import {IMG} from '../components/img'
 import Logo from '../components/logo.svg'
 import {changelog,Concept} from '../components/changelog'
-// import TT from '../components/TP'
+import {ThreeInit} from'../components/THREE.sphere'
 
 import {isMobile  ,isTablet , isLandscape, getLanguer,setREM }  from '../utils/device'
 import {throttle, debounce}  from '../utils/throttle'
@@ -140,6 +140,8 @@ export default class extends Component {
     this.setState({height : window.innerHeight})
     this.setState({width : window.innerWidth})
 
+    ThreeInit();
+
 
 
   }
@@ -164,11 +166,18 @@ export default class extends Component {
 
 
 
-        <SectionWelcome
+        {/*<SectionWelcome
          width = {this.state.width}
          height= {this.state.height}
          isLandscape = {this.state.isLandscape}
-         />
+         />*/}
+
+
+         <canvas
+          {...css({position:'absolute',top:0,left:0})}
+          id = "scene"
+          width = {this.state.width}
+          height = {this.state.height}/>
 
 
 
