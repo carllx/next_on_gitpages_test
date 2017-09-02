@@ -10,10 +10,13 @@ module.exports.ui = {
 		disabled_on_dark:'rgba(255,255,255,.38)',
 		secondary_on_dark:'rgba(255,255,255,.54)',
 		primary_on_dark:'rgba(255,255,255,.87)',
-		w1:"rgba(255, 255, 255 ,1)",
-		w1:"rgba(255, 255, 255 ,1)",
-		w1:"rgba(255, 255, 255 ,1)",
-		w1:"rgba(255, 255, 255 ,1)",
+
+		w_o1:"rgba(255, 255, 255 ,.87)",
+		w_o2:"rgba(255, 255, 255 ,.54)",
+		w_o3:"rgba(255, 255, 255 ,.38)",
+		w_1:"rgb(238,238,238 )",
+		w_2:"rgb(222,222,222)",
+		w_3:"rgb(205,205,205)",
 	},
 	// breakpoint
 	breakpoints:{
@@ -24,8 +27,6 @@ module.exports.ui = {
 		xlarge: '70em'
 	},
 }
-
-
 
 
 

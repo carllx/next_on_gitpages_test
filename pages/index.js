@@ -167,6 +167,7 @@ export default class extends Component {
         <SectionWelcome
          width = {this.state.width}
          height= {this.state.height}
+         isLandscape = {this.state.isLandscape}
          />
 
 
@@ -177,6 +178,7 @@ export default class extends Component {
          bg_color={ui.color.secondary_secondary}
         />
         <Nav
+         width = {this.state.width}
          isLandscape={this.state.isLandscape}
          language= {this.state.language}
         />

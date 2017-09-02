@@ -4,7 +4,7 @@ import { rehydrate, css } from 'glamor'
 import glamorous,{withTheme} from 'glamorous'
 import Logo from './logo'
 
-import {ui}  from '../utils/ui'
+import {ui  ,gr}  from '../utils/ui'
 
 // glamor
 // css.global(
@@ -27,7 +27,7 @@ import {ui}  from '../utils/ui'
 // DATA
 
 const paths = [
-	{'str':'主页',  'url':'/index'},
+	// {'str':'主页',  'url':'/index'},
 	{'str':'艺术家','url':'/artista'},
 	{'str':'展览',  'url':'/mostre'},
 	{'str':'新闻',  'url':'/eventi'},
@@ -44,6 +44,80 @@ const AContainer = glamorous.div({
 	})
 );
 
+
+
+const SVG_style=css({
+
+	position: 'fixed',
+    bottom: '0%',
+    width: '100%',
+    height: '50%',
+})
+class SVG extends Component {
+
+	constructor (props) {
+      super(props)
+      this.state = {
+      	width:this.props.width,
+      	isLandscape:this.props.isLandscape
+
+      }
+
+
+    }
+
+	render(){
+		const width = this.state.width;
+		const height = width*gr(5)-width*gr(8);
+		return(
+			<svg
+			 {...css({
+
+				position: 'fixed',
+			    bottom: '0%',
+			    width:  `${width}px`,
+			    height: `${height}px`,
+			})}
+			 // viewBox={`0 0 ${width} 294.12`}
+			>
+			<filter id="dropshadow" height="130%">
+			    <feGaussianBlur in="SourceAlpha" stdDeviation="3"/>
+			    <feComponentTransfer xmlns="http://www.w3.org/2000/svg">
+			      <feFuncA type="linear" slope="0.2"/>
+			    </feComponentTransfer>
+
+			    <feOffset dx="-10" dy="-10" result="offsetblur"/>
+			    <feMerge>
+			      <feMergeNode/>
+			      <feMergeNode in="SourceGraphic"/>
+			    </feMerge>
+			</filter>
+				<polygon
+				 {...SVG_style}
+				 filter='url(#dropshadow)'
+				 fill={ui.color.w_o1}
+				 display = {!this.state.isLandscape}
+				 stroke="none"
+				 points={
+ 				  `0,       ${width*gr(6)} `+//left_top
+ 				  `${width},${width*gr(7)} `+//right_top
+ 				  `${width},${height} `+//right_bottom
+ 				  `0,       ${height} `//left_bottom
+
+	 				  }//
+	 			/>
+
+			</svg>
+
+			);
+
+	};
+};
+
+
+
+
+
 const A = glamorous.div({
 
 		cursor: 'pointer',
@@ -54,18 +128,20 @@ const A = glamorous.div({
 );
 
 
+
+
+
 // ELEMENT
 
-const NavContainer = glamorous.div({
+const Container = glamorous.div({
 
-		fontSize:'0.3rem',
+		fontSize:`${gr(7)}rem`,
 		position:'fixed',
 		zIndex:1,
 		display:'flex',
 		flexDirection: 'row',
 		alignItems:'center',
 		justifyContent:'space-around',
-	    backgroundColor:'white',
 
 
 	},(props)=>({
@@ -74,8 +150,8 @@ const NavContainer = glamorous.div({
 		top: props.isLandscape? 0:'100%',
 		transform: props.isLandscape? 'translate(0, 0)':'translate(-50%, -100%)' ,
 		width:props.isLandscape? 'auto':'100%',
-		padding:props.isLandscape? '2em':'1em',
-		boxShadow: props.isLandscape? `0 16px 24px 2px rgba(0,0,0,.14),0 6px 30px 5px rgba(0,0,0,.12),0 8px 10px -5px rgba(0,0,0,.2)`:`0 -16px 24px 2px rgba(0,0,0,.14),0 -6px 30px 5px rgba(0,0,0,.12),0 -8px 10px -5px rgba(0,0,0,.2)`,
+
+		// boxShadow: props.isLandscape? `0 16px 24px 2px rgba(0,0,0,.14),0 6px 30px 5px rgba(0,0,0,.12),0 8px 10px -5px rgba(0,0,0,.2)`:`0 -16px 24px 2px rgba(0,0,0,.14),0 -6px 30px 5px rgba(0,0,0,.12),0 -8px 10px -5px rgba(0,0,0,.2)`,
 
 	})
 )
@@ -83,11 +159,17 @@ const NavContainer = glamorous.div({
 
 
 
-
 const LinkItems = paths.map((paths,index) =>
 	<AContainer key={'Container'+ index}>
-		<Link href= {paths.url} key={'link'+ index}>
-  			<A>{paths.str}</A>
+		<Link
+		 href= {paths.url}
+		 key={'link'+ index}
+		>
+  			<glamorous.Div
+  			 padding ={`${gr(6)}rem`}
+  			>
+  			{paths.str}
+  			</glamorous.Div>
   		</Link>
 	</AContainer>
 );
@@ -99,7 +181,6 @@ class Nav extends Component {
 	constructor (props) {
       super(props)
       this.state = {}
-
     }
 
 	onClick = value => {
@@ -110,11 +191,15 @@ class Nav extends Component {
 		return(
 			<div onClick={this.onClick}>
 				{/*<div>{this.state.h}</div>*/}
-				<NavContainer isLandscape = {this.props.isLandscape}>
+				<Container isLandscape = {this.props.isLandscape}>
 
 					{LinkItems}
 
-				</NavContainer>
+				</Container>
+				<SVG
+				isLandscape= {this.props.isLandscape}
+				width = {this.props.width}
+				/>
 
 
 			</div>
