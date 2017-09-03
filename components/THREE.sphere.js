@@ -90,26 +90,27 @@ const createTriangles = function() {
         allTriangles.add(triangle);
         // triangle.scale
         triangle.tl = new TimelineMax({
-            repeat: -1,
+            // repeat: -1,
             repeatDelay: (j - i) / (j * 4),
             delay: i / (ctrl.polygons * 5),
-            yoyo: true
+            // yoyo: true
         });
         triangle.tl
-            .from(triangle.scale, ctrl.duration, {
-                x: 1599,
-                y: 1599,
-                z: 1599,
-                ease: animations[ctrl.animation],
-            })
-            .to(triangle.scale, 50, {
-                x: 1499*Math.random(),
-                y: 1499*Math.random(),
-                z: 1499*Math.random(),
+            .from(triangle.scale, 5, {
+                x: 1500*Math.random(),
+                y: 1500*Math.random(),
+                z: 1500*Math.random(),
                 ease: animations[ctrl.animation],
                 // repeat: -1,
                 // yoyo: true
             })
+            .to(triangle.scale, ctrl.duration, {
+                x: 1500,
+                y: 1500,
+                z: 1500,
+                ease: animations[ctrl.animation],
+            })
+
     }
 
     render();
