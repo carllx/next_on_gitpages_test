@@ -42,7 +42,7 @@ const InkTransition  = (props) => (
    // mountOnEnter
    >
     {(status) => (
-      <div style={{
+      <div style={{ // 没有polyfill 最好使用 glamor修改成css({})
         left:props.x,
         top:props.y,
         ...defaultStyle_Ink,

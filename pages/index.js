@@ -12,7 +12,7 @@ import Nav from '../components/nav'
 import {IMG} from '../components/img'
 import Logo from '../components/logo.svg'
 import {changelog,Concept} from '../components/changelog'
-import {ThreeInit} from'../components/THREE.sphere'
+import {ThreeInit} from'../components/section.welcome.THREE.sphere.js'
 
 import {isMobile  ,isTablet , isLandscape, getLanguer,setREM }  from '../utils/device'
 import {throttle, debounce}  from '../utils/throttle'
@@ -104,10 +104,11 @@ export default class extends Component {
 
   }
 
-  // componentWillUnmount(){
-  //   window.removeEventListener('scroll', this.onScorll, false);
-  //   window.removeEventListener('resize', this.onReSize);
-  // }
+
+  componentWillUnMount(){
+    window.removeEventListener('scroll', this.onScorll)
+    window.removeEventListener('resize', this.onScorll)
+  }
 
 
   componentDidMount(){
@@ -142,20 +143,13 @@ export default class extends Component {
 
     ThreeInit();
 
-
-
   }
 
 
   render () {
     return (
       <main >
-        <Head>
-          <title>中艺国际</title>
-        </Head>
-
-
-
+        <Head></Head>
 
 
         {/*服务器初始内容*/}
@@ -193,7 +187,7 @@ export default class extends Component {
         />
 
 
-
+        <div>{this.props.hh}</div>
         <NoSSR>
         <content onScroll={this.handleScroll}>
           <changelog display = 'none'/>

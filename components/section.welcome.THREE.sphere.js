@@ -18,7 +18,7 @@ const ctrl = {
     wireframe : false,
     polygons : 15,
     rotation : true,
-    animation : 1,
+    animation : 4,
     duration : 5,
     direction : 2,
     // render : function() {
@@ -37,6 +37,7 @@ export const ThreeInit = function () {
         antialias: true
     });
     renderer.setSize(ww, wh);
+    renderer.setClearColor( 0xffffff);
 
     scene = new THREE.Scene();
 
@@ -55,7 +56,7 @@ const createTriangles = function() {
     }
     allTriangles = new THREE.Object3D();
     scene.add(allTriangles);
-    const geometry = new THREE.SphereGeometry(1500, 22, 14);
+    const geometry = new THREE.SphereGeometry(1500, 15, 7);
     for (var i = 0, j = geometry.faces.length; i < j; i++) {
         //Get one face from the sphere
         var whichTriangle = i;
@@ -85,30 +86,35 @@ const createTriangles = function() {
 
         //Create a Mesh object
         var triangle = new THREE.Mesh(geometry2, material);
-        var randomColor = Math.random();
+        var randomColor = 0.6+Math.random()*0.4;
         triangle.material.color = new THREE.Color(randomColor, randomColor, randomColor);
         allTriangles.add(triangle);
         // triangle.scale
         triangle.tl = new TimelineMax({
-            // repeat: -1,
+            repeat: -1,
             repeatDelay: (j - i) / (j * 4),
             delay: i / (ctrl.polygons * 5),
-            // yoyo: true
+            yoyo: true
         });
+
+        const radm = Math.random()
+        triangle.scale.set(900,900,900)
         triangle.tl
-            .from(triangle.scale, 5, {
-                x: 1500*Math.random(),
-                y: 1500*Math.random(),
-                z: 1500*Math.random(),
+            // .to(triangle.scale, 0.5, {
+            //     x: 1500*radm,
+            //     y: 1500*radm,
+            //     z: 1500*radm,
+            //     ease: animations[ctrl.animation],
+            //     // repeat: -1,
+            //     // yoyo: true
+            // })
+            .to(triangle.scale, 50, {
+                x: 900 + radm*3000,
+                y: 900 + radm*3000,
+                z: 900 + radm*3000,
                 ease: animations[ctrl.animation],
                 // repeat: -1,
                 // yoyo: true
-            })
-            .to(triangle.scale, ctrl.duration, {
-                x: 1500,
-                y: 1500,
-                z: 1500,
-                ease: animations[ctrl.animation],
             })
 
     }
@@ -120,7 +126,7 @@ var render = function() {
     requestAnimationFrame(render);
 
     if (ctrl.rotation) {
-        allTriangles.rotation.y += 0.001;
+        allTriangles.rotation.y += 0.0005;
     }
 
     renderer.render(scene, camera);

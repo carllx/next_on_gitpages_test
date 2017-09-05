@@ -1,5 +1,7 @@
 const fetch = require('isomorphic-fetch')
 const cp = require('recursive-copy')
+const artisti = require('./static/contents/artisti/')
+
 
 module.exports = {
   async exportPathMap () {
@@ -24,6 +26,7 @@ module.exports = {
     },*/
 
 
+
     // tranform the list of posts into a map of pages with the pathname `/post/:id`
     const pages = postList.reduce(
       (pages, post) =>
@@ -35,11 +38,31 @@ module.exports = {
         }),
       {},
     )
+
+    // tranform the list of posts into a map of pages with the pathname `/post/:id`
+
+    const artistPages = artisti.reduce(
+      (artistPages, obj) =>
+        Object.assign({}, artistPages, {
+          [`/artisti/${obj.id}`]: {
+            page: '/artisti',
+            query: { id: obj.id }
+          }
+        }),
+      {},
+
+    )
     // combine the map of post pages with the home
-    return Object.assign({}, pages, {
+    return Object.assign({}, pages, artistPages ,{
       '/': { page: '/' }
     })
   }
 
 
 }
+
+
+
+
+
+

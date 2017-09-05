@@ -30,7 +30,7 @@
     "pushdev": "git add . && git commit -m  \" %npm_package_config_commitmessage% \" && git push origin master"
   },
   "config": {
-    "commitmessage": "取消打乱动画"
+    "commitmessage": "模拟post 制作 next 的 artisti map 模板"
   },
   "name": "",
   "description": "## How to use",

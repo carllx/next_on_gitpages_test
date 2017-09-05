@@ -16,7 +16,7 @@ import {ui  ,gr}  from '../utils/ui'
 const DOSIS = css.fontFace({
   fontFamily      :'DOSIS',
   fontStyle       :'normal',
-  fontWeight      :500,
+  fontWeight      :50,
   src             :
   "url('../static/font/dosis.extralight.woff2') format('woff2'),"+
   "url('../static/font/dosis.extralight.woff') format('woff'),"+
@@ -58,7 +58,7 @@ const Container = glamorous.div({
 
 const logo_default  = css({
   fill:'none',
-  stroke:ui.color.w_2
+  stroke:ui.color.secondary_secondary
 })
 
 const SVGLogo = glamorous.svg(
@@ -123,7 +123,7 @@ class Logo extends Component {
             <line id="I"
             x1="108.9" y1="30.2" x2="108.9" y2="1.9"/>
           </g>
-          <g {...css({fontSize:'9.4033px',fill:ui.color.w_2,stroke:'none',fontFamily:DOSIS}, )}>
+          <g {...css({fontSize:'9.4033px',fill:ui.color.secondary_secondary,stroke:'none',fontFamily:DOSIS}, )}>
             <text transform="matrix(1 0 0 1 124.6943 20.4883)"
             >Zhong Art</text>
             <text transform="matrix(1 0 0 1 124.6943 29.8906)"
