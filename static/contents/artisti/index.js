@@ -23,10 +23,10 @@ const ARTISTI =  [
     SandroChia,
     FangLijun,
     WangYi,
-    VincenzoVentimiglia,
+    VincenzoVentimiglia
 ]
 
-
+// artistInfo 路由和 nav artisti 使用
 module.exports.artistInfo = ARTISTI.map(
 
         (item)=>{

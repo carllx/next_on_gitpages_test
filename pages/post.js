@@ -32,4 +32,4 @@ export default class extends Component {
     )
   }
 }
-EXHIBITION
+

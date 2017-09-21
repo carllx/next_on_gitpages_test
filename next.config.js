@@ -43,7 +43,7 @@ module.exports = {
 
     // tranform the list of posts into a map of pages with the pathname `/post/:id`
 
-    const artistPages = artisti.reduce(
+    const artistPages = artisti.artistInfo.reduce(
       (artistPages, obj) =>
         Object.assign({}, artistPages, {
           [`/artisti/${obj.id}`]: {
