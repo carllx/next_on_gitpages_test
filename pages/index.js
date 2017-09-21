@@ -1,51 +1,45 @@
 import { Component } from 'react'
 import Head from 'next/head'
 import fetch from 'isomorphic-fetch'
-import { css } from 'glamor'
+import { css  } from 'glamor'
 import glamorous from 'glamorous'
 import {ThemeProvider} from 'glamorous'
 import NoSSR from 'react-no-ssr';
 
 import Post from '../components/post'
-import {SectionWelcome} from '../components/section.welcome'
+// import {SectionWelcome} from '../components/section.welcome'
 import Nav from '../components/nav'
-import {IMG} from '../components/img'
-import Logo from '../components/logo.svg'
-import {changelog,Concept} from '../components/changelog'
+// import {IMG} from '../components/img'
+import LOGO from '../components/logo.svg'
+// import {changelog,Concept} from '../components/changelog'
 import {ThreeInit} from'../components/section.welcome.THREE.sphere.js'
 
 import {isMobile  ,isTablet , isLandscape, getLanguer,setREM }  from '../utils/device'
 import {throttle, debounce}  from '../utils/throttle'
 
-import {ui  }  from '../utils/ui'
+import {ui ,GR }  from '../utils/ui'
 /**
  * [fontSize description]
  * @type {String}
  */
-css.global(
 
-  'html, body', {
-    fontSize: '100%',
-    color:ui.color.secondary_on_light,
-    margin:0
-  },
-)
 /**
  * [color description]
  * @type {[type]}
  */
-css.global(
+// css.global(
 
-  'h1,h2,h4',{
-    color:ui.color.primary_on_light,
-  }
-)
+//   'h1,h2,h4',{
+//     color:ui.color.primary_on_light,
+//   }
+// )
 
 
 export default class extends Component {
 
   constructor (props) {
       super(props)
+
       this.state = {
         /*
         device   : desktop / moblie / tablet    --2.
@@ -56,9 +50,9 @@ export default class extends Component {
         */
         device: '',
         isLandscape: '',
-        language: '',
-        height:'',
-        width:'',
+        language: 'en',
+        vw:'',
+        vh:'',
 
        }
        this.onScorll = debounce(this.handleScroll ,500 );
@@ -87,11 +81,9 @@ export default class extends Component {
 
 
   handleReSize=()=>{
-
-    this.setState({height : window.innerHeight})
-    this.setState({width : window.innerWidth})
-    console.log('resize!')
-
+    console.info('onResize -in Page index.js-handleReSize')
+    this.setState({vh : window.innerHeight})
+    this.setState({vw : window.innerWidth})
   };
 
 
@@ -119,9 +111,9 @@ export default class extends Component {
     // SCROLL
     this.prevScrollY = window.scrollY;
 
-    // 检测移动硬件
+     // 检测移动硬件 还是 server端
     if (typeof navigator === 'undefined') {
-      console.log(this.state)
+      console.error( '检测移动硬件 \ntypeof navigator === undefined\n this.state:'+ this.state)
       return;
     }
     // device
@@ -138,8 +130,8 @@ export default class extends Component {
     this.setState({language : getLanguer()})
 
     // height width
-    this.setState({height : window.innerHeight})
-    this.setState({width : window.innerWidth})
+    this.setState({vh : window.innerHeight})
+    this.setState({vw : window.innerWidth})
 
     ThreeInit();
 
@@ -153,9 +145,8 @@ export default class extends Component {
 
 
         {/*服务器初始内容*/}
-        <NoSSR onSSR={
-          <p>服务器</p>
-        }><p>客户端</p>
+        <NoSSR onSSR={ <ABS>{'服务器'}</ABS>}>
+          <ABS>{'客户端'}</ABS>
         </NoSSR>
 
 
@@ -170,30 +161,35 @@ export default class extends Component {
          <canvas
           {...css({position:'absolute',top:0,left:0})}
           id = "scene"
-          width = {this.state.width}
-          height = {this.state.height}/>
+          width = {this.state.vw}
+          height = {this.state.vh}/>
 
 
 
-        <Logo
-         isLandscape = {this.state.isLandscape}
-         color={ui.color.primary_on_dark}
-         bg_color={ui.color.secondary_secondary}
-        />
+        {/*LOGO*/}
+        <div
+         {...css({
+            /*居中*/
+             position:'relative',
+             width: `${GR.vw(1)}vw`,//暂时
+        })}
+        >
+            <LOGO/>
+        </div>
+
+        <NoSSR>
         <Nav
-         width = {this.state.width}
+         vw = {this.state.vw}
+         vh = {this.state.vh}
          isLandscape={this.state.isLandscape}
          language= {this.state.language}
+         show ={true}
+         marginW = {GR.vw(5)}
+         showLogo ={false}
         />
-
-
-        <div>{this.props.hh}</div>
-        <NoSSR>
-        <content onScroll={this.handleScroll}>
-          <changelog display = 'none'/>
-          <Concept display = 'none'/>
-        </content>
         </NoSSR>
+
+
       </main>
 
 
@@ -203,7 +199,13 @@ export default class extends Component {
 
 }
 
-//<section>
-//  {this.props.postList.map(post => <Post {...post} key={post.id} />)}
-//</section>
+const ABS = (props)=>
+   <div
+    {...css({
+         position:'absolute',
+         zIndex:-1,
+    })}
+    >
+        {props.children}
+    </div>
 

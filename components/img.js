@@ -1,22 +1,28 @@
 /**
- * 分类
- * cat
- *  :background
- *  :img
- *  :icon_artist
+ * 适用于
+ *  :img (全屏图片)
+ *  :AVATAR(艺术家)
+ *  支持png
  *
- * scroll未看到的时候隐藏,加载完毕的时候显示
- * display:{boolean}
+ *
+ * 组件 IMG_WithLoader
+ *  + _IMG
+ *  + _LOADER
+ *
+ *
+ * active {false} 在未(可见)到的时候 隐藏,
+ * active {true} loader三角形动画转动
+ * state , loaded {true}的时候显示img
+ *  NoSSR, 需要使用 NoSSR (import NoSSR from 'react-no-ssr';)
  *
  */
 
-import React, {Component} from 'react'
-import { rehydrate, css } from 'glamor'
-import glamorous, {ThemeProvider} from 'glamorous'
-import XHRProgress  from '../utils/Progress'
+import {Component} from 'react'
+import { css } from 'glamor'
+// import glamorous, {ThemeProvider} from 'glamorous'
+import XHRProgress from '../utils/Progress'
 import {ui}  from '../utils/ui'
-import {wix}  from '../utils/img'
-
+import {wix} from '../utils/img'
 
 
 /**
@@ -25,51 +31,29 @@ import {wix}  from '../utils/img'
  *   @ src
  */
 
-const _IMG  = glamorous.div({
-  justifyContent:   'space-around',
+const _IMG =(props)=>
 
-  backgroundRepeat: 'no-repeat',
-  backgroundSize:   'cover',
-  overflow:         'hidden',
-  backgroundColor:  'white',
+      <div
+       {...css({
+        position:'absolute',//文件流识别
+        justifyContent:   'space-around',
+        backgroundRepeat: 'no-repeat',
+        backgroundSize:   'cover',
+        overflow:         'hidden',
+        backgroundColor:  'transparent',
 
-},(props)=>({
-  // isLandscape  --或 居中
-  opacity: props.display?1:0,
-  width:   props.width?`${props.width}`:'100%',
-  height:  props.height?`${props.height}`:'100%',
-  //在这里找渐变模板 https: //webgradients.com/
-  // backgroundColor:  props.src?`url(${props.src})`:'white',
-  backgroundImage:  props.src?`url(${props.src})`:'white',
-}))
-
-
-
-
-
-const _LoadingDefaultstyle = glamorous.div({
-
-    position:         'absolute',
-    left:             0,
-    top:              0,
-    zIndex:           1,
-    fontWeight:     400,
-    flexDirection:  'row',
-    alignItems:     'center',
-    justifyContent: 'center',
-    display:        'flex',
-    backgroundColor:'rgba(0,0,0,.15)',
-
-},(props)=>({
-    fontSize:        props.size?props.size:'0.4em',
-    // color:           props.color?props.color:ui.color.secondary_on_light,
-    // color:           props.color?props.color:ui.color.secondary_on_dark,
-    // 为了居中
-    //
-    width:props.width,
-    height:props.height,
-})
-)
+        left:props.left,
+        top:props.top,
+        opacity: props.loaded?1:0,
+        width:   props.width?`${props.width}`:'100%',
+        height:  props.height?`${props.height}`:'100%',
+        //在这里找渐变模板 https: //webgradients.com/
+        // backgroundColor:  props.src?`url(${props.src})`:'white',
+        backgroundImage:  props.src?`url(${props.src})`:'white',
+        transition: `opacity 1s cubic-bezier(0.24, 0.49, 0.82, 0.6)`,
+        })}
+      >
+      </div>
 
 
 
@@ -79,72 +63,57 @@ const _LoadingDefaultstyle = glamorous.div({
  */
 
 
-const triangleContainer = css({
-  position:         'absolute',
-  left:             0,
-  top:              0,
-  zIndex:           1,
-  fontWeight:     100,
-  width: '100%',
-  height: '100%',
-  flexDirection:  'column',
-  alignItems:     'center',
-  justifyContent: 'center',
-  display:        'flex',
-  backgroundColor:'rgba(0,0,0,.15)',
-})
-const triangleKeyframe = css.keyframes({
+const _LoadingKeyframe = css.keyframes({
   from: {transform: 'rotate(0deg)'},
   to: {transform: 'rotate(360deg)'}
 })
 
-const triangleDefaultStyle = css({
-  fill:ui.color.secondary,
-  width:'0.45rem',
-  height:'0.45rem',
-  transformOrigin:'48% 48%',
-  // opacity:0,
-  animation: `${triangleKeyframe} 1s cubic-bezier(0.24, 0.49, 0.82, 0.6) infinite`
-})
 
-
-
-/**
- * @display?
- * @percent?
- */
-class _Loading extends Component {
-  constructor(props){
-    super(props);
-
-  }
-
-  render(){
-    return(
+const _Loading =(props)=>
 
       <div
-       {...css(triangleContainer)}
-       style={{
-        opacity:this.props.display?1:0 }}
+       {...css({
+        position: 'absolute',
+
+        zIndex: 1,
+        fontWeight: 100,
+
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        display: 'flex',
+
+        left:props.left?props.left:0,
+        top:props.top?props.top:0,
+        width: props.width,
+        height:props.height,
+        opacity:props.loaded?1:0,
+
+        })}
       >
         <svg
-          {...css(triangleDefaultStyle)}
+         {...css({
+          width:'20%',
+          height:'20%',
+          transformOrigin:'48% 48%',
+          animation: `${_LoadingKeyframe} 1s cubic-bezier(0.24, 0.49, 0.82, 0.6) infinite`,
+          animationPlayState: props.loaded?'running':'paused',
+         })}
           viewBox="1 1 50.1 43.4"
         >
           <polygon
-           {...css(triangleDefaultStyle)}
+           fill = {ui.color.secondary}
            points="1,43.4 50.1,43.4 25.1,1"
           />
         </svg>
 
-        <glamorous.P
-         color = {ui.color.disabled_on_light}
-         fontSize = '0.2rem'
-        >{this.props.percent+'%'}</glamorous.P>
+        <p {...css({
+          color:ui.color.disabled_on_light,
+          fontSize:'0.2rem',
+        })}>
+          {props.percent+'%'}
+        </p>
       </div>
-    )
-  }
-}
 
 
 
@@ -163,10 +132,7 @@ export class IMG_WithLoader extends Component {
 
     super(props);
 
-
-
     this.state = {
-      active:this.props.active,
       loaded:false,
       percent: 0
     };
@@ -175,11 +141,9 @@ export class IMG_WithLoader extends Component {
   }
 
   componentDidMount(){
-    if(this.props.active) this.fethImg();
-  }
-
-  componentWillUpdate(){
-    // if(this.props.active==true && this.state.loaded==false) this.fethImg();
+    if(this.props.active && this.props.width !=0 ) {
+      this.fethImg();
+    }
   }
 
 
@@ -196,37 +160,51 @@ export class IMG_WithLoader extends Component {
   }
 
   async fethImg () {
-      const h = this.props.height;
       const w = this.props.width;
+      const h = this.props.height;
+      const org = this.props.src;
       // @{wix}  from '../utils/img'
-      const src = wix(this.props.org,w,h )
-
+      // {wix}转换src
+      // 需要<NoSSR> 否则这里的 w h 取回来是 0
+      const src = wix(org,w,h)
+      // console.error('org,w,h',org,w,h)
       let XHR = new XHRProgress();
       XHR.onProgress = this.progress;
-      // 测试logder 高质量图片
+      // 若要测试logder 高质量图片
       // let isOk = await XHR.send(`http://cdn.wallpapersafari.com/23/11/clBNRq.jpg`)
       const isOk = await XHR.send(src)
 
-      if(isOk==true) this.setState({loaded:true});
-      this.setState({src:src});
+      if(isOk==true) {
+        this.setState({loaded:true});
+        this.setState({src:src});
+      }else{
+        console.error('图片fethImg 发送不成功')
+      }
   }
   render(){
       return(
-          <div>
-
+          <div {...css({
+            position: 'relative',
+            width : this.props.width,
+            height : this.props.height,
+            })}
+          >
               <_IMG
                width = {this.props.width}
                height = {this.props.height}
                src = {this.state.src}
-
-               display = {this.state.loaded}//显示Img
-               >
-                  {this.props.width}
-              </_IMG>
+               loaded = {this.state.loaded}//显示Img
+               left = {this.props.left}
+               top = {this.props.top}
+               />
 
               <_Loading
-               display = {!this.state.loaded}
+               width = {this.props.width}
+               height = {this.props.height}
+               loaded = {!this.state.loaded&&this.props.active}//激活后loaded前才显示
                percent = {this.state.percent}
+               left = {this.props.left}
+               top = {this.props.top}
               />
           </div>
           );
@@ -291,3 +269,6 @@ export default IMG_WithLoader;
  *  @src  {[type]} options.position:
  *
  */
+
+
+

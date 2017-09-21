@@ -17,6 +17,13 @@ module.exports.ui = {
 		w_1:"rgb(238,238,238 )",
 		w_2:"rgb(222,222,222)",
 		w_3:"rgb(205,205,205)",
+
+		b_o1:'rgba(0,0,0,.87)',
+		b_o2:'rgba(0,0,0,.54)',
+		b_o3:'rgba(0,0,0,.38)',
+		b_1:"rgb(11,11,11 )",
+		b_2:"rgb(33,33,33)",
+		b_3:"rgb(55,55,55)",
 	},
 	// breakpoint
 	breakpoints:{
@@ -35,13 +42,36 @@ module.exports.ui = {
 
 
 //golden Ratio
-module.exports.gr = function( rooot , px ){
+
+module.exports.gr = function( ROOT ){
   const goldenRatio =  (1+ Math.sqrt(5) )/2//1.618
 
-  if(px) return  result * px
+  // if(px) return  result * px
   // vw
-  let result = 10 / Math.pow( goldenRatio , rooot )
+  let result = 10 / Math.pow( goldenRatio , ROOT )//10x=全宽
   return result
 
 }
-// 584.628
+
+
+module.exports.GR = {
+
+	goldenRatio:function(){
+		return  (1+ Math.sqrt(5) )/2//1.618
+	},
+
+	rem : function( ROOT ){//WIDTH = 10rem
+		const g = this.goldenRatio()
+		return 10 / Math.pow( g , ROOT )//WIDTH = 10rem
+	},
+
+	vw:function( ROOT ){
+		const g = this.goldenRatio()
+		return 100 / Math.pow( g , ROOT )//WIDTH = 100vw
+	},
+
+	px:function( ROOT, fullWidth ){
+		const g = this.goldenRatio()
+		return fullWidth / Math.pow( g , ROOT )//WIDTH = fullWidth
+	}
+}

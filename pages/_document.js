@@ -1,5 +1,41 @@
 import Document, { Head, Main, NextScript } from 'next/document'
-import { renderStatic } from 'glamor/server'
+import { renderStatic  } from 'glamor/server'
+import { css ,style ,rehydrate} from 'glamor'
+
+import {ui}  from '../utils/ui'
+
+if (typeof window !== 'undefined') {
+  rehydrate(window.__NEXT_DATA__.ids)
+}
+// css.global('@font-face', {fontFamily      :'raleway',
+
+//   src             :"url('../static/font/Raleway-Light.woff2') format('woff2'),"+
+//   "url('../static/font/Raleway-Light.woff') format('woff'),"+
+//   "url('../static/font/Raleway-Light.svg') format('svg')",
+//   unicodeRange    :"U+0000-00FF, U+0131, ... U+E0FF, U+EFFD, U+F000"
+// })
+
+const ralewayFont = css.fontFace({
+  fontFamily      :'raleway',
+  src             :"url('../static/font/Raleway-Light.woff2') format('woff2'),"+
+  "url('../static/font/Raleway-Light.woff') format('woff'),"+
+  "url('../static/font/Raleway-Light.svg') format('svg')",
+
+})
+
+
+
+
+const _css = {
+  global:style({
+    background: ui.color.w_1,
+    margin: 0,
+    fontSize: '100%',
+    fontWeight      :100,
+    fontFamily:`${ralewayFont} Microsoft JhengHei`,
+  })
+}
+
 
 export default class MyDocument extends Document {
   static async getInitialProps ({ renderPage }) {
@@ -16,51 +52,23 @@ export default class MyDocument extends Document {
       __NEXT_DATA__.ids = this.props.ids
     }
   }
-  polyfill(){
-    if (typeof Object.assign != 'function') {
-      Object.assign = function(target) {
-        'use strict';
-        if (target == null) {
-          throw new TypeError('Cannot convert undefined or null to object');
-        }
 
-        target = Object(target);
-        for (var index = 1; index < arguments.length; index++) {
-          var source = arguments[index];
-          if (source != null) {
-            for (var key in source) {
-              if (Object.prototype.hasOwnProperty.call(source, key)) {
-                target[key] = source[key];
-              }
-            }
-          }
-        }
-        return target;
-      };
-    }
-  }
   render () {
 
-    this.polyfill();
+
     return (
-      <html>
+      <html{..._css.global}>
         <Head>
           <meta name="viewport" content="width=device-width,maximum-scale=1,minimum-scale=1,user-scalable=no" />
-          <meta content='ZAI Gallery - Loie Hollowell' name='title' />
-          <meta content='ZAI Gallery - Loie Hollowell' property='og:title' />
-          <meta content='页面描述 ...' name='description' />
-          <meta content='ZAI, zhongart internationale, Gallery, arte, 中艺国际, 佛罗伦萨 ' name='keywords' />
 
-          <meta content='页面描述 ...' property='og:description' />
-          <meta content='http://www.pacegallery.com/artists/746/loie-hollowell' property='og:url' />
-          <meta content='Pace Gallery' property='og:site_name' />
-          <meta content='article' property='og:type' />
-          <meta content='//s3.amazonaws.com/所用的图片' property='og:image' />
-          <title>中艺国际</title>
-          <style dangerouslySetInnerHTML={{ __html: this.props.css }} />
 
+          {/* CSS */}
+
+        <style dangerouslySetInnerHTML={{ __html: this.props.css }} />
         </Head>
-        <body>
+
+
+        <body {..._css.global}>
           <Main />
           {/*<div >{'document'+this.state.device}</div>*/}
           <NextScript />
@@ -71,3 +79,27 @@ export default class MyDocument extends Document {
 }
 
 //<script src="../static/vconsole.min.js"></script>
+
+  // polyfill(){
+  //   if (typeof Object.assign != 'function') {
+  //     Object.assign = function(target) {
+  //       'use strict';
+  //       if (target == null) {
+  //         throw new TypeError('Cannot convert undefined or null to object');
+  //       }
+
+  //       target = Object(target);
+  //       for (var index = 1; index < arguments.length; index++) {
+  //         var source = arguments[index];
+  //         if (source != null) {
+  //           for (var key in source) {
+  //             if (Object.prototype.hasOwnProperty.call(source, key)) {
+  //               target[key] = source[key];
+  //             }
+  //           }
+  //         }
+  //       }
+  //       return target;
+  //     };
+  //   }
+  // }

@@ -11,25 +11,18 @@ import {ui}  from '../utils/ui'
 
 // FONT
 
-const ZaiFont = css.fontFace({
-  fontFamily      :'ZAI',
+const ralewayFont = css.fontFace({
+  fontFamily      :'raleway',
   fontStyle       :'normal',
-  fontWeight      :400,
-  src             :"url('../static/font/SFElectrotome-Bold.woff2') format('woff2'),"+
-  "url('../static/font/SFElectrotome-Bold.woff') format('woff'),"+
-  "url('../static/font/SFElectrotome-Bold.svg') format('svg')",
+  fontWeight      :100,
+  src             :"url('../static/font/Raleway-Light.woff2') format('woff2'),"+
+  "url('../static/font/Raleway-Light.woff') format('woff'),"+
+  "url('../static/font/Raleway-Light.svg') format('svg')",
   unicodeRange    :"U+0000-00FF, U+0131, ... U+E0FF, U+EFFD, U+F000"
 })
 
-const ZhoFont = css.fontFace({
-  fontFamily      :'Zho',
-  fontStyle       :'normal',
-  fontWeight      :400,
-  src             :"url('../static/font/SquadaOne-Regular.woff2') format('woff2'),"+
-  "url('../static/font/SquadaOne-Regular.woff') format('woff'),"+
-  "url('../static/font/SquadaOne-Regular.svg') format('svg')",
-  unicodeRange    :"U+0000-00FF, U+0131, ... U+E0FF, U+EFFD, U+F000"
-})
+
+
 
 
 
@@ -41,7 +34,7 @@ const ZhoFont = css.fontFace({
 
 const LogoZAI = glamorous.div({
 
-  fontFamily      :ZaiFont,
+  fontFamily      :ralewayFont,
   lineHeight      :`0.8em`,//为了和右边对齐
   display         :'flex',
   alignItems      :'flex-end',
@@ -50,7 +43,7 @@ const LogoZAI = glamorous.div({
 
 const LogoRight = glamorous.div({
 
-    fontFamily    :ZhoFont,
+    fontFamily    :ralewayFont,
     fontSize      :`0.4em`,
 
 });
@@ -143,7 +136,7 @@ class Logo extends Component {
           <LogoZAI>{'ZAI'}</LogoZAI>
           <LogoRight>
             <div>{'Zhong Art'}</div>
-            <div>{'Internazionale'}</div>
+            <div>{'Internazional'}</div>
           </LogoRight>
         </_Logo>
       </div>

@@ -2,20 +2,24 @@
   "main": "server.js",
   "dependencies": {
     "express": "^4.15.4",
+    "fast-redux": "^0.3.0",
     "glamor": "^2.20.40",
-    "glamorous": "^4.5.0",
+    "glamorous": "^4.9.3",
     "gsap": "^1.20.2",
     "isomorphic-fetch": "^2.2.1",
-    "material-ui": "^0.19.0",
-    "next": "^3.0.6",
+    "next": "^3.2.2",
+    "next-redux-wrapper": "^1.3.4",
     "react": "^15.5.4",
-    "react-dom": "^15.5.4",
+    "react-dom": "*",
     "react-jss": "^7.1.0",
-    "react-motion": "^0.5.0",
     "react-no-ssr": "^1.1.0",
+    "react-redux": "^5.0.6",
     "react-tap-event-plugin": "^2.0.1",
     "react-transition-group": "^2.2.0",
-    "serve": "^5.2.2",
+    "redux": "^3.7.2",
+    "redux-devtools-extension": "^2.13.2",
+    "redux-thunk": "^2.2.0",
+    "serve": "^6.1.0",
     "three": "^0.87.1"
   },
   "scripts": {
@@ -30,7 +34,7 @@
     "pushdev": "git add . && git commit -m  \" %npm_package_config_commitmessage% \" && git push origin master"
   },
   "config": {
-    "commitmessage": "模拟post 制作 next 的 artisti map 模板"
+    "commitmessage": "艺术家Page iphone端初步完成"
   },
   "name": "",
   "description": "## How to use",

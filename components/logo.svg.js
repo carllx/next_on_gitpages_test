@@ -1,11 +1,9 @@
 import React, {Component} from 'react'
 import { rehydrate, css } from 'glamor'
-import glamorous from 'glamorous'
+// import glamorous from 'glamorous'
 
 
-import {ui  ,gr}  from '../utils/ui'
-
-
+import {ui,GR}  from '../utils/ui'
 
 // const GR = gr()
 //////////
@@ -13,137 +11,66 @@ import {ui  ,gr}  from '../utils/ui'
 //////////
 
 
-const DOSIS = css.fontFace({
-  fontFamily      :'DOSIS',
-  fontStyle       :'normal',
-  fontWeight      :50,
-  src             :
-  "url('../static/font/dosis.extralight.woff2') format('woff2'),"+
-  "url('../static/font/dosis.extralight.woff') format('woff'),"+
-  "url('../static/font/dosis.extralight.svg') format('svg')",
-  unicodeRange    :"U+0000-00FF, U+0131, ... U+E0FF, U+EFFD, U+F000"
-})
 
-
-
-
-
+// const ralewayFont = css.fontFace({
+//   fontFamily      :'raleway',
+//   fontStyle       :'normal',
+//   fontWeight      :100,
+//   src             :"url('../static/font/Raleway-Light.woff2') format('woff2'),"+
+//   "url('../static/font/Raleway-Light.woff') format('woff'),"+
+//   "url('../static/font/Raleway-Light.svg') format('svg')",
+//   // unicodeRange    :"U+0000-00FF, U+0131, ... U+E0FF, U+EFFD, U+F000"
+// })
 
 
 /////////////
 // ELEMENT //
 /////////////
+const _SVG =(props)=>
+  <svg
+   {...css({
+    fill:'none',
+    stroke:'#333',
+    strokeWidth:'0.5px',
+    strokeLinejoin:'round',/*round bevel*/
+    strokeLinecap:'round',
+   })}
+   viewBox="0 0 58.31 16.5"
+   x="0px"
+   y="0px"
+   >
+    <title>LOGOZAI</title>
+    <g className='zai'>
+      <polyline points="20.08 0.25 35.97 0.25 19.97 16.25 35.86 16.25"/>
+      <polyline points="35.7 16.25 51.7 0.25 51.7 16.25 44.17 8.75"/>
+      <line x1="58.06" y1="16.25" x2="58.06" y2="0.25"/>
+    </g>
+    <g className='icon'>
+      <polyline points="0.36 0.25 16.25 0.25 0.25 16.25 16.14 16.25"/>
+      <polyline points="0.25 16.25 16.25 0.25 16.25 16.25 8.29 8.17"/>
+      <line x1="0.38" y1="16.25" x2="0.38" y2="0.25"/>
+    </g>
+  </svg>
 
 
-const Container = glamorous.div({
 
-    // display:       'flex',
-    // flexDirection: 'row',
-    // justifyContent:'flex-start',//center
-    position:      'fixed',
-    zIndex:2,
-    textAlign:     'left',
-  },(props)=>({
-    top:props.isLandscape?
-    `${gr(8)}rem`:
-    `${gr(6)}rem`,
-    left:props.isLandscape?
-    `${gr(7)}rem`:
-    `${gr(6)}rem`,
+const LOGO = (props)=>
+  <div>
+    <_SVG/>
+    {/*logo文字*/}
+    <div
+      {...css({
+      // fontFamily:ralewayFont,
+      fontSize:`${GR.vw(9)}vw`,
+      color:ui.color.b_o2,
+      marginTop:`${GR.vw(9)}vw`,
+     })}
+    >
+      中艺国际 ZHONG ART INTERNAZIONAL
+    </div>
+  </div>
 
-  })
-
-)
-
-
-const logo_default  = css({
-  fill:'none',
-  stroke:ui.color.secondary_secondary
-})
-
-const SVGLogo = glamorous.svg(
-  {
-
-  },(props)=>(
-  {
-    width:props.isLandscape?
-    `${gr(3)}rem`:
-    `${gr(1)}rem`,
-    height:props.isLandscape?
-    `${gr(3)/5.7205}rem`:
-    `${gr(1)/5.7205}rem`,
-  })
-)
-
-// const logo_l_bottom = css({...logo_default,fill:'#CCCCCC'});
-
-/**
- * <!-- esamper  http://xn--dahlstrm-t4a.net/svg/filters/arrow-with-dropshadow-lighter.svg -->
- */
-class Logo extends Component {
-
-  constructor (props) {
-
-      super(props)
-      this.state = {}
-
-  }
-
-  render(){
-
-    return(
-      <Container {...this.props}>
-
-        <SVGLogo
-         {...css(logo_default)}
-         // width="240px"
-         // height="240px"
-         x="0px"
-         y="0px"
-         viewBox="8 0 174.8 33.5"
-         >
-
-          <g id="ICON" {...css({
-            strokeLinejoin:'bevel',
-            strokeLinecap:'round',
-            strokeLinejoin:'round'
-          })}>
-            <polyline
-            points="1.4,2 29.5,2 1.2,30.3 29.3,30.3"/>
-            <polyline
-            points="1.2,30.3 29.5,2 29.5,30.3 15.4,16"/>
-            <line
-             x1="1.4" y1="30.3" x2="1.4" y2="2"/>
-          </g>
-          <g id="ZAI">
-            <polyline id="Z"
-            points="41.9,2 70.1,2 41.7,30.3 69.9,30.3"/>
-            <polyline id="A"
-            points="69.7,30.2 98,1.9 98,30.2 84.7,17  "/>
-            <line id="I"
-            x1="108.9" y1="30.2" x2="108.9" y2="1.9"/>
-          </g>
-          <g {...css({fontSize:'9.4033px',fill:ui.color.secondary_secondary,stroke:'none',fontFamily:DOSIS}, )}>
-            <text transform="matrix(1 0 0 1 124.6943 20.4883)"
-            >Zhong Art</text>
-            <text transform="matrix(1 0 0 1 124.6943 29.8906)"
-            >Internationale</text>
-            <text transform="matrix(1 0 0 1 124.6943 9.8975)"
-            >中艺国际</text>
-          </g>
-
-
-        </SVGLogo>
-
-
-      </Container>
-      );
-
-  }
-
-}
-
-export default Logo
+export default LOGO
 
 
 
@@ -214,3 +141,5 @@ const SVGLogoCarta ()=>(
 )
 
 */
+
+

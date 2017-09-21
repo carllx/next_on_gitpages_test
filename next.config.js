@@ -1,6 +1,7 @@
 const fetch = require('isomorphic-fetch')
 const cp = require('recursive-copy')
-const artisti = require('./static/contents/artisti/')
+const artisti =  require('./static/contents/artisti/')
+
 
 
 module.exports = {
@@ -26,7 +27,8 @@ module.exports = {
     },*/
 
 
-
+    console.log('postList: ',postList)
+    console.log('artisti: ',artisti)
     // tranform the list of posts into a map of pages with the pathname `/post/:id`
     const pages = postList.reduce(
       (pages, post) =>
