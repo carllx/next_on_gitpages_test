@@ -1,9 +1,8 @@
 import  {Component} from 'react'
 import fetch from 'isomorphic-fetch'
 import { css } from 'glamor'
-import {ui  ,GR}  from '../utils/ui'
+import {ui  ,GR ,makeKEY}  from '../utils/ui'
 import {IMG_WithLoader} from './img'
-
 
 
 
@@ -27,6 +26,8 @@ const _SVG_TopTriangle =( props )=>
             ` ${props.width},0`+
             ` 0,${props.height}`
          }
+         // strokeWidth="5"
+         // stroke={ui.color.w_2}
          />
          <line
           x1="0"
@@ -53,6 +54,7 @@ const _SVG_BottomTriangle = ( props ) =>
 
         <polygon
          fill = {props.color}
+
          points={
              `0,${props.height}`+
              ` ${props.width},0`+
@@ -83,34 +85,35 @@ const _img =(props)=>
         position:'relative',
         top:-props.offset,//IMG一律需要上移
         left:0,
-        zIndex:-1,
-        // display:props.close?'none':'block'
+        // zIndex:-1,
     })}>
         {/*Header*/}
         <div {...css({
-            width:'100%',
+            width:'100vw',
             height:`${props.offset}px`,
             position:'absolute',
             left:0,
             zIndex:1,
+            top:`-1px`,// ????Img
             /*????Img 背景下看到有误差
             (和SVG无关 因为添加stroke strokeWidth依然无效)*/
-            // top:`-1px`,//
         })}
         >
             <_SVG_TopTriangle
              width={props.width}
              height= {props.offset}
              color ={props.footColor}
+
             />
         </div>
         <IMG_WithLoader
          src={props.src}
          width = {props.width}
          height = {`${GR.px(1,props.width)}`}
-         active = {true}
          left= {0}
          top={0}
+         active = {props.active}//初始false,避免请求导致setState on unMount
+         fetch={props.fetch}
         />
         {/*footer*/}
         <div {...css({
@@ -145,18 +148,7 @@ const _img =(props)=>
  * @return {component}
  */
 const _content = (props)=>
-    <div
-     {...css({
-            opacity:props.close?'0':`1`,
-            maxHeight: props.close?'0px':`${props.maxHeight}px`,
-            // transform:props.close?`translateY(-20px)`:`translateY(0px)`,
-            overflow: props.close?'auto':'scoll',//消除fold动画时scroll移动
-            transition: `all 1.2s cubic-bezier(0, 0.6, 0, 1)`,
-            willChange: 'overflow  ,opacity , max-height',
-        })}
-
-    >
-
+    <div>
         {/*图片IMG*/}
         {props.img?
             <_img
@@ -164,8 +156,9 @@ const _content = (props)=>
              width = {props.vw}
              offset = {props.offset}
              footColor = {props.footColor}
-             maxHeight = {props.maxHeight}// 动画
-             close = {props.close}
+             maxHeight = {props.maxHeight}
+             active = {!props.close}
+             fetch={props.fetch}
             />
             :null}
 
@@ -179,13 +172,12 @@ const _content = (props)=>
             top:props.img?`${-props.offset}px`:0,//迟早要还的
             marginLeft:props.marginW,
             marginRight:props.marginW,
-            marginTop:props.close?`0px`:`${GR.vw(5)}vw`,
-            marginBottom:props.close?`0px`:`${GR.vw(6)}vw`,
-            // display:props.close?'none':'block',
+            marginTop:props.close?`-50px`:`${GR.vw(5)}vw`,
+            marginBottom:props.close?`-50px`:`${GR.vw(6)}vw`,
 
-            maxHeight: props.close?'0px':`${props.maxHeight}px`,
-            transition: `all 2s cubic-bezier(0, 0.6, 0, 1)`,
+            transition: `all 1s cubic-bezier(0, 0.6, 0, 1)`,
             willChange: 'margin-top,margin-bottom',
+
         })}
 
          >
@@ -193,7 +185,8 @@ const _content = (props)=>
                 .split('\n')
                 .map((p, key) =>
                     <div
-                     {...css({marginBottom:props.close
+                     {...css({
+                        marginBottom:props.close
                         ?'0px'
                         :`${GR.vw(8)}vw`
                     })}
@@ -217,6 +210,7 @@ const _content = (props)=>
  * @props  {INT} offset 如果组件上放有IMG带有svg,减去SVG的高度,迟早要还的
  * @props  {INT} color 是内嵌 SVG 颜色
  * @props  {INT} marginW 文本左右 margin margin on Width
+ * @props  {FLOAT} maxHeight 展开动画必须设置
  *
  * @state  {INT} maxHeight 用于content折叠 fold 动画
  * @return {COMPONENT}
@@ -238,31 +232,88 @@ const _content = (props)=>
     constructor (props) {
       super(props)
       this.TriangleHeight = GR.px(4,this.props.vw)
-      this.state={
-        close:false,
-      }
       this.ToggleFold=this.toggleFold.bind(this)
+      this.state={
+        close:false,//先计算_height ,在close
+        maxHeight:'auto',//供折叠动画
+        fetch:false
+      }
+      //@this._height
+      this._keyCtx=makeKEY()
+
     }
 
+    componentWillMount(){
+        //先计算_height ,在close
+        // this.init_Fold()
+
+    }
     componentDidMount(){
-        this.initFold()
+        if(this.props.name=="WORKS")console.log('WORKS-componentDidMount')
+            // debugger
+        this._maxHeight=this._$folder.clientHeight
+        this.setState({
+                maxHeight:0,
+                close:true,
+                }
+            )
+
+        // console.log('this._$folder',this._$folder)
+        // console.log('this._height',this._height)
+        // console.log('this._$folder.clientHeight',this._$folder.clientHeight)
+        // debugger
+        this.init_Fold()
     }
 
-    initFold = () =>{
-        console.log('ll',this._folder.clientHeight)
-        this.setState({maxHeight:this._folder.clientHeight})
-        this.setState({close:true})
+    componentWillReceiveProps(nextProps,nextState){
+        if(this.props.name=="WORKS")console.log('WORKS-componentWillReceiveProps',nextProps)
+
+        // this.setState({maxHeight:(nextState.close==true?0:this._height)})
+
+
+    }
+
+    componentDidUpdate(){
+        if(this.props.name=="WORKS")console.log('WORKS-componentDidUpdate')
+        // if(this.props.name=='EVENTS'){debugger}
+        if(this.state.maxHeight==null) return; //componentDidMount的更新
+        // if(this._foldding == false ) this.init_Fold()
+    }
+
+
+
+    init_Fold = () =>{ // fold 展开后 ,根据情况获取高度
+
+        console.log('init_Fold 高度初始化:',this._$folder.clientHeight)
+
+        this._height = this._$folder.clientHeight;
+        // 避免重复setState
+        // if (this._$folder.clientHeight != this.state.maxHeight) {
+        //     this._foldding = true //避免setState 更新componentDidUpdate死循环循环
+        //     // if(this.props.name=="WORKS"){debugger}
+        //     // this.setState({
+        //     //     maxHeight:this._$folder.clientHeight,
+        //     //     // close:true,
+        //     //     },
+        //     //     ()=>{this._foldding = false}
+        //     // )
+        // }else {
+        //     console.error('init_Fold 重复')
+        //     debugger
+        // }
     }
 
     toggleFold(){
         console.log('toggle')
-        this.setState({close:!this.state.close})
+        // debugger
+        this.setState(
+            {
+                close:!this.state.close,
+                fetch:true
+            },
+            ()=>{this._foldding = false}
+        )
     }
-
-    getContentHeight(){
-        console.log(this._folder)
-    }
-
 
 
     render(){
@@ -270,7 +321,9 @@ const _content = (props)=>
         return (
             <div
              // {...fullWidthRelative}
-             {...css({position:'relative'})}
+             {...css({
+                position:'relative',})}
+
              >
                 {/*HEADER--------------------
                     DIV_Click
@@ -284,7 +337,8 @@ const _content = (props)=>
                         width:'100%',
                         top:0,
                         left:0,
-                        cursor: 'pointer',
+                        cursor: 'auto',
+
                     })}
                  onClick={this.ToggleFold}
                 >
@@ -297,7 +351,7 @@ const _content = (props)=>
                         height:this.TriangleHeight,
                         /*????Img 背景下看到有误差
                         (和SVG无关 因为添加stroke strokeWidth依然无效)*/
-                        // top:`-1px`,// ????Img
+                        top:`0px`,// ????Img
                         })}>
                         <_SVG_TopTriangle
                          width={this.props.vw}
@@ -305,6 +359,12 @@ const _content = (props)=>
                          color ={this.props.color}
                         />
                     </div>
+
+
+
+
+
+
                     {/*name*/}
                     <div {...css({
                         position:'absolute',
@@ -316,36 +376,55 @@ const _content = (props)=>
                         })}>
                         {this.props.name}
                     </div>
+
                 </div>{/*Header*/}
 
-                <div ref={c => this._folder = c}>
-                {/*image--------------------*/}
-                {this.props.img?
-                    <_img
-                     src = {this.props.img}
-                     width = {this.props.vw}
-                     offset = {this.TriangleHeight}
-                     footColor = {this.props.color}
-                    />
-                    :null}
-                {/*CONTENTS--------------------*/}
-                {/*object 的内容*/}
-                {this.props.items.map((item,index)=>
-                        <_content
-                         img = {item.img}
-                         title = {item.title}
-                         content = {item.content[`${this.props.language}`]}
-                         vw = {this.props.vw}
+
+                <div
+                 ref={c => this._$folder = c}
+                 {...css({
+                    position:'relative',
+                    zIndex:0,
+                    maxHeight:this.state.close?'0px':this._height,
+                    transition: `all 1s cubic-bezier(0, 0.6, 0, 1)`,
+                    willChange: 'max-height,opacity',
+                    opacity:this.state.close?0:1,
+                    overflow: this.state.close?'auto':'unset',//消除fold动画时scroll移动
+                 })}
+                 >
+                    {/*image--------------------*/}
+                    {this.props.img?
+                        <_img
+                         src = {this.props.img}
+                         width = {this.props.vw}
                          offset = {this.TriangleHeight}
                          footColor = {this.props.color}
-                         marginW = {this.props.marginW}
-                         key={index}
-
-                         maxHeight= {this.state.maxHeight}
-                         close = {this.state.close}
+                         fetch={this.state.fetch}
                         />
-                )}
+                        :null}
+                    {/*CONTENTS--------------------*/}
+                    {/*object 的内容*/}
+                    {this.props.items.map((item,index)=>
+                            <_content
+                             img = {item.img}
+                             title = {item.title}
+                             content = {item.content[`${this.props.language}`]}
+                             vw = {this.props.vw}
+                             offset = {this.TriangleHeight}
+                             footColor = {this.props.color}
+                             marginW = {this.props.marginW}
+                             key={this._keyCtx+index}
+
+                             // maxHeight= {this.state.maxHeight}
+                             close = {this.state.close}
+                             fetch={this.state.fetch}
+
+
+                            />
+                    )}
                 </div>
+
+
             </div>
         )
     }

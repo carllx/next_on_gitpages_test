@@ -75,3 +75,15 @@ module.exports.GR = {
 		return fullWidth / Math.pow( g , ROOT )//WIDTH = fullWidth
 	}
 }
+
+
+
+module.exports.makeKEY = ()=>{
+        let text = "";
+        const possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+        for (var i = 0; i < 5; i++)
+        text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+        return text;
+    }

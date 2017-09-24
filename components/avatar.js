@@ -50,7 +50,6 @@ export class AVATAR extends Component {
     }
 
     render(){
-        const rem =this.props.SizeWidth/10;
         return(
             <div {...css({
                     position:'relative',
@@ -77,11 +76,11 @@ export class AVATAR extends Component {
                 {/*需要 <NoSSR>*/}
                 <IMG_WithLoader
                  src={this.props.src}
-                 width = {GR.px(1,this.props.SizeWidth)}//Math.round(gr(1)*rem)
                  height = {GR.px(1,this.props.SizeWidth)}
+                 width = {GR.px(1,this.props.SizeWidth)}
                  top = {GR.px(3,this.props.SizeWidth)}
                  left = {GR.px(4,this.props.SizeWidth)}
-                 active = {true}
+                 fetch = {true}
                 />
                 {/*</NoSSR>*/}
             </div>

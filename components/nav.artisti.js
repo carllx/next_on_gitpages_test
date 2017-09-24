@@ -27,6 +27,7 @@ export default class ArtistiNav extends Component {
     componentDidMount(){
 
         // 初始关闭 artisti显示
+        console.log(artistInfo)
         TweenMax.set(
             ".avatars",
             {
@@ -98,7 +99,8 @@ export default class ArtistiNav extends Component {
                 {
                     artistInfo.map( (item,index)=>
                         <Link
-                         href= {`../artisti/${item.id}`}
+                         // href= {`/artisti/${item.id}`}
+                         href={{ pathname: '/artisti', query: {id: item.id} }} as={`/artisti/${item.id}`}
                          key={item.id + index}
                          >
                             {/* 头像 */}

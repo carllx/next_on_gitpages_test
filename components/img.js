@@ -19,7 +19,6 @@
 
 import {Component} from 'react'
 import { css } from 'glamor'
-// import glamorous, {ThemeProvider} from 'glamorous'
 import XHRProgress from '../utils/Progress'
 import {ui}  from '../utils/ui'
 import {wix} from '../utils/img'
@@ -44,12 +43,12 @@ const _IMG =(props)=>
 
         left:props.left,
         top:props.top,
-        opacity: props.loaded?1:0,
-        width:   props.width?`${props.width}`:'100%',
-        height:  props.height?`${props.height}`:'100%',
+        opacity: props.show?1:0,
+        width:'100%',
+        height: '100%',
         //在这里找渐变模板 https: //webgradients.com/
         // backgroundColor:  props.src?`url(${props.src})`:'white',
-        backgroundImage:  props.src?`url(${props.src})`:'white',
+        backgroundImage:  props.show?`url(${props.src})`:null,
         transition: `opacity 1s cubic-bezier(0.24, 0.49, 0.82, 0.6)`,
         })}
       >
@@ -87,7 +86,7 @@ const _Loading =(props)=>
         top:props.top?props.top:0,
         width: props.width,
         height:props.height,
-        opacity:props.loaded?1:0,
+        opacity:props.show?1:0,
 
         })}
       >
@@ -97,7 +96,7 @@ const _Loading =(props)=>
           height:'20%',
           transformOrigin:'48% 48%',
           animation: `${_LoadingKeyframe} 1s cubic-bezier(0.24, 0.49, 0.82, 0.6) infinite`,
-          animationPlayState: props.loaded?'running':'paused',
+          animationPlayState: props.show?'running':'paused',
          })}
           viewBox="1 1 50.1 43.4"
         >
@@ -110,7 +109,9 @@ const _Loading =(props)=>
         <p {...css({
           color:ui.color.disabled_on_light,
           fontSize:'0.2rem',
-        })}>
+        })}
+        className={"loader"}
+        >
           {props.percent+'%'}
         </p>
       </div>
@@ -119,10 +120,12 @@ const _Loading =(props)=>
 
 /**
      <IMG_WithLoader
-     width = {...} //=>图片服务器
-     height = {...} //=>图片服务器
-     src = {...} //=>图片服务器
-     active = {...} //loading 转
+     @props width [FLOAT]  |定义 _w render/wix请求 包括 img &&loading
+     @props height [FLOAT]  |定义 _h render/wix请求 包括 img &&loading
+     @props top [FLOAT]  |自定义 位置 包括 img &&loading
+     @props left [FLOAT]  |自定义 位置 包括 img &&loading
+     @props src [STRING]  |图片数据地址=> state.src =>_src
+     @props fetch [BOOLEAN]  |true 会触发一次加载
     />
 */
 
@@ -133,53 +136,95 @@ export class IMG_WithLoader extends Component {
     super(props);
 
     this.state = {
-      loaded:false,
-      percent: 0
+      percent: 0,
+      src:this.props.src,
+      loaded:false
     };
-
+    this._src= this.props.src;//辨认是否刷新变动
     this.progress = this.onProgress.bind(this);
   }
 
+
   componentDidMount(){
-    if(this.props.active && this.props.width !=0 ) {
-      this.fethImg();
+    // debugger
+
+    //如果 #Daddy 激活后开始请求
+    if(this.props.fetch ==true) {
+      // debugger
+      this.fetchImg();
+    }
+  }
+
+  componentWillReceiveProps(nextProps,nextState){
+
+    // debugger
+
+  }
+
+  componentWillUpdate(nextProps){
+    console.log('componentWillUpdate')
+
+    //如果Mount后中途 #Daddy 刷新地址后开始请求
+    if(nextProps.fetch ==true &&nextProps.src!=this.props.src) {
+      this.fetchImg(nextProps.src);
+      return
+    }
+    //后激活的fetch
+    if(nextProps.fetch ==true && this.props.fetch==false) {
+      this.fetchImg()
+      return
+
     }
   }
 
 
   onProgress(xhr){
-      if(xhr.lengthComputable){ // false的话total返回是0 ,github 上 json , js , txt
-          let percentComplete = Math.round(xhr.loaded / xhr.total * 100)
-          console.log(percentComplete,'%')
-          this.setState({percent: `${percentComplete}`});
 
-      }else{
-        console.log('@onProgress 该资源无法计算byte长度')
-      }
+    this._fetching  =  true;
+    if(xhr.lengthComputable){ // false的话total返回是0 ,github 上 json , js , txt
+        let percentComplete = Math.round(xhr.loaded / xhr.total * 100)
+        console.log(percentComplete,'%')
+        // debugger
+        this.setState({
+          percent: `${percentComplete}`,
+          loaded:false,
+        });
+
+    }else{
+      console.log('@onProgress 该资源无法计算byte长度')
+    }
 
   }
 
-  async fethImg () {
-      const w = this.props.width;
-      const h = this.props.height;
-      const org = this.props.src;
-      // @{wix}  from '../utils/img'
-      // {wix}转换src
-      // 需要<NoSSR> 否则这里的 w h 取回来是 0
-      const src = wix(org,w,h)
-      // console.error('org,w,h',org,w,h)
-      let XHR = new XHRProgress();
-      XHR.onProgress = this.progress;
-      // 若要测试logder 高质量图片
-      // let isOk = await XHR.send(`http://cdn.wallpapersafari.com/23/11/clBNRq.jpg`)
-      const isOk = await XHR.send(src)
+  async fetchImg (nextSrc) {
 
-      if(isOk==true) {
-        this.setState({loaded:true});
-        this.setState({src:src});
-      }else{
-        console.error('图片fethImg 发送不成功')
-      }
+    const w = this.props.width;
+    const h = this.props.height;
+    const new_src = nextSrc?nextSrc:this.props.src;//父亲变动后传下来的
+    /**
+      @{wix}  from '../utils/img'
+     {wix}转换src
+     需要<NoSSR> 否则这里的 w h 取回来是 0
+     */
+    const full_src = wix (new_src,w,h)
+    let XHR = new XHRProgress();
+    XHR.onProgress = this.progress;
+    /*若要测试logder 高质量图片
+    let isOk = await XHR.send(`http://cdn.wallpapersafari.com/23/11/clBNRq.jpg`)*/
+    const Done = await XHR.send(full_src)
+
+    if(Done) {
+      this.setState({
+        src:full_src,
+        loaded:true,
+      },()=>{
+        this._src= new_src;//帮助辨认是否刷新变动
+         });
+
+    }else{
+      console.error('图片fetchImg 发送不成功')
+    }
+
   }
   render(){
       return(
@@ -193,7 +238,7 @@ export class IMG_WithLoader extends Component {
                width = {this.props.width}
                height = {this.props.height}
                src = {this.state.src}
-               loaded = {this.state.loaded}//显示Img
+               show = {this.state.loaded}//显示Img
                left = {this.props.left}
                top = {this.props.top}
                />
@@ -201,10 +246,12 @@ export class IMG_WithLoader extends Component {
               <_Loading
                width = {this.props.width}
                height = {this.props.height}
-               loaded = {!this.state.loaded&&this.props.active}//激活后loaded前才显示
+               show = {(this.state.loaded==false)}
                percent = {this.state.percent}
                left = {this.props.left}
                top = {this.props.top}
+
+
               />
           </div>
           );

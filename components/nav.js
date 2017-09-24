@@ -52,14 +52,6 @@ class _SVG extends Component {
         }
 
     }
-    componentDidMount(){
-
-        // this.setState({to_pts:this.props.to_pts})
-
-    }
-    // shouldComponentUpdate(){
-
-    // }
 
     componentDidUpdate(){//父元素setState ,该元素prpos刷新后
         if (this._onAnimating==true) { return }
@@ -268,8 +260,8 @@ class Nav extends Component {
                 {/*BACKGROUNF*/}
                 <_SVG
                  // isLandscape= {this.props.isLandscape}
-                 width = {this.state.vw}
-                 height = {this.state.vh}
+                 width = {this.props.vw}
+                 height = {this.props.vh}
                  to_pts = {this.state._bg_to_pts}//组件内自动动画
                  color = {ui.color.w_o1}
                 />
@@ -292,15 +284,15 @@ class Nav extends Component {
 
                 {/*ARTISTA*/}
                 <ArtistiNav
-                 vw= {this.state.vw}
-                 vh= {this.state.vh}
+                 vw= {this.props.vw}
+                 vh= {this.props.vh}
                  show = {this.state.onStatus=='ARTISTI'}
                  language = {this.props.language}
                 />
 
                 <AboutNav
-                 vw= {this.state.vw}
-                 vh= {this.state.vh}
+                 vw= {this.props.vw}
+                 vh= {this.props.vh}
                  show = {this.state.onStatus=='ABOUT'}
                  language = {this.props.language}
                  marginW = {this.props.marginW}

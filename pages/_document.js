@@ -7,6 +7,8 @@ import {ui}  from '../utils/ui'
 if (typeof window !== 'undefined') {
   rehydrate(window.__NEXT_DATA__.ids)
 }
+
+
 // css.global('@font-face', {fontFamily      :'raleway',
 
 //   src             :"url('../static/font/Raleway-Light.woff2') format('woff2'),"+
@@ -15,11 +17,12 @@ if (typeof window !== 'undefined') {
 //   unicodeRange    :"U+0000-00FF, U+0131, ... U+E0FF, U+EFFD, U+F000"
 // })
 
+
 const ralewayFont = css.fontFace({
   fontFamily      :'raleway',
-  src             :"url('../static/font/Raleway-Light.woff2') format('woff2'),"+
-  "url('../static/font/Raleway-Light.woff') format('woff'),"+
-  "url('../static/font/Raleway-Light.svg') format('svg')",
+  src             :"url('http://www.zhongart.it/static/font/static/font/Raleway-Light.woff2') format('woff2'),"+
+  "url('http://www.zhongart.it/static/font/Raleway-Light.woff') format('woff'),"+
+  "url('http://www.zhongart.it/static/font/Raleway-Light.svg') format('svg')",
 
 })
 

@@ -29,8 +29,8 @@ const ctrl = {
 
 
 export const ThreeInit = function () {
-    var ww = window.innerWidth,
-        wh = window.innerHeight;
+    var ww =screen.height,
+        wh = screen.height;
 
     renderer = new THREE.WebGLRenderer({
         canvas: document.getElementById('scene'),
@@ -42,7 +42,7 @@ export const ThreeInit = function () {
     scene = new THREE.Scene();
 
     camera = new THREE.PerspectiveCamera(50, ww / wh, 0.1, 10000);
-    camera.position.set(0, 0, 800);
+    camera.position.set(0, 0, 900);
     scene.add(camera);
 
     createTriangles();
@@ -56,7 +56,7 @@ const createTriangles = function() {
     }
     allTriangles = new THREE.Object3D();
     scene.add(allTriangles);
-    const geometry = new THREE.SphereGeometry(1500, 15, 7);
+    const geometry = new THREE.SphereGeometry(1500, 15, 6);
     for (var i = 0, j = geometry.faces.length; i < j; i++) {
         //Get one face from the sphere
         var whichTriangle = i;

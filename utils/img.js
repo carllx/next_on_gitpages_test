@@ -28,7 +28,7 @@ export const wix = ( name ,w ,h ) =>
 
     `https://static.wixstatic.com/media/`
     +`${name}/v1/fit/`
-    +`w_${Math.round(w)},h_${Math.round(h)}/`
+    +`w_${Math.floor(w)},h_${Math.floor(h)}/`
     +`${name}`;
 
 // WIX

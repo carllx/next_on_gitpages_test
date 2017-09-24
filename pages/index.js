@@ -82,15 +82,15 @@ export default class extends Component {
 
   handleReSize=()=>{
     console.info('onResize -in Page index.js-handleReSize')
-    this.setState({vh : window.innerHeight})
-    this.setState({vw : window.innerWidth})
+    this.setState({vh : screen.height})
+    this.setState({vw : screen.width})
   };
 
 
   componentWillMount(){
 
     if (typeof window == 'undefined') return;
-    setREM();
+    // setREM(); 点击链接跳转回复制已定义的样式
     window.removeEventListener('scroll', this.onScorll, false);
     window.removeEventListener('resize', this.onReSize);
 
@@ -130,8 +130,8 @@ export default class extends Component {
     this.setState({language : getLanguer()})
 
     // height width
-    this.setState({vh : window.innerHeight})
-    this.setState({vw : window.innerWidth})
+    this.setState({vh : screen.height})
+    this.setState({vw : screen.width})
 
     ThreeInit();
 

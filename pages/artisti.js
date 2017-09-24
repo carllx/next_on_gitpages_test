@@ -4,14 +4,15 @@ import  {Component} from 'react'
 import Head from 'next/head'
 import { css } from 'glamor'
 
-import {ui  ,GR}  from '../utils/ui'
-import {isMobile  ,isTablet , isLandscape, getLanguer,setREM }  from '../utils/device'
+import {ui  ,GR , makeKEY}  from '../utils/ui'
+import {isMobile  ,isTablet , isLandscape, getLanguer }  from '../utils/device'
 import {throttle, debounce}  from '../utils/throttle'
 
 import NoSSR from 'react-no-ssr';
 import AVATAR from '../components/avatar'
 import Nav from '../components/nav'
 import Seczione from '../components/seczione'
+
 
 
 
@@ -38,11 +39,13 @@ export default class extends Component {
         device: '',
         isLandscape: '',
         language: 'en',
-        // scrolledUp:'',
+        scrolledUp:'',
 
        }
        this.onScorll = debounce(this.handleScroll ,500 );
        this.onReSize = debounce(this.handleReSize ,500 );
+
+       this._keyCtx=makeKEY()
 
 
     }
@@ -68,8 +71,8 @@ export default class extends Component {
 
     handleReSize=()=>{
     console.info('onResize -in Page artisti.js-handleReSize')
-    this.setState({vh : window.innerHeight})
-    this.setState({vw : window.innerWidth})
+    this.setState({vh : screen.height})
+    this.setState({vw : screen.width})
 
     };
 
@@ -77,7 +80,6 @@ export default class extends Component {
 
         if (typeof window == 'undefined') return;
 
-        // setREM();
         window.removeEventListener('scroll', this.onScorll, false);
         window.removeEventListener('resize', this.onReSize);
 
@@ -100,10 +102,7 @@ export default class extends Component {
         this.prevScrollY = window.scrollY;
 
         // 检测移动硬件 还是 server端
-        if (typeof navigator === 'undefined') {
-          console.error( '检测移动硬件 \ntypeof navigator === undefined\n this.state:'+ this.state)
-          return;
-        }
+        if (typeof navigator === 'undefined') {}
 
         // DEVICE
         if(isMobile()==true){//isMobile
@@ -119,8 +118,8 @@ export default class extends Component {
         this.setState({language : getLanguer()})
 
         // height width
-        this.setState({vh : window.innerHeight})
-        this.setState({vw : window.innerWidth})
+        this.setState({vh : screen.height})
+        this.setState({vw : screen.width})
 
         // this.setState({language : 'it'})
 
@@ -137,7 +136,9 @@ export default class extends Component {
     // debugger
 
     return (
-      <main>
+      <main
+      key = {`page-${this.props.id}-${this.state.language}` }
+       >
         <Head>
             <title>{this.props.name[this.state.language]}</title>
             {/*meta 不支持重复 property*/}
@@ -185,11 +186,13 @@ export default class extends Component {
             marginRight: `${GR.vw(5)}vw`,
             marginTop: `${GR.vw(6)}vw`,
          })}
+
         >
             <AVATAR
              src = {this.props.avatar}
              SizeWidth = {GR.px(1,this.state.vw)}
              name = {this.props.name[this.state.language]}
+
              />
         </div>
         </NoSSR>
@@ -253,6 +256,9 @@ export default class extends Component {
          marginW = {`${GR.vw(5)}vw`}
         />
         </NoSSR>
+
+
+
         {/*保证section最后一项在窗口上方*/}
         <div
          {...css({
