@@ -100,6 +100,7 @@ export default class ArtistiNav extends Component {
                     artistInfo.map( (item,index)=>
                         <Link
                          // href= {`/artisti/${item.id}`}
+                         prefetch
                          href={{ pathname: '/artisti', query: {id: item.id} }} as={`/artisti/${item.id}`}
                          key={item.id + index}
                          >

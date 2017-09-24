@@ -161,15 +161,7 @@ export default class extends Component {
 
 
         {/* CSS */}
-        {/*<style jsx global>{`
-         html, body {
-            background: ${ui.color.w_1};
-            margin: 0;
-            font-size: 100%;
-            font-family:${ralewayFont},"Microsoft JhengHei";
 
-          }
-        `}</style>*/}
 
       {/*
       头像和描述

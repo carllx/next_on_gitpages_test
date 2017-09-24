@@ -35,7 +35,7 @@
     "pushdev": "git add . && git commit -m  \" %npm_package_config_commitmessage% \" && git push origin master"
   },
   "config": {
-    "commitmessage": "初步解决artisti 路由造成的布局混乱问题"
+    "commitmessage": "尝试解决字体加载问题"
   },
   "name": "",
   "description": "## How to use",

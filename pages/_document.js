@@ -20,10 +20,9 @@ if (typeof window !== 'undefined') {
 
 const ralewayFont = css.fontFace({
   fontFamily      :'raleway',
-  src             :"url('http://www.zhongart.it/static/font/static/font/Raleway-Light.woff2') format('woff2'),"+
-  "url('http://www.zhongart.it/static/font/Raleway-Light.woff') format('woff'),"+
-  "url('http://www.zhongart.it/static/font/Raleway-Light.svg') format('svg')",
-
+  src             :'url(http://www.zhongart.it/static/font/Raleway-Light.woff2) format("woff2"),'+
+  'url(http://www.zhongart.it/static/font/Raleway-Light.woff) format("woff"),'+
+  'url(http://www.zhongart.it/static/font/Raleway-Light.svg) format("svg")',
 })
 
 
@@ -35,7 +34,7 @@ const _css = {
     margin: 0,
     fontSize: '100%',
     fontWeight      :100,
-    fontFamily:`${ralewayFont} Microsoft JhengHei`,
+    fontFamily:`${ralewayFont}, Microsoft JhengHei`,
   })
 }
 
