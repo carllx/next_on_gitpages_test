@@ -29,7 +29,7 @@ const ctrl = {
 
 
 export const ThreeInit = function () {
-    var ww =screen.height,
+    var ww = screen.height,
         wh = screen.height;
 
     renderer = new THREE.WebGLRenderer({
@@ -113,8 +113,6 @@ const createTriangles = function() {
                 y: 900 + radm*3000,
                 z: 900 + radm*3000,
                 ease: animations[ctrl.animation],
-                // repeat: -1,
-                // yoyo: true
             })
 
     }

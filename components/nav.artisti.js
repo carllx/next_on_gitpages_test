@@ -40,7 +40,6 @@ export default class ArtistiNav extends Component {
     componentDidUpdate(){
 
         this.props.show?this.onShow():this.onClose();
-        // console.log('ArtistiNav componentDidUpdate this.props',this.props)
     }
 
     onShow(){
