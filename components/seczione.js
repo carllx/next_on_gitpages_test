@@ -5,7 +5,7 @@ import {ui  ,GR ,makeKEY}  from '../utils/ui'
 import {IMG_WithLoader} from './img'
 
 
-
+const _pubblic_key= makeKEY()
 /**
  * _SVG_Top
  * @props  {float} width
@@ -114,6 +114,7 @@ const _img =(props)=>
          top={0}
          active = {props.active}//初始false,避免请求导致setState on unMount
          fetch={props.fetch}
+         key = {`${_pubblic_key}_sec_WithLoader`}
         />
         {/*footer*/}
         <div {...css({

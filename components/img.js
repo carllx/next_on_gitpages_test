@@ -20,7 +20,7 @@
 import {Component} from 'react'
 import { css } from 'glamor'
 import XHRProgress from '../utils/Progress'
-import {ui}  from '../utils/ui'
+import {ui ,makeKEY}  from '../utils/ui'
 import {wix} from '../utils/img'
 
 
@@ -142,12 +142,12 @@ export class IMG_WithLoader extends Component {
     };
     this._src= this.props.src;//辨认是否刷新变动
     this.progress = this.onProgress.bind(this);
+    this.key=makeKEY();
   }
 
 
   componentDidMount(){
     // debugger
-
     //如果 #Daddy 激活后开始请求
     if(this.props.fetch ==true) {
       // debugger
@@ -156,16 +156,15 @@ export class IMG_WithLoader extends Component {
   }
 
   componentWillReceiveProps(nextProps,nextState){
-
+    // console.log('nextProps',nextProps)
+    // console.log('this.props',this.props)
     // debugger
-
-  }
-
-  componentWillUpdate(nextProps){
-    console.log('componentWillUpdate')
-
-    //如果Mount后中途 #Daddy 刷新地址后开始请求
-    if(nextProps.fetch ==true &&nextProps.src!=this.props.src) {
+    // console.log('nextState',nextState)
+    // console.log('this.state',this.state)
+    // debugger
+    // //如果Mount后中途 #Daddy 刷新地址后开始请求
+    console.log('componentWillReceiveProps')
+    if(nextProps.fetch ==true &&nextProps.src!=this.props.src){
       this.fetchImg(nextProps.src);
       return
     }
@@ -175,6 +174,11 @@ export class IMG_WithLoader extends Component {
       return
 
     }
+
+  }
+
+  componentWillUpdate(nextProps){
+    console.log('componentWillUpdate')
   }
 
 
@@ -228,11 +232,13 @@ export class IMG_WithLoader extends Component {
   }
   render(){
       return(
-          <div {...css({
+          <div
+           {...css({
             position: 'relative',
             width : this.props.width,
             height : this.props.height,
             })}
+
           >
               <_IMG
                width = {this.props.width}
@@ -241,6 +247,7 @@ export class IMG_WithLoader extends Component {
                show = {this.state.loaded}//显示Img
                left = {this.props.left}
                top = {this.props.top}
+               key={`${this.key}_IMG`}
                />
 
               <_Loading
@@ -250,7 +257,7 @@ export class IMG_WithLoader extends Component {
                percent = {this.state.percent}
                left = {this.props.left}
                top = {this.props.top}
-
+               key={`${this.key}_LOADIMGER`}
 
               />
           </div>
