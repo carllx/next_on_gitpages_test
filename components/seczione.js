@@ -267,7 +267,7 @@ const _content = (props)=>
     }
 
     componentWillReceiveProps(nextProps,nextState){
-        if(this.props.name=="WORKS")console.log('WORKS-componentWillReceiveProps',nextProps)
+        // if(this.props.name=="WORKS")console.log('WORKS-componentWillReceiveProps',nextProps)
 
         // this.setState({maxHeight:(nextState.close==true?0:this._height)})
 
@@ -419,8 +419,6 @@ const _content = (props)=>
                              // maxHeight= {this.state.maxHeight}
                              close = {this.state.close}
                              fetch={this.state.fetch}
-
-
                             />
                     )}
                 </div>
