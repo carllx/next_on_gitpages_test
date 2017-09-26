@@ -250,7 +250,7 @@ class Nav extends Component {
                 height:'100vh',
                 zIndex:9,
                 // visibility:this.state.show?'visible':'hidden',
-                pointerEvents: 'none',
+                pointerEvents: this.state.onStatus=='SHOW'?'none':'auto',//none...
              })}
              className = 'nav'
              >
@@ -272,9 +272,10 @@ class Nav extends Component {
                     left:0,
                     width:'100vw',
                     height:'100vh',
+                    pointerEvents: this.state.onStatus=='SHOW'?'none':'auto',//none...
 
                  })}
-                 onClick={this.onShow}
+                 onClick={this.state.onStatus=='SHOW'?this.onclose:this.onShow}
                 />
 
                 {/*ARTISTA*/}
