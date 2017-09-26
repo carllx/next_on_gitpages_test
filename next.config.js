@@ -8,6 +8,7 @@ module.exports = {
   async exportPathMap () {
 
     cp('./CNAME','./out/CNAME');
+    cp('./robots.txt','./out/robots.txt');
 
     // we fetch our list of posts, this allow us to dynamically generate the exported pages
     const response = await fetch('http://jsonplaceholder.typicode.com/posts?_page=1')

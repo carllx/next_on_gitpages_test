@@ -154,30 +154,9 @@ class Nav extends Component {
         }
     }
 
-    componentDidUpdate(){
-        /*
-        外props close / show
-        内state close /artisti / about / ...
-         */
-
-        // /*若state(内)更新服从内部更改*/
-        //     return//直接退出, 忽略下面(外)更改
-        // }
-
-
-        /*若props(外)更新与state(内)状态一致,忽略*/
-        // if(this.state.show == this.props.show) return;
-        /*若props(外)更新服从外部*/
-        // this.props.show==true? this.onShow() :this.onClose()
-
-
-        // if(this.props.show==true) this.onshow
-        // this.setState({show:this.props.show})
-    }
     onClose = (e)=>{
 
         console.log('nav-BG-onClose()')
-        // this.setState({close:true})
         //window.e?window.e.cancelBubble=true:e.stopPropagation();//阻止冒泡
         this.setState({
             _bg_to_pts:{
@@ -187,14 +166,9 @@ class Nav extends Component {
             show:false,
             onStatus:'CLOSE',//为nav-artisti 判断
         })
-        //this.setState({onStatus:'CLOSE'})//为nav-artisti 判断
         TweenMax.to('.nav',0.3,{autoAlpha:0})
         document.body.style.overflow = "auto";
-
-
     }
-
-
 
     onShow =(e)=>{
 
@@ -208,7 +182,6 @@ class Nav extends Component {
             show:true,
             onStatus:'SHOW',
         })
-        // this.setState({onStatus:'SHOW'})
 
         document.body.style.overflow = "auto";
         console.log('truetruetruetruetrue')
@@ -224,7 +197,6 @@ class Nav extends Component {
             },
             onStatus:'ARTISTI',
         })
-        // this.setState({onStatus:'ARTISTI'})
         document.body.style.overflow = "hidden";
 
     }
@@ -249,7 +221,6 @@ class Nav extends Component {
                 width: '100vw',
                 height:'100vh',
                 zIndex:9,
-                // visibility:this.state.show?'visible':'hidden',
                 pointerEvents: this.state.onStatus=='SHOW'?'none':'auto',//none...
              })}
              className = 'nav'
@@ -321,7 +292,6 @@ class Nav extends Component {
                      {...css({
                         paddingTop:`${GR.vw(6)}vw`,
                         paddingBottom:`${GR.vw(6)}vw`,
-                        // display:this.props.close?'none':'block'
                     })}
                      onClick = {this.onArtisti}
 
@@ -333,7 +303,6 @@ class Nav extends Component {
                      {...css({
                         paddingTop:`${GR.vw(6)}vw`,
                         paddingBottom:`${GR.vw(6)}vw`,
-                        // display:this.props.close?'none':'block'
                     })}
 
                      // onClick = {this.onArtisti}
@@ -345,7 +314,6 @@ class Nav extends Component {
                      {...css({
                         paddingTop:`${GR.vw(6)}vw`,
                         paddingBottom:`${GR.vw(6)}vw`,
-                        // display:this.props.close?'none':'block'
                     })}
 
                      // onClick = {this.onArtisti}

@@ -141,7 +141,9 @@ export default class extends Component {
   render () {
     return (
       <main >
-        <Head></Head>
+        <Head>
+          <title>{'ZAI'}</title>
+        </Head>
 
 
         {/*服务器初始内容*/}
