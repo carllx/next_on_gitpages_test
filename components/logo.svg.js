@@ -39,7 +39,7 @@ const _SVG =(props)=>
    x="0px"
    y="0px"
    >
-    <title>LOGOZAI</title>
+    <title>中艺国际,ZAI,carllx,林昕</title>
     <g className='zai'>
       <polyline points="20.08 0.25 35.97 0.25 19.97 16.25 35.86 16.25"/>
       <polyline points="35.7 16.25 51.7 0.25 51.7 16.25 44.17 8.75"/>

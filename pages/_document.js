@@ -59,7 +59,7 @@ export default class MyDocument extends Document {
 
 
     return (
-      <html{..._css.global}>
+      <html{..._css.global} lang = {`${this.props.language?this.props.language:'zh'}`}>
         <Head>
         <meta charset="utf-8" />
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
