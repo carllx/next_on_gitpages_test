@@ -37,9 +37,13 @@ export default class ArtistiNav extends Component {
             })
     }
 
+    componentWillReceiveProps(nextProps){
+        nextProps.show?this.onShow():this.onClose();
+    }
+
     componentDidUpdate(){
 
-        this.props.show?this.onShow():this.onClose();
+        // this.props.show?this.onShow():this.onClose();
     }
 
     onShow(){

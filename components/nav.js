@@ -250,7 +250,7 @@ class Nav extends Component {
                 height:'100vh',
                 zIndex:9,
                 // visibility:this.state.show?'visible':'hidden',
-                // pointerEvents: 'none',
+                pointerEvents: 'none',
              })}
              className = 'nav'
              >
@@ -375,67 +375,3 @@ class Nav extends Component {
 };
 export default Nav;
 
-
-/**
- * <Links
-                 isLandscape = {this.props.isLandscape}
-                 language = {this.props.language}
-                />
- */
-
-
-/**
- *
- *
- * const Links =(props)=>
-    <div
-     {...css({
-        fontSize:`${GR.vw(6)}vw`,
-        pointerEvents: 'auto',//svg 禁用了pointerEvents
-        position:'fixed',
-        display:'flex',
-        flexDirection: 'row',
-        alignItems:'center',
-        justifyContent:'space-around',
-        left: props.isLandscape? 0:'50%',
-        top: props.isLandscape? 0:'100%',
-        transform: props.isLandscape? 'translate(0, 0)':'translate(-50%, -100%)' ,
-        width:props.isLandscape? 'auto':'100%',
-     })}
-     >
-
-        {
-            CONFIG.map((item,index) =>
-                <div
-                 {...css({
-                    position: 'relative',
-                    cursor: 'pointer'
-                })}
-                 key={'Container'+ index}>
-                    <Link
-                     href= {item.url}
-                     key={'link'+ index}
-                    >
-                        <div{...css({padding:`${GR.rem(6)}rem`})}>
-                        {item['title'][`${props.language}`]}
-                        </div>
-                    </Link>
-                </div>
-            )
-        }
-
-    </div>
- */
-/**
- *     animate(){
-
-        TweenMax.to(this._svg,0.8, {
-            top_left:  GR.px(5,this.props.vh),
-            top_right: GR.px(4,this.props.vh),
-            onUpdate:()=>{
-             this.setState({top_left:this.top_left})
-             this.setState({top_right:this.top_right})
-            },
-            ease: Linear.easeNone,
-        })
- */

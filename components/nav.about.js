@@ -32,9 +32,13 @@ export default class AboutNav extends Component {
             })
     }
 
+    componentWillReceiveProps(nextProps){
+        nextProps.show?this.onShow():this.onClose();
+    }
+
     componentDidUpdate(){
 
-        this.props.show?this.onShow():this.onClose();
+        // this.props.show?this.onShow():this.onClose();
         // console.log('ArtistiNav componentDidUpdate this.props',this.props)
 
     }
