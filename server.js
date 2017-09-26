@@ -50,7 +50,7 @@ app.prepare()
   ));
 
   server.get('/sitemap.xml', (req, res) => (
-    res.status(200).sendFile('robots.txt', siteMapOpt)
+    res.status(200).sendFile('sitemap.xml', siteMapOpt)
   ));
 
 
