@@ -171,6 +171,8 @@ export default class extends Component {
          {...css({
             /*居中*/
              position:'relative',
+             marginLeft:`${GR.vw(6)}vw`,
+             marginTop:`${GR.vw(6)}vw`,
              width: `${GR.vw(1)}vw`,//暂时
         })}
         >

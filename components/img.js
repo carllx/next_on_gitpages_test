@@ -54,13 +54,10 @@ const _IMG =(props)=>
       >
       </div>
 
-
-
-
 /**
  *  svg style
  */
-
+/**/
 
 const _LoadingKeyframe = css.keyframes({
   from: {transform: 'rotate(0deg)'},
@@ -150,7 +147,6 @@ export class IMG_WithLoader extends Component {
     // debugger
     //如果 #Daddy 激活后开始请求
     if(this.props.fetch ==true) {
-      // debugger
       this.fetchImg();
     }
   }
@@ -163,7 +159,7 @@ export class IMG_WithLoader extends Component {
     // console.log('this.state',this.state)
     // debugger
     // //如果Mount后中途 #Daddy 刷新地址后开始请求
-    console.log('componentWillReceiveProps')
+    // console.log('componentWillReceiveProps')
     if(nextProps.fetch ==true &&nextProps.src!=this.props.src){
       this.fetchImg(nextProps.src);
       return
@@ -193,11 +189,9 @@ export class IMG_WithLoader extends Component {
           percent: `${percentComplete}`,
           loaded:false,
         });
-
     }else{
       console.log('@onProgress 该资源无法计算byte长度')
     }
-
   }
 
   async fetchImg (nextSrc) {
