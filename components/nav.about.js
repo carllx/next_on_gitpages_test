@@ -57,7 +57,7 @@ export default class AboutNav extends Component {
             0.2);
     }
     onClose(){
-        console.log('nav-Artisti-onClose()')
+        console.log('nav-About-onClose()')
         TweenMax.staggerTo(".about",
             0.3,
             {

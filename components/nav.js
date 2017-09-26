@@ -138,7 +138,6 @@ class Nav extends Component {
         show : this.props.show, //供内外共同管理
         onStatus:'CLOSE',
       }
-      this._requireChange = false;
       // this._onStatus=this.props.close?'CLOSE':'SHOW'//初始显示状态,判断更新是否与close有关在是否在componentDidUpdate执行操作
     }
 
@@ -148,23 +147,28 @@ class Nav extends Component {
         this.props.show?this.onShow():this.onClose();
     }
 
+    componentWillReceiveProps(nextProps){
+        /*若props(外)更新服从外部*/
+        if(nextProps.show!=this.props.show){
+            nextProps.show?this.onShow():this.onClose();
+        }
+    }
+
     componentDidUpdate(){
         /*
         外props close / show
         内state close /artisti / about / ...
          */
 
-        /*若state(内)更新服从内部更改*/
-        if(this._requireChange==true) {
-            this._requireChange=false;
-            return//直接退出, 忽略下面(外)更改
-        }
+        // /*若state(内)更新服从内部更改*/
+        //     return//直接退出, 忽略下面(外)更改
+        // }
 
 
         /*若props(外)更新与state(内)状态一致,忽略*/
-        if(this.state.show == this.props.show) return;
+        // if(this.state.show == this.props.show) return;
         /*若props(外)更新服从外部*/
-        this.props.show==true? this.onShow() :this.onClose()
+        // this.props.show==true? this.onShow() :this.onClose()
 
 
         // if(this.props.show==true) this.onshow
@@ -173,7 +177,6 @@ class Nav extends Component {
     onClose = (e)=>{
 
         console.log('nav-BG-onClose()')
-        if (this.props.show != false ) this._requireChange=true//是否外props触发
         // this.setState({close:true})
         //window.e?window.e.cancelBubble=true:e.stopPropagation();//阻止冒泡
         this.setState({
@@ -191,10 +194,11 @@ class Nav extends Component {
 
     }
 
+
+
     onShow =(e)=>{
 
         console.log('nav-BG-onShow()')
-        if (this.props.show != true ) this._requireChange=true//是否外props触发
 
         this.setState({
             _bg_to_pts:{
@@ -212,7 +216,6 @@ class Nav extends Component {
     }
 
     onArtisti =(e)=>{
-        // this._requireChange=true
         //window.e?window.e.cancelBubble=true:e.stopPropagation();//阻止冒泡
         this.setState({
             _bg_to_pts:{
@@ -226,7 +229,6 @@ class Nav extends Component {
 
     }
     onAbout =()=>{
-        this._requireChange=true
         this.setState({
             _bg_to_pts:{
                 left:GR.px(4,this.props.vh),
@@ -251,12 +253,7 @@ class Nav extends Component {
                 // pointerEvents: 'none',
              })}
              className = 'nav'
-
              >
-
-
-
-
                 {/*BACKGROUNF*/}
                 <_SVG
                  // isLandscape= {this.props.isLandscape}
@@ -273,13 +270,11 @@ class Nav extends Component {
                     zIndex:0,
                     top:0,
                     left:0,
-                    // backgroundColor:'rgba(0, 0, 0, 0.12)',
                     width:'100vw',
                     height:'100vh',
-                    //visibility:this.props.close?'hidden':'visible'
 
                  })}
-                 onClick={this.onClose}
+                 onClick={this.onShow}
                 />
 
                 {/*ARTISTA*/}
@@ -317,7 +312,6 @@ class Nav extends Component {
                     width:this.props.isLandscape? 'auto':'100%',
                     // visibility:this.state.close?'hidden':'visible',
                     // backgroundColor:'red',
-
                  })}
 
                 >
