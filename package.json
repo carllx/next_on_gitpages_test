@@ -35,7 +35,7 @@
     "pushdev": "git add . && git commit -m  \" %npm_package_config_commitmessage% \" && git push origin master"
   },
   "config": {
-    "commitmessage": "SEO第一次优化,主页的title,描述补充"
+    "commitmessage": "SEO第一次优化,sitemap robots 路由重新部署"
   },
   "name": "",
   "description": "## How to use",

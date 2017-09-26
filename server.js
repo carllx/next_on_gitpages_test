@@ -5,6 +5,23 @@ const dev = process.env.NODE_ENV !== 'production'
 const app = next({ dev })
 const handle = app.getRequestHandler()
 
+/*静态文件*/
+const robotsOpt = {
+  root: __dirname + '/static/',
+  headers: {
+    'Content-Type': 'text/plain;charset=UTF-8',
+  }
+};
+const siteMapOpt = {
+  root: __dirname + '/static/',
+  headers: {
+    'Content-Type': 'text/xml',//,application/xml
+  }
+};
+
+
+
+
 app.prepare()
 .then(() => {
   const server = express()
@@ -26,6 +43,17 @@ app.prepare()
   server.get('*', (req, res) => {
     return handle(req, res)
   })
+
+
+  server.get('/robots.txt', (req, res) => (
+    res.status(200).sendFile('robots.txt', robotsOpt)
+  ));
+
+  server.get('/sitemap.xml', (req, res) => (
+    res.status(200).sendFile('robots.txt', siteMapOpt)
+  ));
+
+
 
   server.listen(3000, (err) => {
     if (err) throw err
