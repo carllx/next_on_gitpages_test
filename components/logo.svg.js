@@ -26,16 +26,16 @@ import {ui,GR}  from '../utils/ui'
 /////////////
 // ELEMENT //
 /////////////
-const _SVG =(props)=>
+const LOGO =(props)=>
   <svg
    {...css({
     fill:'none',
     stroke:'#333',
-    strokeWidth:'0.5px',
+    strokeWidth:'.5px',
     strokeLinejoin:'round',/*round bevel*/
     strokeLinecap:'round',
    })}
-   viewBox="0 0 58.31 16.5"
+   viewBox="0 0 58.31 22.5"
    x="0px"
    y="0px"
    >
@@ -50,25 +50,24 @@ const _SVG =(props)=>
       <polyline points="0.25 16.25 16.25 0.25 16.25 16.25 8.29 8.17"/>
       <line x1="0.38" y1="16.25" x2="0.38" y2="0.25"/>
     </g>
+    <g>
+      <text
+       x='0'
+       y='22'
+       fontFamily='raleway'
+       stroke ='none'
+       // strokeWidth ='0.1'
+       fill= {ui.color.b_o2}
+       textLength="58.31"
+       lengthAdjust= "spacing"
+       fontSize = '2.8'
+      >中艺国际 ZHONG ART INTERNAZIONAL</text>
+    </g>
   </svg>
 
 
 
-const LOGO = (props)=>
-  <div>
-    <_SVG/>
-    {/*logo文字*/}
-    <div
-      {...css({
-      // fontFamily:ralewayFont,
-      fontSize:`${GR.vw(9)}vw`,
-      color:ui.color.b_o2,
-      marginTop:`${GR.vw(9)}vw`,
-     })}
-    >
-      中艺国际 ZHONG ART INTERNAZIONAL
-    </div>
-  </div>
+
 
 export default LOGO
 

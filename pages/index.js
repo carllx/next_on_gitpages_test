@@ -7,14 +7,11 @@ import {ThemeProvider} from 'glamorous'
 import NoSSR from 'react-no-ssr';
 
 import Post from '../components/post'
-// import {SectionWelcome} from '../components/section.welcome'
 import Nav from '../components/nav'
-// import {IMG} from '../components/img'
 import LOGO from '../components/logo.svg'
-// import {changelog,Concept} from '../components/changelog'
 import {ThreeInit} from'../components/section.welcome.THREE.sphere.js'
 
-import {isMobile  ,isTablet , isLandscape, getLanguer,setREM }  from '../utils/device'
+import {isMobile  ,isTablet , isLandscape, getLanguer }  from '../utils/device'
 import {throttle, debounce}  from '../utils/throttle'
 
 import {ui ,GR }  from '../utils/ui'
@@ -90,7 +87,7 @@ export default class extends Component {
   componentWillMount(){
 
     if (typeof window == 'undefined') return;
-    // setREM(); 点击链接跳转回复制已定义的样式
+    //(); 点击链接跳转回复制已定义的样式
     window.removeEventListener('scroll', this.onScorll, false);
     window.removeEventListener('resize', this.onReSize);
 
