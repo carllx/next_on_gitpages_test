@@ -251,7 +251,7 @@ const _content = (props)=>
     }
     componentDidMount(){
         if(this.props.name=="WORKS")console.log('WORKS-componentDidMount')
-            // debugger
+        //先计算_height ,在close
         this._maxHeight=this._$folder.clientHeight
         this.setState({
                 maxHeight:0,
@@ -267,18 +267,15 @@ const _content = (props)=>
     }
 
     componentWillReceiveProps(nextProps,nextState){
+        console.log(`section ${this.props.name} -componentWillReceiveProps`)
         // if(this.props.name=="WORKS")console.log('WORKS-componentWillReceiveProps',nextProps)
-
         // this.setState({maxHeight:(nextState.close==true?0:this._height)})
-
 
     }
 
-    componentDidUpdate(){
-        if(this.props.name=="WORKS")console.log('WORKS-componentDidUpdate')
-        // if(this.props.name=='EVENTS'){debugger}
-        if(this.state.maxHeight==null) return; //componentDidMount的更新
-        // if(this._foldding == false ) this.init_Fold()
+    componentDidUpdate(nextProps,nextState){
+        console.log(`section ${this.props.name} -componentDidUpdate`)
+        // console.log(`${this.props.name} componentDidUpdate \nnextProps:${JSON.stringify(nextState)}\nthis.props:${JSON.stringify(this.state)}`)
     }
 
 
@@ -306,6 +303,7 @@ const _content = (props)=>
 
     toggleFold(){
         console.log('toggle')
+
         // debugger
         this.setState(
             {
@@ -390,7 +388,8 @@ const _content = (props)=>
                     transition: `all 1s cubic-bezier(0, 0.6, 0, 1)`,
                     willChange: 'max-height,opacity',
                     opacity:this.state.close?0:1,
-                    overflow: this.state.close?'auto':'unset',//消除fold动画时scroll移动
+                    // overflow: this.state.close?'auto':'unset',//消除fold动画时scroll移动
+                    overflow: 'auto',//消除fold动画时scroll移动
                  })}
                  >
                     {/*image--------------------*/}
@@ -433,3 +432,6 @@ const _content = (props)=>
 
 
 export default Seczione;
+
+
+

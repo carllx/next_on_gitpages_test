@@ -246,7 +246,6 @@ export default class extends Component {
          color={ui.color.w_1}
          vw = {this.state.vw}
          marginW = {`${GR.vw(5)}vw`}
-
         />
         </NoSSR>
 

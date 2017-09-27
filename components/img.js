@@ -144,7 +144,6 @@ export class IMG_WithLoader extends Component {
 
 
   componentDidMount(){
-    // debugger
     //如果 #Daddy 激活后开始请求
     if(this.props.fetch ==true) {
       this.fetchImg();
@@ -152,19 +151,13 @@ export class IMG_WithLoader extends Component {
   }
 
   componentWillReceiveProps(nextProps,nextState){
-    // console.log('nextProps',nextProps)
-    // console.log('this.props',this.props)
-    // debugger
-    // console.log('nextState',nextState)
-    // console.log('this.state',this.state)
-    // debugger
-    // //如果Mount后中途 #Daddy 刷新地址后开始请求
-    // console.log('componentWillReceiveProps')
-    if(nextProps.fetch ==true &&nextProps.src!=this.props.src){
+
+    // update 过程 #Daddy 随时刷新地址后开始请求
+    if(nextProps.fetch ==true && nextProps.src!=this.props.src){
       this.fetchImg(nextProps.src);
       return
     }
-    //后激活的fetch
+    // mount 后,  随时激活的fetch
     if(nextProps.fetch ==true && this.props.fetch==false) {
       this.fetchImg()
       return
@@ -173,9 +166,7 @@ export class IMG_WithLoader extends Component {
 
   }
 
-  componentWillUpdate(nextProps){
-    console.log('componentWillUpdate')
-  }
+
 
 
   onProgress(xhr){
