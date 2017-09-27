@@ -33,7 +33,10 @@ export default class AboutNav extends Component {
     }
 
     componentWillReceiveProps(nextProps){
-        nextProps.show?this.onShow():this.onClose();
+        if(nextProps.show != this.props.show) {
+            //避免在打开父NAV时也执行
+            nextProps.show?this.onShow():this.onClose();
+        }
     }
 
     componentDidUpdate(){

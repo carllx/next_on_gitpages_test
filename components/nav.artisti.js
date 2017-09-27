@@ -27,7 +27,6 @@ export default class ArtistiNav extends Component {
     componentDidMount(){
 
         // 初始关闭 artisti显示
-        console.log(artistInfo)
         TweenMax.set(
             ".avatars",
             {
@@ -38,8 +37,12 @@ export default class ArtistiNav extends Component {
     }
 
     componentWillReceiveProps(nextProps){
-        nextProps.show?this.onShow():this.onClose();
+        if(nextProps.show != this.props.show) {
+            //避免在打开父NAV时也执行
+            nextProps.show?this.onShow():this.onClose();
+        }
     }
+
 
     componentDidUpdate(){
 

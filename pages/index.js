@@ -11,26 +11,18 @@ import Nav from '../components/nav'
 import LOGO from '../components/logo.svg'
 import {ThreeInit} from'../components/section.welcome.THREE.sphere.js'
 
-import {isMobile  ,isTablet , isLandscape, getLanguer }  from '../utils/device'
+import {isMobile  ,isTablet ,isLandscape, getLanguer}  from '../utils/device'
 import {throttle, debounce}  from '../utils/throttle'
 
 import {ui ,GR }  from '../utils/ui'
 /**
- * [fontSize description]
- * @type {String}
- */
+  css.global(
 
-/**
- * [color description]
- * @type {[type]}
- */
-// css.global(
-
-//   'h1,h2,h4',{
-//     color:ui.color.primary_on_light,
-//   }
-// )
-
+    'h1,h2,h4',{
+      color:ui.color.primary_on_light,
+    }
+  )
+*/
 
 export default class extends Component {
 
@@ -46,8 +38,8 @@ export default class extends Component {
         language : cn / en / it
         */
         device: '',
-        isLandscape: '',
-        language: 'en',
+        isLandscape: true,
+        language: 'zh',
         vw:'',
         vh:'',
 
@@ -95,7 +87,7 @@ export default class extends Component {
 
 
   componentWillUnMount(){
-    window.removeEventListener('scroll', this.onScorll)
+    window.removeEventListener('scroll', this.onScorll ,false)
     window.removeEventListener('resize', this.onScorll)
   }
 
@@ -109,26 +101,27 @@ export default class extends Component {
     this.prevScrollY = window.scrollY;
 
      // 检测移动硬件 还是 server端
-    if (typeof navigator === 'undefined') {
-      console.error( '检测移动硬件 \ntypeof navigator === undefined\n this.state:'+ this.state)
-      return;
-    }
-    // device
-    if(isMobile()==true){//isMobile
+    // if (typeof navigator === 'undefined') {
+    //   console.error( '检测移动硬件 \ntypeof navigator === undefined\n this.state:'+ this.state)
+    //   return;
+    // }
+
+    // DEVICE
+    if(isMobile()){//isMobile
       this.setState({device : 'isMobile'})
-    }else if (isTablet()==true){
+    }else if (isTablet()){
       this.setState({device : 'isTablet'})
     }else{
       this.setState({device : 'isDesktop'})
     };
-    // direction
-    this.setState({isLandscape : (isLandscape()?true:false) })
-    // language
-    this.setState({language : getLanguer()})
 
-    // height width
-    this.setState({vh : screen.height})
-    this.setState({vw : screen.width})
+
+    this.setState({
+      vh : screen.height,
+      vw : screen.width,
+      language : getLanguer(),
+      isLandscape : isLandscape(),
+    })
 
     ThreeInit();
 
