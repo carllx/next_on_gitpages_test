@@ -384,13 +384,14 @@ const _content = (props)=>
                  {...css({
                     position:'relative',
                     zIndex:0,
-                    maxHeight:this.state.close?'0px':this._height,
+                    height:this.state.close?this.TriangleHeight:this._height,
                     transition: `all 1s cubic-bezier(0, 0.6, 0, 1)`,
                     willChange: 'max-height,opacity',
                     opacity:this.state.close?0:1,
                     // overflow: this.state.close?'auto':'unset',//消除fold动画时scroll移动
-                    overflow: 'auto',//消除fold动画时scroll移动
+                    overflow: 'unset',//消除fold动画时scroll移动
                  })}
+                 key= {'dddd'}
                  >
                     {/*image--------------------*/}
                     {this.props.img?
