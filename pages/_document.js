@@ -21,9 +21,9 @@ if (typeof window !== 'undefined') {
 
 const ralewayFont = css.fontFace({
   fontFamily      :'raleway',
-  src             :'url(http://www.zhongart.it/static/font/Raleway-Light.woff2) format("woff2"),'+
-  'url(http://www.zhongart.it/static/font/Raleway-Light.woff) format("woff"),'+
-  'url(http://www.zhongart.it/static/font/Raleway-Light.svg) format("svg")',
+  src             :'url(/static/font/Raleway-Light.woff2) format("woff2"),'+
+  'url(/static/font/Raleway-Light.woff) format("woff"),'+
+  'url(/static/font/Raleway-Light.svg) format("svg")',
 })
 
 
