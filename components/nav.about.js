@@ -31,7 +31,7 @@ export default class AboutNav extends Component {
                 pointerEvents: 'none',
             })
     }
-
+    //Immutable??redux
     componentWillReceiveProps(nextProps){
         if(nextProps.show != this.props.show) {
             //避免在打开父NAV时也执行

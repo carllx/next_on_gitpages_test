@@ -15,3 +15,5 @@ export default connect(state => state)(({ title, linkTo, lastUpdate, light }) =>
     </div>
   )
 })
+
+

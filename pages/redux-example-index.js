@@ -8,7 +8,6 @@ class Counter extends React.Component {
   static getInitialProps ({ store, isServer }) {
     store.dispatch(serverRenderClock(isServer))
     store.dispatch(addCount())
-
     return { isServer }
   }
 

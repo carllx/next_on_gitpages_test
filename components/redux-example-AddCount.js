@@ -31,5 +31,5 @@ const mapDispatchToProps = (dispatch) => {
     addCount: bindActionCreators(addCount, dispatch)
   }
 }
-
+// connect() 前，需要先定义 mapStateToProps 这个函数来指定如何把当前 Redux store state 映射到展示组件的 props 中
 export default connect(mapStateToProps, mapDispatchToProps)(AddCount)
