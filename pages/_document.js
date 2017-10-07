@@ -8,17 +8,6 @@ if (typeof window !== 'undefined') {
   rehydrate(window.__NEXT_DATA__.ids)
 }
 
-
-
-// css.global('@font-face', {fontFamily      :'raleway',
-
-//   src             :"url('../static/font/Raleway-Light.woff2') format('woff2'),"+
-//   "url('../static/font/Raleway-Light.woff') format('woff'),"+
-//   "url('../static/font/Raleway-Light.svg') format('svg')",
-//   unicodeRange    :"U+0000-00FF, U+0131, ... U+E0FF, U+EFFD, U+F000"
-// })
-
-
 const ralewayFont = css.fontFace({
   fontFamily      :'raleway',
   src             :'url(/static/font/Raleway-Light.woff2) format("woff2"),'+
@@ -64,6 +53,7 @@ export default class MyDocument extends Document {
         <Head>
           <meta charset="utf-8" />
           <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+          <meta name="baidu-site-verification" content="BWMAZPDlTw" />
           <meta name="viewport" content="width=device-width,maximum-scale=1,minimum-scale=1,user-scalable=no" />
 
            {/*favicon*/}

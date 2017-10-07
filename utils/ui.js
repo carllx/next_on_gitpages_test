@@ -87,3 +87,24 @@ module.exports.makeKEY = ()=>{
 
         return text;
     }
+
+
+
+/**
+ * 将1d array 转换成 xy/z 数组
+	arr = [1,1,2,2,3,3,4,4] =>
+	[[1,1], [2,2], [3,3], [4,4]]
+ * @param  {[type]} arr [description]
+ * @param  {[type]} d   [2 => xy, 3 => xyz]
+ * @return {[type]}     [description]
+ */
+module.exports.getVectorArr =(arr, d )=>{
+	let newArr = [];
+	let clone = [...arr]
+	while(clone.length) newArr.push(clone.splice(0,d));
+	return newArr
+	// newArr.reduce((prev, curr)=> prev+' '+curr)
+	// "1,1 2,2 3,3 4,4"
+
+}
+

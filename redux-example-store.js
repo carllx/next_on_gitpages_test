@@ -9,8 +9,8 @@ const exampleInitialState = {
 }
 
 export const actionTypes = {
-  ADD: 'ADD',
-  TICK: 'TICK'
+  ADD: 'ADD' ,
+  TICK:'TICK',
 }
 
 // REDUCERS
@@ -38,6 +38,7 @@ export const startClock = () => dispatch => {
 export const addCount = () => dispatch => {
   return dispatch({ type: actionTypes.ADD })
 }
+
 
 // STORE
 export const initStore = (initialState = exampleInitialState) => {

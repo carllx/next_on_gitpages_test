@@ -7,9 +7,9 @@ const artisti =  require('./static/contents/artisti/')
 module.exports = {
   async exportPathMap () {
 
-    cp('./CNAME','./out/CNAME');
-    cp('./robots.txt','./out/robots.txt');
-    cp('./sitemap.xml','./out/sitemap.xml');
+    cp('./static/CNAME','./out/CNAME');
+    cp('./static/robots.txt','./out/robots.txt');
+    cp('./static/sitemap.xml','./out/sitemap.xml');
 
     // we fetch our list of posts, this allow us to dynamically generate the exported pages
     const response = await fetch('http://jsonplaceholder.typicode.com/posts?_page=1')
@@ -56,8 +56,21 @@ module.exports = {
       {},
 
     )
+
+
+     const eventsPages = artisti.artistInfo.reduce(
+      (artistPages, obj) =>
+        Object.assign({}, artistPages, {
+          [`/events/${obj.id}`]: {
+            page: '/events',
+            query: { id: obj.id }
+          }
+        }),
+      {},
+
+    )
     // combine the map of post pages with the home
-    return Object.assign({}, pages, artistPages ,{
+    return Object.assign({}, pages, artistPages ,eventsPages,{
       '/': { page: '/' }
     })
   }

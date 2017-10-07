@@ -1,0 +1,13 @@
+{
+  "presets": [
+    "next/babel",
+  ],
+  "env": {
+    "development": {
+      "plugins": ["babel-plugin-root-import"]
+    },
+    "production": {
+      "plugins": ["babel-plugin-root-import"]
+    }
+  }
+}

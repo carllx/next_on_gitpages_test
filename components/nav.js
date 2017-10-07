@@ -11,10 +11,7 @@ import AboutNav  from './nav.about'
 
 
 
-
-
 // DATA
-
 const CONFIG = [
 	{
         'title':{zh:'艺术家',en:'ARTISTS',it:'ARTISTI'},
@@ -50,7 +47,6 @@ class _SVG extends Component {
         this.state={
             to_pts:this.props.to_pts //初始值
         }
-
     }
 
     componentDidUpdate(){//父元素setState ,该元素prpos刷新后
@@ -60,8 +56,6 @@ class _SVG extends Component {
     }
 
     animate(){
-
-
         this._onAnimating = true;
         TweenMax
         .to(this._to_pts,0.6, {
@@ -76,8 +70,6 @@ class _SVG extends Component {
     render(){
 
         return(
-
-
             <div
              {...css({
                 pointerEvents: 'none',
@@ -110,11 +102,6 @@ class _SVG extends Component {
         );
     }
 }
-
-
-
-
-
 
 
 
@@ -256,7 +243,7 @@ class Nav extends Component {
                  show = {this.state.onStatus=='ARTISTI'}
                  language = {this.props.language}
                 />
-
+                {/*ABOUT*/}
                 <AboutNav
                  vw= {this.props.vw}
                  vh= {this.props.vh}

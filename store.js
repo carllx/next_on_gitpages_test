@@ -2,24 +2,19 @@ import { createStore, applyMiddleware } from 'redux'
 import { composeWithDevTools } from 'redux-devtools-extension'
 import thunkMiddleware from 'redux-thunk'
 
+import REDUCERS from './reducers'
 
-const eventsInitialState = {
-  isMobile:true,
-  isLandscape:false,
-  pageSEO:true,
-  language:'zh',// 'en','zh','it'
+// STATE --(initial)
+export const INITIALSTATE = {
+  Root:
+  {device:'seo_engin',//mobile desktop table seo_engin
+    language:'zh',// 'en','zh','it'
+    is_Scroll_up:false,
+    view_size:{vw:0,vh:0,is_landscape:false}
+  }
 }
 
-export const actionTypes = {
-  ADD: 'ADD',
-  TICK: 'TICK'
+// STORE
+export const initStore = (initialState = INITIALSTATE) => {
+  return createStore(REDUCERS, initialState, composeWithDevTools(applyMiddleware(thunkMiddleware)))
 }
-
-//REDUCERS
-
-const everntsReducer = (state= ,action)=>{
-    switch (action.type){
-        case
-    }
-}
-

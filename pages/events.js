@@ -1,36 +1,144 @@
 
 import React from 'react'
 import { bindActionCreators } from 'redux'
-import { initStore, startClock, addCount, serverRenderClock } from '../redux-example-store'
 import withRedux from 'next-redux-wrapper'
-import Page from '../components/redux-example-Page'
+import NoSSR from 'react-no-ssr';
+import {throttle, debounce}  from '../utils/throttle'
+import {isMobile  ,isTablet , isLandscape, getLanguer }  from '../utils/device'
+import Page from '../container/events/page'
+import {initStore} from '~/store'
+import {setScroll,switchLanguage,setViewSize,onDevice } from'~/reducers/root'
+
+import Nav from '~/container/nav'
 
 class Events extends React.Component {
-  static getInitialProps ({ store, isServer }) {
-    store.dispatch(serverRenderClock(isServer))
-    store.dispatch(addCount())
-    return { isServer }
+  static getInitialProps ({ store, isServer, query}) {
+
+    const post = require(`../static/contents/artisti/${query.id}`);
+    // store.dispatch( )达到初始化store的效果
+    // store.dispatch(serverRenderClock(isServer))
+    // store.dispatch({type:'INIT'})
+    return   Object.assign({},{isServer},post)
   }
 
+
+  constructor(props){
+    super(props)
+    this.prevScrollY = 0
+    this.lazyScroll= debounce(this.isScrollUp,300)
+    this.lazyResize= debounce(this.setViewSize,300)
+  }
+
+
+  isScrollUp = ()=>{
+
+    const ScrollY = window.scrollY;
+    if(ScrollY == this.prevScrollY) return
+    const isUp = ( ScrollY - this.prevScrollY)<0 ;
+
+    if(isUp) {
+      console.log('↑');
+      this.props.setScroll(true)
+    }else{
+      console.log('↓');
+      this.props.setScroll(false)
+    }
+    // 刷新当前scroll所在位置
+    this.prevScrollY = ScrollY;
+  }
+
+  setLanguage=(language)=>{
+    this.props.switchLanguage(language)
+  }
+
+  setViewSize=()=>{
+    this.props.setViewSize({
+      vh: document.documentElement.clientHeight,
+      vw: document.documentElement.clientWidth,
+      is_landscape:isLandscape()
+      })
+  }
+  setDevice=()=>{
+      let whatDevice ;
+      if(isMobile()) {whatDevice = 'mobile'}
+      else if(isTablet()) {whatDevice = 'tablet'}
+      else {whatDevice = 'desktop'}
+      this.props.onDevice(whatDevice)
+    }
+
+
+
   componentDidMount () {
-    this.timer = this.props.startClock()
+    // this.props.store.dispatch({type:'INIT'})
+    // LISTENERS
+    // console.log('this.props',this.props)
+    this.prevScrollY = window.scrollY;
+    window.addEventListener('scroll', this.lazyScroll)
+    window.addEventListener('resize', this.lazyResize);
+
+    // DEVICE
+    this.setDevice()
+
+    /* LANGUGE */
+    this.setLanguage(getLanguer())
+
+    /* height width DIRECTION */
+    this.setViewSize()
   }
 
   componentWillUnmount () {
-    clearInterval(this.timer)
+    // clearInterval(this.timer)
+    window.removeEventListener('scroll', this.lazyScroll);
+    window.removeEventListener('resize', this.lazyResize);
+  }
+
+  componentWillUnMount(){
+    window.removeEventListener('scroll', this.lazyScroll)
+    window.removeEventListener('resize', this.lazyResize)
   }
 
   render () {
+    // console.log(this.props)
     return (
-      <Page title='Index Page' linkTo='/other' />
+      <div>
+        <div onClick= {()=>this.setLanguage('it')}>ITALIANO</div>
+        <div onClick= {()=>this.setLanguage('en')}>ENGLISH</div>
+        <div onClick= {()=>this.setLanguage('zh')}>中文</div>
+        <Page name = {this.props.name} />
+        <Page name = {this.props.name} />
+        <Page name = {this.props.name} />
+        <Page name = {this.props.name} />
+        <Page name = {this.props.name} />
+        <Page name = {this.props.name} />
+        <Page name = {this.props.name} />
+        <Page name = {this.props.name} />
+        {/*<Nav
+         vw = {view_size.vw}
+         vh = {view_size.vh}
+         isLandscape={view_size.isLandscape}
+         language= {language}
+         showOnInit ={true}
+         marginW = {GR.vw(5)}
+         showLogo ={false}
+         />*/}
+        <NoSSR>
+          <Nav
+           show_on_init = {true}
+           // show = {is_Scroll_up}
+          />
+        </NoSSR>
+
+      </div>
     )
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    addCount: bindActionCreators(addCount, dispatch),
-    startClock: bindActionCreators(startClock, dispatch)
+    switchLanguage: bindActionCreators(switchLanguage, dispatch),
+    setScroll: bindActionCreators(setScroll, dispatch),
+    setViewSize: bindActionCreators(setViewSize, dispatch),
+    onDevice: bindActionCreators(onDevice, dispatch),
   }
 }
 

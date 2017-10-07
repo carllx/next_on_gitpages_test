@@ -1,0 +1,85 @@
+// import {INITIALSTATE} from '../store'
+// const INITIALSTATE = {
+//   Root:
+//   {device:'seo_engin',//mobile desktop table seo_engin
+//     language:'zh',// 'en','zh','it'
+//     is_Scroll_up:false,
+//     view_size:{vw:0,vh:0,is_landscape:false}
+//   }
+// }
+
+
+// TYPE  --帮助避免重复 type
+export const TYPES = {
+  INIT: 'INIT',
+  SWITCH_LANGUAGE: 'SWITCH_LANGUAGE',
+  IS_SCROLL_UP: 'IS_SCROLL_UP',
+  VIEW_SIZE:'VIEW_SIZE',
+  ON_DEVICE:'ON_DEVICE'
+}
+
+
+
+// ACTIONS
+export const switchLanguage = (lan) => dispatch => {
+    return dispatch({
+        type:TYPES.SWITCH_LANGUAGE,
+        language:lan
+    })
+}
+export const onDevice = (device_name) => dispatch => {
+    return dispatch({
+        type:TYPES.ON_DEVICE,
+        device:device_name
+    })
+}
+
+export const setScroll = (direction) => dispatch => {
+    return dispatch({
+        type:TYPES.IS_SCROLL_UP,
+        direction:direction
+    })
+}
+
+export const setViewSize = ({vw=vw,vh=vh,is_landscape=is_landscape}) => dispatch => {
+    return dispatch({
+        type:TYPES.VIEW_SIZE,
+        vw:vw,
+        vh:vh,
+        is_landscape:is_landscape,
+    })
+}
+
+
+//REDUCERS
+export default (state = {} ,action)=>{
+  // console.log('state',state)
+  // console.log('root---INITIALSTATE',INITIALSTATE)
+    switch (action.type){
+
+      /*INIT*/
+      case TYPES.INIT:
+        return ({
+          device:'seo_engin',//mobile desktop table seo_engin
+          language:'zh',// 'en','zh','it'
+          is_Scroll_up:false,
+          view_size:{vw:0,vh:0,is_landscape:false}
+        })
+      /*DEVICE*/
+      case TYPES.ON_DEVICE:
+        return Object.assign({},state,{device:action.device})
+        /*LANGUAGE*/
+      case TYPES.SWITCH_LANGUAGE:
+        return Object.assign({},state,{language:action.language})
+      /*SCROLL*/
+      case TYPES.IS_SCROLL_UP:
+        return Object.assign({},state,{is_Scroll_up:action.direction?true:false})
+      /*WIDTH - HEIGHT*/ /*Landscape / portail*/
+      case TYPES.VIEW_SIZE:
+        return Object.assign({},state,{view_size:{vw:action.vw,vh:action.vh,is_landscape:action.is_landscape}})
+
+      default: return state
+
+
+    }
+}

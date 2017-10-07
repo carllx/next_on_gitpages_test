@@ -258,19 +258,12 @@ const _content = (props)=>
                 close:true,
                 }
             )
-
-        // console.log('this._$folder',this._$folder)
-        // console.log('this._height',this._height)
-        // console.log('this._$folder.clientHeight',this._$folder.clientHeight)
         // debugger
         this.init_Fold()
     }
 
     componentWillReceiveProps(nextProps,nextState){
         console.log(`section ${this.props.name} -componentWillReceiveProps`)
-        // if(this.props.name=="WORKS")console.log('WORKS-componentWillReceiveProps',nextProps)
-        // this.setState({maxHeight:(nextState.close==true?0:this._height)})
-
     }
 
     componentDidUpdate(nextProps,nextState){
@@ -279,26 +272,12 @@ const _content = (props)=>
     }
 
 
-
+    //设置 auto 不需要 预展开一次来获取高度
     init_Fold = () =>{ // fold 展开后 ,根据情况获取高度
 
         console.log('init_Fold 高度初始化:',this._$folder.clientHeight)
 
         this._height = this._$folder.clientHeight;
-        // 避免重复setState
-        // if (this._$folder.clientHeight != this.state.maxHeight) {
-        //     this._foldding = true //避免setState 更新componentDidUpdate死循环循环
-        //     // if(this.props.name=="WORKS"){debugger}
-        //     // this.setState({
-        //     //     maxHeight:this._$folder.clientHeight,
-        //     //     // close:true,
-        //     //     },
-        //     //     ()=>{this._foldding = false}
-        //     // )
-        // }else {
-        //     console.error('init_Fold 重复')
-        //     debugger
-        // }
     }
 
     toggleFold(){
@@ -384,7 +363,7 @@ const _content = (props)=>
                  {...css({
                     position:'relative',
                     zIndex:0,
-                    height:this.state.close?this.TriangleHeight:this._height,
+                    height:this.state.close?this.TriangleHeight:'auto',//不再需要预算 this._height
                     transition: `all 1s cubic-bezier(0, 0.6, 0, 1)`,
                     willChange: 'max-height,opacity',
                     opacity:this.state.close?0:1,

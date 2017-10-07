@@ -1,157 +1,88 @@
-
 import {Component} from 'react'
+import { connect } from 'react-redux'
 import { css } from 'glamor'
 import {TweenMax} from "gsap";
-
-import {ui  ,GR}  from '../utils/ui'
-import LOGO  from './logo.svg'
-
+import {ui  ,GR}  from '~/utils/ui'
+import LOGO  from './components/logo.svg'
 
 
-export default class AboutNav extends Component {
 
-    constructor(props){
-        super(props)
-        this.state={
-            // vw :this.props.vw,
-            // vh :this.props.vh,
-            // close:this.props.show,
+export default (props)=>
+
+
+<div
+ {...css({
+    /*居中*/
+     // width: '100vw',
+     // height: '70vh',
+     position: 'absolute',
+     top:`${GR.px(4,props.vh)+GR.px(8,props.vh)}px`,//nav bg 斜边的高度+margin
+     left:0,
+     marginLeft:`${props.marginW}vw`,
+     marginRight:`${props.marginW}vw`,
+     pointerEvents:'none',
+     alignContent: 'center',
+     transition: `all 0.6s cubic-bezier(0, 0.6, 0, 1)`,
+     willChange: 'transform , opacity',
+     transform:`translateY(${props.show?0:props.vh}px)`,
+     opacity:`${props.show?1:0}`
+ })}
+ className = 'about'
+>
+    {/*LOGO*/}
+    {
+        props.showLogo
+        ?<div
+         {...css({
+            /*居中*/
+             position:'relative',
+             width: `${GR.vw(1)}vw`,//暂时
+        })}
+        >
+            <LOGO/>
+        </div>
+        :null
+    }
+
+
+
+
+    {/*主要信息*/}
+    <div
+     {...css({
+        fontSize:`${GR.vw(8)}vw`,
+        marginTop:`${GR.vw(9)}vw`,
+     })}
+    >
+        {
+            `Via del Giglio, 10-50123 ,Firenze, Italia
+            Tel./Fax +39 055 268308
+            Cell. +39  32721  83721
+            gianni.zhang@hotmail.com
+            Presidente 张修中
+            `.split('\n')
+            .map((item, key) =>
+                <span key={key}>{item}<br/></span>)
         }
-    }
 
-    componentDidMount(){
-
-        // 初始关闭 artisti显示
-        TweenMax.set(
-            ".about",
-            {
-                y:`${this.props.vh}`,
-                opacity:0,
-                visbility:'hidden',
-                pointerEvents: 'none',
-            })
-    }
-    //Immutable??redux
-    componentWillReceiveProps(nextProps){
-        if(nextProps.show != this.props.show) {
-            //避免在打开父NAV时也执行
-            nextProps.show?this.onShow():this.onClose();
-        }
-    }
-
-    componentDidUpdate(){
-
-        // this.props.show?this.onShow():this.onClose();
-        // console.log('ArtistiNav componentDidUpdate this.props',this.props)
-
-    }
-
-    onShow(){
-        console.log('nav-Artisti -onShow()')
-        TweenMax.staggerFromTo(
-            ".about",
-            0.5,
-            {
-                y:`${this.props.vh}`,
-                opacity:0,
-                pointerEvents: 'none',
-            },{
-                y:0,
-                ease: Power4.easeOut,
-                pointerEvents: 'auto',
-                autoAlpha:1,//opacity:1,visibility:'visible'
-            },
-            0.2);
-    }
-    onClose(){
-        console.log('nav-About-onClose()')
-        TweenMax.staggerTo(".about",
-            0.3,
-            {
-                y:`${this.props.vh/9}`,
-                // ease: Power4.easeOut,
-                pointerEvents: 'none',
-                autoAlpha:0,//opacity:0,visibility:'hidden'
-            },
-            0.05);
-
-    }
-
-    render(){
-
-
-        return(
-            <div
-             {...css({
-                /*居中*/
-                 // width: '100vw',
-                 // height: '70vh',
-                 position: 'absolute',
-                 top:`${GR.px(4,this.props.vh)+GR.px(8,this.props.vh)}px`,//nav bg 斜边的高度+margin
-                 left:0,
-                 marginLeft:`${this.props.marginW}vw`,
-                 marginRight:`${this.props.marginW}vw`,
-                 pointerEvents:'none',
-                 alignContent: 'center',
-             })}
-             className = 'about'
-            >
-                {/*LOGO*/}
-                {
-                    this.props.showLogo
-                    ?<div
-                     {...css({
-                        /*居中*/
-                         position:'relative',
-                         width: `${GR.vw(1)}vw`,//暂时
-                    })}
-                    >
-                        <LOGO/>
-                    </div>
-                    :null
-                }
-
-
-
-
-                {/*主要信息*/}
-                <div
-                 {...css({
-                    fontSize:`${GR.vw(8)}vw`,
-                    marginTop:`${GR.vw(9)}vw`,
-                 })}
-                >
-                    {
-                        `Via del Giglio, 10-50123 ,Firenze, Italia
-                        Tel./Fax +39 055 268308
-                        Cell. +39  32721  83721
-                        gianni.zhang@hotmail.com
-                        Presidente 张修中
-                        `.split('\n')
-                        .map((item, key) =>
-                            <span key={key}>{item}<br/></span>)
-                    }
-
-                </div>
-                {/*详细描述*/}
-                <div
-                 {...css({
-                    // position:'relative',
-                    fontSize:'14px',
-                    overflowY:'scroll',
-                    // height:'48vh',
-                    maxHeight: '40vh',
-                 })}
-                >
-                    {aboutInfo[`${this.props.language}`].split('\n')
-                .map((item, key) =>
-                    <span key={key}>{item}<br/></span>
-                )}
-                </div>
-            </div>
+    </div>
+    {/*详细描述*/}
+    <div
+     {...css({
+        // position:'relative',
+        fontSize:'14px',
+        overflowY:'scroll',
+        // height:'48vh',
+        maxHeight: '40vh',
+     })}
+    >
+        {aboutInfo[`${props.language}`].split('\n')
+    .map((item, key) =>
+        <span key={key}>{item}<br/></span>
     )}
+    </div>
+</div>
 
-}
 
 
 

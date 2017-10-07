@@ -4,9 +4,9 @@ import  {Component} from 'react'
 import Head from 'next/head'
 import { css } from 'glamor'
 
-import {ui  ,GR , makeKEY}  from '../utils/ui'
+import {ui  ,GR , makeKEY}  from '~/utils/ui'
 import {isMobile  ,isTablet , isLandscape, getLanguer }  from '../utils/device'
-import {throttle, debounce}  from '../utils/throttle'
+import {throttle, debounce}  from '~/utils/throttle'
 
 import NoSSR from 'react-no-ssr';
 import AVATAR from '../components/avatar'

@@ -21,7 +21,7 @@ class Counter extends React.Component {
 
   render () {
     return (
-      <Page title='Index Page' linkTo='/other' />
+      <Page title='Index Page' linkTo='/redux-example-other' />
     )
   }
 }
@@ -34,3 +34,4 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 export default withRedux(initStore, null, mapDispatchToProps)(Counter)
+
