@@ -13,8 +13,6 @@ export default (props)=>
 <div
  {...css({
     /*居中*/
-     // width: '100vw',
-     // height: '70vh',
      position: 'absolute',
      top:`${GR.px(4,props.vh)+GR.px(8,props.vh)}px`,//nav bg 斜边的高度+margin
      left:0,
@@ -43,9 +41,6 @@ export default (props)=>
         </div>
         :null
     }
-
-
-
 
     {/*主要信息*/}
     <div
