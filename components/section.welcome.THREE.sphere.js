@@ -8,10 +8,10 @@ import * as THREE from 'three';
 let renderer, scene, camera, allTriangles;
 const animations = [Back.easeIn, Back.easeOut, Bounce.easeIn, Bounce.easeOut, Linear.ease, Elastic.easeOut];
 
-// var ww = window.innerWidth,
-//     wh = window.innerHeight;
-// var ww = 800,
-//     wh = 800;
+// var vw = window.innerWidth,
+//     vh = window.innerHeight;
+// var vw = 800,
+//     vh = 800;
 
 const ctrl = {
     opacity : 1,
@@ -29,19 +29,19 @@ const ctrl = {
 
 
 export const ThreeInit = function () {
-    var ww = screen.width,
-        wh = screen.height;
+    var vh = document.documentElement.clientHeight,
+        vw = document.documentElement.clientWidth;
 
     renderer = new THREE.WebGLRenderer({
         canvas: document.getElementById('scene'),
         antialias: true
     });
-    renderer.setSize(ww, wh);
+    renderer.setSize(vw, vh);
     renderer.setClearColor( 0xffffff);
 
     scene = new THREE.Scene();
 
-    camera = new THREE.PerspectiveCamera(50, ww / wh, 0.1, 10000);
+    camera = new THREE.PerspectiveCamera(50, vw / vh, 0.1, 10000);
     camera.position.set(0, 0, 800);
     scene.add(camera);
 

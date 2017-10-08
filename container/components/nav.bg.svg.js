@@ -35,9 +35,9 @@ class SVG_BACKGROUND extends Component{
             return {
                 close:{
                 pt_1_x:vw, pt_1_y:vh,
-                pt_2_x:vw,pt_2_y:0,
-                pt_3_x:vw,pt_3_y:vh,
-                pt_4_x:vw, pt_4_y:vh,
+                pt_2_x:vw,pt_2_y:vh/2,
+                pt_3_x:vw,pt_3_y:vh/3,
+                pt_4_x:vw, pt_4_y:vh/4,
               },show:{
                 pt_1_x:vw, pt_1_y:0,
                 pt_2_x:vw,pt_2_y:vh,

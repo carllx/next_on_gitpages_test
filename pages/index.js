@@ -1,139 +1,118 @@
 import { Component } from 'react'
-import Head from 'next/head'
-import fetch from 'isomorphic-fetch'
-import { css  } from 'glamor'
-import glamorous from 'glamorous'
-import {ThemeProvider} from 'glamorous'
-import NoSSR from 'react-no-ssr';
+import { bindActionCreators } from 'redux'
+import withRedux from 'next-redux-wrapper'
 
+import { css  } from 'glamor'
+
+import {initStore} from '~/store'
+import {setScroll,switchLanguage,setViewSize,onDevice } from'~/reducers/root'
+import { setPanelOn } from '~/reducers/nav'
+
+import NoSSR from 'react-no-ssr';
+import Head from 'next/head'
 import SEO from '../components/SEO.index'
-import Post from '../components/post'
-import Nav from '../components/nav'
+import Nav from '~/container/nav'
 import LOGO from '../components/logo.svg'
 import {ThreeInit} from'../components/section.welcome.THREE.sphere.js'
 
 import {isMobile  ,isTablet ,isLandscape, getLanguer}  from '../utils/device'
 import {throttle, debounce}  from '../utils/throttle'
-
 import {ui ,GR }  from '../utils/ui'
-/**
-  css.global(
 
-    'h1,h2,h4',{
-      color:ui.color.primary_on_light,
-    }
-  )
-*/
+// import fetch from 'isomorphic-fetch'
+// import Post from '../components/post'
 
 
-
-
-
-export default class extends Component {
+class Index extends Component {
+  static getInitialProps ({isServer}) {
+    return Object.assign({},{isServer})
+  }
 
   constructor (props) {
       super(props)
-
-      this.state = {
-        /*
-        device   : desktop / moblie / tablet    --2.
-        direction: portrait / landscape
-        OS       : android / ios / windows / blackberry   --1.
-        browser  : chrome /  firefox / safari / IE / wechat /
-        language : cn / en / it
-        */
-        device: '',
-        isLandscape: true,
-        language: 'zh',
-        vw:'',
-        vh:'',
-
-       }
-       this.onScorll = debounce(this.handleScroll ,500 );
-       this.onReSize = debounce(this.handleReSize ,500 );
+      this.prevScrollY = 0
+      this.lazyScroll = debounce(this.isScrollUp ,300 );
+      this.lazyResize = debounce(this.handleReSize ,300 );
     }
 
-  // };
-  // shouldComponentUpdate(){
-  //   return false
-  // }
-  handleScroll=()=>{
+  isScrollUp=()=>{
 
     const ScrollY = window.scrollY;
-    //  ↑ or ↓ ???
-    const isScrollUp = ( ScrollY - this.prevScrollY)<=0 ;
+    const isUp = ( ScrollY - this.prevScrollY)<0 ;
 
-    if(isScrollUp) {
+    if(isUp) {
       console.log('↑');
     }else{
       console.log('↓');
     }
     // 刷新当前scroll所在位置
     this.prevScrollY = ScrollY;
+   }
 
-   };
-
-
-  handleReSize=()=>{
-    console.info('onResize -in Page index.js-handleReSize')
-    this.setState({vh : screen.height})
-    this.setState({vw : screen.width})
-  };
-
-
-  componentWillMount(){
-
-    if (typeof window == 'undefined') return;
-    //(); 点击链接跳转回复制已定义的样式
-    window.removeEventListener('scroll', this.onScorll, false);
-    window.removeEventListener('resize', this.onReSize);
-
+  setLanguage=(language)=>{
+    this.props.switchLanguage(language)
   }
 
-
-  componentWillUnMount(){
-    window.removeEventListener('scroll', this.onScorll ,false)
-    window.removeEventListener('resize', this.onScorll)
+  setViewSize=()=>{
+    console.info('Resize - setViewSize on redux')
+    this.props.setViewSize({
+      vh: document.documentElement.clientHeight,
+      vw: document.documentElement.clientWidth,
+      is_landscape:isLandscape()
+      })
   }
+
+  setDevice=()=>{
+      let whatDevice ;
+      if(isMobile()) {whatDevice = 'mobile'}
+      else if(isTablet()) {whatDevice = 'tablet'}
+      else {whatDevice = 'desktop'}
+      this.props.onDevice(whatDevice)
+  }
+
 
 
   componentDidMount(){
-
-    window.addEventListener('scroll', this.onScorll, false)
-    window.addEventListener('resize', this.onReSize );
+    window.addEventListener('scroll', this.lazyScroll, false)
+    window.addEventListener('resize', this.lazyResize );
 
     // SCROLL
     this.prevScrollY = window.scrollY;
 
-     // 检测移动硬件 还是 server端
-    // if (typeof navigator === 'undefined') {
-    //   console.error( '检测移动硬件 \ntypeof navigator === undefined\n this.state:'+ this.state)
-    //   return;
-    // }
-
     // DEVICE
-    if(isMobile()){//isMobile
-      this.setState({device : 'isMobile'})
-    }else if (isTablet()){
-      this.setState({device : 'isTablet'})
-    }else{
-      this.setState({device : 'isDesktop'})
-    };
+    this.setDevice()
 
+    /* LANGUGE */
+    this.setLanguage(getLanguer())
 
-    this.setState({
-      vh : screen.height,
-      vw : screen.width,
-      language : getLanguer(),
-      isLandscape : isLandscape(),
-    })
+    /* height width DIRECTION */
+    this.setViewSize()
 
     ThreeInit();
 
   }
 
+  componentWillMount(){
+    if (typeof window == 'undefined') return;
+    //(); 点击链接跳转回复制已定义的样式
+    window.removeEventListener('scroll', this.lazyScroll);
+    window.removeEventListener('resize', this.lazyResize);
+
+  }
+
+
+  componentWillUnMount(){
+    window.removeEventListener('scroll', this.lazyScroll)
+    window.removeEventListener('resize', this.lazyScroll)
+  }
+
 
   render () {
+    // debugger
+    const {language } = this.props.language ||{language:'zh'}
+    const {vw,vh,is_landscape} = this.props.view_size||{view_size:{vw:0,vh:0,is_landscap:false}}
+    // if(vw>0) {debugger}
+      // debugger
     return (
       <main >
         <Head>
@@ -150,8 +129,6 @@ export default class extends Component {
             name="twitter:card" content="summary"
             name="twitter:description" content="concept artist E-art School of Design"
             name="twitter:image"*/}
-
-
         </Head>
 
 
@@ -160,46 +137,45 @@ export default class extends Component {
           <ABS>{'客户端'}</ABS>
         </NoSSR>
 
-
-
-        {/*<SectionWelcome
-         width = {this.state.width}
-         height= {this.state.height}
-         isLandscape = {this.state.isLandscape}
-         />*/}
-
-
-         <canvas
-          {...css({position:'absolute',top:0,left:0})}
-          id = "scene"
-          width = {this.state.vw}
-          height = {this.state.vh}/>
-
+        {/*THREE*/}
+          <canvas
+        {...css({position:'absolute',top:0,left:0})}
+        id = "scene" width={vw} height={vh}/>
 
 
         {/*LOGO*/}
         <div
          {...css({
             /*居中*/
-             position:'relative',
-             marginLeft:`${GR.vw(6)}vw`,
-             marginTop:`${GR.vw(6)}vw`,
-             width: `${GR.vw(1)}vw`,//暂时
+             position:'absolute',
+             height: `fit-content`,
+             width: is_landscape?`${GR.vw(3)}vw`:`${GR.vw(1)}vw`,
+             display: 'block',
+             marginLeft:is_landscape?'auto':`${GR.vw(6)}vw`,
+             marginTop:is_landscape?'auto':`${GR.vw(6)}vw`,
+             marginRight:'auto',
+             marginBottom:'auto',
+             top: 0, left: 0, right: 0, bottom: 0,
+             cursor:'pointer',
+
+
         })}
+        className= {'index_LOGO'}
+        onClick = {()=>{this.props.setPanelOn('show')}}
         >
             <LOGO/>
         </div>
 
+        {/*NAV*/}
         <NoSSR>
-        <Nav
-         vw = {this.state.vw}
-         vh = {this.state.vh}
-         isLandscape={this.state.isLandscape}
-         language= {this.state.language}
-         show ={true}
-         marginW = {GR.vw(5)}
-         showLogo ={false}
-        />
+          <Nav
+           // vw = {vw}
+           // vh = {vh}
+           // isLandscape={isLandscape}
+           // language= {language}
+           // marginW = {GR.vw(5)}
+           show_on_init = {!is_landscape}
+          />
         </NoSSR>
 
 
@@ -211,6 +187,30 @@ export default class extends Component {
   }
 
 }
+
+const mapStateToProps = (state) => ({
+    view_size:state.Root.view_size,
+    device:state.Root.device,
+    language:state.Root.language,
+    is_Scroll_up:state.Root.is_Scroll_up,
+    nav:state.nav
+});
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    // root
+    switchLanguage: bindActionCreators(switchLanguage, dispatch),
+    setScroll: bindActionCreators(setScroll, dispatch),
+    setViewSize: bindActionCreators(setViewSize, dispatch),
+    onDevice: bindActionCreators(onDevice, dispatch),
+    //nav
+    setPanelOn:bindActionCreators(setPanelOn, dispatch )
+  }
+}
+
+export default withRedux(initStore, mapStateToProps, mapDispatchToProps)(Index)
+
+
 
 const ABS = (props)=>
    <div

@@ -91,7 +91,8 @@ class Nav extends Component {
                 width: '100vw',
                 height:'100vh',
                 zIndex:9,
-                pointerEvents:nav.on!=='close'?'none':'auto',
+                pointerEvents:'none', //避免遮挡Logo点击
+                // pointerEvents:nav.on!=='close'?'none':'auto',
                 // opacity:nav.on!=='close'?1:0,
              })}
              className = 'nav'

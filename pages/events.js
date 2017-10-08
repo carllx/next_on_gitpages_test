@@ -1,7 +1,8 @@
 
-import React from 'react'
+import { Component } from 'react'
 import { bindActionCreators } from 'redux'
 import withRedux from 'next-redux-wrapper'
+
 import NoSSR from 'react-no-ssr';
 import {throttle, debounce}  from '../utils/throttle'
 import {isMobile  ,isTablet , isLandscape, getLanguer }  from '../utils/device'
@@ -11,12 +12,12 @@ import {setScroll,switchLanguage,setViewSize,onDevice } from'~/reducers/root'
 
 import Nav from '~/container/nav'
 
-class Events extends React.Component {
+class Events extends Component {
+  //getInitialProps {{store query}}
   static getInitialProps ({ store, isServer, query}) {
 
     const post = require(`../static/contents/artisti/${query.id}`);
     // store.dispatch( )达到初始化store的效果
-    // store.dispatch(serverRenderClock(isServer))
     // store.dispatch({type:'INIT'})
     return   Object.assign({},{isServer},post)
   }
@@ -34,7 +35,7 @@ class Events extends React.Component {
 
     const ScrollY = window.scrollY;
     if(ScrollY == this.prevScrollY) return
-    const isUp = ( ScrollY - this.prevScrollY)<0 ;
+    const isUp = ( ScrollY - this.prevScrollY)<=0 ;
 
     if(isUp) {
       console.log('↑');
@@ -52,6 +53,7 @@ class Events extends React.Component {
   }
 
   setViewSize=()=>{
+    console.info('Resize - setViewSize on redux')
     this.props.setViewSize({
       vh: document.documentElement.clientHeight,
       vw: document.documentElement.clientWidth,
@@ -69,9 +71,7 @@ class Events extends React.Component {
 
 
   componentDidMount () {
-    // this.props.store.dispatch({type:'INIT'})
     // LISTENERS
-    // console.log('this.props',this.props)
     this.prevScrollY = window.scrollY;
     window.addEventListener('scroll', this.lazyScroll)
     window.addEventListener('resize', this.lazyResize);
@@ -87,7 +87,6 @@ class Events extends React.Component {
   }
 
   componentWillUnmount () {
-    // clearInterval(this.timer)
     window.removeEventListener('scroll', this.lazyScroll);
     window.removeEventListener('resize', this.lazyResize);
   }
@@ -112,15 +111,6 @@ class Events extends React.Component {
         <Page name = {this.props.name} />
         <Page name = {this.props.name} />
         <Page name = {this.props.name} />
-        {/*<Nav
-         vw = {view_size.vw}
-         vh = {view_size.vh}
-         isLandscape={view_size.isLandscape}
-         language= {language}
-         showOnInit ={true}
-         marginW = {GR.vw(5)}
-         showLogo ={false}
-         />*/}
         <NoSSR>
           <Nav
            show_on_init = {true}
