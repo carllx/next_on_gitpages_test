@@ -1,6 +1,6 @@
 // nav.js
 // import Link from 'next/link'
-import {Component} from 'react'
+import {PureComponent} from 'react'
 import { css } from 'glamor'
 import glamorous from 'glamorous'
 import {TimelineMax ,TweenMax} from "gsap";
@@ -44,7 +44,7 @@ const CONFIG = [{
  * @props  {[STRING]} color 颜色
  * @return {[component]}
  */
-class Nav extends Component {
+class Nav extends PureComponent {
 
     constructor (props) {
       super(props)
@@ -82,7 +82,7 @@ class Nav extends Component {
     }
 
     render(){
-        const { view_size, nav, language, islandscape } = this.props
+        const { view_size, nav_on, language, islandscape } = this.props
         return(
             <div
              {...css({
@@ -93,7 +93,6 @@ class Nav extends Component {
                 zIndex:9,
                 pointerEvents:'none', //避免遮挡Logo点击
                 // pointerEvents:nav.on!=='close'?'none':'auto',
-                // opacity:nav.on!=='close'?1:0,
              })}
              className = 'nav'
              onClick={()=>{this.onPanel('close')}}
@@ -103,20 +102,17 @@ class Nav extends Component {
               <SVG_BACKGROUND/>
 
               {/*ARTISTA*/}
-              <ArtistiNav
-               show = {nav.on=='artisti'}
-               // closeNavFunc = {()=>{this.onPanel('close')}}
-              />
+              <ArtistiNav show={nav_on==='artisti'}/>
 
               <AboutNav
-                show = {nav.on=='about'}
+                show = {nav_on==='about'}
                 showLogo={true}
               />
 
               <BUTTONS
               language={language}
               is_landscape = {view_size.is_landscape}
-              show = {nav.on!=='close'}
+              show = {nav_on!=='close'}
               foo = {this.onPanel}
               />
             </div>
@@ -127,10 +123,10 @@ class Nav extends Component {
 
 const mapStateToProps = (state) => ({
     view_size:state.Root.view_size,
-    device:state.Root.device,
+    // device:state.Root.device,
     language:state.Root.language,
     is_Scroll_up:state.Root.is_Scroll_up,
-    nav:state.nav
+    nav_on:state.nav.on
 });
 
 const mapDispatchToProps = (dispatch ) =>{

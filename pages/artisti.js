@@ -1,25 +1,29 @@
-import  {Component} from 'react'
-// import Link from 'next/link'
-// import fetch from 'isomorphic-fetch'
-import Head from 'next/head'
+import  {PureComponent} from 'react'
+// import fetch from 'isomorphic-fetch' //
+import { bindActionCreators } from 'redux'
+import withRedux from 'next-redux-wrapper'
 import { css } from 'glamor'
-
 import {ui  ,GR , makeKEY}  from '~/utils/ui'
-import {isMobile  ,isTablet , isLandscape, getLanguer }  from '../utils/device'
+import {isMobile  ,isTablet , isLandscape, getLanguer }  from '~/utils/device'
+import {setScroll,switchLanguage,setViewSize,onDevice } from'~/reducers/root'
+
 import {throttle, debounce}  from '~/utils/throttle'
 
 import NoSSR from 'react-no-ssr';
+import Head from 'next/head'
 import AVATAR from '../components/avatar'
-import Nav from '../components/nav'
+import Nav from '~/container/nav'
 import Seczione from '../components/seczione'
+import {initStore} from '~/store'
+import Perf from 'react-addons-perf'
 
 
 
 
 
-export default class extends Component {
+class Artisti extends PureComponent {
 
-    static async getInitialProps ({ query}) {
+    static async getInitialProps ({isServer,query}) {
       //es: query :{ id: 'EnzoCucchi' }
       // console.log(jsonPageRes )
       const post = require(`../static/contents/artisti/${query.id}`);
@@ -28,128 +32,100 @@ export default class extends Component {
 
     constructor(props){
         super(props)
-        this.state = {
-        /*
-        device   : desktop / moblie / tablet    --2.
-        direction: portrait / landscape
-        OS       : android / ios / windows / blackberry   --1.
-        browser  : chrome /  firefox / safari / IE / wechat /
-        language : zh / en / it
-        */
-        device: '',
-        isLandscape: '',
-        language: 'en',
-        scrolledUp:'',
+        this.lazyScroll = debounce(this.isScrollUp ,130 );
+        this.lazyResize = debounce(this.handleReSize ,130 );
 
-       }
-       this.onScorll = debounce(this.handleScroll ,500 );
-       this.onReSize = debounce(this.handleReSize ,500 );
-
-       this._keyCtx=makeKEY()
-
-
+        // this._keyCtx=makeKEY()
     }
-
-      handleScroll=()=>{
+    isScrollUp = ()=>{
 
         const ScrollY = window.scrollY;
-        //  ↑ or ↓ ???
-        const isScrollUp = ( ScrollY - this.prevScrollY)<0 ;
+        if(ScrollY == this.prevScrollY) return
+        const isUp = ( ScrollY - this.prevScrollY)<=0 ;
 
-        if(isScrollUp) {
+        if(isUp) {
           console.log('↑');
-          this.setState({scrolledUp:true})
+          this.props.setScroll(true)
         }else{
           console.log('↓');
-          this.setState({scrolledUp:false})
+          this.props.setScroll(false)
         }
         // 刷新当前scroll所在位置
         this.prevScrollY = ScrollY;
+      }
 
-    };
+      setLanguage=(language)=>{
+        this.props.switchLanguage(language)
+      }
 
-
-    handleReSize=()=>{
-    console.info('onResize -in Page artisti.js-handleReSize')
-    this.setState({vh : screen.height})
-    this.setState({vw : screen.width})
-
-    };
-
-    componentWillMount(){
-
-        if (typeof window == 'undefined') return;
-
-        window.removeEventListener('scroll', this.onScorll, false);
-        window.removeEventListener('resize', this.onReSize);
-
-    }
-
-
-    componentWillUnMount(){
-        window.removeEventListener('scroll', this.onScorll)
-        window.removeEventListener('resize', this.onScorll)
-    }
+      setViewSize=()=>{
+        console.info('Resize - setViewSize on redux')
+        this.props.setViewSize({
+          vh: document.documentElement.clientHeight,
+          vw: document.documentElement.clientWidth,
+          is_landscape:isLandscape()
+          })
+      }
+      setDevice=()=>{
+          let whatDevice ;
+          if(isMobile()) {whatDevice = 'mobile'}
+          else if(isTablet()) {whatDevice = 'tablet'}
+          else {whatDevice = 'desktop'}
+          this.props.onDevice(whatDevice)
+        }
 
 
-    componentDidMount(){
 
-        window.addEventListener('scroll', this.onScorll, false)
-        window.addEventListener('resize', this.onReSize );
-
-
-        // SCROLL
+      componentDidMount () {
+        window.Perf = Perf
+        // LISTENERS
         this.prevScrollY = window.scrollY;
-
-        // 检测移动硬件 还是 server端
-        if (typeof navigator === 'undefined') {}
+        window.addEventListener('scroll', this.lazyScroll)
+        window.addEventListener('resize', this.lazyResize);
 
         // DEVICE
-        if(isMobile()==true){//isMobile
-          this.setState({device : 'isMobile'})
-        }else if (isTablet()==true){
-          this.setState({device : 'isTablet'})
-        }else{
-          this.setState({device : 'isDesktop'})
-        };
-        // DIRECTION
-        this.setState({isLandscape : (isLandscape()?true:false) })
-        // LANGUAGE
-        this.setState({language : getLanguer()})
+        this.setDevice()
 
-        // height width
-        this.setState({vh : screen.height})
-        this.setState({vw : screen.width})
+        /* LANGUGE */
+        this.setLanguage(getLanguer())
 
-        // this.setState({language : 'it'})
+        /* height width DIRECTION */
+        this.setViewSize()
+      }
 
+      componentWillUnmount () {
+        window.removeEventListener('scroll', this.lazyScroll);
+        window.removeEventListener('resize', this.lazyResize);
+      }
 
-
-
-    }
+      componentWillUnMount(){
+        if (typeof window == 'undefined') return
+    //首次访问会出现无法识别windows
+        window.removeEventListener('scroll', this.lazyScroll)
+        window.removeEventListener('resize', this.lazyResize)
+      }
 
     render () {
 
-    // const images = this.props.works.map(works=>[works.img])
-    // debugger;
+    const {language } = this.props ||{language:'zh'}
+    const {vw,vh,is_landscape} = this.props.view_size||{view_size:{vw:0,vh:0,is_landscap:false}}
 
     // debugger
-
     return (
       <main
-      key = {`page-${this.props.id}-${this.state.language}` }
+      key = {`page-${this.props.id}-${language}` }
        >
         <Head>
-            <title>{this.props.name[this.state.language]}</title>
+            <title>{this.props.name[language]}</title>
             {/*meta 不支持重复 property*/}
-            <meta content={`ZAI - ${this.props.name[this.state.language]}`} name='title' />
-            <meta content={`ZAI - ${this.props.name[this.state.language]}`} property='og:title' />
-            <meta content={`ZAI - ${this.props.description.zh} ${this.props.description[this.state.language]} ${this.props.description.en}`} name='description' />
-            <meta content={`ZAI - ${this.props.description.zh} ${this.props.description[this.state.language]} ${this.props.description.en}`} property='og:description' />
+            <meta content={`ZAI - ${this.props.name[language]}`} name='title' />
+            <meta content={`ZAI - ${this.props.name[language]}`} property='og:title' />
+            <meta content={`ZAI - ${this.props.description.zh} ${this.props.description[language]} ${this.props.description.en}`} name='description' />
+            <meta content={`ZAI - ${this.props.description.zh} ${this.props.description[language]} ${this.props.description.en}`} property='og:description' />
             <meta content={`${this.props.keywords} ZAI, zhongart internationale, Gallery, arte,中艺国际, 佛罗伦萨 `} name='keywords' />
             <meta content='article' property='og:type' />
 
-            <meta content={`http://www.zhongart.it/artisti/${this.props.name[this.state.language]}`} property='og:url' />
+            <meta content={`http://www.zhongart.it/artisti/${this.props.name[language]}`} property='og:url' />
 
             {/*
             <meta content='//s3.amazonaws.com/所用的图片' property='og:image' />
@@ -173,7 +149,7 @@ export default class extends Component {
         {/* 头像 */}
         <div
          {...css({
-            height:`${GR.px(1,this.state.vw)}px`,
+            height:`${GR.vw(1)}vw`,
             marginLeft: `${GR.vw(5)}vw`,
             marginRight: `${GR.vw(5)}vw`,
             marginTop: `${GR.vw(6)}vw`,
@@ -182,8 +158,8 @@ export default class extends Component {
         >
             <AVATAR
              src = {this.props.avatar}
-             SizeWidth = {GR.px(1,this.state.vw)}
-             name = {this.props.name[this.state.language]}
+             SizeWidth = {GR.px(1,vw)}
+             name = {this.props.name[language]}
 
              />
         </div>
@@ -202,7 +178,7 @@ export default class extends Component {
          })}
         >
             {
-                this.props.description[this.state.language]
+                this.props.description[language]
                 .split('\n')
                 .map((item, key) =>
                     <span key={key}>{item}<br/></span>
@@ -216,10 +192,10 @@ export default class extends Component {
         <NoSSR>
         <Seczione
          items = {this.props.events}
-         language = {this.state.language}
+         language = {language}
          name = {'EVENTS'}
          color = {ui.color.w_1}
-         vw = {this.state.vw}
+         vw = {vw}
          marginW = {`${GR.vw(5)}vw`}
         />
         </NoSSR>
@@ -228,10 +204,10 @@ export default class extends Component {
         <NoSSR>
         <Seczione
          items ={this.props.exhibitions}
-         language = {this.state.language}
+         language = {language}
          name = {'EXHIBITIONS'}
          color={ui.color.w_1}
-         vw = {this.state.vw}
+         vw = {vw}
          marginW = {`${GR.vw(5)}vw`}
         />
         </NoSSR>
@@ -241,10 +217,10 @@ export default class extends Component {
         <NoSSR>
         <Seczione
          items ={this.props.works}
-         language = {this.state.language}
+         language = {language}
          name = {'WORKS'}
          color={ui.color.w_1}
-         vw = {this.state.vw}
+         vw = {vw}
          marginW = {`${GR.vw(5)}vw`}
         />
         </NoSSR>
@@ -256,22 +232,16 @@ export default class extends Component {
          {...css({
             position: 'relative',
             bottom: '0',
-            height:`${GR.px(3,this.state.vh)}px`,
+            height:`${GR.px(3,vh)}px`,
 
          })}
         ></div>
 
         <NoSSR>
 
-          <Nav
-           vw = {this.state.vw}
-           vh = {this.state.vh}
-           isLandscape={this.state.isLandscape}
-           language= {this.state.language}
-           show = {this.state.scrolledUp==undefined?false:(this.state.scrolledUp)}//初始没有scroll时,close
-           marginW = {GR.vw(5)}// for content
-           showLogo={true}
-          />
+            <Nav
+             show_on_init = {!is_landscape}
+            />
         </NoSSR>
       </main>
       )
@@ -282,3 +252,21 @@ export default class extends Component {
 
 
 
+const mapStateToProps = (state) => ({
+    view_size:state.Root.view_size,
+    // device:state.Root.device,
+    language:state.Root.language,
+});
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    // root
+    switchLanguage: bindActionCreators(switchLanguage, dispatch),
+    setScroll: bindActionCreators(setScroll, dispatch),
+    setViewSize: bindActionCreators(setViewSize, dispatch),
+    onDevice: bindActionCreators(onDevice, dispatch),
+
+  }
+}
+
+export default withRedux(initStore, mapStateToProps, mapDispatchToProps)(Artisti)

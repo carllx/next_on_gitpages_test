@@ -1,20 +1,21 @@
-
 import { Component } from 'react'
 import { bindActionCreators } from 'redux'
 import withRedux from 'next-redux-wrapper'
 
 import NoSSR from 'react-no-ssr';
 import {throttle, debounce}  from '../utils/throttle'
-import {isMobile  ,isTablet , isLandscape, getLanguer }  from '../utils/device'
+import {isMobile  ,isTablet , isLandscape, getLanguer }  from '~/utils/device'
 import Page from '../container/events/page'
 import {initStore} from '~/store'
 import {setScroll,switchLanguage,setViewSize,onDevice } from'~/reducers/root'
 
 import Nav from '~/container/nav'
 
+import Perf from 'react-addons-perf'
+
 class Events extends Component {
   //getInitialProps {{store query}}
-  static getInitialProps ({ store, isServer, query}) {
+  static getInitialProps ({isServer, query}) {
 
     const post = require(`../static/contents/artisti/${query.id}`);
     // store.dispatch( )达到初始化store的效果
@@ -26,8 +27,8 @@ class Events extends Component {
   constructor(props){
     super(props)
     this.prevScrollY = 0
-    this.lazyScroll= debounce(this.isScrollUp,300)
-    this.lazyResize= debounce(this.setViewSize,300)
+    this.lazyScroll= debounce(this.isScrollUp,130)
+    this.lazyResize= debounce(this.setViewSize,130)
   }
 
 
@@ -71,6 +72,7 @@ class Events extends Component {
 
 
   componentDidMount () {
+    window.Perf = Perf
     // LISTENERS
     this.prevScrollY = window.scrollY;
     window.addEventListener('scroll', this.lazyScroll)

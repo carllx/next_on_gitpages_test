@@ -1,5 +1,5 @@
 
-import React, {Component} from 'react'
+import {PureComponent} from 'react'
 import glamorous,{withTheme} from 'glamorous'
 import {css} from 'glamor'
 import NoSSR from 'react-no-ssr';
@@ -43,7 +43,7 @@ const Triangle = (props)=>
 
 
 // IMG_WithLoader
-export class AVATAR extends Component {
+export class AVATAR extends PureComponent {
     constructor(props){
         super(props)
     }

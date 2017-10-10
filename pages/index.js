@@ -19,6 +19,8 @@ import {isMobile  ,isTablet ,isLandscape, getLanguer}  from '../utils/device'
 import {throttle, debounce}  from '../utils/throttle'
 import {ui ,GR }  from '../utils/ui'
 
+import Perf from 'react-addons-perf'
+
 // import fetch from 'isomorphic-fetch'
 // import Post from '../components/post'
 
@@ -30,9 +32,9 @@ class Index extends Component {
 
   constructor (props) {
       super(props)
-      this.prevScrollY = 0
-      this.lazyScroll = debounce(this.isScrollUp ,300 );
-      this.lazyResize = debounce(this.handleReSize ,300 );
+      this.prevScrollY= 0
+      this.lazyScroll= debounce(this.isScrollUp,130)
+      this.lazyResize= debounce(this.handleReSize,130)
     }
 
   isScrollUp=()=>{
@@ -73,6 +75,8 @@ class Index extends Component {
 
 
   componentDidMount(){
+
+    window.Perf = Perf
     window.addEventListener('scroll', this.lazyScroll, false)
     window.addEventListener('resize', this.lazyResize );
 
@@ -93,8 +97,8 @@ class Index extends Component {
   }
 
   componentWillMount(){
-    if (typeof window == 'undefined') return;
-    //(); 点击链接跳转回复制已定义的样式
+    if (typeof window == 'undefined') return
+    //首次访问会出现无法识别windows
     window.removeEventListener('scroll', this.lazyScroll);
     window.removeEventListener('resize', this.lazyResize);
 
@@ -193,7 +197,7 @@ const mapStateToProps = (state) => ({
     device:state.Root.device,
     language:state.Root.language,
     is_Scroll_up:state.Root.is_Scroll_up,
-    nav:state.nav
+    // nav:state.nav
 });
 
 const mapDispatchToProps = (dispatch) => {

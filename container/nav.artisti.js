@@ -57,9 +57,9 @@ class ArtistiNav extends Component {
 
     _switchRouter(id){
         Router.push({
-            pathname: '/events',
+            pathname: '/artisti',
             query: { id: id },
-            asPath :`/events/${id}`
+            asPath :`/artisti/${id}`
         })
         this.onClose()
         // this.props.closeNavFunc()
@@ -93,8 +93,12 @@ class ArtistiNav extends Component {
                 {
                     artistInfo.map( (item,index)=>
                         <div
+                         {...css({
+                            pointerEvents:this.props.show?'auto':'none',
+                         })}
                          key={'avatars_'+item.id + index}
                          onClick = {()=>this._switchRouter(item.id)}
+                         className ={"avatars"}
                          >
                             {/* 头像 */}
                             <div
@@ -108,10 +112,9 @@ class ArtistiNav extends Component {
                                 perspective:'1000px',
                                 willChange: 'transform , opacity ,visibility',
                                 //twenmax staggerFrom
-                                opacity:0,
-                                // transform:'translateX(100vh) rotate(10)',
+                                opacity:this.props.show?1:0,
+                                // pointerEvents:'auto',
                              })}
-                             className ={"avatars"}
                             >
                                 <AVATAR
                                  src = {item.avatar}
@@ -120,12 +123,10 @@ class ArtistiNav extends Component {
                                 />
                             </div>
                         </div>
-                    )//artistInfo.map
+                    ) //artistInfo.map
                 }
             </div>
-
     )}
-
 }
 
 

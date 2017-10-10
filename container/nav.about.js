@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 
-import {Component} from 'react'
+import {PureComponent} from 'react'
 import { css } from 'glamor'
 import {TweenMax} from "gsap";
 
@@ -9,12 +9,10 @@ import LOGO  from './components/logo.svg'
 
 
 
-class AboutNav extends Component {
+class AboutNav extends PureComponent {
 
     constructor(props){
         super(props)
-        this.state={
-        }
     }
 
     componentDidMount(){
@@ -155,9 +153,7 @@ const aboutInfo ={
 
 const mapStateToProps = (state) => ({
     view_size:state.Root.view_size,
-    device:state.Root.device,
-    is_Scroll_up:state.Root.is_Scroll_up,
-    language:state.Root.language,
+    language:state.Root.language
 });
 
 

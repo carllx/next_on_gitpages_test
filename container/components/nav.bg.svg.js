@@ -1,6 +1,6 @@
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { Component } from 'react'
+import { PureComponent } from 'react'
 
 import { css } from 'glamor'
 import { ui, GR } from '~/utils/ui'
@@ -15,7 +15,7 @@ import { setBackGroundPoints } from '~/reducers/nav'
  * @return {[component]}
  */
 
-class SVG_BACKGROUND extends Component{
+class SVG_BACKGROUND extends PureComponent{
     constructor(props){
         super(props);
         this._pts_data= this.setPtsData()//将计算结果储存数据
@@ -27,9 +27,9 @@ class SVG_BACKGROUND extends Component{
         pt_4-------pt_3
     */
     setPtsData=()=>{
-        const landscape = this.props.view_size.is_landscape;
-        const vw = this.props.view_size.vw;
-        const vh = this.props.view_size.vh;
+        const landscape = this.props.is_landscape;
+        const vw = this.props.vw;
+        const vh = this.props.vh;
 
         if(landscape){
             return {
@@ -48,6 +48,16 @@ class SVG_BACKGROUND extends Component{
                 pt_2_x:vw,pt_2_y:GR.px(5,vw),
                 pt_3_x:GR.px(6,vw),pt_3_y:vw,
                 pt_4_x:0, pt_4_y:vw,
+              },mostre:{
+                pt_1_x:0, pt_1_y:GR.px(4,vw),
+                pt_2_x:vh,pt_2_y:GR.px(2,vw),
+                pt_3_x:vh,pt_3_y:vh,
+                pt_4_x:0, pt_4_y:vh,
+              },eventi:{
+                pt_1_x:0, pt_1_y:GR.px(6,vw),
+                pt_2_x:vh,pt_2_y:GR.px(3,vw),
+                pt_3_x:vh,pt_3_y:vh,
+                pt_4_x:0, pt_4_y:vh,
               },about:{
                 pt_1_x:0, pt_1_y:GR.px(6,vw),
                 pt_2_x:vw,pt_2_y:GR.px(2,vw),
@@ -72,6 +82,16 @@ class SVG_BACKGROUND extends Component{
                 pt_2_x:vw,pt_2_y:GR.px(2,vh),
                 pt_3_x:vw,pt_3_y:vh,
                 pt_4_x:0, pt_4_y:vh,
+              },mostre:{
+                pt_1_x:0, pt_1_y:GR.px(4,vh),
+                pt_2_x:vw,pt_2_y:GR.px(2,vh),
+                pt_3_x:vw,pt_3_y:vh,
+                pt_4_x:0, pt_4_y:vh,
+              },eventi:{
+                pt_1_x:0, pt_1_y:GR.px(6,vh),
+                pt_2_x:vw,pt_2_y:GR.px(3,vh),
+                pt_3_x:vw,pt_3_y:vh,
+                pt_4_x:0, pt_4_y:vh,
               },about:{
                 pt_1_x:0, pt_1_y:GR.px(4,vh),
                 pt_2_x:vw,pt_2_y:GR.px(5,vh),
@@ -90,14 +110,9 @@ class SVG_BACKGROUND extends Component{
 
     componentWillReceiveProps(nextProps){
         /*若props(外)更新服从外部*/
-        if(
-            nextProps.nav.on =='mostre'||
-            nextProps.nav.on =='eventi'||
-            this.props.nav.on=='eventi'||
-            this.props.nav.on=='mostre') return //暂时没有指定pts数据
 
-        if(nextProps.nav.on!=this.props.nav.on){
-            this.setBGPts(this.props.nav.on,nextProps.nav.on)
+        if(nextProps.nav_on!==this.props.nav_on){
+            this.setBGPts(this.props.nav_on,nextProps.nav_on)
         }
     }
     /*一维数组 转换成 多维*/
@@ -132,8 +147,8 @@ class SVG_BACKGROUND extends Component{
 
     render(){
 
-        const pts = this._arrayToSVGPts(this.props.nav.background_pts);
-        const pts_arr = this._ObjectToVectorArry(this.props.nav.background_pts,2);
+        const pts = this._arrayToSVGPts(this.props.nav_BG_PTs);
+        const pts_arr = this._ObjectToVectorArry(this.props.nav_BG_PTs,2);
 
 
         return(
@@ -178,10 +193,13 @@ class SVG_BACKGROUND extends Component{
 
 
 const mapStateToProps = (state) => ({
-    view_size:state.Root.view_size,
-    device:state.Root.device,
-    is_Scroll_up:state.Root.is_Scroll_up,
-    nav:state.nav
+    vw:state.Root.view_size.vw,
+    vh:state.Root.view_size.vh,
+    is_landscape:state.Root.view_size.is_landscape,
+    // device:state.Root.device,
+    // is_Scroll_up:state.Root.is_Scroll_up,
+    nav_on:state.nav.on,
+    nav_BG_PTs:state.nav.background_pts
 });
 
 

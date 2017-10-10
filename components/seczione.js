@@ -1,9 +1,9 @@
-import  {Component} from 'react'
+// import  {Component} from 'react'
 import fetch from 'isomorphic-fetch'
 import { css } from 'glamor'
 import {ui  ,GR ,makeKEY}  from '../utils/ui'
 import {IMG_WithLoader} from './img'
-
+import { PureComponent } from 'react'
 
 const _pubblic_key= makeKEY()
 /**
@@ -228,7 +228,9 @@ const _content = (props)=>
 //
 //
 
- class Seczione extends Component {
+
+
+ class Seczione extends PureComponent {
 
     constructor (props) {
       super(props)
@@ -244,41 +246,40 @@ const _content = (props)=>
 
     }
 
-    componentWillMount(){
+    // componentWillMount(){
         //先计算_height ,在close
         // this.init_Fold()
 
-    }
+    // }
     componentDidMount(){
-        if(this.props.name=="WORKS")console.log('WORKS-componentDidMount')
+        // if(this.props.name=="WORKS")console.log('WORKS-componentDidMount')
         //先计算_height ,在close
-        this._maxHeight=this._$folder.clientHeight
+        // this._maxHeight=this._$folder.clientHeight
         this.setState({
                 maxHeight:0,
                 close:true,
-                }
-            )
+        })
         // debugger
-        this.init_Fold()
+        // this.init_Fold()
     }
 
-    componentWillReceiveProps(nextProps,nextState){
-        console.log(`section ${this.props.name} -componentWillReceiveProps`)
-    }
+    // componentWillReceiveProps(nextProps,nextState){
+        // console.log(`section ${this.props.name} -componentWillReceiveProps`)
+    // }
 
-    componentDidUpdate(nextProps,nextState){
-        console.log(`section ${this.props.name} -componentDidUpdate`)
+    // componentDidUpdate(nextProps,nextState){
+        // console.log(`section ${this.props.name} -componentDidUpdate`)
         // console.log(`${this.props.name} componentDidUpdate \nnextProps:${JSON.stringify(nextState)}\nthis.props:${JSON.stringify(this.state)}`)
-    }
+    // }
 
 
     //设置 auto 不需要 预展开一次来获取高度
-    init_Fold = () =>{ // fold 展开后 ,根据情况获取高度
+    // init_Fold = () =>{ // fold 展开后 ,根据情况获取高度
 
-        console.log('init_Fold 高度初始化:',this._$folder.clientHeight)
+        // console.log('init_Fold 高度初始化:',this._$folder.clientHeight)
 
-        this._height = this._$folder.clientHeight;
-    }
+        // this._height = this._$folder.clientHeight;
+    // }
 
     toggleFold(){
         console.log('toggle')
@@ -289,7 +290,7 @@ const _content = (props)=>
                 close:!this.state.close,
                 fetch:true
             },
-            ()=>{this._foldding = false}
+            // ()=>{this._foldding = false}
         )
     }
 
@@ -299,10 +300,8 @@ const _content = (props)=>
         return (
             <div
              // {...fullWidthRelative}
-             {...css({
-                position:'relative',})}
+             {...css({position:'relative'})}>
 
-             >
                 {/*HEADER--------------------
                     DIV_Click
                         TOP SVG
@@ -316,7 +315,6 @@ const _content = (props)=>
                         top:0,
                         left:0,
                         cursor: 'auto',
-
                     })}
                  onClick={this.ToggleFold}
                 >
@@ -364,6 +362,7 @@ const _content = (props)=>
                     position:'relative',
                     zIndex:0,
                     height:this.state.close?this.TriangleHeight:'auto',//不再需要预算 this._height
+                    // height:this.state.close?0:'auto',
                     transition: `all 1s cubic-bezier(0, 0.6, 0, 1)`,
                     willChange: 'max-height,opacity',
                     opacity:this.state.close?0:1,
@@ -395,7 +394,6 @@ const _content = (props)=>
                              marginW = {this.props.marginW}
                              key={this._keyCtx+index}
 
-                             // maxHeight= {this.state.maxHeight}
                              close = {this.state.close}
                              fetch={this.state.fetch}
                             />
