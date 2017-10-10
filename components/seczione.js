@@ -109,7 +109,7 @@ const _img =(props)=>
         <IMG_WithLoader
          src={props.src}
          width = {props.width}
-         height = {`${GR.px(1,props.width)}`}
+         height = {props.is_landscape?`${GR.px(2,props.width)}`:`${GR.px(1,props.width)}`}
          left= {0}
          top={0}
          active = {props.active}//初始false,避免请求导致setState on unMount
@@ -158,6 +158,7 @@ const _content = (props)=>
              footColor = {props.footColor}
              active = {!props.close}
              fetch={props.fetch}
+             is_landscape = {props.is_landscape}
             />
             :null}
 
@@ -232,7 +233,7 @@ const _content = (props)=>
 
     constructor (props) {
       super(props)
-      this.TriangleHeight = this.props.is_landscape?GR.px(5,this.props.vw):GR.px(4,this.props.vw)
+      this.TriangleHeight = this.props.is_landscape?GR.px(7,this.props.vw):GR.px(4,this.props.vw)
       this.ToggleFold=this.toggleFold.bind(this)
       this.state={
         close:false,//先计算_height ,在close
@@ -344,7 +345,7 @@ const _content = (props)=>
                         position:'absolute',
                         fontSize:this.props.is_landscape?`${GR.vw(9)}vw`:`${GR.vw(6)}vw`,
                         fontWeight:100,
-                        top:this.props.is_landscape?`${GR.vw(6)}vw`:`${GR.vw(5)}vw`,
+                        top:this.props.is_landscape?`${GR.vw(8)}vw`:`${GR.vw(5)}vw`,
                         left:this.props.is_landscape?`${GR.vw(4)}vw`:this.props.marginW,// artisti - avatar&& description 的marginLeft/marginWidth
                         zIndex:2,
                         })}>
@@ -392,6 +393,7 @@ const _content = (props)=>
                              footColor = {this.props.color}
                              marginW = {this.props.marginW}
                              key={this._keyCtx+index}
+                             is_landscape={this.props.is_landscape}
 
                              close = {this.state.close}
                              fetch={this.state.fetch}
