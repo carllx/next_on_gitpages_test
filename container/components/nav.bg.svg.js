@@ -34,15 +34,20 @@ class SVG_BACKGROUND extends PureComponent{
         if(landscape){
             return {
                 close:{
-                pt_1_x:vw, pt_1_y:vh,
-                pt_2_x:vw,pt_2_y:vh/2,
-                pt_3_x:vw,pt_3_y:vh/3,
-                pt_4_x:vw, pt_4_y:vh/4,
-              },show:{
+
                 pt_1_x:vw, pt_1_y:0,
-                pt_2_x:vw,pt_2_y:vh,
-                pt_3_x:vw-GR.px(4,vw),pt_3_y:vh,
-                pt_4_x:GR.px(1,vw), pt_4_y:GR.px(6,vh),
+                pt_2_x:vw,pt_2_y:0,
+                pt_3_x:vw,pt_3_y:0,
+                pt_4_x:vw, pt_4_y:0,
+              },show:{
+                pt_1_x:GR.px(2,vw), pt_1_y:10,
+                pt_2_x:vw-20,pt_2_y:10,
+                pt_3_x:vw-GR.px(6,vw),pt_3_y:GR.px(5,vh),
+                pt_4_x:GR.px(1,vw), pt_4_y:GR.px(4,vh),
+                // pt_1_x:vw, pt_1_y:0,
+                // pt_2_x:vw,pt_2_y:vh,
+                // pt_3_x:vw-GR.px(4,vw),pt_3_y:vh,
+                // pt_4_x:GR.px(1,vw), pt_4_y:GR.px(6,vh),
               },artisti:{
                 pt_1_x:0, pt_1_y:GR.px(4,vw),
                 pt_2_x:vw,pt_2_y:GR.px(5,vw),

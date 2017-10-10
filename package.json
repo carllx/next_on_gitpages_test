@@ -37,7 +37,7 @@
     "pushdev": "git add . && git commit -m  \" %npm_package_config_commitmessage% \" && git push origin master"
   },
   "config": {
-    "commitmessage": "index desktop完成 , nav关联的组件替换成pureComponent 大幅度提高了性能"
+    "commitmessage": "artist 完善desktop端排版, 尝试修复section隐藏后仍然,自带长度造成一直下滚问题"
   },
   "name": "",
   "description": "## How to use",

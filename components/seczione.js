@@ -142,7 +142,6 @@ const _img =(props)=>
  * @props  {string} img  内容图片地址
  * @props  {string} content  内容叙述
  * @props  {float} width 一般指设备屏幕宽度
- * @props  {float} maxHeight 用于fold折叠动画
  * @props  {string} color 是内嵌SVG 颜色
  * @props  {int} marginW 文本左右 margin
  * @props  {int} key 允许迭代生成
@@ -157,7 +156,6 @@ const _content = (props)=>
              width = {props.vw}
              offset = {props.offset}
              footColor = {props.footColor}
-             maxHeight = {props.maxHeight}
              active = {!props.close}
              fetch={props.fetch}
             />
@@ -168,7 +166,7 @@ const _content = (props)=>
          {...css({
             position:'relative',
 
-            fontSize:`${GR.vw(7)}vw`,
+            fontSize:`1rem`,
             fontWeight:100,
             top:props.img?`${-props.offset}px`:0,//迟早要还的
             marginLeft:props.marginW,
@@ -191,7 +189,7 @@ const _content = (props)=>
                         ?'0px'
                         :`${GR.vw(8)}vw`
                     })}
-                     key={key}
+                     key={`Section_content_`+key}
                      >
                         {p}<br/>
                      </div>
@@ -234,7 +232,7 @@ const _content = (props)=>
 
     constructor (props) {
       super(props)
-      this.TriangleHeight = GR.px(4,this.props.vw)
+      this.TriangleHeight = this.props.is_landscape?GR.px(5,this.props.vw):GR.px(4,this.props.vw)
       this.ToggleFold=this.toggleFold.bind(this)
       this.state={
         close:false,//先计算_height ,在close
@@ -344,10 +342,10 @@ const _content = (props)=>
                     {/*name*/}
                     <div {...css({
                         position:'absolute',
-                        fontSize:`${GR.vw(6)}vw`,
+                        fontSize:this.props.is_landscape?`${GR.vw(9)}vw`:`${GR.vw(6)}vw`,
                         fontWeight:100,
-                        top:`${GR.vw(5)}vw`,
-                        left:this.props.marginW,
+                        top:this.props.is_landscape?`${GR.vw(6)}vw`:`${GR.vw(5)}vw`,
+                        left:this.props.is_landscape?`${GR.vw(4)}vw`:this.props.marginW,// artisti - avatar&& description 的marginLeft/marginWidth
                         zIndex:2,
                         })}>
                         {this.props.name}
@@ -362,14 +360,15 @@ const _content = (props)=>
                     position:'relative',
                     zIndex:0,
                     height:this.state.close?this.TriangleHeight:'auto',//不再需要预算 this._height
-                    // height:this.state.close?0:'auto',
                     transition: `all 1s cubic-bezier(0, 0.6, 0, 1)`,
                     willChange: 'max-height,opacity',
                     opacity:this.state.close?0:1,
+                    // visibility:this.state.close?'hidden':'collapse',
+                    // display:this.state.close?'none':'block',
                     // overflow: this.state.close?'auto':'unset',//消除fold动画时scroll移动
                     overflow: 'unset',//消除fold动画时scroll移动
                  })}
-                 key= {'dddd'}
+
                  >
                     {/*image--------------------*/}
                     {this.props.img?

@@ -5,13 +5,13 @@ import withRedux from 'next-redux-wrapper'
 import { css } from 'glamor'
 import {ui  ,GR , makeKEY}  from '~/utils/ui'
 import {isMobile  ,isTablet , isLandscape, getLanguer }  from '~/utils/device'
-import {setScroll,switchLanguage,setViewSize,onDevice } from'~/reducers/root'
+import {setScroll,switchLanguage,setViewSize,onDevice,setBrowser } from'~/reducers/root'
 
 import {throttle, debounce}  from '~/utils/throttle'
 
 import NoSSR from 'react-no-ssr';
 import Head from 'next/head'
-import AVATAR from '../components/avatar'
+import AVATAR from '~/container/components/avatar'
 import Nav from '~/container/nav'
 import Seczione from '../components/seczione'
 import {initStore} from '~/store'
@@ -61,8 +61,8 @@ class Artisti extends PureComponent {
       setViewSize=()=>{
         console.info('Resize - setViewSize on redux')
         this.props.setViewSize({
-          vh: document.documentElement.clientHeight,
-          vw: document.documentElement.clientWidth,
+          vh:  window.innerHeight,//document.documentElement.clientHeight,
+          vw:  window.innerWidth,//document.documentElement.clientWidth,
           is_landscape:isLandscape()
           })
       }
@@ -109,6 +109,7 @@ class Artisti extends PureComponent {
 
     const {language } = this.props ||{language:'zh'}
     const {vw,vh,is_landscape} = this.props.view_size||{view_size:{vw:0,vh:0,is_landscap:false}}
+    const MarginW = `${is_landscape?GR.vw(3):GR.vw(5)}vw`
 
     // debugger
     return (
@@ -136,56 +137,61 @@ class Artisti extends PureComponent {
         </Head>
 
 
-        {/* CSS */}
-
-
-      {/*
-      头像和描述
-      宽屏--横向2列
-      竖屏--1列
-    */}
+      {/* 头像和描述
+      宽屏--横向2列 竖屏--1列 */}
 
         <NoSSR>
-        {/* 头像 */}
         <div
-         {...css({
-            height:`${GR.vw(1)}vw`,
-            marginLeft: `${GR.vw(5)}vw`,
-            marginRight: `${GR.vw(5)}vw`,
-            marginTop: `${GR.vw(6)}vw`,
-         })}
+        {...css({
+            // is_landscape
+            display:'flex',
+            flexDirection:is_landscape?'row':'column',
+            alignItems:is_landscape?'flex-end':'left',// iphone
+            marginLeft: is_landscape?`${GR.vw(4)}vw`:MarginW,
+            marginRight: is_landscape?`${GR.vw(1)}vh`:MarginW,
+            marginTop: `${is_landscape?GR.vw(7):GR.vw(6)}vw`,
+            marginBottom: is_landscape?`${GR.vw(7)}vh`:`${GR.vw(7)}vw`,
 
+        })}
         >
-            <AVATAR
-             src = {this.props.avatar}
-             SizeWidth = {GR.px(1,vw)}
-             name = {this.props.name[language]}
+            {/* 头像 */}
+            <div
+             {...css({
+                // height:`inherit`,
+                width:`${is_landscape?GR.px(4,vw):GR.px(1,vw)}px`,
+                height:`${is_landscape?GR.px(4,vw):GR.px(1,vw)}px`,
+                marginBottom:`${is_landscape?0:GR.vw(6)}vw`
+             })}
+            >
+                <AVATAR
+                 src = {this.props.avatar}
+                 SizeWidth = {is_landscape?GR.px(4,vw):GR.px(1,vw)}
+                 name = {this.props.name[language]}
+                 />
+            </div>
 
-             />
+            {/*描述 DESCRIPTION*/}
+            <div
+             {...css({
+                fontSize:`1rem`,
+                fontWeight:100,
+                marginLeft: is_landscape?`${GR.vw(7)}vw`:MarginW,
+             })}
+            >
+                {
+                    this.props.description[language]
+                    .split('\n')
+                    .map((item, key) =>
+                        <span key={key}>{item}<br/></span>
+                    )
+                }
+            </div>
+
         </div>
         </NoSSR>
 
-        <NoSSR>
-        {/*描述 DESCRIPTION*/}
-        <div
-         {...css({
-            fontSize:`1rem`,
-            marginLeft: `${GR.vw(5)}vw`,
-            marginRight: `${GR.vw(5)}vw`,
-            marginTop: `${GR.vw(6)}vw`,
-            marginBottom: `${GR.vw(7)}vw`,
-            fontWeight:100,
-         })}
-        >
-            {
-                this.props.description[language]
-                .split('\n')
-                .map((item, key) =>
-                    <span key={key}>{item}<br/></span>
-                )
-            }
-        </div>
-        </NoSSR>
+
+
         {/* MENUS-section */}
 
         {/*EVENTS*/}
@@ -196,7 +202,8 @@ class Artisti extends PureComponent {
          name = {'EVENTS'}
          color = {ui.color.w_1}
          vw = {vw}
-         marginW = {`${GR.vw(5)}vw`}
+         marginW = {MarginW}
+         is_landscape={is_landscape}
         />
         </NoSSR>
 
@@ -208,7 +215,8 @@ class Artisti extends PureComponent {
          name = {'EXHIBITIONS'}
          color={ui.color.w_1}
          vw = {vw}
-         marginW = {`${GR.vw(5)}vw`}
+         marginW = {MarginW}
+         is_landscape={is_landscape}
         />
         </NoSSR>
 
@@ -221,7 +229,8 @@ class Artisti extends PureComponent {
          name = {'WORKS'}
          color={ui.color.w_1}
          vw = {vw}
-         marginW = {`${GR.vw(5)}vw`}
+         marginW = {MarginW}
+         is_landscape={is_landscape}
         />
         </NoSSR>
 
@@ -265,6 +274,7 @@ const mapDispatchToProps = (dispatch) => {
     setScroll: bindActionCreators(setScroll, dispatch),
     setViewSize: bindActionCreators(setViewSize, dispatch),
     onDevice: bindActionCreators(onDevice, dispatch),
+    setBrowser: bindActionCreators(setBrowser, dispatch),
 
   }
 }

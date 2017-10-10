@@ -74,8 +74,11 @@ class Nav extends PureComponent {
         this.props.setPanelOn(next_on)
         this._on= next_on
         //--滚动
+        // const html = document.getElementsByTagName("html")
         if(next_on=='show'||next_on=='close') {//artisti,mostre,eventi 禁止滚动
-          document.body.style.overflow = "auto"}else{
+
+          document.body.style.overflow = "auto"
+        }else{
           document.body.style.overflow = "hidden"
           }
       }

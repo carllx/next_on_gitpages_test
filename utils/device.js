@@ -105,6 +105,12 @@ module.exports.isIOSOlderThan10 = function (userAgent) {
   return /(iphone|ipod|ipad).*os.(7|8|9)/i.test(userAgent);
 };
 
+/**
+ * 检测 -设备是否 is iOS and 低于 version 10.
+ */
+module.exports.isBrowserEnvironment = function (userAgent) {
+  return /(iphone|ipod|ipad).*os.(7|8|9)/i.test(userAgent);
+};
 
 module.exports.getLanguer = function () {
 

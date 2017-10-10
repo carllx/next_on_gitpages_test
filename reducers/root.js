@@ -15,7 +15,8 @@ export const TYPES = {
   SWITCH_LANGUAGE: 'SWITCH_LANGUAGE',
   IS_SCROLL_UP: 'IS_SCROLL_UP',
   VIEW_SIZE:'VIEW_SIZE',
-  ON_DEVICE:'ON_DEVICE'
+  ON_DEVICE:'ON_DEVICE',
+  ON_BROWSER:'ON_BROWSER',
 }
 
 
@@ -31,6 +32,13 @@ export const onDevice = (device_name) => dispatch => {
     return dispatch({
         type:TYPES.ON_DEVICE,
         device:device_name
+    })
+}
+
+export const setBrowser = (os) => dispatch => {
+    return dispatch({
+        type:TYPES.ON_BROWSER,
+        os:os
     })
 }
 
@@ -68,6 +76,8 @@ export default (state = {} ,action)=>{
       /*DEVICE*/
       case TYPES.ON_DEVICE:
         return Object.assign({},state,{device:action.device})
+        case TYPES.ON_BROWSER:
+        return Object.assign({},state,{browser:action.browser})
         /*LANGUAGE*/
       case TYPES.SWITCH_LANGUAGE:
         return Object.assign({},state,{language:action.language})

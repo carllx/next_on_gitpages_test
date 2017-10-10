@@ -5,7 +5,7 @@ import withRedux from 'next-redux-wrapper'
 import { css  } from 'glamor'
 
 import {initStore} from '~/store'
-import {setScroll,switchLanguage,setViewSize,onDevice } from'~/reducers/root'
+import {setScroll,switchLanguage,setViewSize,onDevice ,setBrowser} from'~/reducers/root'
 import { setPanelOn } from '~/reducers/nav'
 
 import NoSSR from 'react-no-ssr';
@@ -56,13 +56,13 @@ class Index extends Component {
   }
 
   setViewSize=()=>{
-    console.info('Resize - setViewSize on redux')
-    this.props.setViewSize({
-      vh: document.documentElement.clientHeight,
-      vw: document.documentElement.clientWidth,
-      is_landscape:isLandscape()
-      })
-  }
+        console.info('Resize - setViewSize on redux')
+        this.props.setViewSize({
+          vh:  window.innerHeight,//document.documentElement.clientHeight,
+          vw:  window.innerWidth,//document.documentElement.clientWidth,
+          is_landscape:isLandscape()
+          })
+      }
 
   setDevice=()=>{
       let whatDevice ;
@@ -194,6 +194,7 @@ class Index extends Component {
 
 const mapStateToProps = (state) => ({
     view_size:state.Root.view_size,
+    os:state.Root.os,
     device:state.Root.device,
     language:state.Root.language,
     is_Scroll_up:state.Root.is_Scroll_up,
@@ -206,6 +207,7 @@ const mapDispatchToProps = (dispatch) => {
     switchLanguage: bindActionCreators(switchLanguage, dispatch),
     setScroll: bindActionCreators(setScroll, dispatch),
     setViewSize: bindActionCreators(setViewSize, dispatch),
+    setBrowser: bindActionCreators(setBrowser, dispatch),
     onDevice: bindActionCreators(onDevice, dispatch),
     //nav
     setPanelOn:bindActionCreators(setPanelOn, dispatch )

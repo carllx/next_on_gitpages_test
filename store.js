@@ -16,6 +16,7 @@ import REDUCERS from './reducers'
 export const INITIALSTATE = {
   Root:
   {
+    browser:'none',
     device:'seo_engin',//mobile desktop table seo_engin
     language:'zh',// 'en','zh','it'
     is_Scroll_up:false,

@@ -16,8 +16,7 @@ const Triangle = (props)=>
      viewBox= {`0 0 1 1`}
     >
         <polygon
-         fill={ui.color.b_o1}
-         // display = {!props.isLandscape}
+         fill={ui.color.b_o2}
          stroke="none"
          points={
             `0,0 `+//left_top
@@ -25,7 +24,6 @@ const Triangle = (props)=>
             `0,1 `//right_bottom
         }
         />
-
     </svg>
 
 
@@ -52,6 +50,8 @@ export class AVATAR extends PureComponent {
         return(
             <div {...css({
                     position:'relative',
+                    height:'inherit',
+                    width:'inherit'
                  })}>
 
 
