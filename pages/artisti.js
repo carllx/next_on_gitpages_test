@@ -151,7 +151,6 @@ class Artisti extends PureComponent {
             marginRight: is_landscape?`${GR.vw(1)}vh`:MarginW,
             marginTop: `${is_landscape?GR.vw(7):GR.vw(6)}vw`,
             marginBottom: is_landscape?`${GR.vw(7)}vh`:`${GR.vw(7)}vw`,
-
         })}
         >
             {/* 头像 */}

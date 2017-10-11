@@ -27,11 +27,11 @@ app.prepare()
   const server = express()
 
   // custom route for posts
-  server.get('/post/:id', (req, res) => {
-    return app.render(req, res, '/post', {
-      id: req.params.id
-    })
-  })
+  // server.get('/post/:id', (req, res) => {
+  //   return app.render(req, res, '/post', {
+  //     id: req.params.id
+  //   })
+  // })
 
   // custom route for posts
   server.get('/artisti/:id', (req, res) => {
@@ -39,12 +39,18 @@ app.prepare()
       id: req.params.id
     })
   })
-
-  server.get('/events/:id', (req, res) => {
-    return app.render(req, res, '/events', {
+  // custom route for posts http://localhost:3000/artisti?id=EnzoCucchi
+  server.get('/artisti?id=:id', (req, res) => {
+    return app.render(req, res, '/artisti', {
       id: req.params.id
     })
   })
+
+  // server.get('/events/:id', (req, res) => {
+  //   return app.render(req, res, '/events', {
+  //     id: req.params.id
+  //   })
+  // })
 
   server.get('*', (req, res) => {
     return handle(req, res)

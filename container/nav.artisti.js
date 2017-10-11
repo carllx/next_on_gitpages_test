@@ -57,6 +57,10 @@ class ArtistiNav extends Component {
 
     _switchRouter(id){
         Router.push({
+            /*http://localhost:3000/artisti/EnzoCucchi*/
+            // pathname :`/artisti/${id}`
+
+            /*http://localhost:3000/artisti?id=EnzoCucchi*/
             pathname: '/artisti',
             query: { id: id },
             asPath :`/artisti/${id}`
