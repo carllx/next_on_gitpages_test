@@ -204,6 +204,7 @@ class Artisti extends PureComponent {
          vw = {vw}
          marginW = {MarginW}
          is_landscape={is_landscape}
+         z= {9}
         />
         </NoSSR>
 
@@ -217,6 +218,7 @@ class Artisti extends PureComponent {
          vw = {vw}
          marginW = {MarginW}
          is_landscape={is_landscape}
+         z= {8}
         />
         </NoSSR>
 
@@ -231,6 +233,7 @@ class Artisti extends PureComponent {
          vw = {vw}
          marginW = {MarginW}
          is_landscape={is_landscape}
+         z= {7}
         />
         </NoSSR>
 

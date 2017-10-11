@@ -10,8 +10,6 @@
  *  + _LOADER
  *
  *
- * active {false} 在未(可见)到的时候 隐藏,
- * active {true} loader三角形动画转动
  * state , loaded {true}的时候显示img
  *  NoSSR, 需要使用 NoSSR (import NoSSR from 'react-no-ssr';)
  *
@@ -84,7 +82,8 @@ const _Loading =(props)=>
         left:props.left?props.left:0,
         top:props.top?props.top:0,
         width: props.width,
-        height: props.show?props.height:0,
+        height: props.height,
+        // height: props.show?props.height:0,
         opacity:props.show?1:0,
         display:'flex',
         // display: props.show?'flex':'none',
@@ -228,9 +227,9 @@ export class IMG_WithLoader extends PureComponent {
         <div
          {...css({
           position: 'relative',
-          width : show?width:0,
-          height: show?height:0,
-          display:show?'block':'none'//sezione 避免隐藏时会占height
+          width : width,
+          height: height,
+          //display:show?'block':'none'//sezione 避免隐藏时会占height
           })}
         >
             <_IMG

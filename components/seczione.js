@@ -13,29 +13,38 @@ const _pubblic_key= makeKEY()
  * @props  {string} color
  * @return {component}
  */
-const _SVG_TopTriangle =( props )=>
-    <svg
-     {...css({
-        width:`${props.width}px`,
-        height:`${props.height}px`,
-    })}>
-        <polygon
-         fill = {props.color}
-         points={
-            `0,0`+
-            ` ${props.width},0`+
-            ` 0,${props.height}`
-         }
-         />
-         <line
-          x1="0"
-          y1={props.height}
-          x2={props.width}
-          y2="0"
-          strokeWidth="1"
-          stroke={ui.color.b_o3}
-          />
-    </svg>
+
+class _SVG_TopTriangle extends PureComponent{
+    render(){
+        const {width, height, color}=this.props
+        return(
+            <svg
+             {...css({
+                width:`${width}px`,
+                height:`${height}px`,
+            })}>
+                <polygon
+                 fill = {color}
+                 points={
+                    `0,0`+
+                    ` ${width},0`+
+                    ` 0,${height}`
+                 }
+                 />
+                 <line
+                  x1="0"
+                  y1={height}
+                  x2={width}
+                  y2="0"
+                  strokeWidth="1"
+                  stroke={ui.color.b_o3}
+                  />
+            </svg>
+        )
+    }
+}
+// const _SVG_TopTriangle =( props )=>
+
 
 /**
  * _SVG_Bottom
@@ -44,29 +53,38 @@ const _SVG_TopTriangle =( props )=>
  * @props  {string} color
  * @return {component}
  */
-const _SVG_BottomTriangle = ( props ) =>
-    <svg {...css({
-        width:`${props.width}px`,
-        height:`${props.height}px`,
-    })}>
+// const _SVG_BottomTriangle = ( props ) =>
+class _SVG_BottomTriangle extends PureComponent{
+    render(){
+        const { width, height, color}=this.props
+        return(
+            <svg {...css({
+                width:`${width}px`,
+                height:`${height}px`,
+            })}>
 
-        <polygon
-         fill = {props.color}
+                <polygon
+                 fill = {color}
 
-         points={
-             `0,${props.height}`+
-             ` ${props.width},0`+
-             ` ${props.width},${props.height}`
-         }/>
-         <line
-          x1="0"
-          y1={props.height}
-          x2={props.width}
-          y2="0"
-          strokeWidth="1"
-          stroke={ui.color.b_o3}
-          />
-    </svg>
+                 points={
+                     `0,${height}`+
+                     ` ${width},0`+
+                     ` ${width},${height}`
+                 }/>
+                 <line
+                  x1="0"
+                  y1={height}
+                  x2={width}
+                  y2="0"
+                  strokeWidth="1"
+                  stroke={ui.color.b_o3}
+                  />
+            </svg>
+
+        )
+    }
+}
+
 
 
 /**
@@ -86,7 +104,6 @@ class _ImgSection extends PureComponent{
             footColor,
             src,
             is_landscape,
-            active,
             fetch
         } = this.props
 
@@ -123,7 +140,7 @@ class _ImgSection extends PureComponent{
                  height = {is_landscape?`${GR.px(2,width)}`:`${GR.px(1,width)}`}
                  left= {0}
                  top={0}
-                 active = {active}//初始false,避免请求导致setState on unMount
+                 //active = {active}//初始false,避免请求导致setState on unMount
                  fetch={fetch}
                  key = {`${_pubblic_key}_sec_WithLoader`}
                 />
@@ -164,7 +181,19 @@ class _ImgSection extends PureComponent{
  * @return {component}
  */
 const _content = (props)=>
-    <div>
+    <div
+     {...css({
+        position:'relative',
+        zIndex:-2,
+        // // display:props.close?'none':'inline-block'
+        // // display:'inline-block'
+        // // // marginBottom:props.close ?'0px':'-100px',
+        transform:`translateY(${props.close?-100:0}px)`,
+        pointerEvents:`${props.close?'none':'auto'}`,
+        transition: `all 1s cubic-bezier(0, 0.6, 0, 1)`,
+        willChange: 'transform',
+     })}
+    >
         {/*图片IMG*/}
         {props.img?
             <_ImgSection
@@ -172,24 +201,24 @@ const _content = (props)=>
              width = {props.vw}
              offset = {props.offset}
              footColor = {props.footColor}
-             active = {!props.close}
+             // show = {!props.close}
              fetch={props.fetch}
              is_landscape = {props.is_landscape}
             />
-            :null}
+        :null}
 
         {/*文字*/}
         <div
          {...css({
             position:'relative',
-
+            display:'inline-block',//block的话,不显示的时候会占用高度
             fontSize:`1rem`,
             fontWeight:100,
             top:props.img?`${-props.offset}px`:0,//迟早要还的
             marginLeft:props.marginW,
             marginRight:props.marginW,
-            marginTop:props.close?`-50px`:`${GR.vw(5)}vw`,
-            marginBottom:props.close?`-50px`:`${GR.vw(6)}vw`,
+            marginTop:props.is_landscape?`${GR.vw(8)}vw`:`${GR.vw(5)}vw`,
+            marginBottom:props.is_landscape?`${GR.vw(8)}vw`:`${GR.vw(6)}vw`,
 
             transition: `all 1s cubic-bezier(0, 0.6, 0, 1)`,
             willChange: 'margin-top,margin-bottom',
@@ -201,11 +230,7 @@ const _content = (props)=>
                 .split('\n')
                 .map((p, key) =>
                     <div
-                     {...css({
-                        marginBottom:props.close
-                        ?'0px'
-                        :`${GR.vw(8)}vw`
-                    })}
+                     {...css({ marginBottom:props.close ?'0px':props.is_landscape?`${GR.vw(9)}vw`:`${GR.vw(8)}vw`})}
                      key={`Section_content_`+key}
                      >
                         {p}<br/>
@@ -313,7 +338,7 @@ const _content = (props)=>
         return (
             <div
              // {...fullWidthRelative}
-             {...css({position:'relative'})}>
+             {...css({position:'relative',zIndex:this.props.z})}>
 
                 {/*HEADER--------------------
                     DIV_Click
@@ -327,7 +352,7 @@ const _content = (props)=>
                         width:'100%',
                         top:0,
                         left:0,
-                        cursor: 'auto',
+                        cursor: 'pointer',
                     })}
                  onClick={this.ToggleFold}
                 >
@@ -361,7 +386,7 @@ const _content = (props)=>
                         fontWeight:100,
                         top:this.props.is_landscape?`${GR.vw(8)}vw`:`${GR.vw(5)}vw`,
                         left:this.props.is_landscape?`${GR.vw(4)}vw`:this.props.marginW,// artisti - avatar&& description 的marginLeft/marginWidth
-                        zIndex:2,
+                        zIndex:1,
                         })}>
                         {this.props.name}
                     </div>
@@ -370,11 +395,13 @@ const _content = (props)=>
 
 
                 <div
-                 ref={c => this._$folder = c}
+                 // ref={c => this._$folder = c}
                  {...css({
                     position:'relative',
                     zIndex:0,
-                    height:this.state.close?this.TriangleHeight:'auto',//不再需要预算 this._height
+                    height:this.state.close?0:'auto',//不再需要预算 this._height
+                    maxHeight:this.state.close?0:'auto',//不再需要预算 this._height
+
                     transition: `all 1s cubic-bezier(0, 0.6, 0, 1)`,
                     willChange: 'max-height,opacity',
                     opacity:this.state.close?0:1,
