@@ -10,7 +10,7 @@ import {IMG_WithLoader} from './img'
 const Triangle = (props)=>
     <svg
      {...css({
-        width:props.SizeWidth,
+        width:props.size,
         position:'absolute'
      })}
      viewBox= {`0 0 1 1`}
@@ -50,13 +50,13 @@ export class AVATAR extends PureComponent {
         return(
             <div {...css({
                     position:'relative',
-                    height:'inherit',
-                    width:'inherit'
+                    height:this.props.SizeWidth,
+                    width:this.props.SizeWidth
                  })}>
 
 
                 <Triangle
-                 SizeWidth = {this.props.SizeWidth}
+                 size = {this.props.SizeWidth}
                 />
 
                 {/*NAME*/}

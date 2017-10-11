@@ -94,10 +94,11 @@ class ArtistiNav extends Component {
                     artistInfo.map( (item,index)=>
                         <div
                          {...css({
-                            pointerEvents:this.props.show?'auto':'none',
+                            // pointerEvents:this.props.show?'auto':'none',
+                            pointerEvents:'none',
                          })}
                          key={'avatars_'+item.id + index}
-                         onClick = {()=>this._switchRouter(item.id)}
+
                          className ={"avatars"}
                          >
                             {/* 头像 */}
@@ -105,7 +106,7 @@ class ArtistiNav extends Component {
                              {...css({
                                 height:`${itemSize}px`,
                                 marginLeft: `${is_landscape?GR.vw(7):GR.vw(5)}vw`,
-                                marginRight: `${is_landscape? GR.vw(7)  :GR.vw(5)}vw`,
+                                // marginRight: `${is_landscape? GR.vw(7)  :GR.vw(5)}vw`,
                                 marginTop: `${is_landscape?GR.vw(7):GR.vw(6)}vw`,
                                 // transform:'translateZ(0) rotate(10)',
                                 backfaceVisibility:'hidden',
@@ -113,8 +114,10 @@ class ArtistiNav extends Component {
                                 willChange: 'transform , opacity ,visibility',
                                 //twenmax staggerFrom
                                 opacity:this.props.show?1:0,
-                                // pointerEvents:'auto',
+                                pointerEvents:this.props.show?'auto':'none',
+                                cursor:'pointer',
                              })}
+                             onClick = {()=>this._switchRouter(item.id)}
                             >
                                 <AVATAR
                                  src = {item.avatar}
