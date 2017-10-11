@@ -17,7 +17,7 @@
  *
  */
 
-import {Component} from 'react'
+import  {PureComponent} from 'react'
 import { css } from 'glamor'
 import XHRProgress from '../utils/Progress'
 import {ui ,makeKEY}  from '../utils/ui'
@@ -44,7 +44,9 @@ const _IMG =(props)=>
         left:props.left,
         top:props.top,
         opacity: props.show?1:0,
+        // display: props.show?'block':'none',
         width:'100%',
+        // height: props.show?'100%':0,
         height: '100%',
         //在这里找渐变模板 https: //webgradients.com/
         // backgroundColor:  props.src?`url(${props.src})`:'white',
@@ -77,20 +79,22 @@ const _Loading =(props)=>
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
-        display: 'flex',
+
 
         left:props.left?props.left:0,
         top:props.top?props.top:0,
         width: props.width,
-        height:props.height,
+        height: props.show?props.height:0,
         opacity:props.show?1:0,
+        display:'flex',
+        // display: props.show?'flex':'none',
 
         })}
       >
         <svg
          {...css({
-          width:'20%',
-          height:'20%',
+          width:'15%',
+          height:'15%',
           transformOrigin:'48% 48%',
           animation: `${_LoadingKeyframe} 1s cubic-bezier(0.24, 0.49, 0.82, 0.6) infinite`,
           animationPlayState: props.show?'running':'paused',
@@ -103,13 +107,14 @@ const _Loading =(props)=>
           />
         </svg>
 
-        <p {...css({
+        <p
+         {...css({
           color:ui.color.disabled_on_light,
           fontSize:'0.2rem',
-        })}
+         })}
         className={"loader"}
         >
-          {props.percent+'%'}
+          {props.percent +'%'}
         </p>
       </div>
 
@@ -126,7 +131,7 @@ const _Loading =(props)=>
     />
 */
 
-export class IMG_WithLoader extends Component {
+export class IMG_WithLoader extends PureComponent {
 
   constructor (props) {
 
@@ -211,42 +216,45 @@ export class IMG_WithLoader extends Component {
          });
 
     }else{
-      console.error('图片fetchImg 发送不成功')
+      console.error('img.js_图片fetchImg 发送不成功')
     }
 
   }
   render(){
-      return(
-          <div
-           {...css({
-            position: 'relative',
-            width : this.props.width,
-            height : this.props.height,
-            })}
+    const{width,height,left,top,show} = this.props
+    const{src,loaded,percent} = this.state
 
-          >
-              <_IMG
-               width = {this.props.width}
-               height = {this.props.height}
-               src = {this.state.src}
-               show = {this.state.loaded}//显示Img
-               left = {this.props.left}
-               top = {this.props.top}
-               key={`${this.key}_IMG`}
-               />
+    return(
+        <div
+         {...css({
+          position: 'relative',
+          width : show?width:0,
+          height: show?height:0,
+          display:show?'block':'none'//sezione 避免隐藏时会占height
+          })}
+        >
+            <_IMG
+             width = {width}
+             height = {height}
+             src = {src}
+             show = {loaded}//显示Img
+             left = {left}
+             top = {top}
+             key={`${this.key}_IMG`}
+             />
 
-              <_Loading
-               width = {this.props.width}
-               height = {this.props.height}
-               show = {(this.state.loaded==false)}
-               percent = {this.state.percent}
-               left = {this.props.left}
-               top = {this.props.top}
-               key={`${this.key}_LOADIMGER`}
+            <_Loading
+             width = {width}
+             height = {height}
+             show = {loaded===false}
+             percent = {percent}
+             left = {left}
+             top = {top}
+             key={`${this.key}_LOADIMGER`}
 
-              />
-          </div>
-          );
+            />
+        </div>
+        );
   }
 }
 

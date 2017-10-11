@@ -242,15 +242,11 @@ class Artisti extends PureComponent {
             position: 'relative',
             bottom: '0',
             height:`${GR.px(3,vh)}px`,
-
          })}
         ></div>
 
         <NoSSR>
-
-            <Nav
-             show_on_init = {!is_landscape}
-            />
+            <Nav show_on_init = {!is_landscape}/>
         </NoSSR>
       </main>
       )

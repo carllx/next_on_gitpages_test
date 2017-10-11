@@ -1,1 +1,0 @@
-// nav.artisti.js

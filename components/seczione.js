@@ -26,8 +26,6 @@ const _SVG_TopTriangle =( props )=>
             ` ${props.width},0`+
             ` 0,${props.height}`
          }
-         // strokeWidth="5"
-         // stroke={ui.color.w_2}
          />
          <line
           x1="0"
@@ -79,61 +77,79 @@ const _SVG_BottomTriangle = ( props ) =>
  * @props  {int} footColor 是内嵌footer SVG 颜色
  * @return {component}
  */
-const _img =(props)=>
-    <div
-     {...css({
-        position:'relative',
-        top:-props.offset,//IMG一律需要上移
-        left:0,
-        // zIndex:-1,
-    })}>
-        {/*Header*/}
-        <div {...css({
-            width:'100vw',
-            height:`${props.offset}px`,
-            position:'absolute',
-            left:0,
-            zIndex:1,
-            top:`-1px`,// ????Img
-            /*????Img 背景下看到有误差
-            (和SVG无关 因为添加stroke strokeWidth依然无效)*/
-        })}
-        >
-            <_SVG_TopTriangle
-             width={props.width}
-             height= {props.offset}
-             color ={props.footColor}
+// const _ImgSection =(props)=>
+class _ImgSection extends PureComponent{
+    render(){
+        const {
+            offset,
+            width,
+            footColor,
+            src,
+            is_landscape,
+            active,
+            fetch
+        } = this.props
 
-            />
-        </div>
-        <IMG_WithLoader
-         src={props.src}
-         width = {props.width}
-         height = {props.is_landscape?`${GR.px(2,props.width)}`:`${GR.px(1,props.width)}`}
-         left= {0}
-         top={0}
-         active = {props.active}//初始false,避免请求导致setState on unMount
-         fetch={props.fetch}
-         key = {`${_pubblic_key}_sec_WithLoader`}
-        />
-        {/*footer*/}
-        <div {...css({
-            width:'100%',
-            height:`${props.offset}px`,
-            position:'absolute',
-            left:0,
-            /*????Img 背景下看到有误差
-            (和SVG无关 因为添加stroke strokeWidth依然无效)*/
-            bottom:`-1px`,//
-        })}
-        >
-            <_SVG_BottomTriangle
-             width={props.width}
-             height= {props.offset}
-             color ={props.footColor}
-            />
-        </div>{/*footer*/}
-    </div>
+        return(
+            <div
+             {...css({
+                position:'relative',
+                top:-offset,//IMG一律需要上移
+                left:0,
+                // zIndex:-1,
+            })}>
+                {/*Header*/}
+                <div {...css({
+                    width:'100vw',
+                    height:`${offset}px`,
+                    position:'absolute',
+                    left:0,
+                    zIndex:1,
+                    top:`-1px`,// ????Img
+                    /*????Img 背景下看到有误差
+                    (和SVG无关 因为添加stroke strokeWidth依然无效)*/
+                })}
+                >
+                    <_SVG_TopTriangle
+                     width={width}
+                     height= {offset}
+                     color ={footColor}
+
+                    />
+                </div>
+                <IMG_WithLoader
+                 src={src}
+                 width = {width}
+                 height = {is_landscape?`${GR.px(2,width)}`:`${GR.px(1,width)}`}
+                 left= {0}
+                 top={0}
+                 active = {active}//初始false,避免请求导致setState on unMount
+                 fetch={fetch}
+                 key = {`${_pubblic_key}_sec_WithLoader`}
+                />
+                {/*footer*/}
+                <div {...css({
+                    width:'100%',
+                    height:`${offset}px`,
+                    position:'absolute',
+                    left:0,
+                    /*????Img 背景下看到有误差
+                    (和SVG无关 因为添加stroke strokeWidth依然无效)*/
+                    bottom:`-1px`,//
+                })}
+                >
+                    <_SVG_BottomTriangle
+                     width={width}
+                     height= {offset}
+                     color ={footColor}
+                    />
+                </div>{/*footer*/}
+            </div>
+
+        )
+    }
+}
+
 
 
 /**
@@ -151,7 +167,7 @@ const _content = (props)=>
     <div>
         {/*图片IMG*/}
         {props.img?
-            <_img
+            <_ImgSection
              src = {props.img}
              width = {props.vw}
              offset = {props.offset}
@@ -258,8 +274,6 @@ const _content = (props)=>
                 maxHeight:0,
                 close:true,
         })
-        // debugger
-        // this.init_Fold()
     }
 
     // componentWillReceiveProps(nextProps,nextState){
@@ -373,7 +387,7 @@ const _content = (props)=>
                  >
                     {/*image--------------------*/}
                     {this.props.img?
-                        <_img
+                        <_ImgSection
                          src = {this.props.img}
                          width = {this.props.vw}
                          offset = {this.TriangleHeight}
