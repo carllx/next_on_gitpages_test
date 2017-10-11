@@ -29,19 +29,19 @@ module.exports = {
     },*/
 
 
-    console.log('postList: ',postList)
-    console.log('artisti: ',artisti)
+    // console.log('postList: ',postList)
+    // console.log('artisti: ',artisti)
     // tranform the list of posts into a map of pages with the pathname `/post/:id`
-    const pages = postList.reduce(
-      (pages, post) =>
-        Object.assign({}, pages, {
-          [`/post/${post.id}`]: {
-            page: '/post',
-            query: { id: post.id }
-          }
-        }),
-      {},
-    )
+    // const pages = postList.reduce(
+    //   (pages, post) =>
+    //     Object.assign({}, pages, {
+    //       [`/post/${post.id}`]: {
+    //         page: '/post',
+    //         query: { id: post.id }
+    //       }
+    //     }),
+    //   {},
+    // )
 
     // tranform the list of posts into a map of pages with the pathname `/post/:id`
 
@@ -57,20 +57,35 @@ module.exports = {
 
     )
 
-
-     const eventsPages = artisti.artistInfo.reduce(
+    const artistPages2 = artisti.artistInfo.reduce(
       (artistPages, obj) =>
         Object.assign({}, artistPages, {
-          [`/events/${obj.id}`]: {
-            page: '/events',
+          [`/artisti?id=${obj.id}`]: {
+            page: '/artisti',
             query: { id: obj.id }
           }
         }),
       {},
 
     )
+    //  const eventsPages = artisti.artistInfo.reduce(
+    //   (artistPages, obj) =>
+    //     Object.assign({}, artistPages, {
+    //       [`/events/${obj.id}`]: {
+    //         page: '/events',
+    //         query: { id: obj.id }
+    //       }
+    //     }),
+    //   {},
+    // )
     // combine the map of post pages with the home
-    return Object.assign({}, pages, artistPages ,eventsPages,{
+    return Object.assign(
+      {},
+      pages,
+      artistPages ,
+      artistPages2 ,
+      eventsPages,
+      {
       '/': { page: '/' }
     })
   }
