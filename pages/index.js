@@ -58,8 +58,8 @@ class Index extends Component {
   setViewSize=()=>{
         console.info('Resize - setViewSize on redux')
         this.props.setViewSize({
-          vh:  window.screen.height,//window.innerHeight,//document.documentElement.clientHeight,
-          vw:  window.screen.height,//window.innerWidth,//document.documentElement.clientWidth,
+          vh: window.innerHeight,//window.screen.height,,//document.documentElement.clientHeight,
+          vw: window.innerWidth,// window.screen.width,//document.documentElement.clientWidth,
           is_landscape:isLandscape()
           })
       }
