@@ -83,7 +83,7 @@ module.exports = {
       {},
       // pages,
       artistPages ,
-      artistPages2 ,
+      // artistPages2 ,
       // eventsPages,
       {
       '/': { page: '/' }
