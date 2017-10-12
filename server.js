@@ -46,11 +46,7 @@ app.prepare()
   //   })
   // })
 
-  // server.get('/events/:id', (req, res) => {
-  //   return app.render(req, res, '/events', {
-  //     id: req.params.id
-  //   })
-  // })
+
 
   server.get('*', (req, res) => {
     return handle(req, res)

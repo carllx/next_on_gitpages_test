@@ -57,17 +57,17 @@ module.exports = {
 
     )
 
-    const artistPages2 = artisti.artistInfo.reduce(
-      (artistPages, obj) =>
-        Object.assign({}, artistPages, {
-          [`/artisti?id=${obj.id}`]: {
-            page: '/artisti',
-            query: { id: obj.id }
-          }
-        }),
-      {},
+    // const artistPages2 = artisti.artistInfo.reduce(
+    //   (artistPages, obj) =>
+    //     Object.assign({}, artistPages, {
+    //       [`/artisti/${obj.id}`]: {
+    //         page: '/artisti?id=',
+    //         query: { id: obj.id }
+    //       }
+    //     }),
+    //   {},
 
-    )
+    // )
     //  const eventsPages = artisti.artistInfo.reduce(
     //   (artistPages, obj) =>
     //     Object.assign({}, artistPages, {
@@ -81,10 +81,10 @@ module.exports = {
     // combine the map of post pages with the home
     return Object.assign(
       {},
-      pages,
+      // pages,
       artistPages ,
       artistPages2 ,
-      eventsPages,
+      // eventsPages,
       {
       '/': { page: '/' }
     })
