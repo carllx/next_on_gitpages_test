@@ -122,11 +122,11 @@ class Index extends Component {
         <Head>
           <title>{'中艺国际 - ZAI - zhong art'}</title>
           <meta content={`中艺国际, ZAI, zhongart international`} name='title' />
-            <meta content={`中艺国际, ZAI, zhongart international`} property='og:title' />
-            <meta content={`中艺国际, ZAI, zhong art international, 是一个致力于在意大利传播中国艺术文化的现实：我们的目标是让我们的传播者介绍中国传统和现代的艺术和文化，促进他们在意大利得到适当的赞赏。另一方面，我们在中国实现同样的目标，在两个地理遥远的国家之间的交流与互惠的逻辑，但接近精神`} name='description' />
-            <meta content={`中艺国际, ZAI, zhong art international,是一个致力于在意大利传播中国艺术文化的现实：我们的目标是让我们的传播者介绍中国传统和现代的艺术和文化，促进他们在意大利得到适当的赞赏。另一方面，我们在中国实现同样的目标，在两个地理遥远的国家之间的交流与互惠的逻辑，但接近精神`} property='og:description' />
-            <meta content={`中艺国际, ZAI, zhongart, zhong art international, 意大利, 佛罗伦萨, firenze, arte, Gallery`} name='keywords'/>
-            <meta http-equiv="keyword" content="中艺国际, ZAI, zhongart, zhong art international, 意大利, 佛罗伦萨, firenze, arte, Gallery" />
+          <meta content={`中艺国际, ZAI, zhongart international`} property='og:title' />
+          <meta content={`中艺国际, ZAI, zhong art international, 是一个致力于在意大利传播中国艺术文化的现实：我们的目标是让我们的传播者介绍中国传统和现代的艺术和文化，促进他们在意大利得到适当的赞赏。另一方面，我们在中国实现同样的目标，在两个地理遥远的国家之间的交流与互惠的逻辑，但接近精神`} name='description' />
+          <meta content={`中艺国际, ZAI, zhong art international,是一个致力于在意大利传播中国艺术文化的现实：我们的目标是让我们的传播者介绍中国传统和现代的艺术和文化，促进他们在意大利得到适当的赞赏。另一方面，我们在中国实现同样的目标，在两个地理遥远的国家之间的交流与互惠的逻辑，但接近精神`} property='og:description' />
+          <meta content={`中艺国际, ZAI, zhongart, zhong art international, 意大利, 佛罗伦萨, firenze, arte, Gallery`} name='keywords'/>
+          <meta http-equiv="keyword" content="中艺国际, ZAI, zhongart, zhong art international, 意大利, 佛罗伦萨, firenze, arte, Gallery" />
             {/*name="twitter:site" content="@artstationhq"
             name="twitter:site_name" content="ArtStation"
             name="twitter:title" content="Fenghua Zhong"

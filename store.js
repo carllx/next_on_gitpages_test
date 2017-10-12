@@ -28,3 +28,4 @@ export const INITIALSTATE = {
 export const initStore = (initialState = INITIALSTATE) => {
   return createStore(REDUCERS, initialState, composeWithDevTools(applyMiddleware(thunkMiddleware)))
 }
+
