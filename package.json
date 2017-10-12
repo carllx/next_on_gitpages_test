@@ -34,7 +34,8 @@
     "start": "serve out",
     "push": "npm run pushdev && npm run pushsito",
     "pushsito": "npm run prestart && cd out/ && node -e \"console.log('now path on :',process.cwd())\" && git add . && git commit -m  \" %npm_package_config_commitmessage% \" && git push origin master",
-    "pushdev": "cross-var git add . && git commit -m  \" $npm_package_config_commitmessage \" && git push origin master"
+    "pushdev": "git add . && cross-var git commit -m   $npm_package_config_commitmessage  && git push origin master",
+    "testCross":"cross-var node -e \"console.log('now path on :', \\\"$npm_package_config_commitmessage\\\")\" && cross-var node -e \"console.log('now path on :', \\\"$npm_package_config_commitmessage\\\")\""
   },
   "config": {
     "commitmessage": "尝试使用mac 的git 变量标记"
