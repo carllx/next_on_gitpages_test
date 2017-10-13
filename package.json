@@ -38,7 +38,7 @@
     "testCross":"cross-var node -e \"console.log('now path on :', \\\"$npm_package_config_commitmessage\\\")\" && cross-var node -e \"console.log('now path on :', \\\"$npm_package_config_commitmessage\\\")\""
   },
   "config": {
-    "commitmessage": "修复iphone safari nav.bg.svg 上移, 改用 decko 的debounce  "
+    "commitmessage": "增加Language 组件语言转换,(moblie)掩藏,调整artist 头像avatar 和 description top对齐,(pc)根据艺术家name调整正文大小 "
   },
   "name": "",
   "description": "## How to use",

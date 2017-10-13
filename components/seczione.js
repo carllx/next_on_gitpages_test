@@ -212,7 +212,7 @@ const _content = (props)=>
          {...css({
             position:'relative',
             display:'inline-block',//block的话,不显示的时候会占用高度
-            fontSize:`1rem`,
+            fontSize:props.is_landscape?`${GR.vw(9)}vw`:`1rem`,
             fontWeight:100,
             top:props.img?`${-props.offset}px`:0,//迟早要还的
             marginLeft:props.marginW,

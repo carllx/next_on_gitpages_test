@@ -146,7 +146,7 @@ class Artisti extends PureComponent {
             // is_landscape
             display:'flex',
             flexDirection:is_landscape?'row':'column',
-            alignItems:is_landscape?'flex-end':'left',// iphone
+            alignItems:is_landscape?'flex-start':'left',// iphone
             marginLeft: is_landscape?`${GR.vw(4)}vw`:MarginW,
             marginRight: is_landscape?`${GR.vw(1)}vh`:MarginW,
             marginTop: `${is_landscape?GR.vw(7):GR.vw(6)}vw`,
@@ -172,7 +172,7 @@ class Artisti extends PureComponent {
             {/*描述 DESCRIPTION*/}
             <div
              {...css({
-                fontSize:`1rem`,
+                fontSize:is_landscape?`${GR.vw(9)}vw`:`1rem`,
                 fontWeight:100,
                 marginLeft: is_landscape?`${GR.vw(7)}vw`:MarginW,
              })}

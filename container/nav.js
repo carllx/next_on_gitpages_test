@@ -10,6 +10,7 @@ import { connect } from 'react-redux'
 
 import {ui  ,GR}  from '~/utils/ui'
 import SVG_BACKGROUND  from './components/nav.bg.svg'
+import Language  from './components/nav.language'
 import {BUTTONS}  from './components/nav.buttons'
 import ArtistiNav  from './nav.artisti'
 import AboutNav  from './nav.about'
@@ -85,7 +86,7 @@ class Nav extends PureComponent {
     }
 
     render(){
-        const { view_size, nav_on, language, islandscape } = this.props
+        const { landscape, nav_on, language} = this.props
         return(
             <div
              {...css({
@@ -112,9 +113,10 @@ class Nav extends PureComponent {
                 showLogo={true}
               />
 
+              <Language is_landscape ={landscape}/>
               <BUTTONS
               language={language}
-              is_landscape = {view_size.is_landscape}
+              is_landscape = {landscape}
               show = {nav_on!=='close'}
               foo = {this.onPanel}
               />
@@ -125,8 +127,7 @@ class Nav extends PureComponent {
 
 
 const mapStateToProps = (state) => ({
-    view_size:state.Root.view_size,
-    // device:state.Root.device,
+    landscape:state.Root.view_size.is_landscape,
     language:state.Root.language,
     is_Scroll_up:state.Root.is_Scroll_up,
     nav_on:state.nav.on
@@ -135,7 +136,8 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch ) =>{
     return {
         setPanelOn:bindActionCreators(
-            setPanelOn, dispatch )
+            setPanelOn, dispatch ),
+
     }
 }
 
