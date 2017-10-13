@@ -38,7 +38,7 @@
     "testCross":"cross-var node -e \"console.log('now path on :', \\\"$npm_package_config_commitmessage\\\")\" && cross-var node -e \"console.log('now path on :', \\\"$npm_package_config_commitmessage\\\")\""
   },
   "config": {
-    "commitmessage": "尝试使用mac的git变量标记in Pc"
+    "commitmessage": "修复iphone safari nav.bg.svg 上移, 改用 decko 的debounce  "
   },
   "name": "",
   "description": "## How to use",

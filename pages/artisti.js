@@ -61,8 +61,8 @@ class Artisti extends PureComponent {
       setViewSize=()=>{
         console.info('Resize - setViewSize on redux')
         this.props.setViewSize({
-          vh:  window.screen.height,//window.innerHeight,//document.documentElement.clientHeight,
-          vw:  window.screen.width,//window.innerWidth,//document.documentElement.clientWidth,
+          vh:  window.innerHeight,//window.innerHeight,//document.documentElement.clientHeight,
+          vw:  window.innerWidth,//window.innerWidth,//document.documentElement.clientWidth,
           is_landscape:isLandscape()
           })
       }

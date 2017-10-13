@@ -154,16 +154,25 @@ class SVG_BACKGROUND extends PureComponent{
 
         const pts = this._arrayToSVGPts(this.props.nav_BG_PTs);
         const pts_arr = this._ObjectToVectorArry(this.props.nav_BG_PTs,2);
+        const vh = this.props.vh
 
 
         return(
             <div
-             {...css({pointerEvents: 'none'})}
+             {...css({
+                pointerEvents: 'none',
+                width:  `100vw`,
+                height: `100vh`,})}
             >
                 <svg
                  {...css({
                     width:  `100vw`,
-                    height: `100vh`,
+
+                    // @ 修复 iphone safari svg上移问题
+                    // height: `100vh`, //@
+                    height: vh,//@
+                    position: 'fixed' ,//@
+                    top: 0,//@
                 })}>
                     <polygon
                         {...css({
