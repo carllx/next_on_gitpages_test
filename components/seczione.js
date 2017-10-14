@@ -194,7 +194,7 @@ const _content = (props)=>
         transform:`translateY(${props.close?-100:0}px)`,
         pointerEvents:`${props.close?'none':'auto'}`,
         transition: `all 1s cubic-bezier(0, 0.6, 0, 1)`,
-        willChange: 'transform',
+        willChange: 'transformvisibility,height,overflow',
      })}
     >
         {/*图片IMG*/}
@@ -345,7 +345,11 @@ const _content = (props)=>
         return (
             <div
              // {...fullWidthRelative}
-             {...css({position:'relative',zIndex:this.props.z})}>
+             {...css({
+                position:'relative',
+                zIndex:this.props.z
+                // zIndex:1
+            })}>
 
                 {/*HEADER--------------------
                     DIV_Click
@@ -355,7 +359,7 @@ const _content = (props)=>
                 */}
                 <div {...css({
                         position:'relative',
-                        zIndex:1,
+                        zIndex:2,
                         width:'100%',
                         top:0,
                         left:0,
@@ -393,7 +397,7 @@ const _content = (props)=>
                         fontWeight:100,
                         top:this.props.is_landscape?`${GR.vw(8)}vw`:`${GR.vw(5)}vw`,
                         left:this.props.is_landscape?`${GR.vw(4)}vw`:this.props.marginW,// artisti - avatar&& description 的marginLeft/marginWidth
-                        zIndex:1,
+                        zIndex:3,
                         })}>
                         {this.props.name}
                     </div>
@@ -405,7 +409,7 @@ const _content = (props)=>
                  // ref={c => this._$folder = c}
                  {...css({
                     position:'relative',
-                    zIndex:0,
+                    zIndex:-1,
                     height:this.state.close?0:'auto',//不再需要预算 this._height
                     maxHeight:this.state.close?0:'auto',//不再需要预算 this._height
 
@@ -448,7 +452,26 @@ const _content = (props)=>
                             />
                     )}
                 </div>
-
+                {/*BOTTOM SVG*/}
+                <div {...css({
+                    position:'absolute',
+                    zIndex:1,
+                    width:'100%',
+                    height:this.state.close?0:this.TriangleHeight,//Content close的时候遮挡出血
+                    opacity:this.state.close?1:0,//Content close的时候遮挡出血
+                    transition: `all 1s cubic-bezier(0, 0.6, 0, 1)`,
+                    willChange: 'height,opacity',
+                    /*????Img 背景下看到有误差
+                    (和SVG无关 因为添加stroke strokeWidth依然无效)*/
+                    top:0,// ????Img
+                    })}>
+                    <_SVG_BottomTriangle
+                     width={this.props.vw}
+                     height= {this.TriangleHeight}
+                     color ={this.props.color}
+                     // color ={'red'}
+                    />
+                </div>
 
             </div>
         )
