@@ -186,7 +186,9 @@ const _content = (props)=>
         position:'relative',
         zIndex:-2,
         // // display:props.close?'none':'inline-block'
-        // // display:'inline-block'
+        // display:'inline-block',
+        visibility:props.close?'hidden':'visible',
+        height:props.close?0:'auto',
         // // // marginBottom:props.close ?'0px':'-100px',
         transform:`translateY(${props.close?-100:0}px)`,
         pointerEvents:`${props.close?'none':'auto'}`,
@@ -211,7 +213,7 @@ const _content = (props)=>
         <div
          {...css({
             position:'relative',
-            display:'inline-block',//block的话,不显示的时候会占用高度
+            display:'inline-block',//XXX-block的话,不显示的时候会占用高度
             fontSize:props.is_landscape?`${GR.vw(9)}vw`:`1rem`,
             fontWeight:100,
             top:props.img?`${-props.offset}px`:0,//迟早要还的
@@ -224,13 +226,17 @@ const _content = (props)=>
             willChange: 'margin-top,margin-bottom',
 
         })}
-
+         className= '_content_word'
          >
             {props.content
                 .split('\n')
                 .map((p, key) =>
                     <div
-                     {...css({ marginBottom:props.close ?'0px':props.is_landscape?`${GR.vw(9)}vw`:`${GR.vw(8)}vw`})}
+                     {...css({
+                        marginBottom:props.close ?
+                        '0px'
+                        :props.is_landscape?`${GR.vw(9)}
+                        vw`:`${GR.vw(8)}vw`})}
                      key={`Section_content_`+key}
                      >
                         {p}<br/>
@@ -278,7 +284,7 @@ const _content = (props)=>
       this.ToggleFold=this.toggleFold.bind(this)
       this.state={
         close:false,//先计算_height ,在close
-        maxHeight:'auto',//供折叠动画
+        //maxHeight:'auto',//供折叠动画
         fetch:false
       }
       //@this._height

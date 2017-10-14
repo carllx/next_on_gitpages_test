@@ -59,7 +59,8 @@ export class BUTTONS extends PureComponent{
                              })}
                              key= {`nav_button_${items.id}`}
                              onClick = {(e)=>{
-                                e.stopPropagation();//防止冒泡触发已注册的nav onClose
+                                e.stopPropagation();
+                                e.preventDefault();//防止冒泡触发已注册的nav onClose
                                 this.props.foo(items.id)
                                 }}
                              >

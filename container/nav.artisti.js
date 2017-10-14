@@ -1,4 +1,4 @@
-import {Component} from 'react'
+import {PureComponent} from 'react'
 import { connect } from 'react-redux'
 // import { bindActionCreators } from 'redux'
 import { css } from 'glamor'
@@ -11,7 +11,7 @@ import {artistInfo} from '~/static/contents/artisti'
 import { initStore } from '~/store'
 
 
-class ArtistiNav extends Component {
+class ArtistiNav extends PureComponent {
 
     constructor(props){
         super(props)

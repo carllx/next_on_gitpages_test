@@ -38,7 +38,7 @@
     "testCross":"cross-var node -e \"console.log('now path on :', \\\"$npm_package_config_commitmessage\\\")\" && cross-var node -e \"console.log('now path on :', \\\"$npm_package_config_commitmessage\\\")\""
   },
   "config": {
-    "commitmessage": "*优化语言切换运行速度 *ImgWithLoader 12次多余运行 合计9ms *艺术家Triangle 0.85ms *主页上LOGO刷新 0.35ms *修复bug导致Nav版面 关闭"
+    "commitmessage": "修复Section _content 隐藏时仍占用高度"
   },
   "name": "",
   "description": "## How to use",

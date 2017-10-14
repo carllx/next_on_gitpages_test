@@ -97,9 +97,16 @@ class Nav extends PureComponent {
                 zIndex:9,
                 pointerEvents:'none', //避免遮挡Logo点击
                 // pointerEvents:nav.on!=='close'?'none':'auto',
+                background:`rgba(0,0,0,${nav_on!=='close'&&nav_on!=='show'?0.38:0})`,
+                transition:'background 1s cubic-bezier(0, 0.6, 0, 1)',
+                willChange:'background',
              })}
              className = 'nav'
-             onClick={()=>{this.onPanel('close')}}
+             onClick={(e)=>{
+              e.stopPropagation();
+              e.preventDefault();
+              this.onPanel('close')
+            }}
              /*在close的状态下 结合pointerEvents 和 this.onPanel('close') 点击nav会关闭 nav */
             >
               {/*BACKGROUNF*/}

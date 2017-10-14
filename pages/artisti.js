@@ -11,9 +11,9 @@ import {throttle, debounce}  from '~/utils/throttle'
 
 import NoSSR from 'react-no-ssr';
 import Head from 'next/head'
-import AVATAR from '~/container/components/avatar'
+import AVATAR from '~/components/avatar'
 import Nav from '~/container/nav'
-import Seczione from '../components/seczione'
+import Seczione from '~/components/seczione'
 import {initStore} from '~/store'
 import Perf from 'react-addons-perf'
 
