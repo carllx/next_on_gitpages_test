@@ -38,7 +38,7 @@
     "testCross":"cross-var node -e \"console.log('now path on :', \\\"$npm_package_config_commitmessage\\\")\" && cross-var node -e \"console.log('now path on :', \\\"$npm_package_config_commitmessage\\\")\""
   },
   "config": {
-    "commitmessage": "增加_SVG_BottomTriangle, Content 折叠时候遮挡出血"
+    "commitmessage": "修复moblie/竖屏 artist page 描述的重复margin"
   },
   "name": "",
   "description": "## How to use",
