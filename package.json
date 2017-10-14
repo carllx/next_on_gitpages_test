@@ -38,7 +38,7 @@
     "testCross":"cross-var node -e \"console.log('now path on :', \\\"$npm_package_config_commitmessage\\\")\" && cross-var node -e \"console.log('now path on :', \\\"$npm_package_config_commitmessage\\\")\""
   },
   "config": {
-    "commitmessage": "修复Section _content 隐藏时仍占用高度"
+    "commitmessage": "修复Section _content 隐藏时仍占用高度2"
   },
   "name": "",
   "description": "## How to use",

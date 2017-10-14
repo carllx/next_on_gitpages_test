@@ -32,8 +32,8 @@ class Artisti extends PureComponent {
 
     constructor(props){
         super(props)
-        this.lazyScroll = debounce(this.isScrollUp ,130 );
-        this.lazyResize = debounce(this.handleReSize ,130 );
+        this.lazyScroll = debounce(this.isScrollUp ,300 );
+        this.lazyResize = debounce(this.handleReSize ,300 );
 
         // this._keyCtx=makeKEY()
     }

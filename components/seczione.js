@@ -189,6 +189,7 @@ const _content = (props)=>
         // display:'inline-block',
         visibility:props.close?'hidden':'visible',
         height:props.close?0:'auto',
+        overflow:props.close?'hidden':'unset',
         // // // marginBottom:props.close ?'0px':'-100px',
         transform:`translateY(${props.close?-100:0}px)`,
         pointerEvents:`${props.close?'none':'auto'}`,
@@ -458,6 +459,3 @@ const _content = (props)=>
 
 
 export default Seczione;
-
-
-
