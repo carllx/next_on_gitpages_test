@@ -10,10 +10,10 @@ import { setPanelOn } from '~/reducers/nav'
 
 import NoSSR from 'react-no-ssr';
 import Head from 'next/head'
-import SEO from '../components/SEO.index'
+import SEO from '~/components/SEO.index'
 import Nav from '~/container/nav'
-import LOGO from '../components/logo.svg'
-import {ThreeInit} from'../components/section.welcome.THREE.sphere.js'
+import LOGO from '~/components/logo.svg'
+import {ThreeInit} from'~/components/section.welcome.THREE.sphere.js'
 
 import {isMobile  ,isTablet ,isLandscape, getLanguer}  from '../utils/device'
 import {throttle, debounce}  from '../utils/throttle'

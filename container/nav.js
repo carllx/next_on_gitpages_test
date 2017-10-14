@@ -9,9 +9,9 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
 import {ui  ,GR}  from '~/utils/ui'
-import SVG_BACKGROUND  from './components/nav.bg.svg'
-import Language  from './components/nav.language'
-import {BUTTONS}  from './components/nav.buttons'
+import SVG_BACKGROUND  from '~/components/nav.bg.svg'
+import Language  from '~/components/nav.language'
+import {BUTTONS}  from '~/components/nav.buttons'
 import ArtistiNav  from './nav.artisti'
 import AboutNav  from './nav.about'
 

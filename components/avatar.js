@@ -7,24 +7,36 @@ import NoSSR from 'react-no-ssr';
 import {ui  ,GR}  from '~/utils/ui'
 import {IMG_WithLoader} from './img'
 
-const Triangle = (props)=>
-    <svg
-     {...css({
-        width:props.size,
-        position:'absolute'
-     })}
-     viewBox= {`0 0 1 1`}
-    >
-        <polygon
-         fill={ui.color.b_o2}
-         stroke="none"
-         points={
-            `0,0 `+//left_top
-            `1,0 `+//right_top
-            `0,1 `//right_bottom
-        }
-        />
-    </svg>
+// const Triangle = (props)=>
+class Triangle extends PureComponent{
+    constructor(props){
+        super(props)
+    }
+
+    render(){
+        const size = this.props.size
+        return(
+            <svg
+             {...css({
+                width:size,
+                position:'absolute'
+             })}
+             viewBox= {`0 0 1 1`}
+            >
+                <polygon
+                 fill={ui.color.b_o2}
+                 stroke="none"
+                 points={
+                    `0,0 `+//left_top
+                    `1,0 `+//right_top
+                    `0,1 `//right_bottom
+                }
+                />
+            </svg>
+        )
+    }
+}
+
 
 
 // const Img = glamorous.div({

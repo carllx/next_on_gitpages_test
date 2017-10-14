@@ -172,7 +172,7 @@ class Artisti extends PureComponent {
             {/*描述 DESCRIPTION*/}
             <div
              {...css({
-                fontSize:is_landscape?`${GR.vw(9)}vw`:`1rem`,
+                fontSize:is_landscape?`${GR.px(5,this.props.SizeWidth)}px`:`1rem`,
                 fontWeight:100,
                 marginLeft: is_landscape?`${GR.vw(7)}vw`:MarginW,
              })}

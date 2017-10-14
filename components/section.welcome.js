@@ -3,14 +3,14 @@ import { css } from 'glamor'
 import glamorous from 'glamorous'
 import NoSSR from 'react-no-ssr';
 
-import Nav from '../components/nav'
-import {IMG_WithLoader} from '../components/img'
-import Logo from '../components/logo.svg'
+import Nav from '~/components/nav'
+import {IMG_WithLoader} from '~/components/img'
+import Logo from '~/components/logo.svg'
 
 
 
-import {throttle, debounce}  from '../utils/throttle'
-import {ui}  from '../utils/ui'
+import {throttle, debounce}  from '~/utils/throttle'
+import {ui}  from '~/utils/ui'
 
 
 

@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { css } from 'glamor'
 import {TweenMax} from "gsap";
 import {ui  ,GR}  from '~/utils/ui'
-import LOGO  from './components/logo.svg'
+import LOGO  from '~/components/logo.svg'
 
 
 

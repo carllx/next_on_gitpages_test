@@ -27,13 +27,25 @@ class Language extends PureComponent {
                 },
             })}>
             <span
-             onClick={()=>{this.props.switchLanguage('it')}}
+             onClick={(e)=>{
+                e.stopPropagation()
+                e.preventDefault()
+                this.props.switchLanguage('it')}}
+
             >ITALIANO</span>
             <span
-             onClick={()=>{this.props.switchLanguage('en')}}
+             onClick={(e)=>{
+                e.stopPropagation()
+                e.preventDefault()
+                this.props.switchLanguage('en')}}
+
             >ENGLISH</span>
             <span
-             onClick={()=>{this.props.switchLanguage('zh')}}
+             onClick={(e)=>{
+                e.stopPropagation()
+                e.preventDefault()
+                this.props.switchLanguage('zh')}}
+
             >中文</span>
             </div>
 

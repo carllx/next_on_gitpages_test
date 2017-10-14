@@ -6,7 +6,7 @@ import Router from 'next/router'
 import {TweenMax} from "gsap";
 
 import {ui  ,GR}  from '~/utils/ui'
-import AVATAR from './components/avatar'
+import AVATAR from '~/components/avatar'
 import {artistInfo} from '~/static/contents/artisti'
 import { initStore } from '~/store'
 
