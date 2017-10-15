@@ -61,9 +61,17 @@ class Nav extends PureComponent {
       /*若props(外)更新服从外部*/
       // debugger
       if(nextProps.is_Scroll_up!==this.props.is_Scroll_up){
-          nextProps.is_Scroll_up
-          ?this.onPanel('show')
-          :this.onPanel('close');
+
+          if(this.props.landscape){
+            nextProps.is_Scroll_up
+            ?this.onPanel('menu')
+            :this.onPanel('close');
+          }else{
+            nextProps.is_Scroll_up
+            ?this.onPanel('show')
+            :this.onPanel('close');
+          }
+
       }
     }
 
@@ -76,7 +84,7 @@ class Nav extends PureComponent {
         this._on= next_on
         //--滚动
         // const html = document.getElementsByTagName("html")
-        if(next_on=='show'||next_on=='close') {//artisti,mostre,eventi 禁止滚动
+        if(next_on=='show'||next_on=='close'||next_on=='menu') {//artisti,mostre,eventi 禁止滚动
 
           document.body.style.overflow = "auto"
         }else{
@@ -97,7 +105,7 @@ class Nav extends PureComponent {
                 zIndex:9,
                 pointerEvents:'none', //避免遮挡Logo点击
                 // pointerEvents:nav.on!=='close'?'none':'auto',
-                background:`rgba(0,0,0,${nav_on!=='close'&&nav_on!=='show'?0.38:0})`,
+                background:`rgba(0,0,0,${nav_on!=='close'&&nav_on!=='show'&&nav_on!=='menu'?0.38:0})`,
                 transition:'background 1s cubic-bezier(0, 0.6, 0, 1)',
                 willChange:'background',
              })}
@@ -105,7 +113,12 @@ class Nav extends PureComponent {
              onClick={(e)=>{
               e.stopPropagation();
               e.preventDefault();
-              this.onPanel('close')
+              if(landscape){
+                nav_on==='menu'?this.onPanel('show'):this.onPanel('close')
+              }else{
+                this.onPanel('close')
+              }
+
             }}
              /*在close的状态下 结合pointerEvents 和 this.onPanel('close') 点击nav会关闭 nav */
             >
@@ -124,7 +137,7 @@ class Nav extends PureComponent {
               <BUTTONS
               language={language}
               is_landscape = {landscape}
-              show = {nav_on!=='close'}
+              show = {nav_on!=='close'&&nav_on!=='menu'}
               foo = {this.onPanel}
               />
             </div>

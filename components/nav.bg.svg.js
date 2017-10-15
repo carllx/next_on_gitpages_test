@@ -40,9 +40,9 @@ class SVG_BACKGROUND extends PureComponent{
                 pt_3_x:vw,pt_3_y:0,
                 pt_4_x:vw, pt_4_y:0,
               },show:{
-                pt_1_x:GR.px(2,vw), pt_1_y:10,
-                pt_2_x:vw-20,pt_2_y:10,
-                pt_3_x:vw-GR.px(6,vw),pt_3_y:GR.px(5,vh),
+                pt_1_x:GR.px(2,vw), pt_1_y:0,
+                pt_2_x:vw,pt_2_y:0,
+                pt_3_x:vw,pt_3_y:GR.px(5,vh),
                 pt_4_x:GR.px(1,vw), pt_4_y:GR.px(4,vh),
                 // pt_1_x:vw, pt_1_y:0,
                 // pt_2_x:vw,pt_2_y:vh,
@@ -68,6 +68,11 @@ class SVG_BACKGROUND extends PureComponent{
                 pt_2_x:vw,pt_2_y:GR.px(2,vw),
                 pt_3_x:vw,pt_3_y:vw,
                 pt_4_x:0, pt_4_y:GR.px(2,vw),
+              },menu:{
+                pt_1_x:vw-GR.px(5,vw), pt_1_y:0,
+                pt_2_x:vw,pt_2_y:0,
+                pt_3_x:vw,pt_3_y:GR.px(4,vh),
+                pt_4_x:vw, pt_4_y:GR.px(4,vh),
               }
             }//this._pts_data
         }else{ //

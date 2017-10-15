@@ -38,7 +38,7 @@
     "testCross":"cross-var node -e \"console.log('now path on :', \\\"$npm_package_config_commitmessage\\\")\" && cross-var node -e \"console.log('now path on :', \\\"$npm_package_config_commitmessage\\\")\""
   },
   "config": {
-    "commitmessage": "正在修改section将state转由redux管理"
+    "commitmessage": "导航nav增加 PC 端增加menu展开放式, 避免导航大幅度闪烁分散用户注意力"
   },
   "name": "",
   "description": "## How to use",
