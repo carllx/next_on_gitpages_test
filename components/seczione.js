@@ -131,7 +131,6 @@ class _ImgSection extends PureComponent{
                      width={width}
                      height= {offset}
                      color ={footColor}
-
                     />
                 </div>
                 <IMG_WithLoader
@@ -162,7 +161,6 @@ class _ImgSection extends PureComponent{
                     />
                 </div>{/*footer*/}
             </div>
-
         )
     }
 }
@@ -185,12 +183,9 @@ const _content = (props)=>
      {...css({
         position:'relative',
         zIndex:-2,
-        // // display:props.close?'none':'inline-block'
-        // display:'inline-block',
         visibility:props.close?'hidden':'visible',
         height:props.close?0:'auto',
         overflow:props.close?'hidden':'unset',
-        // // // marginBottom:props.close ?'0px':'-100px',
         transform:`translateY(${props.close?-100:0}px)`,
         pointerEvents:`${props.close?'none':'auto'}`,
         transition: `all 1s cubic-bezier(0, 0.6, 0, 1)`,
@@ -264,18 +259,6 @@ const _content = (props)=>
  * @return {COMPONENT}
  */
 
-// const button = (props)=>
-//     <div
-//      {...css({
-//         width:'100vw',
-//         height:`${props.height}`
-//     })}
-//      onClick={}
-//     />
-//
-//
-
-
 
  class Seczione extends PureComponent {
 
@@ -284,52 +267,26 @@ const _content = (props)=>
       this.TriangleHeight = this.props.is_landscape?GR.px(7,this.props.vw):GR.px(4,this.props.vw)
       this.ToggleFold=this.toggleFold.bind(this)
       this.state={
-        close:false,//先计算_height ,在close
+        close:this.props.is_landscape?false:true,//先计算_height ,在close
         //maxHeight:'auto',//供折叠动画
-        fetch:false
+        fetch:this.props.is_landscape?true:false
       }
       //@this._height
       this._keyCtx=makeKEY()
 
     }
 
-    // componentWillMount(){
-        //先计算_height ,在close
-        // this.init_Fold()
-
-    // }
     componentDidMount(){
-        // if(this.props.name=="WORKS")console.log('WORKS-componentDidMount')
-        //先计算_height ,在close
-        // this._maxHeight=this._$folder.clientHeight
-        this.setState({
-                maxHeight:0,
-                close:true,
-        })
+        // if(!this.props.is_landscape){
+        //     this.setState({
+        //             maxHeight:0,
+        //             close:true,
+        //     })
+        // }
     }
-
-    // componentWillReceiveProps(nextProps,nextState){
-        // console.log(`section ${this.props.name} -componentWillReceiveProps`)
-    // }
-
-    // componentDidUpdate(nextProps,nextState){
-        // console.log(`section ${this.props.name} -componentDidUpdate`)
-        // console.log(`${this.props.name} componentDidUpdate \nnextProps:${JSON.stringify(nextState)}\nthis.props:${JSON.stringify(this.state)}`)
-    // }
-
-
-    //设置 auto 不需要 预展开一次来获取高度
-    // init_Fold = () =>{ // fold 展开后 ,根据情况获取高度
-
-        // console.log('init_Fold 高度初始化:',this._$folder.clientHeight)
-
-        // this._height = this._$folder.clientHeight;
-    // }
 
     toggleFold(){
         console.log('toggle')
-
-        // debugger
         this.setState(
             {
                 close:!this.state.close,
@@ -384,9 +341,6 @@ const _content = (props)=>
                          color ={this.props.color}
                         />
                     </div>
-
-
-
 
 
 

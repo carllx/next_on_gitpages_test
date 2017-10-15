@@ -32,18 +32,14 @@ class Artisti extends PureComponent {
 
     constructor(props){
         super(props)
-        this.lazyScroll = debounce(this.isScrollUp ,300 );
+        // this.handleScrollonY = debounce(this.isScrollUp ,300 );
         this.lazyResize = debounce(this.handleReSize ,300 );
-
-        // this._keyCtx=makeKEY()
     }
     isScrollUp = ()=>{
+        console.log('dddsad')
+        if(this._scrollY == this._prevScrollY) return
 
-        const ScrollY = window.scrollY;
-        if(ScrollY == this.prevScrollY) return
-        const isUp = ( ScrollY - this.prevScrollY)<=0 ;
-
-        if(isUp) {
+        if(this._scrollY - this._prevScrollY<=0) {// is up ?
           console.log('↑');
           this.props.setScroll(true)
         }else{
@@ -51,7 +47,13 @@ class Artisti extends PureComponent {
           this.props.setScroll(false)
         }
         // 刷新当前scroll所在位置
-        this.prevScrollY = ScrollY;
+        this._prevScrollY = this._scrollY;
+      }
+
+      handleScrollonY=()=>{
+        this._scrollY = window.scrollY;
+        debounce(this.isScrollUp(),300 );
+
       }
 
       setLanguage=(language)=>{
@@ -79,8 +81,8 @@ class Artisti extends PureComponent {
       componentDidMount () {
         window.Perf = Perf
         // LISTENERS
-        this.prevScrollY = window.scrollY;
-        window.addEventListener('scroll', this.lazyScroll)
+        this._prevScrollY = window.scrollY;
+        window.addEventListener('scroll', this.handleScrollonY)
         window.addEventListener('resize', this.lazyResize);
 
         // DEVICE
@@ -89,19 +91,22 @@ class Artisti extends PureComponent {
         /* LANGUGE */
         this.setLanguage(getLanguer())
 
-        /* height width DIRECTION */
-        this.setViewSize()
+        /* VIEW_SIZE */
+        console.log(`初始化的VIEWSIZE vh=${this.props.view_size.vh}`)
+        if(this.props.view_size.vh===0){
+          this.setViewSize()
+        }
       }
 
       componentWillUnmount () {
-        window.removeEventListener('scroll', this.lazyScroll);
+        window.removeEventListener('scroll', this.handleScrollonY);
         window.removeEventListener('resize', this.lazyResize);
       }
 
       componentWillUnMount(){
         if (typeof window == 'undefined') return
     //首次访问会出现无法识别windows
-        window.removeEventListener('scroll', this.lazyScroll)
+        window.removeEventListener('scroll', this.handleScrollonY)
         window.removeEventListener('resize', this.lazyResize)
       }
 

@@ -14,6 +14,7 @@ export const TYPES = {
   INIT: 'INIT',
   SWITCH_LANGUAGE: 'SWITCH_LANGUAGE',
   IS_SCROLL_UP: 'IS_SCROLL_UP',
+  ON_SCROLL_Y:'ON_SCROLL_Y',
   VIEW_SIZE:'VIEW_SIZE',
   ON_DEVICE:'ON_DEVICE',
   ON_BROWSER:'ON_BROWSER',
@@ -49,6 +50,13 @@ export const setScroll = (direction) => dispatch => {
     })
 }
 
+export const setScrollOffsetY = (y) => dispatch => {
+    return dispatch({
+        type:TYPES.ON_SCROLL_Y,
+        y:y
+    })
+}
+
 export const setViewSize = ({vw=vw,vh=vh,is_landscape=is_landscape}) => dispatch => {
     return dispatch({
         type:TYPES.VIEW_SIZE,
@@ -70,7 +78,7 @@ export default (state = {} ,action)=>{
         return ({
           device:'seo_engin',//mobile desktop table seo_engin
           language:'zh',// 'en','zh','it'
-          is_Scroll_up:false,
+          scroll:{up:false,y:0},
           view_size:{vw:0,vh:0,is_landscape:false}
         })
       /*DEVICE*/
@@ -83,7 +91,10 @@ export default (state = {} ,action)=>{
         return Object.assign({},state,{language:action.language})
       /*SCROLL*/
       case TYPES.IS_SCROLL_UP:
-        return Object.assign({},state,{is_Scroll_up:action.direction?true:false})
+        return Object.assign({},state,{scroll:{up:action.direction?true:false}})
+      case TYPES.ON_SCROLL_Y:
+        return Object.assign({},state,{scroll:{y:action.y}})
+
       /*WIDTH - HEIGHT*/ /*Landscape / portail*/
       case TYPES.VIEW_SIZE:
         return Object.assign({},state,{view_size:{vw:action.vw,vh:action.vh,is_landscape:action.is_landscape}})

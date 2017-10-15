@@ -136,7 +136,7 @@ class Nav extends PureComponent {
 const mapStateToProps = (state) => ({
     landscape:state.Root.view_size.is_landscape,
     language:state.Root.language,
-    is_Scroll_up:state.Root.is_Scroll_up,
+    is_Scroll_up:state.Root.scroll.up,
     nav_on:state.nav.on
 });
 

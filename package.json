@@ -38,7 +38,7 @@
     "testCross":"cross-var node -e \"console.log('now path on :', \\\"$npm_package_config_commitmessage\\\")\" && cross-var node -e \"console.log('now path on :', \\\"$npm_package_config_commitmessage\\\")\""
   },
   "config": {
-    "commitmessage": "修复moblie/竖屏 artist page 描述的重复margin"
+    "commitmessage": "正在修改section将state转由redux管理"
   },
   "name": "",
   "description": "## How to use",

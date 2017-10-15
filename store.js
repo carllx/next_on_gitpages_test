@@ -19,7 +19,7 @@ export const INITIALSTATE = {
     browser:'none',
     device:'seo_engin',//mobile desktop table seo_engin
     language:'zh',// 'en','zh','it'
-    is_Scroll_up:false,
+    scroll:{up:false,y:0},
     view_size:{vw:0,vh:0,is_landscape:false}
   }
 }

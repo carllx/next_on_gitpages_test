@@ -33,23 +33,9 @@ class Index extends Component {
   constructor (props) {
       super(props)
       this.prevScrollY= 0
-      this.lazyScroll= debounce(this.isScrollUp,130)
       this.lazyResize= debounce(this.handleReSize,130)
     }
 
-  isScrollUp=()=>{
-
-    const ScrollY = window.scrollY;
-    const isUp = ( ScrollY - this.prevScrollY)<0 ;
-
-    if(isUp) {
-      console.log('↑');
-    }else{
-      console.log('↓');
-    }
-    // 刷新当前scroll所在位置
-    this.prevScrollY = ScrollY;
-   }
 
   setLanguage=(language)=>{
     this.props.switchLanguage(language)
@@ -77,7 +63,6 @@ class Index extends Component {
   componentDidMount(){
 
     window.Perf = Perf
-    window.addEventListener('scroll', this.lazyScroll, false)
     window.addEventListener('resize', this.lazyResize );
 
     // SCROLL
@@ -99,15 +84,13 @@ class Index extends Component {
   componentWillMount(){
     if (typeof window == 'undefined') return
     //首次访问会出现无法识别windows
-    window.removeEventListener('scroll', this.lazyScroll);
     window.removeEventListener('resize', this.lazyResize);
 
   }
 
 
   componentWillUnMount(){
-    window.removeEventListener('scroll', this.lazyScroll)
-    window.removeEventListener('resize', this.lazyScroll)
+    window.removeEventListener('resize', this.lazyResize)
   }
 
 

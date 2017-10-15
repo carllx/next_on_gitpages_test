@@ -1,7 +1,3 @@
-import { combineReducers } from 'redux'
-// import artisti from './nav.artist'
-// import about from './nav.about'
-
 
 import {TweenMax} from "gsap";
 
