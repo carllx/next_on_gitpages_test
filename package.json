@@ -38,7 +38,7 @@
     "testCross":"cross-var node -e \"console.log('now path on :', \\\"$npm_package_config_commitmessage\\\")\" && cross-var node -e \"console.log('now path on :', \\\"$npm_package_config_commitmessage\\\")\""
   },
   "config": {
-    "commitmessage": "修复artisti svg 宽度和Xscrollbar的冲突"
+    "commitmessage": "修复artisti 切换语言时整个网页重刷新, 修改Nav svg.bg.about 没有承托覆盖logo"
   },
   "name": "",
   "description": "## How to use",

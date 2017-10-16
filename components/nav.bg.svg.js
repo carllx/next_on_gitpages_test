@@ -65,7 +65,7 @@ class SVG_BACKGROUND extends PureComponent{
                 pt_4_x:0, pt_4_y:vh,
               },about:{
                 pt_1_x:0, pt_1_y:GR.px(6,vw),
-                pt_2_x:vw,pt_2_y:GR.px(2,vw),
+                pt_2_x:vw,pt_2_y:GR.px(4,vw),
                 pt_3_x:vw,pt_3_y:vw,
                 pt_4_x:0, pt_4_y:GR.px(2,vw),
               },menu:{
@@ -171,18 +171,18 @@ class SVG_BACKGROUND extends PureComponent{
             >
                 <svg
                  {...css({
-                    width:  `100vw`,
+                    width:  `100%`,
 
                     // @ 修复 iphone safari svg上移问题
                     // height: `100vh`, //@
-                    height: vh,//@
+                    height: '100%',//@
                     position: 'fixed' ,//@
                     top: 0,//@
                 })}>
                     <polygon
                         {...css({
-                            width:  `100vw`,
-                            height: `100vh`,
+                            width:  `100%`,
+                            height: `100%`,
                             pointerEvents:'visiblePainted',//auto 相同svg 禁用了pointerEvents
                             cursor:'pointer',// 提示可关闭
                         })}

@@ -29,30 +29,41 @@ import {wix} from '~/utils/img'
  *   @ display
  *   @ src
  */
+export class _IMG extends PureComponent{
 
-const _IMG =(props)=>
+  constructor(props){
+    super(props)
+  }
 
+  render(){
+
+    return(
       <div
-       {...css({
-        position:'absolute',//文件流识别
-        justifyContent:   'space-around',
-        backgroundRepeat: 'no-repeat',
-        backgroundSize:   'cover',
-        overflow:         'hidden',
-        backgroundColor:  'transparent',
+         {...css({
+          position:'absolute',//文件流识别
+          justifyContent:   'space-around',
+          backgroundRepeat: 'no-repeat',
+          backgroundSize:   'cover',
+          overflow:         'hidden',
+          backgroundColor:  'transparent',
 
-        left:props.left,
-        top:props.top,
-        opacity: props.show?1:0,
-        width:'100%',
-        height: '100%',
-        //在这里找渐变模板 https: //webgradients.com/
-        // backgroundColor:  props.src?`url(${props.src})`:'white',
-        backgroundImage:  props.show?`url(${props.src})`:null,
-        transition: `opacity 1s cubic-bezier(0.24, 0.49, 0.82, 0.6)`,
-        })}
-      >
-      </div>
+          left:this.props.left,
+          top:this.props.top,
+          opacity: this.props.show?1:0,
+          width:'100%',
+          height: '100%',
+          //在这里找渐变模板 https: //webgradients.com/
+          // backgroundColor:  this.props.src?`url(${this.props.src})`:'white',
+          backgroundImage:  this.props.show?`url(${this.props.src})`:null,
+          transition: `opacity 1s cubic-bezier(0.24, 0.49, 0.82, 0.6)`,
+          })}
+        >
+        </div>
+      )
+  }
+}
+
+
 
 /**
  *  svg style

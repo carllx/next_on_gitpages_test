@@ -100,8 +100,8 @@ class Nav extends PureComponent {
              {...css({
                 position: 'fixed',
                 bottom: '0',
-                width: '100vw',
-                height:'100vh',
+                width: '100%',
+                height:'100%',
                 zIndex:9,
                 pointerEvents:'none', //避免遮挡Logo点击
                 // pointerEvents:nav.on!=='close'?'none':'auto',

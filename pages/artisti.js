@@ -36,7 +36,6 @@ class Artisti extends PureComponent {
         this.lazyResize = debounce(this.handleReSize ,300 );
     }
     isScrollUp = ()=>{
-        console.log('dddsad')
         if(this._scrollY == this._prevScrollY) return
 
         if(this._scrollY - this._prevScrollY<=0) {// is up ?
@@ -119,7 +118,7 @@ class Artisti extends PureComponent {
     // debugger
     return (
       <main
-      key = {`page-${this.props.id}-${language}` }
+      // key = {`page-${this.props.id}-${language}` }
        >
         <Head>
             <title>{this.props.name[language]}</title>
