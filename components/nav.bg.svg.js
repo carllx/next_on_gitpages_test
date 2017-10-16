@@ -166,8 +166,8 @@ class SVG_BACKGROUND extends PureComponent{
             <div
              {...css({
                 pointerEvents: 'none',
-                width:  `100vw`,
-                height: `100vh`,})}
+                width:  `100%`,
+                height: `100%`,})}
             >
                 <svg
                  {...css({

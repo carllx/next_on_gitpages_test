@@ -81,7 +81,7 @@ const _Loading =(props)=>
 
         left:props.left?props.left:0,
         top:props.top?props.top:0,
-        width: props.width,
+        width: '100%',
         height:props.height,
         opacity:props.show?1:0,
 
@@ -220,7 +220,7 @@ export class IMG_WithLoader extends PureComponent {
           <div
            {...css({
             position: 'relative',
-            width : this.props.width,
+            width : '100%',//this.props.width,
             height : this.props.height,
             })}
 

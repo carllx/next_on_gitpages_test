@@ -38,7 +38,7 @@
     "testCross":"cross-var node -e \"console.log('now path on :', \\\"$npm_package_config_commitmessage\\\")\" && cross-var node -e \"console.log('now path on :', \\\"$npm_package_config_commitmessage\\\")\""
   },
   "config": {
-    "commitmessage": "导航nav增加 PC 端增加menu展开放式, 避免导航大幅度闪烁分散用户注意力"
+    "commitmessage": "修复artisti svg 宽度和Xscrollbar的冲突"
   },
   "name": "",
   "description": "## How to use",

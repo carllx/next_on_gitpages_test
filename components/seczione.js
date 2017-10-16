@@ -20,8 +20,12 @@ class _SVG_TopTriangle extends PureComponent{
         return(
             <svg
              {...css({
-                width:`${width}px`,
+                width:'100%',//`${width}px`,
                 height:`${height}px`,
+                fontSize: 0,
+                // overflow: 'hidden',
+                display:'block',
+                whiteSpace: 'nowrap',
             })}>
                 <polygon
                  fill = {color}
@@ -30,6 +34,7 @@ class _SVG_TopTriangle extends PureComponent{
                     ` ${width},0`+
                     ` 0,${height}`
                  }
+                 overflow='hidden'
                  />
                  <line
                   x1="0"
@@ -38,6 +43,7 @@ class _SVG_TopTriangle extends PureComponent{
                   y2="0"
                   strokeWidth="1"
                   stroke={ui.color.b_o3}
+                  // overflow='hidden'
                   />
             </svg>
         )
@@ -59,8 +65,12 @@ class _SVG_BottomTriangle extends PureComponent{
         const { width, height, color}=this.props
         return(
             <svg {...css({
-                width:`${width}px`,
+                width:'100%',//`${width}px`,
                 height:`${height}px`,
+                fontSize: 0,
+                // overflow: 'hidden',
+                // display:'block',
+                // whiteSpace: 'nowrap',
             })}>
 
                 <polygon
@@ -70,7 +80,8 @@ class _SVG_BottomTriangle extends PureComponent{
                      `0,${height}`+
                      ` ${width},0`+
                      ` ${width},${height}`
-                 }/>
+                 }
+                 overflow='hidden'/>
                  <line
                   x1="0"
                   y1={height}
@@ -78,6 +89,7 @@ class _SVG_BottomTriangle extends PureComponent{
                   y2="0"
                   strokeWidth="1"
                   stroke={ui.color.b_o3}
+                  // overflow='hidden'
                   />
             </svg>
 
@@ -117,7 +129,7 @@ class _ImgSection extends PureComponent{
             })}>
                 {/*Header*/}
                 <div {...css({
-                    width:'100vw',
+                    width:'100%',
                     height:`${offset}px`,
                     position:'absolute',
                     left:0,
@@ -125,6 +137,8 @@ class _ImgSection extends PureComponent{
                     top:`-1px`,// ????Img
                     /*????Img 背景下看到有误差
                     (和SVG无关 因为添加stroke strokeWidth依然无效)*/
+                     // display: 'block',
+                     // overflow:'hidden',
                 })}
                 >
                     <_SVG_TopTriangle
@@ -152,6 +166,8 @@ class _ImgSection extends PureComponent{
                     /*????Img 背景下看到有误差
                     (和SVG无关 因为添加stroke strokeWidth依然无效)*/
                     bottom:`-1px`,//
+                    // display: 'block',
+                    // overflow:'hidden',
                 })}
                 >
                     <_SVG_BottomTriangle
@@ -209,7 +225,6 @@ const _content = (props)=>
         <div
          {...css({
             position:'relative',
-            display:'inline-block',//XXX-block的话,不显示的时候会占用高度
             fontSize:props.is_landscape?`${GR.vw(9)}vw`:`1rem`,
             fontWeight:100,
             top:props.img?`${-props.offset}px`:0,//迟早要还的
@@ -321,6 +336,7 @@ const _content = (props)=>
                         top:0,
                         left:0,
                         cursor: 'pointer',
+                        // display:'block',
                     })}
                  onClick={this.ToggleFold}
                 >
@@ -334,6 +350,7 @@ const _content = (props)=>
                         /*????Img 背景下看到有误差
                         (和SVG无关 因为添加stroke strokeWidth依然无效)*/
                         top:`0px`,// ????Img
+                        // whiteSpace: 'nowrap',
                         })}>
                         <_SVG_TopTriangle
                          width={this.props.vw}
@@ -365,8 +382,6 @@ const _content = (props)=>
                     position:'relative',
                     zIndex:-1,
                     height:this.state.close?0:'auto',//不再需要预算 this._height
-                    maxHeight:this.state.close?0:'auto',//不再需要预算 this._height
-
                     transition: `all 1s cubic-bezier(0, 0.6, 0, 1)`,
                     willChange: 'max-height,opacity',
                     opacity:this.state.close?0:1,
@@ -418,6 +433,7 @@ const _content = (props)=>
                     /*????Img 背景下看到有误差
                     (和SVG无关 因为添加stroke strokeWidth依然无效)*/
                     top:0,// ????Img
+                    // whiteSpace: 'nowrap',
                     })}>
                     <_SVG_BottomTriangle
                      width={this.props.vw}
