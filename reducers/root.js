@@ -91,9 +91,17 @@ export default (state = {} ,action)=>{
         return Object.assign({},state,{language:action.language})
       /*SCROLL*/
       case TYPES.IS_SCROLL_UP:
-        return Object.assign({},state,{scroll:{up:action.direction?true:false}})
+        return Object.assign({},state,{
+          scroll:{
+            ...state.scroll,
+            up:action.direction?true:false
+          }})
       case TYPES.ON_SCROLL_Y:
-        return Object.assign({},state,{scroll:{y:action.y}})
+        return Object.assign({},state,{
+          scroll:{
+            ...state.scroll,
+            y:action.y,
+          }})
 
       /*WIDTH - HEIGHT*/ /*Landscape / portail*/
       case TYPES.VIEW_SIZE:

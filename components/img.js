@@ -43,9 +43,11 @@ export class _IMG extends PureComponent{
           position:'absolute',//文件流识别
           justifyContent:   'space-around',
           backgroundRepeat: 'no-repeat',
-          backgroundSize:   'cover',
+          backgroundSize:   this.props.fullWidth?'cover':'auto',
           overflow:         'hidden',
           backgroundColor:  'transparent',
+          backgroundPosition: 'center',
+
 
           left:this.props.left,
           top:this.props.top,
@@ -169,15 +171,41 @@ export class IMG_WithLoader extends PureComponent {
       return
     }
     // mount 后,  随时激活的fetch
-    if(nextProps.fetch ==true && this.props.fetch==false) {
-      this.fetchImg()
+    if(nextProps.fetch ==true && this.props.fetch==false||this.props.fetch==undefined) {
+      const inView = this._elementInViewport(this._$loaderImg)
+      // console.log(inView)
+      if(inView) this.fetchImg()
+      // this.fetchImg()
       return
 
     }
 
   }
 
+  _elementInViewport(element){
+    const vw = window.innerWidth; // 用公共值
+    const vh = window.innerHeight;// 用公共值
+    // 一些过滤条件
+    if (!element ||
+      !element.offsetParent ) return false;
+    //如果 父element 被隐藏, 跳过(会造成 reflow
+    // visibility == 'hidden' , display == 'none' , opacity == 0
+    const { visibility,display,opacity } = getComputedStyle(element)
+    // if (visibility=='hidden'||
+    //   display=='none'||
+    //   opacity==0
+    //  ) return false;
+    // console.log(visibility,display,opacity)
 
+    const { top, left, bottom, right } = element.getBoundingClientRect();
+    console.log(element)
+    return (
+      top >= 0 &&
+      left >= 0 &&
+      bottom <= vh &&
+      right <= vw
+    );
+  }
 
 
   onProgress(xhr){
@@ -207,6 +235,7 @@ export class IMG_WithLoader extends PureComponent {
      需要<NoSSR> 否则这里的 w h 取回来是 0
      */
     const full_src = wix (new_src,w,h)
+    // const full_src = wix (new_src,w,h,'fill')
     let XHR = new XHRProgress();
     XHR.onProgress = this.progress;
     /*若要测试logder 高质量图片
@@ -234,6 +263,8 @@ export class IMG_WithLoader extends PureComponent {
             width : '100%',//this.props.width,
             height : this.props.height,
             })}
+           ref={c => this._$loaderImg = c}
+           className = 'imgLoader'
 
           >
               <_IMG
@@ -243,7 +274,8 @@ export class IMG_WithLoader extends PureComponent {
                show = {this.state.loaded}//显示Img
                left = {this.props.left}
                top = {this.props.top}
-               key={`${this.key}_IMG`}
+               key={`_IMG_${this.key}`}
+               fullWidth={this.props.fullWidth}
                />
 
               <_Loading
@@ -253,7 +285,7 @@ export class IMG_WithLoader extends PureComponent {
                percent = {this.state.percent}
                left = {this.props.left}
                top = {this.props.top}
-               key={`${this.key}_LOADIMGER`}
+               key={`_LOADIMGER_${this.key}`}
 
               />
           </div>
@@ -266,59 +298,4 @@ export class IMG_WithLoader extends PureComponent {
 
 
 export default IMG_WithLoader;
-
-
-
-
-
-// export let IMG = HOC_WithLoad(_BG_IMG)
-
-
-
-/**
- * Backgroud Image
- *   @ opacity
- *   @ src
- */
-
-// const _BG_IMG = glamorous.div({
-
-//     position:         'absolute',
-//     zIndex:           -1,
-//     left:             0,
-//     top:              0,
-//     zIndex:           1,
-//     display:          'flex',
-
-//     justifyContent:   'space-around',
-//     backgroundColor:  '#3b444f',
-//     backgroundRepeat: 'no-repeat',
-//     backgroundSize:   'cover',
-//     overflow:         'hidden',
-
-//     width:            '100%',
-//     height:           '100%',
-
-//     transitionProperty: 'opacity',
-//     transitionTimingFunction: 'linear',//cubic-bezier(.4,0,.2,1)
-//     transitionDuration: '600ms',
-
-//   },(props)=>({
-//     // isLandscape  --或 居中
-
-//     //在这里找渐变模板 https: //webgradients.com/
-//     opacity: props.loaded?1:0,
-//     backgroundImage:  props.src?`url(${props.src})`:'white',
-//   })
-// )
-
-
-
-/**
- *  Loading style...的显示界面
- *  @src  {[type]} options.position:
- *
- */
-
-
 

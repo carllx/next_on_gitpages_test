@@ -4,6 +4,11 @@ import { css } from 'glamor'
 import {ui  ,GR ,makeKEY}  from '../utils/ui'
 import {IMG_WithLoader} from './img'
 import { PureComponent } from 'react'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import {setSectionPostionY,setClose,setFetch} from '~/reducers/section'
+import {findPos} from '~/utils/mouse'
+
 
 const _pubblic_key= makeKEY()
 /**
@@ -15,16 +20,15 @@ const _pubblic_key= makeKEY()
  */
 
 class _SVG_TopTriangle extends PureComponent{
+
     render(){
         const {width, height, color}=this.props
         return(
             <svg
              {...css({
-                width:'100%',//`${width}px`,
+                width:'100%',
                 height:`${height}px`,
                 fontSize: 0,
-                // overflow: 'hidden',
-                display:'block',
                 whiteSpace: 'nowrap',
             })}>
                 <polygon
@@ -43,13 +47,11 @@ class _SVG_TopTriangle extends PureComponent{
                   y2="0"
                   strokeWidth="1"
                   stroke={ui.color.b_o3}
-                  // overflow='hidden'
                   />
             </svg>
         )
     }
 }
-// const _SVG_TopTriangle =( props )=>
 
 
 /**
@@ -59,8 +61,8 @@ class _SVG_TopTriangle extends PureComponent{
  * @props  {string} color
  * @return {component}
  */
-// const _SVG_BottomTriangle = ( props ) =>
 class _SVG_BottomTriangle extends PureComponent{
+
     render(){
         const { width, height, color}=this.props
         return(
@@ -68,8 +70,6 @@ class _SVG_BottomTriangle extends PureComponent{
                 width:'100%',//`${width}px`,
                 height:`${height}px`,
                 fontSize: 0,
-                // overflow: 'hidden',
-                // display:'block',
                 // whiteSpace: 'nowrap',
             })}>
 
@@ -89,7 +89,6 @@ class _SVG_BottomTriangle extends PureComponent{
                   y2="0"
                   strokeWidth="1"
                   stroke={ui.color.b_o3}
-                  // overflow='hidden'
                   />
             </svg>
 
@@ -107,8 +106,9 @@ class _SVG_BottomTriangle extends PureComponent{
  * @props  {int} footColor 是内嵌footer SVG 颜色
  * @return {component}
  */
-// const _ImgSection =(props)=>
-class _ImgSection extends PureComponent{
+// const _img_in_Section =(props)=>
+class _img_in_Section extends PureComponent{
+
     render(){
         const {
             offset,
@@ -125,39 +125,41 @@ class _ImgSection extends PureComponent{
                 position:'relative',
                 top:-offset,//IMG一律需要上移
                 left:0,
-                // zIndex:-1,
             })}>
-                {/*Header*/}
+                {/*TOP*/}
                 <div {...css({
                     width:'100%',
                     height:`${offset}px`,
                     position:'absolute',
-                    left:0,
                     zIndex:1,
+                    left:0,
                     top:`-1px`,// ????Img
                     /*????Img 背景下看到有误差
                     (和SVG无关 因为添加stroke strokeWidth依然无效)*/
-                     // display: 'block',
-                     // overflow:'hidden',
                 })}
                 >
                     <_SVG_TopTriangle
-                     width={width}
+                     width= {width}
                      height= {offset}
-                     color ={footColor}
+                     color= {footColor}
                     />
-                </div>
+                </div>{/*TOP*/}
+
+
                 <IMG_WithLoader
                  src={src}
                  width = {width}
                  height = {is_landscape?`${GR.px(2,width)}`:`${GR.px(1,width)}`}
                  left= {0}
                  top={0}
-                 //active = {active}//初始false,避免请求导致setState on unMount
                  fetch={fetch}
                  key = {`${_pubblic_key}_sec_WithLoader`}
+                 fullWidth = {true}
+                 //active = {active}//初始false,避免请求导致setState on unMount
                 />
-                {/*footer*/}
+
+
+                {/*BOTTOM*/}
                 <div {...css({
                     width:'100%',
                     height:`${offset}px`,
@@ -166,16 +168,14 @@ class _ImgSection extends PureComponent{
                     /*????Img 背景下看到有误差
                     (和SVG无关 因为添加stroke strokeWidth依然无效)*/
                     bottom:`-1px`,//
-                    // display: 'block',
-                    // overflow:'hidden',
                 })}
                 >
                     <_SVG_BottomTriangle
                      width={width}
-                     height= {offset}
+                     height={offset}
                      color ={footColor}
                     />
-                </div>{/*footer*/}
+                </div>{/*BOTTOM*/}
             </div>
         )
     }
@@ -210,12 +210,11 @@ const _content = (props)=>
     >
         {/*图片IMG*/}
         {props.img?
-            <_ImgSection
+            <_img_in_Section
              src = {props.img}
              width = {props.vw}
              offset = {props.offset}
              footColor = {props.footColor}
-             // show = {!props.close}
              fetch={props.fetch}
              is_landscape = {props.is_landscape}
             />
@@ -258,6 +257,11 @@ const _content = (props)=>
 
 
 
+
+
+
+
+
 /**
  * SECTION 组件
  * @props  {STRING} name (option) SECTION菜单的(导航标题)
@@ -273,46 +277,61 @@ const _content = (props)=>
  * @state  {INT} maxHeight 用于content折叠 fold 动画
  * @return {COMPONENT}
  */
-
+// language
+// vw
+// is_landscape
 
  class Seczione extends PureComponent {
 
     constructor (props) {
-      super(props)
-      this.TriangleHeight = this.props.is_landscape?GR.px(7,this.props.vw):GR.px(4,this.props.vw)
-      this.ToggleFold=this.toggleFold.bind(this)
-      this.state={
-        close:this.props.is_landscape?false:true,//先计算_height ,在close
-        //maxHeight:'auto',//供折叠动画
-        fetch:this.props.is_landscape?true:false
-      }
-      //@this._height
-      this._keyCtx=makeKEY()
+        super(props)
+        this.TriangleHeight = this.props.is_landscape?GR.px(7,this.props.vw):GR.px(4,this.props.vw)
+        this.ToggleFold=this.toggleFold.bind(this)
+        //@this._height
+        this._keyCtx=makeKEY()
+    }
 
+    componentWillMount(){
+        // debugger
+        // console.log('willmount')
+        // this.props.setClose(name,this.props.is_landscape?false:true)
+    }
+
+    componentWillReceiveProps(nextProps){
+
+        if(nextProps.RePosTrigger>this.props.RePosTrigger){
+            if(nextProps.RePosTrigger){
+                this.reSetPosition()
+            }
+        }
+    }
+
+    shouldComponentUpdate(nextProps){
+        if(this.props.RePosTrigger!==undefined&&nextProps.RePosTrigger!==undefined&&nextProps.RePosTrigger!==this.props.RePosTrigger){
+            return false
+        }else{
+            return true
+        }
     }
 
     componentDidMount(){
-        // if(!this.props.is_landscape){
-        //     this.setState({
-        //             maxHeight:0,
-        //             close:true,
-        //     })
-        // }
+        const name = this.props.name
+        this.props.is_landscape?this.props.setClose(name,false):this.props.setClose(name,true)
     }
-
     toggleFold(){
         console.log('toggle')
-        this.setState(
-            {
-                close:!this.state.close,
-                fetch:true
-            },
-            // ()=>{this._foldding = false}
-        )
+        this.props.setClose(this.props.name,!this.props.onClose)
+    }
+
+
+    reSetPosition(){
+        this.props.setSectionPostionY(this.props.name, findPos(this._$folder));
+        //以相对可见位置:.getBoundingClientRect();
     }
 
 
     render(){
+
         // const TriangleHeight = GR.px(4,this.props.vw)
         return (
             <div
@@ -323,12 +342,7 @@ const _content = (props)=>
                 // zIndex:1
             })}>
 
-                {/*HEADER--------------------
-                    DIV_Click
-                        TOP SVG
-                        SECTION NAME
-                        IMGE(Option?)
-                */}
+                {/*HEADER----------------*/}
                 <div {...css({
                         position:'relative',
                         zIndex:2,
@@ -336,9 +350,15 @@ const _content = (props)=>
                         top:0,
                         left:0,
                         cursor: 'pointer',
-                        // display:'block',
+                        //视差
+                        // transformStyle: 'preserve-3d',
+                        // perspectiveOrigin: '0 0',
+                        // perspective: '1px',
+                        //视差
                     })}
                  onClick={this.ToggleFold}
+                 ref={c => this._$folder = c}
+                 className = {'SECTION_HEADER'}
                 >
 
                     {/*TOP SVG*/}
@@ -350,7 +370,10 @@ const _content = (props)=>
                         /*????Img 背景下看到有误差
                         (和SVG无关 因为添加stroke strokeWidth依然无效)*/
                         top:`0px`,// ????Img
-                        // whiteSpace: 'nowrap',
+
+                        // 视差
+                        // transformOrigin: '0 0',
+                        // transform: 'translateZ(-4px) scale(3)',
                         })}>
                         <_SVG_TopTriangle
                          width={this.props.vw}
@@ -364,11 +387,15 @@ const _content = (props)=>
                     {/*name*/}
                     <div {...css({
                         position:'absolute',
+
                         fontSize:this.props.is_landscape?`${GR.vw(9)}vw`:`${GR.vw(6)}vw`,
                         fontWeight:100,
                         top:this.props.is_landscape?`${GR.vw(8)}vw`:`${GR.vw(5)}vw`,
                         left:this.props.is_landscape?`${GR.vw(4)}vw`:this.props.marginW,// artisti - avatar&& description 的marginLeft/marginWidth
                         zIndex:3,
+                        // 视差
+                        // transformOrigin: '0 0',
+                        // transform: 'translateZ(-2px) scale(4)',
                         })}>
                         {this.props.name}
                     </div>
@@ -377,29 +404,29 @@ const _content = (props)=>
 
 
                 <div
-                 // ref={c => this._$folder = c}
+
                  {...css({
                     position:'relative',
                     zIndex:-1,
-                    height:this.state.close?0:'auto',//不再需要预算 this._height
+                    height:this.props.onClose?0:'auto',//不再需要预算 this._height
                     transition: `all 1s cubic-bezier(0, 0.6, 0, 1)`,
                     willChange: 'max-height,opacity',
-                    opacity:this.state.close?0:1,
-                    // visibility:this.state.close?'hidden':'collapse',
-                    // display:this.state.close?'none':'block',
-                    // overflow: this.state.close?'auto':'unset',//消除fold动画时scroll移动
+                    opacity:this.props.onClose?0:1,
+                    // visibility:this.props.onClose?'hidden':'collapse',
+                    // display:this.props.onClose?'none':'block',
+                    // overflow: this.props.onClose?'auto':'unset',//消除fold动画时scroll移动
                     overflow: 'unset',//消除fold动画时scroll移动
                  })}
 
                  >
                     {/*image--------------------*/}
                     {this.props.img?
-                        <_ImgSection
+                        <_img_in_Section
                          src = {this.props.img}
                          width = {this.props.vw}
                          offset = {this.TriangleHeight}
                          footColor = {this.props.color}
-                         fetch={this.state.fetch}
+                         fetch={!this.props.onClose}
                         />
                         :null}
                     {/*CONTENTS--------------------*/}
@@ -416,8 +443,8 @@ const _content = (props)=>
                              key={this._keyCtx+index}
                              is_landscape={this.props.is_landscape}
 
-                             close = {this.state.close}
-                             fetch={this.state.fetch}
+                             close = {this.props.onClose}
+                             fetch={!this.props.onClose}
                             />
                     )}
                 </div>
@@ -426,8 +453,8 @@ const _content = (props)=>
                     position:'absolute',
                     zIndex:1,
                     width:'100%',
-                    height:this.state.close?0:this.TriangleHeight,//Content close的时候遮挡出血
-                    opacity:this.state.close?1:0,//Content close的时候遮挡出血
+                    height:this.props.onClose?0:this.TriangleHeight,//Content close的时候遮挡出血
+                    opacity:this.props.onClose?1:0,//Content close的时候遮挡出血
                     transition: `all 1s cubic-bezier(0, 0.6, 0, 1)`,
                     willChange: 'height,opacity',
                     /*????Img 背景下看到有误差
@@ -442,13 +469,33 @@ const _content = (props)=>
                      // color ={'red'}
                     />
                 </div>
-
             </div>
         )
     }
 }
+// language
+// vw
+// is_landscape
+const mapStateToProps = (state,ownProps) => {
+    const onClose = state.Section[ownProps.name]!==undefined?state.Section[ownProps.name].onClose:true
+
+    // const onClose = state.Section[ownProps.name].onClose
+    return ({
+        vw:state.Root.view_size.vw,
+        language:state.Root.language,
+        is_landscape:state.Root.view_size.is_landscape,
+        RePosTrigger:state.Section.RePosTrigger,
+        onClose:onClose,
+    });
+}
 
 
+const mapDispatchToProps = (dispatch ) =>{
+    return {
+        setSectionPostionY:bindActionCreators(setSectionPostionY, dispatch ),
+        setClose:bindActionCreators(setClose, dispatch ),
+    }
+}
 
-
-export default Seczione;
+// export default Nav;
+export default connect(mapStateToProps ,mapDispatchToProps)(Seczione)

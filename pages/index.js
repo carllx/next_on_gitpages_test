@@ -1,9 +1,8 @@
-import { Component } from 'react'
+import { PureComponent } from 'react'
 import { bindActionCreators } from 'redux'
 import withRedux from 'next-redux-wrapper'
 
 import { css  } from 'glamor'
-
 import {initStore} from '~/store'
 import {setScroll,switchLanguage,setViewSize,onDevice ,setBrowser} from'~/reducers/root'
 import { setPanelOn } from '~/reducers/nav'
@@ -16,39 +15,28 @@ import LOGO from '~/components/logo.svg'
 import {ThreeInit} from'~/components/section.welcome.THREE.sphere.js'
 
 import {isMobile  ,isTablet ,isLandscape, getLanguer}  from '../utils/device'
-import {throttle, debounce}  from '../utils/throttle'
-import {ui ,GR }  from '../utils/ui'
 
+import {ui ,GR }  from '../utils/ui'
+import Resizer from '~/components/controller.resize'
 import Perf from 'react-addons-perf'
 
 // import fetch from 'isomorphic-fetch'
 // import Post from '../components/post'
 
 
-class Index extends Component {
+class Index extends PureComponent {
   static getInitialProps ({isServer}) {
     return Object.assign({},{isServer})
   }
 
   constructor (props) {
       super(props)
-      this.prevScrollY= 0
-      this.lazyResize= debounce(this.handleReSize,130)
     }
 
 
   setLanguage=(language)=>{
     this.props.switchLanguage(language)
   }
-
-  setViewSize=()=>{
-        console.info('Resize - setViewSize on redux')
-        this.props.setViewSize({
-          vh: window.innerHeight,//window.screen.height,,//document.documentElement.clientHeight,
-          vw: window.innerWidth,// window.screen.width,//document.documentElement.clientWidth,
-          is_landscape:isLandscape()
-          })
-      }
 
   setDevice=()=>{
       let whatDevice ;
@@ -63,10 +51,6 @@ class Index extends Component {
   componentDidMount(){
 
     window.Perf = Perf
-    window.addEventListener('resize', this.lazyResize );
-
-    // SCROLL
-    this.prevScrollY = window.scrollY;
 
     // DEVICE
     this.setDevice()
@@ -75,28 +59,16 @@ class Index extends Component {
     this.setLanguage(getLanguer())
 
     /* height width DIRECTION */
-    this.setViewSize()
+    // this.setViewSize()
 
     ThreeInit();
-
   }
 
-  componentWillMount(){
-    if (typeof window == 'undefined') return
-    //首次访问会出现无法识别windows
-    window.removeEventListener('resize', this.lazyResize);
-
-  }
-
-
-  componentWillUnMount(){
-    window.removeEventListener('resize', this.lazyResize)
-  }
 
 
   render () {
     // debugger
-    const {language } = this.props.language ||{language:'zh'}
+    const {language} = this.props.language ||{language:'zh'}
     const {vw,vh,is_landscape} = this.props.view_size||{view_size:{vw:0,vh:0,is_landscap:false}}
     // if(vw>0) {debugger}
       // debugger
@@ -164,7 +136,7 @@ class Index extends Component {
            show_on_init = {!is_landscape}
           />
         </NoSSR>
-
+        <Resizer/>
 
       </main>
 
@@ -180,7 +152,6 @@ const mapStateToProps = (state) => ({
     os:state.Root.os,
     device:state.Root.device,
     language:state.Root.language,
-    is_Scroll_up:state.Root.is_Scroll_up,
     // nav:state.nav
 });
 
@@ -188,9 +159,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     // root
     switchLanguage: bindActionCreators(switchLanguage, dispatch),
-    setScroll: bindActionCreators(setScroll, dispatch),
-    setViewSize: bindActionCreators(setViewSize, dispatch),
-    setBrowser: bindActionCreators(setBrowser, dispatch),
+    // setBrowser: bindActionCreators(setBrowser, dispatch),
     onDevice: bindActionCreators(onDevice, dispatch),
     //nav
     setPanelOn:bindActionCreators(setPanelOn, dispatch )

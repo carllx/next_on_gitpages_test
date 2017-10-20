@@ -21,14 +21,12 @@ const ctrl = {
     animation : 4,
     duration : 5,
     direction : 2,
-    // render : function() {
-    //     createTriangles();
-    // }
 }
 
 
 
 export const ThreeInit = function () {
+    /* INIT */
     var vh = document.documentElement.clientHeight,
         vw = document.documentElement.clientWidth;
 
@@ -45,11 +43,13 @@ export const ThreeInit = function () {
     camera.position.set(0, 0, 800);
     scene.add(camera);
 
-    createTriangles();
+    init_Triangles();
+
+    render();
 }
 
 
-const createTriangles = function() {
+const init_Triangles = function() {
 
     if (allTriangles) {
         scene.remove(allTriangles);
@@ -100,14 +100,6 @@ const createTriangles = function() {
         const radm = Math.random()
         triangle.scale.set(900,900,900)
         triangle.tl
-            // .to(triangle.scale, 0.5, {
-            //     x: 1500*radm,
-            //     y: 1500*radm,
-            //     z: 1500*radm,
-            //     ease: animations[ctrl.animation],
-            //     // repeat: -1,
-            //     // yoyo: true
-            // })
             .to(triangle.scale, 50, {
                 x: 900 + radm*3000,
                 y: 900 + radm*3000,
@@ -117,7 +109,7 @@ const createTriangles = function() {
 
     }
 
-    render();
+
 };
 
 var render = function() {
@@ -130,5 +122,5 @@ var render = function() {
     renderer.render(scene, camera);
 };
 
-// initGui();
-// init();
+
+

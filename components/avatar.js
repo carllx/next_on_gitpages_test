@@ -40,7 +40,6 @@ class Triangle extends PureComponent{
 
 
 // const Img = glamorous.div({
-
 // },(props)=>{
 //   width:   props.width,
 //   height:  props.height,
@@ -48,7 +47,6 @@ class Triangle extends PureComponent{
 //   // backgroundColor:  props.src?`url(${props.src})`:'white',
 //   backgroundImage:  props.src?`url(${props.src})`:'white',
 // })
-//
 //
 
 
@@ -96,7 +94,6 @@ export class AVATAR extends PureComponent {
                 {/*</NoSSR>*/}
             </div>
             )
-
     }
 
 }

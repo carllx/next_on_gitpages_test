@@ -108,3 +108,33 @@ module.exports.getVectorArr =(arr, d )=>{
 
 }
 
+
+/*
+ 问题:造成 reflow, offsetParent 0000
+ //  参考 https://gist.github.com/paulirish/5d52fb081b3570c81e3a )
+ */
+function elementInViewport(element){
+	const vw = window.innerWidth; // 用公共值
+	const vh = window.innerHeight;// 用公共值
+	// 一些过滤条件
+	if (!element ||
+		!element.offsetParent ) return false;
+	//如果 父element 被隐藏, 跳过(会造成 reflow
+	// visibility == 'hidden' , display == 'none' , opacity == 0
+	const {visibility,display,opacity} = getComputedStyle(element)
+	if (visibility=='hidden'||
+	 	display=='none'||
+	 	opacity==0
+	 ) return false;
+	console.log(visibility,display,opacity)
+
+	const { top, left, bottom, right } = element.getBoundingClientRect();
+
+	return (
+		top >= 0 &&
+		left >= 0 &&
+		bottom <= vh &&
+		right <= vw
+	);
+}
+// elementInViewport($0)
