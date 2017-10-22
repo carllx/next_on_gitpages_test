@@ -15,48 +15,65 @@ import { bindActionCreators } from 'redux'
 import {setSectionPostionY,setClose,setFetch} from '~/reducers/section'
 import {findPos} from '~/utils/mouse'
 
-/*
+/**
+props 输入group_Name
 
-    view :{
-        group_Name:[
-        {active,inView},
-        {active,inView},
-        {
-            active:false/true,
-            inView:false/true,
-        }]
-    }
-
-
- */
+view :{
+    group_Name:{
+        active,[
+            {inView,top},
+            {inView,top},
+            {inView,top},
+            .....
+        ]
+    },
+    group_otherName:{},
+}
+*/
 class IS_IN_View extends PureComponent{
     constructor(props){
         super(props)
         // this.props.groupName='section_event'
-        this.props.top=
+        // this.props.parentHeight //更改了,自动更新state
+        this.props.top = ;
     }
 
-    componentWillReceiveProps(){}
+    componentWillReceiveProps(){
+        // 组件的高度 ,如果更改, 触发重计算 ,发送 top
+        if(nextProps.top!==this.props.top){
+            this.isInview()
+        }
+    }
 
-    shouldComponentUpdate(){
-        if(!nextProps.active) return false
+    shouldComponentUpdate(nextProps){
+        if(nextProps.top==this.props.top) return false;
+        if(!nextProps.active) return false;
     }
 
     componentDidMount(){
         /*拟定index,提供索引*/
     }
 
-
-    isInview=()=>{
+    isInview=(element)=>{
         this.props.scrollY
     }
 
-    calcPos=(top,height)=>{
-
+    _findTop=()=>{
+        //  element 在page 的 位置 is on the page
+        // 参考 http://www.quirksmode.org/js/findpos.html
+        let curtop  = 0;
+        if (element.offsetParent) {
+            do {
+                curtop += element.offsetTop;
+            } while (element = element.offsetParent);
+        }
+        return curtop
     }
 
     render(){
-
+        const winY = this.props.scrollY //目前scroll的坐标
+        const top = this.props.top // 父组件的高度 ,如果更改, 触发重计算 calcPos ,发送 isInview
+        return null
     }
 }
 
@@ -69,17 +86,15 @@ const mapStateToProps = (state,ownProps) => {
 
     // const onClose = state.Section[ownProps.name].onClose
     return ({
-        language:state.Root.language,
         is_landscape:state.Root.view_size.is_landscape,
         RePosTrigger:state.Section.RePosTrigger,
-        onClose:onClose,
     });
 }
 
 
 const mapDispatchToProps = (dispatch ) =>{
     return {
-        setInVew:bindActionCreators(setInVew, dispatch ),
+        setY:bindActionCreators(setInVew, dispatch ),
         setClose:bindActionCreators(setClose, dispatch ),
     }
 }

@@ -61,7 +61,7 @@ class Index extends PureComponent {
     /* height width DIRECTION */
     // this.setViewSize()
 
-    ThreeInit();
+    ThreeInit();//@bug 不能resize,不能交互
   }
 
 

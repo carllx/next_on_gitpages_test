@@ -126,7 +126,7 @@ function elementInViewport(element){
 	 	display=='none'||
 	 	opacity==0
 	 ) return false;
-	console.log(visibility,display,opacity)
+	// console.log(visibility,display,opacity)
 
 	const { top, left, bottom, right } = element.getBoundingClientRect();
 

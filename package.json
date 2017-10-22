@@ -38,7 +38,7 @@
     "testCross": "cross-var node -e \"console.log('now path on :', \\\"$npm_package_config_commitmessage\\\")\" && cross-var node -e \"console.log('now path on :', \\\"$npm_package_config_commitmessage\\\")\""
   },
   "config": {
-    "commitmessage": "index_Page, artisti_Page 分离scroller resizer 组件"
+    "commitmessage": "svg动画使用SMIL,替换TweenMax方式,避免频繁刷新组件造成长时间re-calculate style "
   },
   "name": "",
   "description": "## How to use",

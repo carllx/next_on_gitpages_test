@@ -17,10 +17,11 @@ import { setBackGroundPoints } from '~/reducers/nav'
 
 
 
-class SVG_BACKGROUND extends PureComponent{
-    constructor(props){
+class SVG_BACKGROUND extends PureComponent {
+    constructor(props) {
         super(props);
-        this._pts_data= this.setPtsData()//将计算结果储存数据
+        this._pts_data = this.setPtsData() //将计算结果储存数据
+        this.state= this.makeKeyFrames(this.props.nav_on,this.props.nav_on,true)
     }
     /*
         pt_1-------pt_2
@@ -28,15 +29,36 @@ class SVG_BACKGROUND extends PureComponent{
         |           |
         pt_4-------pt_3
     */
-    setPtsData=()=>{
-        const landscape = this.props.is_landscape;
-        const vw = this.props.vw;
-        const vh = this.props.vh;
 
-        if(landscape){
-            return {
-                close:{
+    componentWillReceiveProps(nextProps){
+        /*若props(外)更新服从外部*/
 
+        if(nextProps.nav_on!==this.props.nav_on){
+            //响应一次
+            this.makeKeyFrames(this.props.nav_on,nextProps.nav_on)
+        }
+    }
+
+    makeKeyFrames( pre_on,next_on,dontSetState){
+        const pre  = this._ObjectToSVGPts (this._pts_data[pre_on])
+        const next = this._ObjectToSVGPts (this._pts_data[next_on])
+        const obj ={
+            pre_points:pre,
+            next_points:next
+        }
+        if (dontSetState) return obj
+        this.setState(obj)
+
+    }
+
+    setPtsData = () => {
+            const landscape = this.props.is_landscape;
+            const vw = this.props.vw;
+            const vh = this.props.vh;
+
+            if (landscape) {
+                return {
+                    close: {
                 pt_1_x:vw, pt_1_y:0,
                 pt_2_x:vw,pt_2_y:0,
                 pt_3_x:vw,pt_3_y:0,
@@ -46,10 +68,6 @@ class SVG_BACKGROUND extends PureComponent{
                 pt_2_x:vw,pt_2_y:0,
                 pt_3_x:vw,pt_3_y:GR.px(5,vh),
                 pt_4_x:GR.px(1,vw), pt_4_y:GR.px(4,vh),
-                // pt_1_x:vw, pt_1_y:0,
-                // pt_2_x:vw,pt_2_y:vh,
-                // pt_3_x:vw-GR.px(4,vw),pt_3_y:vh,
-                // pt_4_x:GR.px(1,vw), pt_4_y:GR.px(6,vh),
               },artisti:{
                 pt_1_x:0, pt_1_y:GR.px(4,vw),
                 pt_2_x:vw,pt_2_y:GR.px(5,vw),
@@ -115,22 +133,6 @@ class SVG_BACKGROUND extends PureComponent{
     }//this.setPtsData
 
 
-
-
-
-    setBGPts=(prev_on,next_on)=>{
-        // console.log(prev_on,next_on)
-        this.props.setBackGroundPoints({...this._pts_data[prev_on]},this._pts_data[next_on])
-    }
-
-    componentWillReceiveProps(nextProps){
-        /*若props(外)更新服从外部*/
-
-        if(nextProps.nav_on!==this.props.nav_on){
-            //响应一次
-            this.setBGPts(this.props.nav_on,nextProps.nav_on)
-        }
-    }
     /*一维数组 转换成 多维*/
     _splicePtsObjectVectorArr =(arr, d )=>{
         let newArr = [];
@@ -139,21 +141,22 @@ class SVG_BACKGROUND extends PureComponent{
         return newArr
         // newArr.reduce((prev, curr)=> prev+' '+curr)
         // "1,1 2,2 3,3 4,4"
-    }
-
     /*
         arr = [1,1,2,2,3,3,4,4] =>
         [[1,1], [2,2], [3,3], [4,4]]
      */
-    _ObjectToVectorArry = (obj,d) =>{
+    }
+
+    _ObjectToVectorArray = (obj,d) =>{
         const arr = Object.values(obj);
         /*{"1":5,"2":7,"3":0,"4":0}
         [5, 7, 0, 0]*/
         return this._splicePtsObjectVectorArr(arr,d)
     }
-     /*pts对象 转换成 svg可用的string格式 */
-    _arrayToSVGPts=(obj)=>{
-        const arr = this._ObjectToVectorArry(obj,2)
+
+    /*pts对象 转换成 svg可用的string格式 */
+    _ObjectToSVGPts=(obj)=>{
+        const arr = this._ObjectToVectorArray(obj,2)
         return arr.reduce((prev, curr)=> prev+' '+curr)
         /*"1,1 2,2 3,3 4,4"*/
         // debugger
@@ -161,10 +164,7 @@ class SVG_BACKGROUND extends PureComponent{
 
     render(){
 
-        const pts = this._arrayToSVGPts(this.props.nav_BG_PTs);
-        const pts_arr = this._ObjectToVectorArry(this.props.nav_BG_PTs,2);
-        // const vh = this.props.vh
-
+        const nav_on = this.props.nav_on
 
         return(
             <div
@@ -175,25 +175,56 @@ class SVG_BACKGROUND extends PureComponent{
             >
                 <svg
                  {...css({
-                    width:  `100%`,
 
-                    // @ 修复 iphone safari svg上移问题
-                    // height: `100vh`, //@
+                    // @ 还未修复 iphone safari svg上移问题
+                    width:  `100%`,
                     height: '100%',//@
                     position: 'fixed' ,//@
                     top: 0,//@
-                })}>
+                })}
+                 key = {`${this.props.nav_on}_svg`}//否则没有动画过度效果
+
+                 >
                     <polygon
                         {...css({
                             width:  `100%`,
                             height: `100%`,
                             pointerEvents:'visiblePainted',//auto 相同svg 禁用了pointerEvents
                             cursor:'pointer',// 提示可关闭
+                            // points:this.state.pointsKayFrame,
+                            // animation: 'move 0.7s',
+                            // this.state.pointsKayFrame[nav_on]
                         })}
                      fill={ui.color.w_o1}
                      stroke="none"
-                     points= {pts}
-                    />
+                     points= {this.state.pre_points}
+
+                     // points= {`100,10 40,180 190,60 10,60 160,180 100,10`}
+
+                    >
+                        <animate
+                         attributeName="points"
+                         // attributeType="points"
+                         dur="200ms"
+                         to={this.state.next_points}
+                         fill='freeze'
+                         calcMode="spline"
+                         keyTimes="0;1"
+                         keySplines=".04,.36,.01,.99"
+                          />
+                        {/*<animateTransform
+                         attributeName="transform"
+                         // attributeType="points"
+                         dur="300ms"
+                         type="rotate"
+                         // begin="click"
+                         // from="0 500 500"
+                         to={'360 500 500'}
+                         fill='freeze'
+                          />*/}
+
+                </polygon>
+
                 </svg>
 
             </div>
@@ -214,15 +245,11 @@ const mapStateToProps = (state) => ({
 });
 
 
-const mapDispatchToProps = (dispatch ) =>{
-    return {
-        setBackGroundPoints:bindActionCreators(
-            setBackGroundPoints, dispatch ),
-    }
-}
+
 
 // export default Nav;
-export default connect(mapStateToProps ,mapDispatchToProps)(SVG_BACKGROUND)
+export default connect(mapStateToProps ,null)(SVG_BACKGROUND)
+
 
 
 

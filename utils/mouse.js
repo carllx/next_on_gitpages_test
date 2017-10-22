@@ -37,7 +37,7 @@ export function mousePositionDocument(e) {
     };
 }
 
-// Find out where an element is on the page
+//  element 在page 的 位置 is on the page
 // From http://www.quirksmode.org/js/findpos.html
 export function findPos(obj) {
     var curleft = 0;

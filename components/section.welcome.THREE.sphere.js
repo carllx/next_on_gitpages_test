@@ -1,12 +1,24 @@
-// import {TweenMax, Power2, TimelineLite} from "gsap";
+// @ wait react-vr
 import {TimelineMax} from "gsap";
 import * as THREE from 'three';
-// import {LOADERJS} from'./component/LOADER';
-// import {PLAYERJS} from'./component/PLAYER';
+
+import  {PureComponent} from 'react'
+
+import { bindActionCreators } from 'redux'
+
+import { connect } from 'react-redux'
+
+
+export default class Z3D_SPHERE extends PureComponent {
+    constructor(props){super(props)}
+    render(){
+
+    }
+}
 
 
 let renderer, scene, camera, allTriangles;
-const animations = [Back.easeIn, Back.easeOut, Bounce.easeIn, Bounce.easeOut, Linear.ease, Elastic.easeOut];
+
 
 // var vw = window.innerWidth,
 //     vh = window.innerHeight;
@@ -18,7 +30,6 @@ const ctrl = {
     wireframe : false,
     polygons : 15,
     rotation : true,
-    animation : 4,
     duration : 5,
     direction : 2,
 }
@@ -104,7 +115,7 @@ const init_Triangles = function() {
                 x: 900 + radm*3000,
                 y: 900 + radm*3000,
                 z: 900 + radm*3000,
-                ease: animations[ctrl.animation],
+                ease: Linear.ease,//Back.easeIn, Back.easeOut, Bounce.easeIn, Bounce.easeOut, Linear.ease, Elastic.easeOut
             })
 
     }

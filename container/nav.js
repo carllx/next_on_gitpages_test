@@ -9,7 +9,7 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
 import {ui  ,GR}  from '~/utils/ui'
-import SVG_BACKGROUND  from '~/components/nav.bg.svg'
+import SVG_BACKGROUND  from '~/components/nav.bg.svg_css'
 import Language  from '~/components/nav.language'
 import {BUTTONS}  from '~/components/nav.buttons'
 import ArtistiNav  from './nav.artisti'
@@ -71,7 +71,6 @@ class Nav extends PureComponent {
             ?this.onPanel('show')
             :this.onPanel('close');
           }
-
       }
     }
 
