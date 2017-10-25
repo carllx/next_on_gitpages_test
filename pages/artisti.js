@@ -13,7 +13,7 @@ import Scroller from '~/components/controller.scroll'
 import Resizer from '~/components/controller.resize'
 import AVATAR from '~/components/avatar'
 import Nav from '~/container/nav'
-import Seczione from '~/components/seczione'
+import Seczione from '~/components/section'
 import {initStore} from '~/store'
 import Perf from 'react-addons-perf'
 
@@ -59,7 +59,7 @@ class Artisti extends PureComponent {
 
       return (
         <main
-        // key = {`page-${this.props.id}-${language}` }
+        key = {`page-${this.props.id}` }
          >
           <Head>
               <title>{this.props.name[language]}</title>
@@ -116,7 +116,7 @@ class Artisti extends PureComponent {
               {/*描述 DESCRIPTION*/}
               <div
                {...css({
-                  fontSize:is_landscape?`${GR.px(5,this.props.SizeWidth)}px`:`1rem`,
+                  fontSize:is_landscape?`${GR.vw(9)}vw`:`1rem`,
                   fontWeight:100,
                   marginLeft: is_landscape?`${GR.vw(7)}vw`:0,
                })}
@@ -140,6 +140,7 @@ class Artisti extends PureComponent {
           <NoSSR>
           <Seczione
            items = {this.props.events}
+           artista = {this.props.name[language]}
            name = {'EVENTS'}
            color = {ui.color.w_1}
            marginW = {MarginW}

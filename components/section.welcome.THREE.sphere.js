@@ -15,7 +15,8 @@ export default class Z3D_SPHERE extends PureComponent {
 
     }
 }
-
+// let store = initStore()  读取state
+// const {vw,vh}=store.getState().Root.view_size
 
 let renderer, scene, camera, allTriangles;
 

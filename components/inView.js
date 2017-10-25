@@ -34,6 +34,7 @@ class IS_IN_View extends PureComponent{
     constructor(props){
         super(props)
         // this.props.groupName='section_event'
+        // this.props.zGroup = ;// 识别深度0:group_root
         // this.props.parentHeight //更改了,自动更新state
         this.props.top = ;
     }

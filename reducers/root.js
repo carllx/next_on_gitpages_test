@@ -8,7 +8,15 @@
 //   }
 // }
 
+const INITIALSTATE = {
 
+  browser:'none',
+  device:'seo_engin',//mobile desktop table seo_engin
+  language:'zh',// 'en','zh','it'
+  scroll:{up:false,y:0},
+  view_size:{vw:0,vh:0,is_landscape:false}
+
+}
 // TYPE  --帮助避免重复 type
 export const TYPES = {
   INIT: 'INIT',
@@ -68,7 +76,7 @@ export const setViewSize = ({vw=vw,vh=vh,is_landscape=is_landscape}) => dispatch
 
 
 //REDUCERS
-export default (state = {} ,action)=>{
+export default (state = INITIALSTATE ,action)=>{
   // console.log('state',state)
   // console.log('root---INITIALSTATE',INITIALSTATE)
     switch (action.type){

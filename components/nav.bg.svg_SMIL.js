@@ -100,13 +100,13 @@ class SVG_BACKGROUND extends PureComponent {
                 close:{
                 pt_1_x:0, pt_1_y:vh,//left_top
                 pt_2_x:vw,pt_2_y:vh,//right_top
-                pt_3_x:vw,pt_3_y:vh,//right_bottom
-                pt_4_x:0, pt_4_y:vh,//left_bottom
+                pt_3_x:vw,pt_3_y:vh,
+                pt_4_x:0, pt_4_y:vh,
               },show:{
                 pt_1_x:0, pt_1_y:(GR.px(3,vh)-vh)*-1,
                 pt_2_x:vw,pt_2_y:(GR.px(4,vh)-vh)*-1,
-                pt_3_x:vw,pt_3_y:vh,
-                pt_4_x:0, pt_4_y:vh,
+                pt_3_x:vw,pt_3_y:vh+500,//right_bottom 修复positioned incorrectly when dropdown search box display,
+                pt_4_x:0, pt_4_y:vh+500,//right_bottom 修复positioned incorrectly when dropdown search box display,
               },artisti:{
                 pt_1_x:0, pt_1_y:GR.px(6,vh),
                 pt_2_x:vw,pt_2_y:GR.px(2,vh),

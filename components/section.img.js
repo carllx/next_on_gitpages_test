@@ -45,7 +45,7 @@ export class _IMG extends PureComponent{
           position:'absolute',//文件流识别
           justifyContent:   'space-around',
           backgroundRepeat: 'no-repeat',
-          backgroundSize:   this.props.fullWidth?'cover':'auto',
+          backgroundSize:   'cover',
           overflow:         'hidden',
           backgroundColor:  'transparent',
           backgroundPosition: 'center',
@@ -60,6 +60,7 @@ export class _IMG extends PureComponent{
           // backgroundColor:  this.props.src?`url(${this.props.src})`:'white',
           backgroundImage:  this.props.show?`url(${this.props.src})`:null,
           transition: `opacity 1s cubic-bezier(0.24, 0.49, 0.82, 0.6)`,
+          transform:`skew(0deg,-5deg) scale(1.2) translateZ(0)  `,
           })}
         >
         </div>
@@ -141,7 +142,7 @@ const _Loading =(props)=>
     />
 */
 
-export class IMG_WithLoader extends PureComponent {
+export default class IMG_WithLoader extends PureComponent {
 
   constructor (props) {
 
@@ -237,7 +238,8 @@ export class IMG_WithLoader extends PureComponent {
             position: 'relative',
             width : '100%',//this.props.width,
             height : this.props.height,
-            transform: 'inherit',//为了section上层skew
+            transform:`skew(0deg,5deg) translateZ(0)`,
+            overflow: 'hidden',
             })}
            className = 'imgLoader'
 
@@ -250,7 +252,6 @@ export class IMG_WithLoader extends PureComponent {
                left = {this.props.left}
                top = {this.props.top}
                key={`_IMG_${this.key}`}
-               fullWidth={this.props.fullWidth}
                />
 
               <_Loading

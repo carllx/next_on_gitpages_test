@@ -2,7 +2,7 @@
 import fetch from 'isomorphic-fetch'
 import { css } from 'glamor'
 import {ui  ,GR ,makeKEY}  from '../utils/ui'
-import {IMG_WithLoader} from './img'
+import {IMG_WithLoader} from './img.skew'
 import { PureComponent } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
@@ -306,18 +306,58 @@ const _content = (props)=>
         }
     }
 
-    shouldComponentUpdate(nextProps){
-        if(this.props.RePosTrigger!==undefined&&nextProps.RePosTrigger!==undefined&&nextProps.RePosTrigger!==this.props.RePosTrigger){
-            return false
-        }else{
-            return true
-        }
-    }
+    // shouldComponentUpdate(nextProps){
+    //     if(this.props.RePosTrigger!==undefined&&nextProps.RePosTrigger!==undefined&&nextProps.RePosTrigger!==this.props.RePosTrigger){
+    //         return false
+    //     }else{
+    //         return true
+    //     }
+    // }
 
     componentDidMount(){
         const name = this.props.name
         this.props.is_landscape?this.props.setClose(name,false):this.props.setClose(name,true)
+
+
+
+        // mount 后,  随时激活的fetch
+        // debugger
+        // if(nextProps.fetch ==true && this.props.fetch==false||this.props.fetch==undefined) {
+        //   const inView = this._elementInViewport(this._$loaderImg)
+        //   // console.log(inView)
+        //   if(inView) this.fetchImg()
+        //   // this.fetchImg()
+        //   return
+
+        // }
     }
+
+    _elementInViewport(element){
+        const vw = this.props.view_size.vw
+        const vh = this.props.view_size.vh
+        // 一些过滤条件
+        if (!element ||
+          !element.offsetParent ) return false;
+        //如果 父element 被隐藏, 跳过(会造成 reflow
+        // visibility == 'hidden' , display == 'none' , opacity == 0
+        const { visibility,display,opacity } = getComputedStyle(element)
+        // if (visibility=='hidden'||
+        //   display=='none'||
+        //   opacity==0
+        //  ) return false;
+        // console.log(visibility,display,opacity)
+
+        const { top, left, bottom, right } = element.getBoundingClientRect();
+        console.log(element)
+        return (
+          top >= 0 &&
+          left >= 0 &&
+          bottom <= vh &&
+          right <= vw
+        );
+      }
+
+
     toggleFold(){
         console.log('toggle')
         this.props.setClose(this.props.name,!this.props.onClose)
@@ -402,7 +442,7 @@ const _content = (props)=>
 
                 </div>{/*Header*/}
 
-
+                {/*CONTENT*/}
                 <div
 
                  {...css({
@@ -445,6 +485,7 @@ const _content = (props)=>
 
                              close = {this.props.onClose}
                              fetch={!this.props.onClose}
+                             className = {'img_in_content'}
                             />
                     )}
                 </div>
@@ -499,3 +540,4 @@ const mapDispatchToProps = (dispatch ) =>{
 
 // export default Nav;
 export default connect(mapStateToProps ,mapDispatchToProps)(Seczione)
+

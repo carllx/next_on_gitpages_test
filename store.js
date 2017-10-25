@@ -25,7 +25,7 @@ export const INITIALSTATE = {
 }
 
 // STORE
-export const initStore = (initialState = INITIALSTATE) => {
+export const initStore = (initialState = {}) => {
   return createStore(REDUCERS, initialState, composeWithDevTools(applyMiddleware(thunkMiddleware)))
 }
 

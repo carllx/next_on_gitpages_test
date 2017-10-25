@@ -18,13 +18,14 @@ class Scroller extends PureComponent {
 
     constructor(props) {
         super(props)
-        this.lazyScrollY = debounce(this.isScrollUp, 800);
+        this.lazyOn = throttle(800,this.isScrollUp);
+        this.lazyY = debounce(this.updateY,300)
         this._prevScrollY = 0;
     }
 
     isScrollUp = () => {
 
-        if (this._scrollY == this._prevScrollY) return
+        if (this._scrollY === this._prevScrollY) return
 
         if (this._scrollY - this._prevScrollY <= 0) { // is up ?
 
@@ -39,13 +40,21 @@ class Scroller extends PureComponent {
         this._prevScrollY = this._scrollY;
     }
 
+    updateY = () => {
+        const y = window.scrollY
+        this._scrollY = y;
+        this.props.setScrollOffsetY(y);
+        // debounce(this.props.setScrollOffsetY, 100);
+    }
+
     handleScrollonY = (event) => {
         event.preventDefault();  // 阻止事件继续传播
         event.stopPropagation(); // 取消事件的默认行为
         const y = window.scrollY
-        this.props.setScrollOffsetY(y);
+        // this.props.setScrollOffsetY(y);
+        this.lazyY(y)
         this._scrollY = y;
-        this.lazyScrollY()
+        this.lazyOn()
     }
 
     componentDidMount() {

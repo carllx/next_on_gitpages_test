@@ -38,7 +38,7 @@
     "testCross": "cross-var node -e \"console.log('now path on :', \\\"$npm_package_config_commitmessage\\\")\" && cross-var node -e \"console.log('now path on :', \\\"$npm_package_config_commitmessage\\\")\""
   },
   "config": {
-    "commitmessage": "svg动画使用SMIL,替换TweenMax方式,避免频繁刷新组件造成长时间re-calculate style "
+    "commitmessage": "section用skew替换svg,修复 close动画css height效果失效问题,修复section切换初始化height错误乌恩替"
   },
   "name": "",
   "description": "## How to use",
