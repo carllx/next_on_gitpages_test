@@ -52,7 +52,11 @@ export class _CONTENT extends PureComponent{
     render(){
         const {close,img,vw,fetch,is_landscape,marginW,content}=this.props
         return(
-            <div className = {'_CONTENT'} key={`_CONTENT${_pubblic_key}`}>
+            <div
+             {...css({
+                    transform: 'translateZ(-0.2px) scale(1.0666666666666667)',//@parallax
+                })}
+             className = {'_CONTENT'} key={`_CONTENT${_pubblic_key}`}>
                 {/*opts-图片IMG*/}
                 {img?
                     <_IMG_SKEW
@@ -76,7 +80,7 @@ export class _CONTENT extends PureComponent{
                     marginRight:marginW,
                     marginTop:is_landscape?`${GR.vw(8)}vw`:`${GR.vw(5)}vw`,
                     marginBottom:is_landscape?`${GR.vw(8)}vw`:`${GR.vw(6)}vw`,
-                    // transform:`translate3d(0,${this.state.parallaxY}px,0)`,
+                    transform:`translate3d(0,${this.state.parallaxY}px,0)`,
                     transition: `all 1s cubic-bezier(0, 0.6, 0, 1)`,
                     willChange: 'margin-top,margin-bottom,transform',
 

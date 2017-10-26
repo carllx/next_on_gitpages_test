@@ -19,8 +19,43 @@ const elementInViewport = (vw, vh,element)=>{
   //  ) return false;
   // console.log(visibility,display,opacity)
   // debugger
-  const { top, left, bottom, right } = element.getBoundingClientRect();
-  const inView = top >= 0 && left >= 0 && bottom <= vh && right <= vw
+  const { top, left, bottom, right ,width, height} = element.getBoundingClientRect();
+  // https://github.com/camwiegert
+  // 取替 const inView = top >= 0 && left >= 0 && bottom <= vh && right <= vw
+
+  // const intersection = {
+  //       t: bottom,
+  //       r: vw - left,
+  //       b: vh - top,
+  //       l: right
+  //   };
+
+  //   // const threshold = {
+  //   //     x: options.threshold * width,
+  //   //     y: options.threshold * height
+  //   // };
+  //   const threshold = {
+  //       x:  width,
+  //       y:  height
+  //   };
+
+
+  //   const inView = intersection.t > (threshold.y)
+  //       && intersection.r > (threshold.x)
+  //       && intersection.b > (threshold.y)
+  //       && intersection.l > (threshold.x);
+
+  let inView ;
+  if(top >= 0 ){
+    inView = top <= vh
+          && right <= vw
+          && left >= 0
+  }else{
+     inView = bottom<=vh
+          && right <= vw
+          && left >= 0
+  }
+
   return ({inView:inView, top:top, left:left, bottom:bottom, right:right })
 
 }
@@ -48,7 +83,7 @@ export const parallaxInView = (opt)=>{
 
   if (answer.inView) {
     // debugger
-    const {scrollY,lag , max} =  opt
+    const {scrollY,lag , max} =  <option value=""></option>
     let pos = (scrollY + vh - answer.top) * lag;
     return (pos > max)? max : pos;
 

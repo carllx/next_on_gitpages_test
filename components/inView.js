@@ -1,4 +1,8 @@
 /*
+  参考:https://github.com/camwiegert/in-view (star 3,889)
+  迭代一个 elements group,保证同一时间请求getBoundingClientRect',
+  避免getBoundingClientRect'过程中如果某个element触发浏览器的paint,
+  浏览器会 recalculate style 一次
   --> 定义 GROUP
   --> 定义 网页中的 height ,
   --> scrollY
@@ -52,11 +56,34 @@ class IS_IN_View extends PureComponent{
     }
 
     componentDidMount(){
-        /*拟定index,提供索引*/
+        /*拟定index,提供索引?*/
+
     }
 
     isInview=(element)=>{
         this.props.scrollY
+    }
+
+    _control=(selector)=>{
+        if (typeof selector !== 'string') return;
+
+        // 获取elements元素的最新列表 .
+        // .slice.call 使 elements  拥有 array 的push等方法
+        // [如何理解和熟练运用js中的call及apply？]https://www.zhihu.com/question/20289071
+        let elements = [].slice.call(document.querySelectorAll(selector));
+
+        // If the registry exists, update the elements.
+        if (selectors.history.indexOf(selector) > -1) {
+            selectors[selector].elements = elements;
+        }
+
+        // If it doesn't exist, create a new registry.
+        else {
+            selectors[selector] = Registry(elements, options);
+            selectors.history.push(selector);
+        }
+
+        return selectors[selector];
     }
 
     _findTop=()=>{

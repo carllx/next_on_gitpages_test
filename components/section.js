@@ -123,10 +123,7 @@ const _pubblic_key= makeKEY()
         return (
             <div
              {...css({
-                // height:this.TriangleHeight,
-                // position:'relative',
-                // zIndex:this.props.z,
-                // zIndex:1
+                transformStyle: 'preserve-3d',//@parallax
             })}
             key={`Section_${this._keyCtx}_${this.props.name}_${this.props.artista}`}
 
@@ -137,6 +134,7 @@ const _pubblic_key= makeKEY()
                         position:'relative',//不设static是因为close时content上移不会叠在上面header
                         zIndex:2,
                         width:'100vw',
+                        transformStyle: 'preserve-3d',//@parallax
                         // top:0,
                         // left:0,
                         cursor: 'pointer',
@@ -166,7 +164,7 @@ const _pubblic_key= makeKEY()
                         top:this.props.is_landscape?`${GR.vw(8)}vw`:`${GR.vw(5)}vw`,
                         left:this.props.is_landscape?`${GR.vw(4)}vw`:this.props.marginW,// artisti - avatar&& description 的marginLeft/marginWidth
                         zIndex:3,
-                        transform:`skew(0deg,-5deg) translateZ(0)`,
+                        transform:`skew(0deg,-5deg) translateZ(0.2px) scale(0.9)`,
                         // 视差
                         // transformOrigin: '0 0',
                         // transform: 'translateZ(-2px) scale(4)',
@@ -182,11 +180,14 @@ const _pubblic_key= makeKEY()
                  {...css({
                     // height:'100%',
                     // maxHeight:this.props.onClose?'0px':'2000px',
+                    transformStyle: 'preserve-3d',//@parallax
                     height:this.props.onClose?'1px':`${this.state.height}`,
 
                     transform:this.props.onClose?`translateZ(0px) translateY(-${this.TriangleHeight}px) scale(1,0.9)`:
-                                                'translateZ(0px) translateY(0px) scale(1,1)',
-                    transformOrigin: '50% 50%',
+                                                'translateZ(-0.2px) scale(1.0666666666666667) translateY(0px)',
+                    transformStyle: 'preserve-3d',//加速
+                    backfaceVisibility: 'hidde',//加速
+                    transformOrigin: '50% 0%',
                     opacity:this.props.onClose?0.5:1,
                     pointerEvents:'none',
                     transition: `all 1s cubic-bezier(0, 0.6, 0, 1)`,
@@ -256,3 +257,18 @@ const mapDispatchToProps = (dispatch ) =>{
 
 // export default Nav;
 export default connect(mapStateToProps ,mapDispatchToProps)(Seczione)
+
+
+
+// {
+//   section:'#0',
+//   rect:{top:0,left:0,bottom:0,right:0,height:0,width:0},
+//   isClose:false,//如果true,可以忽略这个单元请求
+//   element:[
+//     {name:'#0',rect:{top:0,left:0,bottom:0,right:0,height:0,width:0}},
+//     {name:'#1',rect:{top:0,left:0,bottom:0,right:0,height:0,width:0}},
+//     {
+//         name:'#1',// 索引element,找到element的方式
+//         rect:{top:0,left:0,bottom:0,right:0}},
+//   ]
+// }

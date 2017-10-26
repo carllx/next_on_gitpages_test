@@ -138,3 +138,16 @@ function elementInViewport(element){
 	);
 }
 // elementInViewport($0)
+
+
+/**
+ * [parallax 3d] 参考http://keithclark.co.uk/articles/pure-css-parallax-websites/
+ * 用于根据定义的translateZ 生成正确的scale
+ * @param  {float} translateZ  +-0.01
+ * @param  {float} perspective [1~10]
+ * @return {translateZ,scale}
+ */
+module.exports.perspZ =(translateZ , perspective)=>{
+    const scale = 1 + (translateZ * -1) / perspective
+    return {translateZ:translateZ,scale:scale}
+}

@@ -82,110 +82,137 @@ class Artisti extends PureComponent {
           </Head>
 
 
-        {/* 头像和描述
-        宽屏--横向2列 竖屏--1列 */}
-          <NoSSR>
-          <div
-          {...css({
-              // is_landscape
-              display:'flex',
-              flexDirection:is_landscape?'row':'column',
-              alignItems:is_landscape?'flex-start':'left',// iphone
-              marginLeft: is_landscape?`${GR.vw(4)}vw`:MarginW,
-              marginRight: is_landscape?`${GR.vw(1)}vh`:MarginW,
-              marginTop: `${is_landscape?GR.vw(7):GR.vw(6)}vw`,
-              marginBottom: is_landscape?`${GR.vw(7)}vh`:`${GR.vw(7)}vw`,
-          })}
-          >
-              {/* 头像 */}
-              <div
-               {...css({
-                  // height:`inherit`,
-                  width:`${is_landscape?GR.px(4,vw):GR.px(1,vw)}px`,
-                  height:`${is_landscape?GR.px(4,vw):GR.px(1,vw)}px`,
-                  marginBottom:`${is_landscape?0:GR.vw(6)}vw`
-               })}
-              >
-                  <AVATAR
-                   src = {this.props.avatar}
-                   SizeWidth = {is_landscape?GR.px(4,vw):GR.px(1,vw)}
-                   name = {this.props.name[language]}
-                   />
-              </div>
-
-              {/*描述 DESCRIPTION*/}
-              <div
-               {...css({
-                  fontSize:is_landscape?`${GR.vw(9)}vw`:`1rem`,
-                  fontWeight:100,
-                  marginLeft: is_landscape?`${GR.vw(7)}vw`:0,
-               })}
-              >
-                  {
-                      this.props.description[language]
-                      .split('\n')
-                      .map((item, key) =>
-                          <span key={key}>{item}<br/></span>
-                      )
-                  }
-              </div>
-
-          </div>
-          </NoSSR>
+        {/*3D Parallax*/}
+        <div
+         {...css({
+            height: '100vh',//@parallax
+            overflowX: 'hidden',//@parallax
+            overflowY: 'auto',//@parallax
+            perspective: '1px',//@parallax
+         })}
+         // ref= {c=>this._$win = c}
+         id ='win_scroller'
+         >
 
 
-          {/* MENUS-section */}
+          {/* 头像和描述
+          宽屏--横向2列 竖屏--1列 */}
+            <NoSSR>
+            <div
+            {...css({
+                // is_landscape
+                display:'flex',
+                flexDirection:is_landscape?'row':'column',
+                alignItems:is_landscape?'flex-start':'left',// iphone
+                marginLeft: is_landscape?`${GR.vw(4)}vw`:MarginW,
+                marginRight: is_landscape?`${GR.vw(1)}vh`:MarginW,
+                marginTop: `${is_landscape?GR.vw(7):GR.vw(6)}vw`,
+                marginBottom: is_landscape?`${GR.vw(7)}vh`:`${GR.vw(7)}vw`,
+                transformStyle: 'preserve-3d',//@parallax
 
-          {/*EVENTS*/}
-          <NoSSR>
-          <Seczione
-           items = {this.props.events}
-           artista = {this.props.name[language]}
-           name = {'EVENTS'}
-           color = {ui.color.w_1}
-           marginW = {MarginW}
-           z= {9}
-          />
-          </NoSSR>
+            })}
+            >
+                {/* 头像 */}
+                <div
+                 {...css({
+                    // height:`inherit`,
+                    width:`${is_landscape?GR.px(4,vw):GR.px(1,vw)}px`,
+                    height:`${is_landscape?GR.px(4,vw):GR.px(1,vw)}px`,
+                    marginBottom:`${is_landscape?0:GR.vw(6)}vw`,
+                    transform: 'translateZ(0.1px) scale(0.9666666666666667)',//@parallax
+                    transformStyle: 'preserve-3d',//@parallax
+                 })}
+                >
+                    <AVATAR
+                     src = {this.props.avatar}
+                     SizeWidth = {is_landscape?GR.px(4,vw):GR.px(1,vw)}
+                     name = {this.props.name[language]}
+                     />
+                </div>
 
-          {/*EXHIBITIONS*/}
-          <NoSSR>
-          <Seczione
-           items ={this.props.exhibitions}
-           name = {'EXHIBITIONS'}
-           color={ui.color.w_1}
-           marginW = {MarginW}
-           z= {8}
-          />
-          </NoSSR>
+                {/*描述 DESCRIPTION*/}
+                <div
+                 {...css({
+                    fontSize:is_landscape?`${GR.vw(9)}vw`:`1rem`,
+                    fontWeight:100,
+                    marginLeft: is_landscape?`${GR.vw(7)}vw`:0,
+                    // transform: 'translateZ(-2px) scale(3)',//@parallax
+                    transform: 'translateZ(-0.2px) scale(1.0666666666666667)',//@parallax
+                 })}
+                >
+                    {
+                        this.props.description[language]
+                        .split('\n')
+                        .map((item, key) =>
+                            <span key={key}>{item}<br/></span>
+                        )
+                    }
+                </div>
+
+            </div>
+            </NoSSR>
 
 
-          {/*WORKS*/}
-          <NoSSR>
-          <Seczione
-           items ={this.props.works}
-           name = {'WORKS'}
-           color={ui.color.w_1}
-           marginW = {MarginW}
-           z= {7}
-          />
-          </NoSSR>
+            {/* MENUS-section */}
+
+            {/*EVENTS*/}
+            <NoSSR>
+            <Seczione
+             items = {this.props.events}
+             artista = {this.props.name[language]}
+             name = {'EVENTS'}
+             color = {ui.color.w_1}
+             marginW = {MarginW}
+             z= {9}
+            />
+            </NoSSR>
+
+            {/*EXHIBITIONS*/}
+            <NoSSR>
+            <Seczione
+             items ={this.props.exhibitions}
+             name = {'EXHIBITIONS'}
+             color={ui.color.w_1}
+             marginW = {MarginW}
+             z= {8}
+            />
+            </NoSSR>
+
+
+            {/*WORKS*/}
+            <NoSSR>
+            <Seczione
+             items ={this.props.works}
+             name = {'WORKS'}
+             color={ui.color.w_1}
+             marginW = {MarginW}
+             z= {7}
+            />
+            </NoSSR>
 
 
 
-          {/*保证section最后一项在窗口上方*/}
-          <div
-           {...css({
-              position: 'relative',
-              bottom: '0',
-              height:`${GR.px(3,vh)}px`,
-           })}
-          ></div>
+            {/*保证section最后一项在窗口上方*/}
+            <div
+             {...css({
+                position: 'relative',
+                bottom: '0',
+                height:`${GR.px(3,vh)}px`,
+             })}
+            ></div>
+
+
+          </div>{/*3D Parallax*/}
+
+
+
 
           <NoSSR>
               <Nav show_on_init = {!is_landscape}/>
           </NoSSR>
-          <Scroller/>
+          <NoSSR>
+            <Scroller />
+          </NoSSR>
           <Resizer/>
         </main>
         )

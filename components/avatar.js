@@ -4,8 +4,10 @@ import glamorous,{withTheme} from 'glamorous'
 import {css} from 'glamor'
 import NoSSR from 'react-no-ssr';
 
-import {ui  ,GR}  from '~/utils/ui'
+import {ui  ,GR ,perspZ}  from '~/utils/ui'
 import {IMG_WithLoader} from './img'
+
+import { connect } from 'react-redux'
 
 // const Triangle = (props)=>
 class Triangle extends PureComponent{
@@ -50,52 +52,101 @@ class Triangle extends PureComponent{
 //
 
 
+
+
 // IMG_WithLoader
 export class AVATAR extends PureComponent {
     constructor(props){
         super(props)
+        this.PERSP = 1;
+        this.Zp = {
+            pc:{
+                img : perspZ(0.02,this.PERSP),
+                title : perspZ(-0.04,this.PERSP),
+                tiangle : perspZ(-0.05,this.PERSP),
+            },
+            mobile:{
+                img : perspZ(0.05,this.PERSP),
+                title : perspZ(-0.04,this.PERSP),
+                tiangle : perspZ(-0.08,this.PERSP),
+            }
+        }
     }
 
+    // perspZ =(translateZ , perspective)=>{
+    //     const scale = 1 + (translateZ * -1) / perspective
+    //     return `translateZ(${zp.translateZ}px) scale(${zp.scale});`
+    // }
+
     render(){
+        const zp = this.props.landscape?this.Zp.pc:this.Zp.mobile
         return(
             <div {...css({
                     position:'relative',
                     height:this.props.SizeWidth,
-                    width:this.props.SizeWidth
+                    width:this.props.SizeWidth,
+                    transformStyle: 'preserve-3d',
                  })}>
 
+                {/*Triangle*/}
+                <div
+                {...css({
+                    transform:`translateZ(${zp.tiangle.translateZ}px) scale(${zp.tiangle.scale});`
+                 })}>
+                    <Triangle
+                     size = {this.props.SizeWidth}
+                    />
+                </div>
+                {/*Triangle*/}
 
-                <Triangle
-                 size = {this.props.SizeWidth}
-                />
+                {/*IMG*/}
+                <div
+                {...css({
+                    transform:`translateZ(${zp.img.translateZ}px) scale(${zp.img.scale});`
+                 })}>
+                    <IMG_WithLoader
+                     src={this.props.src}
+                     height = {GR.px(1,this.props.SizeWidth)}
+                     width = {GR.px(1,this.props.SizeWidth)}
+                     top = {GR.px(3,this.props.SizeWidth)}
+                     left = {GR.px(4,this.props.SizeWidth)}
+                     fetch = {true}
+                    />
+                </div>
+                {/*IMG*/}
 
-                {/*NAME*/}
+
+                {/*TITLE*/}
                 <div
                  {...css({
                     position:'absolute',
-                    top:`${GR.px(7,this.props.SizeWidth)}px`,
-                    left:`${GR.px(7,this.props.SizeWidth)}px`,
+                    top:`${GR.px(5,this.props.SizeWidth)}px`,
+                    left:`${GR.px(5,this.props.SizeWidth)}px`,
                     fontSize:`${GR.px(5,this.props.SizeWidth)}px`,
                     color:ui.color.w_2,
-                    fontWeight:100
+                    fontWeight:100,
+                    transform:`translateZ(${zp.title.translateZ}px) scale(${zp.title.scale});`
                  })}
                 >{this.props.name}</div>
+                {/*TITLE*/}
 
-                {/*IMG*/}
-                {/*需要 <NoSSR>*/}
-                <IMG_WithLoader
-                 src={this.props.src}
-                 height = {GR.px(1,this.props.SizeWidth)}
-                 width = {GR.px(1,this.props.SizeWidth)}
-                 top = {GR.px(3,this.props.SizeWidth)}
-                 left = {GR.px(4,this.props.SizeWidth)}
-                 fetch = {true}
-                />
-                {/*</NoSSR>*/}
+
             </div>
             )
     }
 
 }
 
-export default AVATAR;
+
+
+
+const mapStateToProps = (state) => {
+
+    // const onClose = state.Section[ownProps.name].onClose
+    return ({
+        landscape:state.Root.view_size.is_landscape,
+    });
+}
+
+// export default Nav;
+export default connect(mapStateToProps ,null)(AVATAR)
