@@ -2,7 +2,7 @@ import {PureComponent} from 'react'
 import {bindActionCreators} from 'redux'
 import withRedux from 'next-redux-wrapper'
 import {css} from 'glamor'
-import {ui  ,GR , makeKEY}  from '~/utils/ui'
+import {ui  ,GR , makeKEY , perspZ}  from '~/utils/ui'
 import {isMobile  ,isTablet , getLanguer}  from '~/utils/device'
 import {switchLanguage,onDevice} from'~/reducers/root'
 
@@ -29,7 +29,26 @@ class Artisti extends PureComponent {
         return { ...post }
     }
 
-    constructor(props) {super(props)}
+    constructor(props) {
+      super(props)
+      this.PERSP = 1;
+      this.Zp = {
+            pc:{
+                title: perspZ(0.03,this.PERSP),
+                description: perspZ(-0.02,this.PERSP),
+                events: perspZ(-0.02,this.PERSP),
+                exhibitions: perspZ(-0.02,this.PERSP),
+                works: perspZ(-0.02,this.PERSP),
+            },
+            mobile:{
+                title : perspZ(0.03,this.PERSP),
+                description: perspZ(-0.1,this.PERSP),
+                events: perspZ(-0.1,this.PERSP),
+                exhibitions: perspZ(-0.1,this.PERSP),
+                works: perspZ(-0.1,this.PERSP),
+            }
+        }
+      }
 
     setLanguage = (language) => {
         this.props.switchLanguage(language)
@@ -89,6 +108,9 @@ class Artisti extends PureComponent {
             overflowX: 'hidden',//@parallax
             overflowY: 'auto',//@parallax
             perspective: '1px',//@parallax
+            perspectiveOrigin: '0% 0%',//@parallax left,top
+            overflowScrolling: 'touch',
+            // transform: 'translate3d(70px, 0, -80px) rotateY(10deg)',
          })}
          // ref= {c=>this._$win = c}
          id ='win_scroller'
@@ -137,7 +159,10 @@ class Artisti extends PureComponent {
                     fontWeight:100,
                     marginLeft: is_landscape?`${GR.vw(7)}vw`:0,
                     // transform: 'translateZ(-2px) scale(3)',//@parallax
-                    transform: 'translateZ(-0.2px) scale(1.0666666666666667)',//@parallax
+                    transform:is_landscape?
+                      `translateZ(${this.Zp.pc.description.translateZ}px) scale(${this.Zp.pc.description.scale})`:
+                      `translateZ(${this.Zp.mobile.description.translateZ}px) scale(${this.Zp.mobile.description.scale})`,//@parallax
+
                  })}
                 >
                     {
@@ -163,7 +188,9 @@ class Artisti extends PureComponent {
              name = {'EVENTS'}
              color = {ui.color.w_1}
              marginW = {MarginW}
-             z= {9}
+             zPos= {is_landscape?-0.02:-0.08}
+             testColor = {'rgb(255,10,128)'}
+
             />
             </NoSSR>
 
@@ -174,7 +201,9 @@ class Artisti extends PureComponent {
              name = {'EXHIBITIONS'}
              color={ui.color.w_1}
              marginW = {MarginW}
-             z= {8}
+             zPos= {is_landscape?-0.02:-0.08}
+             testColor = {'rgb(255,130,128)'}
+
             />
             </NoSSR>
 
@@ -186,7 +215,9 @@ class Artisti extends PureComponent {
              name = {'WORKS'}
              color={ui.color.w_1}
              marginW = {MarginW}
-             z= {7}
+             zPos= {is_landscape?-0.02:-0.08}
+             testColor = {'rgb(255,200,128)'}
+
             />
             </NoSSR>
 
@@ -197,7 +228,7 @@ class Artisti extends PureComponent {
              {...css({
                 position: 'relative',
                 bottom: '0',
-                height:`${GR.px(3,vh)}px`,
+                height:`${GR.px(4,vh)}px`,
              })}
             ></div>
 

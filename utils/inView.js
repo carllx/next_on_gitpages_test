@@ -92,3 +92,35 @@ export const parallaxInView = (opt)=>{
   }
 }
 // export default ParallaxInView;
+
+
+
+
+// componect中 设置
+//   constructor
+//         this.state = {
+//             parallaxY:0,
+//         }
+//     }
+
+//     componentWillReceiveProps(nextProps){
+//         if(this.props.onScrollingY!==nextProps.onScrollingY){
+//             const opt = {
+//                 vw:this.props.vw,vh:this.props.vh,
+//                 element:this._$CONTENT,
+//                 scrollY:nextProps.onScrollingY,
+//                 lag:.02,
+//             }
+//             const pos = parallaxInView(opt)
+//             if(pos){
+//                 this.setState({
+//                     parallaxY:pos,
+//                 })
+//             }
+//         }
+//     }
+//     shouldComponentUpdate(nextProps){
+//         if(this.props.onScrollingY!==nextProps.onScrollingY) {return true}
+//             else {return false}
+
+//     }

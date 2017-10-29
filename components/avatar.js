@@ -4,7 +4,7 @@ import glamorous,{withTheme} from 'glamorous'
 import {css} from 'glamor'
 import NoSSR from 'react-no-ssr';
 
-import {ui  ,GR ,perspZ}  from '~/utils/ui'
+import {ui, GR, perspZ}  from '~/utils/ui'
 import {IMG_WithLoader} from './img'
 
 import { connect } from 'react-redux'
@@ -62,12 +62,12 @@ export class AVATAR extends PureComponent {
         this.Zp = {
             pc:{
                 img : perspZ(0.02,this.PERSP),
-                title : perspZ(-0.04,this.PERSP),
+                title : perspZ(-0.03,this.PERSP),
                 tiangle : perspZ(-0.05,this.PERSP),
             },
             mobile:{
                 img : perspZ(0.05,this.PERSP),
-                title : perspZ(-0.04,this.PERSP),
+                title : perspZ(-0.03,this.PERSP),
                 tiangle : perspZ(-0.08,this.PERSP),
             }
         }
@@ -91,7 +91,7 @@ export class AVATAR extends PureComponent {
                 {/*Triangle*/}
                 <div
                 {...css({
-                    transform:`translateZ(${zp.tiangle.translateZ}px) scale(${zp.tiangle.scale});`
+                    transform:`translateZ(${zp.tiangle.translateZ}px) scale(${zp.tiangle.scale})`
                  })}>
                     <Triangle
                      size = {this.props.SizeWidth}
@@ -102,7 +102,7 @@ export class AVATAR extends PureComponent {
                 {/*IMG*/}
                 <div
                 {...css({
-                    transform:`translateZ(${zp.img.translateZ}px) scale(${zp.img.scale});`
+                    transform:`translateZ(${zp.img.translateZ}px) scale(${zp.img.scale})`
                  })}>
                     <IMG_WithLoader
                      src={this.props.src}
@@ -125,7 +125,7 @@ export class AVATAR extends PureComponent {
                     fontSize:`${GR.px(5,this.props.SizeWidth)}px`,
                     color:ui.color.w_2,
                     fontWeight:100,
-                    transform:`translateZ(${zp.title.translateZ}px) scale(${zp.title.scale});`
+                    transform:`translateZ(${zp.title.translateZ}px) scale(${zp.title.scale})`
                  })}
                 >{this.props.name}</div>
                 {/*TITLE*/}

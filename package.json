@@ -39,7 +39,7 @@
     "testCross": "cross-var node -e \"console.log('now path on :', \\\"$npm_package_config_commitmessage\\\")\" && cross-var node -e \"console.log('now path on :', \\\"$npm_package_config_commitmessage\\\")\""
   },
   "config": {
-    "commitmessage": "尝试完成 inview组件, 初步加入PURECSS 3D Parallax效果"
+    "commitmessage": "修复section 的content和image PURECSS 3D Parallax效果"
   },
   "name": "",
   "description": "## How to use",

@@ -1,8 +1,9 @@
 // import  {Component} from 'react'
 import fetch from 'isomorphic-fetch'
 import { css } from 'glamor'
-import {ui  ,GR ,makeKEY}  from '../utils/ui'
-import _IMG_SKEW from './section.img'
+import {ui  ,GR ,makeKEY ,perspZ}  from '../utils/ui'
+// import _IMG from './img.skew'
+import _IMG from './img.parallax'
 import _CONTENT from './section.content'
 import { PureComponent } from 'react'
 import { connect } from 'react-redux'
@@ -14,7 +15,8 @@ import {findPos} from '~/utils/mouse'
     div transform: skew(0deg,-5deg) relative
         div transform: skew(0deg,5deg); absolute
  */
-
+const BACKGROUND_COLOR = ui.color.w_1;
+const BORDER_COLOR = ui.color.b_o3;
 const _pubblic_key= makeKEY()
 
 
@@ -41,18 +43,30 @@ const _pubblic_key= makeKEY()
 
     constructor (props) {
         super(props)
-        this.TriangleHeight = this.props.is_landscape?GR.px(7,this.props.vw):GR.px(4,this.props.vw)
+        this.TriangleHeight = this.props.is_landscape?GR.px(7,this.props.vw):GR.px(4,this.props.vw);
+        this.PERSP = 1;
+        this.Zp = {
+            pc:{
+                title : perspZ(0.03,this.PERSP),
+                border : perspZ(0.02,this.PERSP),
+            },
+            mobile:{
+                title : perspZ(0.03,this.PERSP),
+                border : perspZ(0.02,this.PERSP),
+            }
+        }
+        this.zPos = perspZ(this.props.zPos,this.PERSP)
         this.ToggleFold=this.toggleFold.bind(this)
         //@this._height
         this._keyCtx=makeKEY()
         this.state = {height:'100%'}
     }
 
-    componentWillMount(){
+    // componentWillMount(){
         // debugger
         // console.log('willmount')
         // this.props.setClose(name,this.props.is_landscape?false:true)
-    }
+    // }
 
     componentWillReceiveProps(nextProps){
         if(this.props.onScrollingY!==nextProps.onScrollingY){
@@ -114,48 +128,46 @@ const _pubblic_key= makeKEY()
 
     reSetPosition(){
         this.props.setSectionPostionY(this.props.name, findPos(this._$folder));
-        //以相对可见位置:.getBoundingClientRect();
     }
 
 
     render(){
+        const zp = this.props.is_landscape?this.Zp.pc:this.Zp.mobile
 
         return (
             <div
              {...css({
+                //position:'relative',
+                //zIndex:this.props.zIndex,
                 transformStyle: 'preserve-3d',//@parallax
-            })}
+                //backgroundColor:`${this.props.testColor}`,//test
+                backgroundColor:BACKGROUND_COLOR,
+                transform:`skew(0deg,5deg) translateZ(${this.zPos.translateZ}px) scale(${this.zPos.scale})`,
+             })}
             key={`Section_${this._keyCtx}_${this.props.name}_${this.props.artista}`}
 
              >
 
                 {/*HEADER----------------*/}
-                <div {...css({
+                <div {...css({// button
                         position:'relative',//不设static是因为close时content上移不会叠在上面header
-                        zIndex:2,
+                        top:0,
+                        // zIndex:2,
                         width:'100vw',
                         transformStyle: 'preserve-3d',//@parallax
-                        // top:0,
-                        // left:0,
                         cursor: 'pointer',
-                        // height:'auto',
-                        backgroundColor:ui.color.w_1,
+                        backgroundColor:BACKGROUND_COLOR,
                         height:this.TriangleHeight,
-                        transform:`skew(0deg,5deg) translateZ(0)`,
+                        transform:`translateZ(${zp.title.translateZ}px) scale(${zp.title.scale})`,
                         borderBottomWidth:'1px',
                         borderBottomStyle:'solid ',
-                        borderBottomColor:ui.color.b_o3,
-                        //视差
-                        // transformStyle: 'preserve-3d',
-                        // perspectiveOrigin: '0 0',
-                        // perspective: '1px',
-                        //视差
+                        borderBottomColor:BORDER_COLOR,
                     })}
                  onClick={this.ToggleFold}
                  ref={c => this._$folder = c}
                  className = {'SECTION_HEADER'}
                 >
-                    {/*name*/}
+                    {/*title*/}
                     <div {...css({
                         position:'absolute',
 
@@ -163,68 +175,72 @@ const _pubblic_key= makeKEY()
                         fontWeight:100,
                         top:this.props.is_landscape?`${GR.vw(8)}vw`:`${GR.vw(5)}vw`,
                         left:this.props.is_landscape?`${GR.vw(4)}vw`:this.props.marginW,// artisti - avatar&& description 的marginLeft/marginWidth
-                        zIndex:3,
-                        transform:`skew(0deg,-5deg) translateZ(0.2px) scale(0.9)`,
+                        // zIndex:3,
+                        transform:`skew(0deg,-5deg) translateZ(${zp.title.translateZ}px) scale(${zp.title.scale})`,
                         // 视差
                         // transformOrigin: '0 0',
                         // transform: 'translateZ(-2px) scale(4)',
                         })}>
                         {this.props.name}
                     </div>
+                    {/*title*/}
 
                 </div>{/*Header*/}
 
-                {/*CONTENT*/}
+                {/*CONTENT-Warp*/}
                 <div
 
                  {...css({
-                    // height:'100%',
-                    // maxHeight:this.props.onClose?'0px':'2000px',
-                    transformStyle: 'preserve-3d',//@parallax
+                    // backgroundColor:BACKGROUND_COLOR,
+                    paddingBottom:`${this.TriangleHeight}px`,// 占位避免下方title覆盖内容
+                    backfaceVisibility: 'hidden',//加速
+                    // 打开时 , 内容下一效果
+                    transform:this.props.onClose
+                        ?`translateY(-${this.TriangleHeight}px)`
+                        :'translateY(0px) ',
                     height:this.props.onClose?'1px':`${this.state.height}`,
-
-                    transform:this.props.onClose?`translateZ(0px) translateY(-${this.TriangleHeight}px) scale(1,0.9)`:
-                                                'translateZ(-0.2px) scale(1.0666666666666667) translateY(0px)',
-                    transformStyle: 'preserve-3d',//加速
-                    backfaceVisibility: 'hidde',//加速
-                    transformOrigin: '50% 0%',
-                    opacity:this.props.onClose?0.5:1,
+                    opacity:this.props.onClose?0:1,// 0.5更好 单关闭时会显示
                     pointerEvents:'none',
+                    // 添加 transformStyle ||  willChange 都会造成内容在动画最后一刻位置刷新,闪烁一下
+                    transformStyle: 'preserve-3d',//@parallax
+                    //willChange,会使 children 的translateZ效果 会失去
+                    // willChange: 'transform ,visibility,max-height,height ,overflow,opacity',
                     transition: `all 1s cubic-bezier(0, 0.6, 0, 1)`,
-                    willChange: 'transform,visibility,max-height,height ,overflow,opacity',
-                    overflow: this.props.onClose?'hidden':'unset',//消除fold动画时scroll移动, 如果指定了合适的高度,可以只指定 hidden
-                    // visibility:this.props.onClose?'hidden':'collapse',
+                    overflowY: this.props.onClose?'hidden':'unset',//消除fold动画时scroll移动, 如果指定了合适的高度,可以只指定 hidden
                  })}
-                 className = {'SECTION_CONTENT'}
+                 className = {'CONTENT_WARPPER'}
                  ref={c => this._$CONTENT = c}
                  >
-                {/*image--------------------*/}
-                {this.props.img?
-                    <_IMG_SKEW
-                     src = {this.props.img}
-                     vw = {this.props.vw}
-                     fetch={!this.props.onClose}
-                     width = {vw}
-                     height={is_landscape?`${GR.px(2,vw)}`:`${GR.px(1,vw)}`}
-                     key = {`section_head_img_${_keyCtx}`}
-                    />
-                    :null}
-
-                {/*CONTENTS--------------------*/}
-                {/*object 的内容*/}
-                {this.props.items.map((item,index)=>
-                        <_CONTENT
-                         img = {item.img}
-                         title = {item.title}
-                         content = {item.content[`${this.props.language}`]}
-                         marginW = {this.props.marginW}
-                         key= {this._keyCtx+index+this.props.name}
-                         close = {this.props.onClose}
-                         fetch = {!this.props.onClose}
-                         className = {'img_in_content'}
+                    {/*image*/}
+                    {this.props.img?
+                        <_IMG
+                         src = {this.props.img}
+                         vw = {this.props.vw}
+                         fetch={!this.props.onClose}
+                         width = {vw}
+                         height={is_landscape?`${GR.px(2,vw)}`:`${GR.px(1,vw)}`}
+                         fullWidth
+                         key = {`section_head_img_${_keyCtx}`}
                         />
-                )}
-                </div>
+                        :null}
+                    {/*image*/}
+
+
+
+                    {/*contents */}
+                    {this.props.items.map((item,index)=>
+                            <_CONTENT
+                             img = {item.img}
+                             title = {item.title}
+                             content = {item.content[`${this.props.language}`]}
+                             marginW = {this.props.marginW}
+                             key= {this._keyCtx+index+this.props.name}
+                             // close = {this.props.onClose}
+                             fetch = {!this.props.onClose}
+                             className = {'img_in_content'}
+                            />
+                    )} {/*contents */}
+                </div>{/*CONTENTS-Warp*/}
 
             </div>
         )
