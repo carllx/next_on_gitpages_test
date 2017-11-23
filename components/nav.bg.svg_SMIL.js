@@ -14,6 +14,7 @@ import { setBackGroundPoints } from '~/reducers/nav'
  * @props  {[STRING]} color 颜色
  * @return {[component]}
  */
+import {perspZ}  from '~/utils/ui'
 
 
 
@@ -22,6 +23,15 @@ class SVG_BACKGROUND extends PureComponent {
         super(props);
         this._pts_data = this.setPtsData() //将计算结果储存数据
         this.state= this.makeKeyFrames(this.props.nav_on,this.props.nav_on,true)
+        this.PERSP = 1000;
+        this.Zp = {
+            pc:{
+                bg : perspZ(-1000,this.PERSP),
+            },
+            mobile:{
+                bg : perspZ(-1000,this.PERSP),
+            }
+        }
     }
     /*
         pt_1-------pt_2
@@ -29,10 +39,9 @@ class SVG_BACKGROUND extends PureComponent {
         |           |
         pt_4-------pt_3
     */
-
+    /*若props(外)更新服从外部*/
     componentWillReceiveProps(nextProps){
-        /*若props(外)更新服从外部*/
-
+        // nav 状态发生改变
         if(nextProps.nav_on!==this.props.nav_on){
             //响应一次
             this.makeKeyFrames(this.props.nav_on,nextProps.nav_on)
@@ -66,8 +75,8 @@ class SVG_BACKGROUND extends PureComponent {
               },show:{
                 pt_1_x:GR.px(2,vw), pt_1_y:0,
                 pt_2_x:vw,pt_2_y:0,
-                pt_3_x:vw,pt_3_y:GR.px(5,vh),
-                pt_4_x:GR.px(1,vw), pt_4_y:GR.px(4,vh),
+                pt_3_x:vw,pt_3_y:GR.px(3,vh),
+                pt_4_x:vw, pt_4_y:GR.px(3,vh),
               },artisti:{
                 pt_1_x:0, pt_1_y:GR.px(4,vw),
                 pt_2_x:vw,pt_2_y:GR.px(5,vw),
@@ -75,8 +84,8 @@ class SVG_BACKGROUND extends PureComponent {
                 pt_4_x:0, pt_4_y:vw,
               },mostre:{
                 pt_1_x:0, pt_1_y:GR.px(4,vw),
-                pt_2_x:vh,pt_2_y:GR.px(2,vw),
-                pt_3_x:vh,pt_3_y:vh,
+                pt_2_x:vh,pt_2_y:GR.px(3,vw),
+                pt_3_x:vw,pt_3_y:vh,
                 pt_4_x:0, pt_4_y:vh,
               },eventi:{
                 pt_1_x:0, pt_1_y:GR.px(6,vw),
@@ -165,13 +174,15 @@ class SVG_BACKGROUND extends PureComponent {
     render(){
 
         const nav_on = this.props.nav_on
-
+        const zp = this.props.is_landscape?this.Zp.pc:this.Zp.mobile
         return(
             <div
              {...css({
                 pointerEvents: 'none',
                 width:  `100%`,
-                height: `100%`,})}
+                height: `100%`,
+                transform:`translateZ(${zp.bg.translateZ}px) scale(${zp.bg.scale})`
+              })}
             >
                 <svg
                  {...css({

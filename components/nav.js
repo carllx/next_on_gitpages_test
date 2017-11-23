@@ -2,21 +2,19 @@
 // import Link from 'next/link'
 import {PureComponent} from 'react'
 import { css } from 'glamor'
-import glamorous from 'glamorous'
-import {TimelineMax ,TweenMax} from "gsap";
-
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
-import {ui  ,GR}  from '~/utils/ui'
+// import {ui  ,GR}  from '~/utils/ui'
 import SVG_BACKGROUND  from '~/components/nav.bg.svg_SMIL'
 import Language  from '~/components/nav.language'
 import {BUTTONS}  from '~/components/nav.buttons'
-import ArtistiNav  from './nav.artisti'
-import AboutNav  from './nav.about'
-
+import ArtistiNav  from '~/components/nav.artisti'
+import AboutNav  from '~/components/nav.about'
 
 import { setPanelOn } from '~/reducers/nav'
+
+
 
 // // DATA
 const CONFIG = [{
@@ -51,6 +49,8 @@ class Nav extends PureComponent {
       super(props)
       //this._onAnimating =false;//避免tweening时重叠tweening
       // this._on = this.props.show_on_init?'show':'close'
+      this.PERSP = 1000;
+
     }
 // NAV_BG_ST
     componentDidMount(){
@@ -78,22 +78,23 @@ class Nav extends PureComponent {
       //--如果和目前状态不一致才切换
 
       if (next_on !== this._on) {
-        console.log('run onPanel'+next_on)
+        console.log('switch to Panel '+next_on)
         this.props.setPanelOn(next_on)
         this._on= next_on
         //--滚动
         // const html = document.getElementsByTagName("html")
         if(next_on=='show'||next_on=='close'||next_on=='menu') {//artisti,mostre,eventi 禁止滚动
 
-          document.body.style.overflow = "auto"
+          // document.body.style.overflow = "auto"
         }else{
-          document.body.style.overflow = "hidden"
+          // document.body.style.overflow = "hidden"
           }
       }
     }
 
     render(){
-        const { landscape, nav_on, language} = this.props
+        const { landscape, nav_on, language} = this.props;
+
         return(
             <div
              {...css({
@@ -107,8 +108,15 @@ class Nav extends PureComponent {
                 background:`rgba(0,0,0,${nav_on!=='close'&&nav_on!=='show'&&nav_on!=='menu'?0.38:0})`,
                 transition:'background 1s cubic-bezier(0, 0.6, 0, 1)',
                 willChange:'background',
+
+                perspective: '1000px',//@parallax
+                perspectiveOrigin: '50% 50%',//@parallax left,top
+                overflowX: 'hidden',//@parallax
+                overflowY: 'hidden',//@parallax
+
              })}
              className = 'nav'
+             id='nav'
              onClick={(e)=>{
               e.stopPropagation();
               e.preventDefault();
@@ -125,20 +133,21 @@ class Nav extends PureComponent {
               <SVG_BACKGROUND/>
 
               {/*ARTISTA*/}
-              <ArtistiNav show={nav_on==='artisti'}/>
-
-              <AboutNav
-                show = {nav_on==='about'}
-                showLogo={true}
+              <ArtistiNav/>
+              {/*ABOUT*/}
+              <AboutNav showLogo={true}
               />
-
+              {/*语言切换*/}
               <Language is_landscape ={landscape}/>
+
+              {/*艺术家,新闻,关于,*/}
               <BUTTONS
               language={language}
               is_landscape = {landscape}
               show = {nav_on!=='close'&&nav_on!=='menu'}
               foo = {this.onPanel}
               />
+
             </div>
         );
     };// render
@@ -149,7 +158,8 @@ const mapStateToProps = (state) => ({
     landscape:state.Root.view_size.is_landscape,
     language:state.Root.language,
     is_Scroll_up:state.Root.scroll.up,
-    nav_on:state.nav.on
+    nav_on:state.nav.on,
+
 });
 
 const mapDispatchToProps = (dispatch ) =>{

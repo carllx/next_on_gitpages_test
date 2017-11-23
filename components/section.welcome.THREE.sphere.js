@@ -2,33 +2,41 @@
 import {TimelineMax} from "gsap";
 import * as THREE from 'three';
 
-import  {PureComponent} from 'react'
+// import  {PureComponent} from 'react'
 
-import { bindActionCreators } from 'redux'
+// import { bindActionCreators } from 'redux'
 
-import { connect } from 'react-redux'
+// import { connect } from 'react-redux'
 
 
-export default class Z3D_SPHERE extends PureComponent {
-    constructor(props){super(props)}
-    render(){
+// export default class Z3D_SPHERE extends PureComponent {
+//     constructor(props){
+//         super(props);
+//         // 球面的渲染参数
+//         this.opacity = 1;
+//         this.polygons = 15;
+//         this.rotation = true;
+//         this.duration = 5;
+//         this.direction = 2;
+//     }
 
-    }
-}
+//     render(){
+//         return null
+//     }
+// }
 // let store = initStore()  读取state
 // const {vw,vh}=store.getState().Root.view_size
-
-let renderer, scene, camera, allTriangles;
-
 
 // var vw = window.innerWidth,
 //     vh = window.innerHeight;
 // var vw = 800,
 //     vh = 800;
+let renderer, scene, camera, allTriangles;
+
+
 
 const ctrl = {
     opacity : 1,
-    wireframe : false,
     polygons : 15,
     rotation : true,
     duration : 5,
@@ -91,7 +99,7 @@ const init_Triangles = function() {
         //Create a custom material
         var material = new THREE.MeshBasicMaterial({
             side: THREE.DoubleSide,
-            wireframe: ctrl.wireframe,
+            wireframe: false,
             transparent: true,
             opacity: ctrl.opacity
         });

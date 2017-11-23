@@ -1,5 +1,5 @@
 import  {PureComponent} from 'react'
-import ReactDOM from 'react-dom'
+// import ReactDOM from 'react-dom'
 // import fetch from 'isomorphic-fetch' //
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
@@ -11,22 +11,19 @@ import  debounce  from 'lodash/debounce'
 import NoSSR from 'react-no-ssr';
 
 
-
-
-
 class Scroller extends PureComponent {
-
-
 
     constructor(props) {
         super(props)
-        this.lazyOn = throttle(this.isScrollUp,500);
-        this.lazyY = debounce(this.updateY,200)
+        /*throttle 支持过程中间切换更快,但safari 造成重新布局卡顿*/
+        // this.lazySetOnUp = debounce(this.isScrollUp,100,{leading:false});
+        this.lazySetOnUp = throttle(this.isScrollUp,500);
+        // this.lazyY = debounce(this.updateY,200)
         this._prevScrollY = 0;
-
     }
 
     isScrollUp = () => {
+
         // debugger
         this._scrollY =this.$win.scrollTop
         if (this._scrollY === this._prevScrollY) return
@@ -36,7 +33,6 @@ class Scroller extends PureComponent {
             console.log('↑');
             this.props.setScroll(true)
         } else {
-
             console.log('↓');
             this.props.setScroll(false)
         }
@@ -45,11 +41,9 @@ class Scroller extends PureComponent {
     }
 
     updateY = () => {
-        // debugger
-        // const y = window.scrollY
         const y = this.$win.scrollTop
         this._scrollY = y;
-        this.props.setScrollOffsetY(y);
+        // this.props.setScrollOffsetY(y);
         // debounce(this.props.setScrollOffsetY, 100);
     }
 
@@ -57,10 +51,8 @@ class Scroller extends PureComponent {
 
         event.preventDefault();  // 阻止事件继续传播
         event.stopPropagation(); // 取消事件的默认行为
-        // debugger
-        // this.props.setScrollOffsetY(y);
         // this.lazyY()
-        this.lazyOn()
+        this.lazySetOnUp()
     }
 
     componentDidMount() {
@@ -70,19 +62,19 @@ class Scroller extends PureComponent {
         // this.$win = ReactDOM.findDOMNode(this).parentNode
         this.$win = document.getElementById('win_scroller')
         this._prevScrollY = this.$win.scrollTop;
-        this.$win.addEventListener('scroll', this.handleScroll)
+        this.$win.addEventListener('scroll', this.handleScroll,false)
         // debugger
     }
 
     componentWillMount() {
         if (typeof this.$win == 'undefined') return
-        this.$win.removeEventListener('scroll', this.handleScroll);
+        this.$win.removeEventListener('scroll', this.handleScroll,false);
     }
 
     componentWillUnmount() {
-
+        if (typeof this.$win == 'undefined') return
         //首次访问会出现无法识别windows
-        this.$win.removeEventListener('scroll', this.handleScroll)
+        this.$win.removeEventListener('scroll', this.handleScroll,false)
     }
 
     render() {

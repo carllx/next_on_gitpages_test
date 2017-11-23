@@ -54,21 +54,22 @@ class Triangle extends PureComponent{
 
 
 
+
 // IMG_WithLoader
 export class AVATAR extends PureComponent {
     constructor(props){
         super(props)
-        this.PERSP = 1;
+        this.PERSP = 1000;
         this.Zp = {
             pc:{
-                img : perspZ(0.02,this.PERSP),
-                title : perspZ(-0.03,this.PERSP),
-                tiangle : perspZ(-0.05,this.PERSP),
+                title : perspZ(30,this.PERSP),
+                img : perspZ(50,this.PERSP),
+                tiangle : perspZ(10,this.PERSP),
             },
             mobile:{
-                img : perspZ(0.05,this.PERSP),
-                title : perspZ(-0.03,this.PERSP),
-                tiangle : perspZ(-0.08,this.PERSP),
+                img : perspZ(30,this.PERSP),
+                title : perspZ(50,this.PERSP),
+                tiangle : perspZ(10,this.PERSP),
             }
         }
     }

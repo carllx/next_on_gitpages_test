@@ -1,7 +1,5 @@
 import React, {PureComponent} from 'react'
 import { rehydrate, css } from 'glamor'
-// import glamorous from 'glamorous'
-
 
 import {ui,GR}  from '~/utils/ui'
 
@@ -9,9 +7,6 @@ import {ui,GR}  from '~/utils/ui'
 //////////
 // FONT //
 //////////
-
-
-
 // const ralewayFont = css.fontFace({
 //   fontFamily      :'raleway',
 //   fontStyle       :'normal',
@@ -21,6 +16,11 @@ import {ui,GR}  from '~/utils/ui'
 //   "url('../static/font/Raleway-Light.svg') format('svg')",
 //   // unicodeRange    :"U+0000-00FF, U+0131, ... U+E0FF, U+EFFD, U+F000"
 // })
+
+
+
+
+
 
 
 /////////////
@@ -45,15 +45,15 @@ class LOGO extends PureComponent {
        y="0px"
        >
         <title>中艺国际,ZAI,carllx,林昕</title>
-        <g className='zai'>
-          <polyline points="20.08 0.25 35.97 0.25 19.97 16.25 35.86 16.25"/>
-          <polyline points="35.7 16.25 51.7 0.25 51.7 16.25 44.17 8.75"/>
-          <line x1="58.06" y1="16.25" x2="58.06" y2="0.25"/>
-        </g>
         <g className='icon'>
           <polyline points="0.36 0.25 16.25 0.25 0.25 16.25 16.14 16.25"/>
           <polyline points="0.25 16.25 16.25 0.25 16.25 16.25 8.29 8.17"/>
           <line x1="0.38" y1="16.25" x2="0.38" y2="0.25"/>
+        </g>
+        <g className='zai'>
+          <polyline points="20.08 0.25 35.97 0.25 19.97 16.25 35.86 16.25"/>
+          <polyline points="35.7 16.25 51.7 0.25 51.7 16.25 44.17 8.75"/>
+          <line x1="58.06" y1="16.25" x2="58.06" y2="0.25"/>
         </g>
         <g>
           <text
@@ -63,10 +63,25 @@ class LOGO extends PureComponent {
            stroke ='none'
            // strokeWidth ='0.1'
            fill= {ui.color.b_o2}
-           textLength="58.31"
+           textLength="16.25"
            lengthAdjust= "spacing"
            fontSize = '2.8'
-          >中艺国际 ZHONG ART INTERNAZIONAL</text>
+          >
+            中艺国际
+          </text>
+          <text
+           x='20'
+           y='22'
+           fontFamily='raleway'
+           stroke ='none'
+           // strokeWidth ='0.1'
+           fill= {ui.color.b_o2}
+           textLength="37.98" //58.06-20.08
+           lengthAdjust= "spacing"
+           fontSize = '2.8'
+          >
+            ZHONG ART INTERNAZIONAL
+          </text>
         </g>
       </svg>
     )

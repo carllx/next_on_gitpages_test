@@ -14,6 +14,8 @@ const INITIALSTATE = {
   device:'seo_engin',//mobile desktop table seo_engin
   language:'zh',// 'en','zh','it'
   scroll:{up:false,y:0},
+  mouse:{x:0,y:0},
+  gyo:{alpha:0,beta:0,gamma:0},
   view_size:{vw:0,vh:0,is_landscape:false}
 
 }
@@ -21,11 +23,13 @@ const INITIALSTATE = {
 export const TYPES = {
   INIT: 'INIT',
   SWITCH_LANGUAGE: 'SWITCH_LANGUAGE',
-  IS_SCROLL_UP: 'IS_SCROLL_UP',
-  ON_SCROLL_Y:'ON_SCROLL_Y',
   VIEW_SIZE:'VIEW_SIZE',
   ON_DEVICE:'ON_DEVICE',
   ON_BROWSER:'ON_BROWSER',
+  ON_EVENT_MOUSEMOVE:'ON_EVENT_MOUSEMOVE',
+  ON_EVENT_GYOCHANGE:'ON_EVENT_GYOCHANGE',
+  IS_SCROLL_UP: 'IS_SCROLL_UP',
+  ON_SCROLL_Y:'ON_SCROLL_Y',
 }
 
 
@@ -74,6 +78,25 @@ export const setViewSize = ({vw=vw,vh=vh,is_landscape=is_landscape}) => dispatch
     })
 }
 
+// event - mouse
+export const setMousePos = ({x=x,y=y}) => dispatch => {
+    return dispatch({
+        type:TYPES.ON_EVENT_MOUSEMOVE,
+        x:x,
+        y:y,
+    })
+}
+
+// event - device
+export const setgyo = ({alpha=alpha,beta=beta,gamma=gamma}) => dispatch => {
+    return dispatch({
+        type:TYPES.ON_EVENT_GYOCHANGE,
+        alpha:alpha,
+        beta:beta,
+        gamma:gamma,
+    })
+}
+
 
 //REDUCERS
 export default (state = INITIALSTATE ,action)=>{
@@ -92,7 +115,7 @@ export default (state = INITIALSTATE ,action)=>{
       /*DEVICE*/
       case TYPES.ON_DEVICE:
         return Object.assign({},state,{device:action.device})
-        case TYPES.ON_BROWSER:
+      case TYPES.ON_BROWSER:
         return Object.assign({},state,{browser:action.browser})
         /*LANGUAGE*/
       case TYPES.SWITCH_LANGUAGE:
@@ -114,6 +137,16 @@ export default (state = INITIALSTATE ,action)=>{
       /*WIDTH - HEIGHT*/ /*Landscape / portail*/
       case TYPES.VIEW_SIZE:
         return Object.assign({},state,{view_size:{vw:action.vw,vh:action.vh,is_landscape:action.is_landscape}})
+
+
+      case TYPES.ON_EVENT_MOUSEMOVE:
+        return Object.assign({},state,{mouse:{y:action.y,x:action.x}})
+
+      case TYPES.ON_EVENT_GYOCHANGE:
+        return Object.assign({},state,{gyo:{alpha:action.alpha,beta:action.beta,gamma:action.gamma}})
+
+
+
 
       default: return state
 

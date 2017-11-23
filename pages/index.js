@@ -10,18 +10,14 @@ import { setPanelOn } from '~/reducers/nav'
 import NoSSR from 'react-no-ssr';
 import Head from 'next/head'
 import SEO from '~/components/SEO.index'
-import Nav from '~/container/nav'
+import Nav from '~/components/nav'
 import LOGO from '~/components/logo.svg'
+import Resizer from '~/components/controller.resize'
 import {ThreeInit} from'~/components/section.welcome.THREE.sphere.js'
 
 import {isMobile  ,isTablet ,isLandscape, getLanguer}  from '../utils/device'
 
 import {ui ,GR }  from '../utils/ui'
-import Resizer from '~/components/controller.resize'
-import Perf from 'react-addons-perf'
-
-// import fetch from 'isomorphic-fetch'
-// import Post from '../components/post'
 
 
 class Index extends PureComponent {
@@ -50,7 +46,7 @@ class Index extends PureComponent {
 
   componentDidMount(){
 
-    window.Perf = Perf
+    // window.Perf = Perf
 
     // DEVICE
     this.setDevice()

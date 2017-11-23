@@ -22,15 +22,13 @@ const _pubblic_key= makeKEY()
 export class _CONTENT extends PureComponent{
     constructor(props){
         super(props),
-        this.PERSP = 1;
+        this.PERSP = 1000;
         this.Zp = {
             pc:{
-                img : perspZ(-0.02,this.PERSP),
-                text : perspZ(-0.05,this.PERSP),
+                contents : perspZ(250,this.PERSP),
             },
             mobile:{
-                img : perspZ(-0.05,this.PERSP),
-                text : perspZ(-0.04,this.PERSP),
+                contents : perspZ(150,this.PERSP),
             }
         }
     }
@@ -39,12 +37,18 @@ export class _CONTENT extends PureComponent{
 
         const {img,vw,fetch,is_landscape,marginW,content}=this.props
         const zp = this.props.is_landscape?this.Zp.pc:this.Zp.mobile
+        const zParraller = perspZ(200*this.props.index,this.PERSP)
+        console.log(`translateZ(${zParraller.translateZ}px) scale(${zParraller.scale})`)
         return(
-            <div
-             {...css({
-                    //position:'relative',
-                    transformStyle: 'preserve-3d',//@parallax
-                    //position: 'sticky',//@parallax
+            <div {...css({
+                    transformStyle: 'preserve-3d',
+                    // position:'absolute',
+                    //position: '-webkit-sticky',// @safari
+                    // top:1/this.props.index*200,
+                    perspectiveOrigin: '50% 50%',
+                    transform: 'translate3d(0, 0, 0)',
+                    // transform:`translateZ(${zParraller.translateZ}px) scale(${zParraller.scale})`,
+                    backfaceVisibility: 'hidden',//防止闪烁(flicker)
                 })}
              className = {'_CONTENT'}
              key={`_CONTENT${_pubblic_key}`}
@@ -65,13 +69,11 @@ export class _CONTENT extends PureComponent{
 
 
 
-
-
                 {/*text文字*/}
                 <div
                  {...css({
-                    // position:'relative',
-                    // top:0,
+                    // position:'absolute',
+                    // bottom:0,
                     fontSize:is_landscape?`${GR.vw(9)}vw`:`1rem`,
                     fontWeight:100,
                     backgroundColor:BACKGROUND_COLOR,
@@ -81,10 +83,8 @@ export class _CONTENT extends PureComponent{
                     paddingBottom:is_landscape?`${GR.vw(8)}vw`:`${GR.vw(6)}vw`,
                     transformStyle: 'preserve-3d',
                     transition: `all 1s cubic-bezier(0, 0.6, 0, 1)`,
-                    // willChange: 'margin-top,margin-bottom,transform',
-                    // willChange: 'margin-top,margin-bottom',
-                     transform:`translateZ(${zp.text.translateZ}px) scale(${zp.text.scale})`,
-
+                    transform:`translateZ(${zp.contents.translateZ}px) scale(${zp.contents.scale})`,
+                    backfaceVisibility: 'hidden',//防止闪烁(flicker)
                 })}
                  className= '_content_word'
                  // key={`content_word_${_pubblic_key}`}
@@ -93,9 +93,12 @@ export class _CONTENT extends PureComponent{
                         .split('\n')
                         .map((p, key) =>
                             <div
+                             {...css({
+                                backfaceVisibility: 'hidden',//防止闪烁(flicker)
+                             })}
                              key={`Section_content_`+key}
                              {...css({
-                             transform:`skew(0deg,-5deg)`,
+                                transform:`skew(0deg,5deg) translate3d(0, 0, 0)`
                              })}
                              >
                                 {p}
@@ -103,7 +106,6 @@ export class _CONTENT extends PureComponent{
                              </div>
                         )}
                 </div>{/*text文字*/}
-
             </div>
         )
     }
@@ -111,7 +113,6 @@ export class _CONTENT extends PureComponent{
 
 
 const mapStateToProps = (state,ownProps) => {
-
 
     // const onClose = state.Section[ownProps.name].onClose
     return ({
@@ -123,7 +124,7 @@ const mapStateToProps = (state,ownProps) => {
 }
 
 
-// const mapDispatchToProps = (dispatch ) =>{
+// const mapDisp0000atchToProps = (dispatch ) =>{
 //     return {
 //         // setSectionPostionY:bindActionCreators(setSectionPostionY, dispatch ),
 //     }

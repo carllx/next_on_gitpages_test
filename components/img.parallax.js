@@ -24,13 +24,6 @@ import {ui ,makeKEY,perspZ}  from '~/utils/ui'
 import {wix} from '~/utils/img'
 
 
-
-
-/**
- * simple Image
- *   @ display
- *   @ src
- */
 export class _IMG extends PureComponent{
 
   constructor(props){
@@ -53,7 +46,7 @@ export class _IMG extends PureComponent{
 
           // transformStyle: 'preserve-3d',//@parallax
           // transform: 'translateZ(0px)',
-          transform: 'skew(0deg,-5deg) translateZ(1px)',
+          // transform: 'skew(0deg,5deg) translateZ(1px)',
           //position: 'sticky',//@parallax
           left:this.props.left,
           top:this.props.top,
@@ -64,6 +57,7 @@ export class _IMG extends PureComponent{
           // backgroundColor:  this.props.src?`url(${this.props.src})`:'white',
           backgroundImage:  this.props.show?`url(${this.props.src})`:null,
           transition: `opacity 1s cubic-bezier(0.24, 0.49, 0.82, 0.6)`,
+          backfaceVisibility: 'hidden',//防止闪烁(flicker)
           })}
         >
         </div>
@@ -103,7 +97,7 @@ const _Loading =(props)=>
         width: '100%',
         height:props.height,
         opacity:props.show?1:0,
-
+        backfaceVisibility: 'hidden',//防止闪烁(flicker)
         })}
       >
         <svg
@@ -113,6 +107,7 @@ const _Loading =(props)=>
           transformOrigin:'48% 48%',
           animation: `${_LoadingKeyframe} 1s cubic-bezier(0.24, 0.49, 0.82, 0.6) infinite`,
           animationPlayState: props.show?'running':'paused',
+          backfaceVisibility: 'hidden',//防止闪烁(flicker)
          })}
           viewBox="1 1 50.1 43.4"
         >
@@ -125,6 +120,7 @@ const _Loading =(props)=>
         <p {...css({
           color:ui.color.disabled_on_light,
           fontSize:'0.2rem',
+          backfaceVisibility: 'hidden',//防止闪烁(flicker)
         })}
         className={"loader"}
         >
@@ -150,7 +146,7 @@ export default class IMG_WithLoader extends PureComponent {
   constructor (props) {
 
     super(props);
-    this.PERSP = 1;
+    this.PERSP = 1000;
     this.state = {
       percent: 0,
       src:this.props.src,
@@ -161,10 +157,12 @@ export default class IMG_WithLoader extends PureComponent {
     this.key=makeKEY();
     this.Zp = {
             pc:{
-                img : perspZ(-0.03,this.PERSP),
+                img : perspZ(10,this.PERSP),
+                img_pseudo : perspZ(0,this.PERSP),
             },
             mobile:{
-                img : perspZ(-0.03,this.PERSP),
+                img : perspZ(10,this.PERSP),
+                img_pseudo : perspZ(0,this.PERSP),
             }
         }
   }
@@ -253,10 +251,10 @@ export default class IMG_WithLoader extends PureComponent {
             height : `${this.props.height}px`,
             //transform: 'inherit',//为了section上层skew
             transformStyle: 'preserve-3d',//@parallax
-            // transform: 'skew(0deg,-5deg)',//
+            transform: `translateZ(${zp.img.translateZ}px) scale(${zp.img.scale})`,//
             ':before':{
                   display: 'block',
-                  zIndex:-1,
+                  // zIndex:8,
                   position:'absolute',
                   // top:'-50%',
                   content:'""',
@@ -265,7 +263,7 @@ export default class IMG_WithLoader extends PureComponent {
                   // backgroundAttachment: 'fixed',
                   // backgroundColor:  'transparent',
                   backgroundPosition: 'center',
-                  transform: `skew(0deg,-5deg) translateZ(${zp.img.translateZ}px) scale(${zp.img.scale*1.2})`,
+                  transform: `skew(0deg,5deg) scale(1.2)`, // sale乘以1.5, 避免图高度不足造成留白
                   // left:this.props.left,
                   // top:this.props.top,
                   opacity: this.state.loaded?1:0,
@@ -273,6 +271,7 @@ export default class IMG_WithLoader extends PureComponent {
                   height: '100%',
                   backgroundImage:  this.state.loaded?`url(${this.state.src})`:null,
                   transition: `opacity 1s cubic-bezier(0.24, 0.49, 0.82, 0.6)`,
+                  backfaceVisibility: 'hidden',//防止闪烁(flicker)
             }
             })}
            key={`_IMG_${this.key}`}

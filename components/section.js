@@ -44,15 +44,15 @@ const _pubblic_key= makeKEY()
     constructor (props) {
         super(props)
         this.TriangleHeight = this.props.is_landscape?GR.px(7,this.props.vw):GR.px(4,this.props.vw);
-        this.PERSP = 1;
+        this.PERSP = 1000;
         this.Zp = {
             pc:{
-                title : perspZ(0.03,this.PERSP),
-                border : perspZ(0.02,this.PERSP),
+                title_backgound : perspZ(0,this.PERSP),
+                title : perspZ(120,this.PERSP),
             },
             mobile:{
-                title : perspZ(0.03,this.PERSP),
-                border : perspZ(0.02,this.PERSP),
+                title_backgound : perspZ(0,this.PERSP),
+                title : perspZ(120,this.PERSP),
             }
         }
         this.zPos = perspZ(this.props.zPos,this.PERSP)
@@ -137,12 +137,10 @@ const _pubblic_key= makeKEY()
         return (
             <div
              {...css({
-                //position:'relative',
-                //zIndex:this.props.zIndex,
                 transformStyle: 'preserve-3d',//@parallax
-                //backgroundColor:`${this.props.testColor}`,//test
                 backgroundColor:BACKGROUND_COLOR,
-                transform:`skew(0deg,5deg) translateZ(${this.zPos.translateZ}px) scale(${this.zPos.scale})`,
+                transform:`skew(0deg,-5deg) translateZ(${this.props.zPos.translateZ}px) scale(${this.props.zPos.scale})`,
+                backfaceVisibility: 'hidden',//防止闪烁(flicker)
              })}
             key={`Section_${this._keyCtx}_${this.props.name}_${this.props.artista}`}
 
@@ -158,10 +156,13 @@ const _pubblic_key= makeKEY()
                         cursor: 'pointer',
                         backgroundColor:BACKGROUND_COLOR,
                         height:this.TriangleHeight,
-                        transform:`translateZ(${zp.title.translateZ}px) scale(${zp.title.scale})`,
+
+                        transform:`translateZ(${zp.title_backgound.translateZ}px) scale(${zp.title_backgound.scale})`,
+
                         borderBottomWidth:'1px',
                         borderBottomStyle:'solid ',
                         borderBottomColor:BORDER_COLOR,
+                        backfaceVisibility: 'hidden',//防止闪烁(flicker)
                     })}
                  onClick={this.ToggleFold}
                  ref={c => this._$folder = c}
@@ -176,7 +177,8 @@ const _pubblic_key= makeKEY()
                         top:this.props.is_landscape?`${GR.vw(8)}vw`:`${GR.vw(5)}vw`,
                         left:this.props.is_landscape?`${GR.vw(4)}vw`:this.props.marginW,// artisti - avatar&& description 的marginLeft/marginWidth
                         // zIndex:3,
-                        transform:`skew(0deg,-5deg) translateZ(${zp.title.translateZ}px) scale(${zp.title.scale})`,
+                        transform:`skew(0deg,5deg) translateZ(${zp.title.translateZ}px) scale(${zp.title.scale})`,
+                        backfaceVisibility: 'hidden',//防止闪烁(flicker)
                         // 视差
                         // transformOrigin: '0 0',
                         // transform: 'translateZ(-2px) scale(4)',
@@ -193,20 +195,21 @@ const _pubblic_key= makeKEY()
                  {...css({
                     // backgroundColor:BACKGROUND_COLOR,
                     paddingBottom:`${this.TriangleHeight}px`,// 占位避免下方title覆盖内容
-                    backfaceVisibility: 'hidden',//加速
                     // 打开时 , 内容下一效果
                     transform:this.props.onClose
-                        ?`translateY(-${this.TriangleHeight}px)`
+                        ?`translateY(-${this.TriangleHeight}px) `
                         :'translateY(0px) ',
                     height:this.props.onClose?'1px':`${this.state.height}`,
-                    opacity:this.props.onClose?0:1,// 0.5更好 单关闭时会显示
+                    opacity:this.props.onClose?0:1,// 0.5更好 但关闭时会显示
                     pointerEvents:'none',
-                    // 添加 transformStyle ||  willChange 都会造成内容在动画最后一刻位置刷新,闪烁一下
+                    /*
+                        * transformStyle ,willChange 都会造成内容在动画最后一刻位置刷新,闪烁一下
+                        * willChange,会使 children 的translateZ效果 会失去
+                     */
                     transformStyle: 'preserve-3d',//@parallax
-                    //willChange,会使 children 的translateZ效果 会失去
-                    // willChange: 'transform ,visibility,max-height,height ,overflow,opacity',
                     transition: `all 1s cubic-bezier(0, 0.6, 0, 1)`,
                     overflowY: this.props.onClose?'hidden':'unset',//消除fold动画时scroll移动, 如果指定了合适的高度,可以只指定 hidden
+                    backfaceVisibility: 'hidden',//防止闪烁(flicker)
                  })}
                  className = {'CONTENT_WARPPER'}
                  ref={c => this._$CONTENT = c}
@@ -229,19 +232,18 @@ const _pubblic_key= makeKEY()
 
                     {/*contents */}
                     {this.props.items.map((item,index)=>
-                            <_CONTENT
-                             img = {item.img}
-                             title = {item.title}
-                             content = {item.content[`${this.props.language}`]}
-                             marginW = {this.props.marginW}
-                             key= {this._keyCtx+index+this.props.name}
-                             // close = {this.props.onClose}
-                             fetch = {!this.props.onClose}
-                             className = {'img_in_content'}
-                            />
+                        <_CONTENT
+                         img = {item.img}
+                         title = {item.title}
+                         content = {item.content[`${this.props.language}`]}
+                         marginW = {this.props.marginW}
+                         key = {this._keyCtx+index+this.props.name}
+                         fetch = {!this.props.onClose}
+                         className = {'img_&&_content'}
+                         index ={index}
+                        />
                     )} {/*contents */}
                 </div>{/*CONTENTS-Warp*/}
-
             </div>
         )
     }
