@@ -12,7 +12,7 @@ const CONFIG = [{
         'title':{zh:'新闻',en:'NEWS',it:'EVENTI'},
         'id':'eventi',
     },{
-        'title':{zh:'关于',en:'ABOUT',it:'DI NOI'},
+        'title':{zh:'联系',en:'CONTACT',it:'CONTATTO'},
         'id':'about',
     }
 ]

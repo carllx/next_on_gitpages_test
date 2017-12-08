@@ -16,7 +16,6 @@
  *  NoSSR, 需要使用 NoSSR (import NoSSR from 'react-no-ssr';)
  *
  */
-
 import {PureComponent} from 'react'
 import { css } from 'glamor'
 import XHRProgress from '~/utils/Progress'
@@ -157,7 +156,6 @@ export class IMG_WithLoader extends PureComponent {
     this.key=makeKEY();
   }
 
-
   componentDidMount(){
     //如果 #Daddy 激活后开始请求
     if(this.props.fetch ==true) {
@@ -176,12 +174,7 @@ export class IMG_WithLoader extends PureComponent {
       this.fetchImg(nextProps.src);
       return
     }
-
-
   }
-
-
-
 
   onProgress(xhr){
 
@@ -235,7 +228,7 @@ export class IMG_WithLoader extends PureComponent {
           <div
            {...css({
             position: 'relative',
-            width : '100%',//this.props.width,
+            width : this.props.width,//this.props.width,
             height : this.props.height,
             transform: 'inherit',//为了section上层skew
             })}

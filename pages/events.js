@@ -1,137 +1,298 @@
-import { Component } from 'react'
-import { bindActionCreators } from 'redux'
+import {PureComponent} from 'react'
+import {bindActionCreators} from 'redux'
 import withRedux from 'next-redux-wrapper'
-
+import {css} from 'glamor'
 import NoSSR from 'react-no-ssr';
-import {throttle, debounce}  from '../utils/throttle'
-import {isMobile  ,isTablet , isLandscape, getLanguer }  from '~/utils/device'
-import Page from '../container/events/page'
+import Head from 'next/head'
+import {ui  ,GR , makeKEY , perspZ}  from '~/utils/ui'
+import {isMobile  ,isTablet , getLanguer}  from '~/utils/device'
+import {TweenLite} from "gsap";
+import {switchLanguage,onDevice} from'~/reducers/root'
+
+import Scroller from '~/components/controller.scroll'
+import Resizer from '~/components/controller.resize'
+import AVATAR from '~/components/avatar'
+import Nav from '~/components/nav'
+import Seczione from '~/components/section'
 import {initStore} from '~/store'
-import {setScroll,switchLanguage,setViewSize,onDevice } from'~/reducers/root'
+import  debounce  from 'lodash/debounce'
 
-import Nav from '~/container/nav'
+class Artisti extends PureComponent {
 
-import Perf from 'react-addons-perf'
-
-class Events extends Component {
-  //getInitialProps {{store query}}
-  static getInitialProps ({isServer, query}) {
-
-    const post = require(`../static/contents/artisti/${query.id}`);
-    // store.dispatch( )达到初始化store的效果
-    // store.dispatch({type:'INIT'})
-    return   Object.assign({},{isServer},post)
+  static async getInitialProps({ isServer, query }) {
+      //es: query :{ id: 'EnzoCucchi' }
+      // console.log(jsonPageRes )
+      const post = require(`../static/contents/artisti/${query.id}`);
+      return { ...post }
   }
 
-
-  constructor(props){
+  constructor(props) {
     super(props)
-    this.prevScrollY = 0
-    this.lazyScroll= debounce(this.isScrollUp,130)
-    this.lazyResize= debounce(this.setViewSize,130)
-  }
-
-
-  isScrollUp = ()=>{
-
-    const ScrollY = window.scrollY;
-    if(ScrollY == this.prevScrollY) return
-    const isUp = ( ScrollY - this.prevScrollY)<=0 ;
-
-    if(isUp) {
-      console.log('↑');
-      this.props.setScroll(true)
-    }else{
-      console.log('↓');
-      this.props.setScroll(false)
+    this.PERSP = 1000;
+    this.Zp = {
+          pc:{
+              biography: perspZ(-5,this.PERSP),
+              selectTexts: perspZ(-5,this.PERSP),
+              news: perspZ(-5,this.PERSP),
+              exhibitions: perspZ(-5,this.PERSP),
+              works: perspZ(-5,this.PERSP),
+          },
+          mobile:{
+              biography: perspZ(-5,this.PERSP),
+              selectTexts: perspZ(-5,this.PERSP),
+              news: perspZ(-5,this.PERSP),
+              exhibitions: perspZ(-5,this.PERSP),
+              works: perspZ(-5,this.PERSP),
+          }
+      }
     }
-    // 刷新当前scroll所在位置
-    this.prevScrollY = ScrollY;
+
+  setLanguage = (language) => {
+      this.props.switchLanguage(language)
   }
 
-  setLanguage=(language)=>{
-    this.props.switchLanguage(language)
-  }
 
-  setViewSize=()=>{
-    console.info('Resize - setViewSize on redux')
-    this.props.setViewSize({
-      vh: document.documentElement.clientHeight,
-      vw: document.documentElement.clientWidth,
-      is_landscape:isLandscape()
-      })
-  }
-  setDevice=()=>{
-      let whatDevice ;
-      if(isMobile()) {whatDevice = 'mobile'}
-      else if(isTablet()) {whatDevice = 'tablet'}
-      else {whatDevice = 'desktop'}
+  setDevice = () => {
+      let whatDevice;
+      if (isMobile()) { whatDevice = 'mobile' } else if (isTablet()) { whatDevice = 'tablet' } else { whatDevice = 'desktop' }
       this.props.onDevice(whatDevice)
-    }
-
-
-
-  componentDidMount () {
-    window.Perf = Perf
-    // LISTENERS
-    this.prevScrollY = window.scrollY;
-    window.addEventListener('scroll', this.lazyScroll)
-    window.addEventListener('resize', this.lazyResize);
-
-    // DEVICE
-    this.setDevice()
-
-    /* LANGUGE */
-    this.setLanguage(getLanguer())
-
-    /* height width DIRECTION */
-    this.setViewSize()
   }
 
-  componentWillUnmount () {
-    window.removeEventListener('scroll', this.lazyScroll);
-    window.removeEventListener('resize', this.lazyResize);
-  }
 
-  componentWillUnMount(){
-    window.removeEventListener('scroll', this.lazyScroll)
-    window.removeEventListener('resize', this.lazyResize)
+  componentDidMount() {
+      // DEVICE
+      this.setDevice()
+      /* LANGUGE */
+      this.setLanguage(getLanguer())
   }
 
   render () {
-    // console.log(this.props)
-    return (
-      <div>
-        <div onClick= {()=>this.setLanguage('it')}>ITALIANO</div>
-        <div onClick= {()=>this.setLanguage('en')}>ENGLISH</div>
-        <div onClick= {()=>this.setLanguage('zh')}>中文</div>
-        <Page name = {this.props.name} />
-        <Page name = {this.props.name} />
-        <Page name = {this.props.name} />
-        <Page name = {this.props.name} />
-        <Page name = {this.props.name} />
-        <Page name = {this.props.name} />
-        <Page name = {this.props.name} />
-        <Page name = {this.props.name} />
-        <NoSSR>
-          <Nav
-           show_on_init = {true}
-           // show = {is_Scroll_up}
-          />
-        </NoSSR>
 
-      </div>
-    )
-  }
+    const {language } = this.props ||{language:'zh'}
+    const {vw,vh,is_landscape} = this.props.view_size||{view_size:{vw:0,vh:0,is_landscap:false}}
+
+    const zp = is_landscape?this.Zp.pc:this.Zp.mobile
+    const MarginW = `${is_landscape?GR.vw(3):GR.vw(5)}vw`
+
+    return (
+      <main
+      key = {`page-${this.props.id}` }
+       >
+        <Head>
+            <title>{this.props.name[language]}</title>
+            {/*meta 不支持重复 property*/}
+            <meta content={`ZAI - ${this.props.name[language]}`} name='title' />
+            <meta content={`ZAI - ${this.props.name[language]}`} property='og:title' />
+            <meta content={`ZAI - ${this.props.biography.zh} ${this.props.biography[language]} ${this.props.biography.en}`} name='biography' />
+            <meta content={`ZAI - ${this.props.biography.zh} ${this.props.biography[language]} ${this.props.biography.en}`} property='og:biography' />
+            <meta content={`${this.props.keywords} ZAI, zhongart internationale, Gallery, arte,中艺国际, 佛罗伦萨 `} name='keywords' />
+            <meta content='article' property='og:type' />
+
+            <meta content={`http://www.zhongart.it/artisti/${this.props.name[language]}`} property='og:url' />
+
+            {/*
+            <meta content='//s3.amazonaws.com/所用的图片' property='og:image' />
+            */}
+
+            {/*<style dangerouslySetInnerHTML={{ __html: this.props.css }} />*/}
+
+        </Head>
+
+
+
+      {/*3D Parallax*/}
+      <div
+       {...css({
+          position: '-webkit-sticky',// @safari
+          height: '100vh',//@parallax
+          overflowX: 'hidden',//@parallax
+          overflowY: 'auto',//@parallax
+          perspective: '1000px',//@parallax
+          perspectiveOrigin: '50% 50%',//@parallax left,top
+          'WebkitOverflowScrolling': 'touch',// @safari
+          backfaceVisibility: 'hidden',// @parallax防止闪烁(flicker)
+          /*TEST*/
+          // transform: `rotate3d(0,1,0,<40></40>deg)`,
+       })}
+       // ref= {c=>this._$win = c}
+       // onMouseMove = {(e)=>{this.onMouse(e)}}
+       id ='win_scroller'
+       >
+
+
+        {/* 头像和描述
+        宽屏--横向2列 竖屏--1列 */}
+          <NoSSR>
+          <div
+          {...css({
+              // is_landscape
+              display:'flex',
+              flexDirection:is_landscape?'row':'column',
+              alignItems:is_landscape?'flex-start':'left',// iphone
+              marginLeft: is_landscape?`${GR.vw(4)}vw`:MarginW,
+              marginRight: is_landscape?`${GR.vw(1)}vh`:MarginW,
+              marginTop: `${is_landscape?GR.vw(7):GR.vw(6)}vw`,
+              marginBottom: is_landscape?`${GR.vw(7)}vh`:`${GR.vw(7)}vw`,
+              transformStyle: 'preserve-3d',//@parallax
+              // transform: `rotate3d(${this.state.tiltx},${this.state.tilty},0,${this.state.degree}deg)`,
+              // transition: `transform 1s cubic-bezier(0.1, 0.5, 0.4, 1)`,
+            })}
+           id ='roll'
+          >
+              {/* 头像 */}
+              <div
+               {...css({
+                  // height:`inherit`,
+                  width:`${is_landscape?GR.px(4,vw):GR.px(1,vw)}px`,
+                  height:`${is_landscape?GR.px(4,vw):GR.px(1,vw)}px`,
+                  marginBottom:`${is_landscape?0:GR.vw(6)}vw`,
+                  transform: 'translateZ(0.1px) scale(0.9666666666666667)',//@parallax
+                  transformStyle: 'preserve-3d',//@parallax
+                  backfaceVisibility: 'hidden',//防止闪烁(flicker)
+               })}
+              >
+                  <AVATAR
+                   src = {this.props.avatar}
+                   SizeWidth = {is_landscape?GR.px(4,vw):GR.px(1,vw)}
+                   name = {this.props.name[language]}
+                   />
+              </div>
+
+
+
+
+              {/* TAB-SECTION */}
+
+              {/*描述 BIOGRAPHY*/}
+              <div
+               {...css({
+                  fontSize:is_landscape?`${GR.vw(9)}vw`:`1rem`,
+                  fontWeight:100,
+                  marginLeft: is_landscape?`${GR.vw(7)}vw`:0,
+                  transform:is_landscape?
+                    `translateZ(${zp.biography.translateZ}px) scale(${zp.biography.scale})`:
+                    `translateZ(${zp.biography.translateZ}px) scale(${zp.biography.scale})`,//@parallax
+                  backfaceVisibility: 'hidden',//防止闪烁(flicker)
+
+               })}
+              >
+                  {
+                      this.props.biography[language]
+                      .split('\n')
+                      .map((item, key) =>
+                          <span key={key}>{item}<br/></span>
+                      )
+                  }
+              </div>
+
+          </div>
+          </NoSSR>
+
+          {/*WORKS*/}
+          <NoSSR>
+          <Seczione
+           items ={this.props.works}
+           name = {'WORKS'}
+           color={ui.color.w_1}
+           marginW = {MarginW}
+           zPos= {zp.works}
+           testColor = {'rgb(255,200,128)'}
+
+          />
+          </NoSSR>
+
+          {/*SELECT TEXTS*/}
+          <NoSSR>
+          <Seczione
+           items ={this.props.selectTexts}
+           name = {'SELECT TEXTS'}
+           color={ui.color.w_1}
+           marginW = {MarginW}
+           zPos= {zp.selectTexts}
+           testColor = {'rgb(255,130,128)'}
+          />
+          </NoSSR>
+
+          {/*EXHIBITIONS*/}
+          <NoSSR>
+          <Seczione
+           items ={this.props.exhibitions}
+           name = {'EXHIBITIONS'}
+           color={ui.color.w_1}
+           marginW = {MarginW}
+           zPos= {zp.exhibitions}
+           testColor = {'rgb(255,130,128)'}
+
+          />
+          </NoSSR>
+
+
+
+          {/*NEWS*/}
+          <NoSSR>
+          <Seczione
+           items = {this.props.news}
+           artista = {this.props.name[language]}
+           name = {'NEWS'}
+           color = {ui.color.w_1}
+           marginW = {MarginW}
+           zPos= {zp.news}
+           testColor = {'rgb(255,10,128)'}
+
+          />
+          </NoSSR>
+
+
+
+
+
+
+          {/*保证section最后一项在窗口上方*/}
+          <div
+           {...css({
+              position: 'relative',
+              bottom: '0',
+              height:`${vh/3}px`,
+           })}
+          ></div>
+
+
+        </div>{/*3D Parallax*/}
+
+
+
+
+        <NoSSR>
+            <Nav show_on_init = {!is_landscape}/>
+        </NoSSR>
+        <NoSSR>
+          <Scroller />
+        </NoSSR>
+        <Resizer/>
+
+      </main>
+      )
 }
+}
+
+
+
+
+
+const mapStateToProps = (state) => ({
+    view_size:state.Root.view_size,
+    language:state.Root.language,
+
+    // device:state.Root.device,
+});
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    // root
     switchLanguage: bindActionCreators(switchLanguage, dispatch),
-    setScroll: bindActionCreators(setScroll, dispatch),
-    setViewSize: bindActionCreators(setViewSize, dispatch),
     onDevice: bindActionCreators(onDevice, dispatch),
+    // setBrowser: bindActionCreators(setBrowser, dispatch),
   }
 }
 
-export default withRedux(initStore, null, mapDispatchToProps)(Events)
+export default withRedux(initStore, mapStateToProps, mapDispatchToProps)(Artisti)

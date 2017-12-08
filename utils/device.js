@@ -118,7 +118,6 @@ module.exports.getLanguer = function () {
   if( /zh/i.test(navLanguser) ) {return 'zh'}
   else if( /it/i.test(navLanguser) ) {return 'it'}
   else{ return 'en';}
-
 };
 
 /*

@@ -130,12 +130,9 @@ export class AVATAR extends PureComponent {
                  })}
                 >{this.props.name}</div>
                 {/*TITLE*/}
-
-
             </div>
             )
     }
-
 }
 
 

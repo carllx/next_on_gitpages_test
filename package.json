@@ -39,7 +39,7 @@
     "testCross": "cross-var node -e \"console.log('now path on :', \\\"$npm_package_config_commitmessage\\\")\" && cross-var node -e \"console.log('now path on :', \\\"$npm_package_config_commitmessage\\\")\""
   },
   "config": {
-    "commitmessage": "导航栏加入陀螺仪检测,导航栏svg性能优化, 升级REACT至 1.6 ,艺术家页面性能优化 , 增加3Dparaller效果"
+    "commitmessage": "为Artisti 新增 Tab方案 ,替换原来得Artisti布局"
   },
   "name": "",
   "description": "## How to use",

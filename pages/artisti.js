@@ -4,10 +4,9 @@ import withRedux from 'next-redux-wrapper'
 import {css} from 'glamor'
 import NoSSR from 'react-no-ssr';
 import Head from 'next/head'
-import {ui  ,GR , makeKEY , perspZ}  from '~/utils/ui'
+import {GR , makeKEY , perspZ}  from '~/utils/ui'
 import {isMobile  ,isTablet , getLanguer}  from '~/utils/device'
-import {TweenLite} from "gsap";
- import {switchLanguage,onDevice} from'~/reducers/root'
+import {switchLanguage,onDevice} from'~/reducers/root'
 
 import Scroller from '~/components/controller.scroll'
 import Resizer from '~/components/controller.resize'
@@ -17,11 +16,15 @@ import Seczione from '~/components/section'
 import {initStore} from '~/store'
 import  debounce  from 'lodash/debounce'
 
+import TabButton from '~/components/artisti.tab.button'
+import Biography from '~/components/artisti.tab.biography'
+import Exhibition from '~/components/artisti.tab.exhibitions'
+import Work from '~/components/artisti.tab.works'
+
 class Artisti extends PureComponent {
 
   static async getInitialProps({ isServer, query }) {
-      //es: query :{ id: 'EnzoCucchi' }
-      // console.log(jsonPageRes )
+      /*es: query :{ id: 'EnzoCucchi' }*/
       const post = require(`../static/contents/artisti/${query.id}`);
       return { ...post }
   }
@@ -29,24 +32,31 @@ class Artisti extends PureComponent {
   constructor(props) {
     super(props)
     this.PERSP = 1000;
-    this.Zp = {
-          pc:{
-              description: perspZ(-5,this.PERSP),
-              events: perspZ(-5,this.PERSP),
-              exhibitions: perspZ(-5,this.PERSP),
-              works: perspZ(-5,this.PERSP),
-          },
-          mobile:{
-              description: perspZ(-5,this.PERSP),
-              events: perspZ(-5,this.PERSP),
-              exhibitions: perspZ(-5,this.PERSP),
-              works: perspZ(-5,this.PERSP),
-          }
-      }
-    }
+    this.tabs = this.Post2Tabs()
+  }
 
   setLanguage = (language) => {
       this.props.switchLanguage(language)
+  }
+
+  Post2Tabs = () => {
+    this.tab_names = [];
+
+    if (this.props.biography){
+      this.tab_names.push('BIOGRAPHY')
+    }
+    if (this.props.works){
+      this.tab_names.push('WORKS')
+    }
+    if (this.props.selectTexts){
+      this.tab_names.push('SELECTTEXTS')
+    }
+    if (this.props.exhibitions){
+      this.tab_names.push('EXHIBITIONS')
+    }
+    if (this.props.news){
+      this.tab_names.push('NEWS')
+    }
   }
 
 
@@ -68,9 +78,7 @@ class Artisti extends PureComponent {
 
     const {language } = this.props ||{language:'zh'}
     const {vw,vh,is_landscape} = this.props.view_size||{view_size:{vw:0,vh:0,is_landscap:false}}
-
-    const zp = is_landscape?this.Zp.pc:this.Zp.mobile
-    const MarginW = `${is_landscape?GR.vw(3):GR.vw(5)}vw`
+    const WIDTH = is_landscape?GR.px(1,vw):GR.px(0.4,vw)
 
     return (
       <main
@@ -81,8 +89,8 @@ class Artisti extends PureComponent {
             {/*meta 不支持重复 property*/}
             <meta content={`ZAI - ${this.props.name[language]}`} name='title' />
             <meta content={`ZAI - ${this.props.name[language]}`} property='og:title' />
-            <meta content={`ZAI - ${this.props.description.zh} ${this.props.description[language]} ${this.props.description.en}`} name='description' />
-            <meta content={`ZAI - ${this.props.description.zh} ${this.props.description[language]} ${this.props.description.en}`} property='og:description' />
+            <meta content={`ZAI - ${this.props.biography.zh} ${this.props.biography[language]} ${this.props.biography.en}`} name='biography' />
+            <meta content={`ZAI - ${this.props.biography.zh} ${this.props.biography[language]} ${this.props.biography.en}`} property='og:biography' />
             <meta content={`${this.props.keywords} ZAI, zhongart internationale, Gallery, arte,中艺国际, 佛罗伦萨 `} name='keywords' />
             <meta content='article' property='og:type' />
 
@@ -98,6 +106,7 @@ class Artisti extends PureComponent {
 
 
 
+
       {/*3D Parallax*/}
       <div
        {...css({
@@ -107,10 +116,8 @@ class Artisti extends PureComponent {
           overflowY: 'auto',//@parallax
           perspective: '1000px',//@parallax
           perspectiveOrigin: '50% 50%',//@parallax left,top
-          '-webkit-overflow-scrolling': 'touch',// @safari
+          'WebkitOverflowScrolling': 'touch',// @safari
           backfaceVisibility: 'hidden',// @parallax防止闪烁(flicker)
-          /*TEST*/
-          // transform: `rotate3d(0,1,0,<40></40>deg)`,
        })}
        // ref= {c=>this._$win = c}
        // onMouseMove = {(e)=>{this.onMouse(e)}}
@@ -125,10 +132,9 @@ class Artisti extends PureComponent {
           {...css({
               // is_landscape
               display:'flex',
-              flexDirection:is_landscape?'row':'column',
-              alignItems:is_landscape?'flex-start':'left',// iphone
-              marginLeft: is_landscape?`${GR.vw(4)}vw`:MarginW,
-              marginRight: is_landscape?`${GR.vw(1)}vh`:MarginW,
+              flexDirection:'column',
+              justifyContent:is_landscape?'center':'left',// iphone
+              alignItems:'center',
               marginTop: `${is_landscape?GR.vw(7):GR.vw(6)}vw`,
               marginBottom: is_landscape?`${GR.vw(7)}vh`:`${GR.vw(7)}vw`,
               transformStyle: 'preserve-3d',//@parallax
@@ -137,14 +143,14 @@ class Artisti extends PureComponent {
             })}
            id ='roll'
           >
-              {/* 头像 */}
+              {/* AVATAR/ TABS */}
               <div
                {...css({
-                  // height:`inherit`,
-                  width:`${is_landscape?GR.px(4,vw):GR.px(1,vw)}px`,
+                  width:`${WIDTH}px`,
+                  display:'flex',
+                  flexDirection:'row',
                   height:`${is_landscape?GR.px(4,vw):GR.px(1,vw)}px`,
-                  marginBottom:`${is_landscape?0:GR.vw(6)}vw`,
-                  transform: 'translateZ(0.1px) scale(0.9666666666666667)',//@parallax
+                  marginBottom:`${is_landscape?GR.vw(6):GR.vw(6)}vw`,
                   transformStyle: 'preserve-3d',//@parallax
                   backfaceVisibility: 'hidden',//防止闪烁(flicker)
                })}
@@ -154,77 +160,61 @@ class Artisti extends PureComponent {
                    SizeWidth = {is_landscape?GR.px(4,vw):GR.px(1,vw)}
                    name = {this.props.name[language]}
                    />
+
+                  {/*TabButton*/}
+                  <TabButton
+                   tabs= {this.tab_names}
+                   width = {`${GR.px(1,vw)}px`}
+                  />
               </div>
 
-              {/*描述 DESCRIPTION*/}
-              <div
-               {...css({
-                  fontSize:is_landscape?`${GR.vw(9)}vw`:`1rem`,
-                  fontWeight:100,
-                  marginLeft: is_landscape?`${GR.vw(7)}vw`:0,
-                  transform:is_landscape?
-                    `translateZ(${zp.description.translateZ}px) scale(${zp.description.scale})`:
-                    `translateZ(${zp.description.translateZ}px) scale(${zp.description.scale})`,//@parallax
-                  backfaceVisibility: 'hidden',//防止闪烁(flicker)
 
+              {/*TABS*/}
+              <div
+              {...css({
+                  position:'relative',
+                  width:`${WIDTH}px`,
                })}
+              className = 'TTTTT'
               >
-                  {
-                      this.props.description[language]
-                      .split('\n')
-                      .map((item, key) =>
-                          <span key={key}>{item}<br/></span>
-                      )
-                  }
+                {/*BIOGRAPHY*/}
+                <Biography
+                 width = {`${WIDTH}px`}
+                 tabName = {'BIOGRAPHY'}
+                 contents = {this.props.biography[language]}
+                />
+
+                {/*EXHIBITIONS*/}
+               <Exhibition
+                 width = {`${WIDTH}px`}
+                 tabName = {'EXHIBITIONS'}
+                 contents = {this.props.exhibitions[language]}
+                />
+                {/*WORKS*/}
+                <Work
+                 width = {`${vw}px`}
+                 tabName = {'WORKS'}
+                 contents = {this.props.works}
+                 // language = {language}
+                />
               </div>
 
           </div>
           </NoSSR>
 
+          {/*TABS-SECTION*/}
 
-
-          {/* MENUS-section */}
-
-          {/*EVENTS*/}
-          <NoSSR>
-          <Seczione
-           items = {this.props.events}
-           artista = {this.props.name[language]}
-           name = {'EVENTS'}
-           color = {ui.color.w_1}
-           marginW = {MarginW}
-           zPos= {zp.events}
-           testColor = {'rgb(255,10,128)'}
-
-          />
-          </NoSSR>
-
-          {/*EXHIBITIONS*/}
-          <NoSSR>
-          <Seczione
-           items ={this.props.exhibitions}
-           name = {'EXHIBITIONS'}
-           color={ui.color.w_1}
-           marginW = {MarginW}
-           zPos= {zp.exhibitions}
-           testColor = {'rgb(255,130,128)'}
-
-          />
-          </NoSSR>
 
 
           {/*WORKS*/}
-          <NoSSR>
-          <Seczione
-           items ={this.props.works}
-           name = {'WORKS'}
-           color={ui.color.w_1}
-           marginW = {MarginW}
-           zPos= {zp.works}
-           testColor = {'rgb(255,200,128)'}
 
-          />
-          </NoSSR>
+          {/*SELECT TEXTS*/}
+
+          {/*EXHIBITIONS*/}
+
+          {/*NEWS*/}
+
+
 
 
 

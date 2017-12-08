@@ -79,13 +79,6 @@ const _pubblic_key= makeKEY()
         }
     }
 
-    // shouldComponentUpdate(nextProps){
-    //     if(this.props.RePosTrigger!==undefined&&nextProps.RePosTrigger!==undefined&&nextProps.RePosTrigger!==this.props.RePosTrigger){
-    //         return false
-    //     }else{
-    //         return true
-    //     }
-    // }`
     componentDidMount(){
         // debugger
         //计算 section 高度, height 动画必须
@@ -98,17 +91,6 @@ const _pubblic_key= makeKEY()
                                 :this.props.setClose(name,true)
 
 
-
-        // mount 后,  随时激活的fetch
-        // debugger
-        // if(nextProps.fetch ==true && this.props.fetch==false||this.props.fetch==undefined) {
-        //   const inView = this._elementInViewport(this._$loaderImg)
-        //   // console.log(inView)
-        //   if(inView) this.fetchImg()
-        //   // this.fetchImg()
-        //   return
-
-        // }
     }
     componentWillUnmount(){
         // 卸载时还原到初始状态
