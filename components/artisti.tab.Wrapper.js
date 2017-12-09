@@ -91,6 +91,7 @@ const TAB =()=>
                         <Comp
                          tabName = {this.props.tabName}
                          contents = {this.props.contents}
+                         size = {this.props.width}
                         />
                     </div>
                 )

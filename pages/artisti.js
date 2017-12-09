@@ -175,24 +175,22 @@ class Artisti extends PureComponent {
                   position:'relative',
                   width:`${WIDTH}px`,
                })}
-              className = 'TTTTT'
+              className = 'TAB_MAIN'
               >
                 {/*BIOGRAPHY*/}
                 <Biography
-                 width = {`${WIDTH}px`}
                  tabName = {'BIOGRAPHY'}
                  contents = {this.props.biography[language]}
                 />
 
                 {/*EXHIBITIONS*/}
                <Exhibition
-                 width = {`${WIDTH}px`}
                  tabName = {'EXHIBITIONS'}
                  contents = {this.props.exhibitions[language]}
                 />
                 {/*WORKS*/}
                 <Work
-                 width = {`${vw}px`}
+                 width = {WIDTH}
                  tabName = {'WORKS'}
                  contents = {this.props.works}
                  // language = {language}
@@ -218,14 +216,7 @@ class Artisti extends PureComponent {
 
 
 
-          {/*保证section最后一项在窗口上方*/}
-          <div
-           {...css({
-              position: 'relative',
-              bottom: '0',
-              height:`${vh/3}px`,
-           })}
-          ></div>
+
 
 
         </div>{/*3D Parallax*/}

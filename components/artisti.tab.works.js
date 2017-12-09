@@ -35,6 +35,7 @@ class Works extends PureComponent {
 
     render(){
 
+        const size = this.props.size
         const vw = this.props.vw
         const shouldFetch = vw === undefined ? false:true;
 
@@ -60,8 +61,8 @@ class Works extends PureComponent {
                         >
                             <IMG_WithLoader
                              src = {item.img}
-                             height = {vw/3.2}
-                             width = {vw/3.2}
+                             height = {size/3.05}
+                             width = {size/3.05}
                              fullWidth = {true}
                              fetch = {shouldFetch}
                             />
