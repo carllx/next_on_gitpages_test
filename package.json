@@ -39,7 +39,7 @@
     "testCross": "cross-var node -e \"console.log('now path on :', \\\"$npm_package_config_commitmessage\\\")\" && cross-var node -e \"console.log('now path on :', \\\"$npm_package_config_commitmessage\\\")\""
   },
   "config": {
-    "commitmessage": "为Artisti 新增 Tab方案 ,替换原来得Artisti布局"
+    "commitmessage": "AUSUS Station update tabs"
   },
   "name": "",
   "description": "## How to use",

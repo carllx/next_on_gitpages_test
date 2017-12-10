@@ -13,7 +13,14 @@ class Biography extends PureComponent {
 
     render(){
         return(
-            <div>
+            <div
+            {...css({
+                  position:'relative',
+                  width:`${this.props.width}`,
+                  margin:'auto',//居中
+              })}
+            className = {this.props.tabName}
+            >
                 {
                     this.props.contents
                         .split('\n')

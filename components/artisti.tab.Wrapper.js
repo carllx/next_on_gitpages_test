@@ -80,18 +80,17 @@ const TAB =()=>
                     <div
                      {...css({
                         position:'absolute',
-
-                        width:this.props.width,
                         // display: 'none',// 初始阶段
+                        display:'flex',
                         visibility:'hidden'
                      })}
-                     className = {this.props.tabName}
+                     className = {`WRAPPER_${this.props.tabName}`}
                      key = {`TAB_${this.props.tabName}`}
                     >
                         <Comp
                          tabName = {this.props.tabName}
                          contents = {this.props.contents}
-                         size = {this.props.width}
+                         width = {this.props.width}
                         />
                     </div>
                 )
@@ -102,6 +101,7 @@ const TAB =()=>
 
             return ({
                 onTab:state.Tab.on,
+                vw:state.Root.view_size.vw,
             });
         }
         return connect(mapStateToProps,null)(Tab)

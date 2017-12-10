@@ -34,9 +34,10 @@ class Works extends PureComponent {
     }
 
     render(){
-
-        const size = this.props.size
         const vw = this.props.vw
+        const width= this.props.landscape?width:vw
+        const size = this.props.width/3.05
+        const margin = this.props.size/500
         const shouldFetch = vw === undefined ? false:true;
 
         // const soloContents = this.props.contents[0]
@@ -47,6 +48,7 @@ class Works extends PureComponent {
                     display:'flex',
                     flexDirection:'row',
                     flexWrap:'wrap',
+                    width:`${this.props.width}`
                  })}
             >
                 {/*Img*/}
@@ -55,14 +57,14 @@ class Works extends PureComponent {
                         <div
                           {...css({
                             justifyContent:'flex-start',
-                            margin:'0.1rem',
+                            margin:`${margin}px`,
                         })}
                         key = {`workimg_${index}`}
                         >
                             <IMG_WithLoader
                              src = {item.img}
-                             height = {size/3.05}
-                             width = {size/3.05}
+                             height = {size}
+                             width = {size}
                              fullWidth = {true}
                              fetch = {shouldFetch}
                             />

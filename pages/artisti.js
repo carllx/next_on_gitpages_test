@@ -172,21 +172,24 @@ class Artisti extends PureComponent {
               {/*TABS*/}
               <div
               {...css({
-                  position:'relative',
-                  width:`${WIDTH}px`,
-               })}
+                  // display:'flex',
+                  // position:
+                  width:this.props.view_size.vw,// 不许提供，否则不能居中
+              })}
               className = 'TAB_MAIN'
               >
                 {/*BIOGRAPHY*/}
                 <Biography
+                 width = {WIDTH}
                  tabName = {'BIOGRAPHY'}
                  contents = {this.props.biography[language]}
                 />
 
                 {/*EXHIBITIONS*/}
                <Exhibition
-                 tabName = {'EXHIBITIONS'}
-                 contents = {this.props.exhibitions[language]}
+                width = {WIDTH}
+                tabName = {'EXHIBITIONS'}
+                contents = {this.props.exhibitions[language]}
                 />
                 {/*WORKS*/}
                 <Work
