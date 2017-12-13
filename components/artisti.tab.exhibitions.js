@@ -39,18 +39,18 @@ class Exhibitions extends PureComponent {
         this.setState({on:name})
     }
     render(){
-        console.log('Exhibitions',this.props)
+        // console.log('Exhibitions',this.props)
         let content=[]
         if (this.state.on ==='Solo'){
-            content = this.props.contents[0]
+            content = this.props.contents[this.props.language][0]
         }else if (this.state.on ==='Group'){
-            content = this.props.contents[1]
+            content = this.props.contents[this.props.language][1]
         }else if(this.state.on ==='ALL'){
             // 遗憾 array 的数据没有合并在一起
-            content = Object.assign({},{...this.props.contents[0]},{...this.props.contents[1]})
+            content = Object.assign({},{...this.props.contents[this.props.language][0]},{...this.props.contents[this.props.language][1]})
         }
-        // const soloContents = this.props.contents[0]
-        // const groupContents = this.props.contents[1]
+        // const soloContents = this.props.contents[this.props.language][0]
+        // const groupContents = this.props.contents[this.props.language][1]
         // debugger
         return(
             <div
@@ -58,6 +58,7 @@ class Exhibitions extends PureComponent {
                 display:'flex',
                 flexDirection:'column',
                 width:this.props.width,
+                margin:'auto',//居中
             })}
         >
 
@@ -92,7 +93,7 @@ class Exhibitions extends PureComponent {
                                 display:'flex',
                                 flexDirection:'row',
                              })}
-                             key={`${this.props.tabName}_${Object.keys(item)}_${index}`}
+                             key={`${this.props.tabName}_${Object.keys(item)}_${this.props.language}_${index}`}
                             >
                                 <div
                                  {...css({

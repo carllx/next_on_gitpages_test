@@ -18,14 +18,15 @@ class Biography extends PureComponent {
                   position:'relative',
                   width:`${this.props.width}`,
                   margin:'auto',//居中
+                  minHeight:'60vh',//为了footer
               })}
             className = {this.props.tabName}
             >
                 {
-                    this.props.contents
+                    this.props.contents[this.props.language]
                         .split('\n')
                         .map((item, key) =>
-                          <span key={`${this.props.tabName}_${key}`}>{item}<br/></span>
+                          <span key={`${this.props.tabName}_${key}_${this.props.language}`}>{item}<br/></span>
                         )
                 }
             </div>
@@ -33,5 +34,16 @@ class Biography extends PureComponent {
     }/*render*/
 }
 
+const mapStateToProps = (state) => {
 
-export default TAB()(Biography)
+    return ({
+        // vw:state.Root.view_size.vw,
+        // landscape:state.Root.view_size.is_landscape,
+        language:state.Root.language,
+        // on:state.Tab.on,
+    });
+}
+
+
+const Comp = connect(mapStateToProps,null)(Biography)
+export default TAB()(Comp)

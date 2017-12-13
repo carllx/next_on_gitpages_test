@@ -55,7 +55,7 @@ class Artisti extends PureComponent {
       this.tab_names.push('WORKS')
     }
     if (this.props.selectTexts){
-      this.tab_names.push('SELECTTEXTS')
+      this.tab_names.push('SELECT TEXTS')
     }
     if (this.props.exhibitions){
       this.tab_names.push('EXHIBITIONS')
@@ -83,6 +83,10 @@ class Artisti extends PureComponent {
   render () {
 
     const {language } = this.props ||{language:'zh'}
+
+
+
+
     const {vw,vh,is_landscape} = this.props.view_size||{view_size:{vw:0,vh:0,is_landscap:false}}
     const WIDTH = is_landscape?GR.px(1,vw):GR.px(0.4,vw)
 
@@ -189,14 +193,14 @@ class Artisti extends PureComponent {
                 <Biography
                  width = {WIDTH}
                  tabName = {'BIOGRAPHY'}
-                 contents = {this.props.biography[language]}
+                 contents = {this.props.biography}
                 />
 
                 {/*EXHIBITIONS*/}
                <Exhibition
                 width = {WIDTH}
                 tabName = {'EXHIBITIONS'}
-                contents = {this.props.exhibitions[language]}
+                contents = {this.props.exhibitions}
                 />
                 {/*WORKS*/}
                 <Work
@@ -210,26 +214,14 @@ class Artisti extends PureComponent {
           </div>
           </NoSSR>
 
-          {/*TABS-SECTION*/}
-
-
-
-          {/*WORKS*/}
-
-          {/*SELECT TEXTS*/}
-
-          {/*EXHIBITIONS*/}
-
-
-
-
-
-
 
 
 
 
         </div>{/*3D Parallax*/}
+
+
+
         <FullWork contents = {this.props.works} />
 
 

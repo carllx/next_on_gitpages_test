@@ -65,7 +65,8 @@ class Works extends PureComponent {
                     display:'flex',
                     flexDirection:'row',
                     flexWrap:'wrap',
-                    width:`${this.props.width}`
+                    width:`${this.props.width}`,
+                    margin:'auto',//居中
                  })}
             >
                 {/*Img*/}
