@@ -44,7 +44,6 @@ export class _IMG extends PureComponent{
           position:'absolute',//文件流识别
           justifyContent:   'space-around',
           backgroundRepeat: 'no-repeat',
-          backgroundSize:   this.props.fullWidth?'cover':'auto',
           overflow:         'hidden',
           backgroundColor:  'transparent',
           backgroundPosition: 'center',
@@ -53,13 +52,15 @@ export class _IMG extends PureComponent{
           left:this.props.left,
           top:this.props.top,
           opacity: this.props.show?1:0,
-          width: this.props.width?this.props.width:'auto',
-          height: this.props.height?this.props.height:'auto',
+          // width: this.props.width?this.props.width:'auto',
+          // height: this.props.height?this.props.height:'auto',
+          width:'100vw',
+          height:'100vh',
           // minWidth: '70%',
           // minHeight: '70%',
           //在这里找渐变模板 https: //webgradients.com/
           // backgroundColor:  this.props.src?`url(${this.props.src})`:'white',
-          backgroundImage:  this.props.show?`url(${this.props.src})`:null,
+          background:  this.props.show?`url(${this.props.src}) center center no-repeat`:null,
           transition: `opacity 1s cubic-bezier(0.24, 0.49, 0.82, 0.6)`,
           })}
         >
@@ -98,7 +99,8 @@ const _Loading =(props)=>
         left:props.left?props.left:0,
         top:props.top?props.top:0,
         width: '100%',
-        height:props.height,
+        height:'100%',
+        // height:props.height,
         opacity:props.show?1:0,
 
         })}
@@ -238,8 +240,6 @@ export class IMG_WithLoader extends PureComponent {
 
           >
               <_IMG
-               width = {this.props.width}
-               height = {this.props.height}
                src = {this.state.src}
                show = {this.state.loaded}//显示Img
                left = {this.props.left}
@@ -249,14 +249,11 @@ export class IMG_WithLoader extends PureComponent {
                />
 
               <_Loading
-               width = {this.props.width}
-               height = {this.props.height}
                show = {(this.state.loaded==false)}
                percent = {this.state.percent}
                left = {this.props.left}
                top = {this.props.top}
                key={`_LOADIMGER_${this.key}`}
-
               />
           </div>
           );

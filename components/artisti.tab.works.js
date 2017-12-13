@@ -2,12 +2,12 @@ import { css } from 'glamor'
 import { PureComponent } from 'react'
 import {ui  ,GR , makeKEY , perspZ}  from '~/utils/ui'
 
-import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
 import TAB from '~/components/artisti.tab.Wrapper'
 import {IMG_WithLoader} from '~/components/img'
 
-
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import {setFocusOn} from'~/reducers/artisti.tabs'
 /*Button_IMG */
 // class Button_IMG extends PureComponent {
 //     constructor(props){
@@ -28,20 +28,37 @@ import {IMG_WithLoader} from '~/components/img'
 //     }
 // }
 
+
+
 class Works extends PureComponent {
     constructor(props){
         super(props);
+        this.state = {ctxLength:9};
+        this.ctxMax = 0 ;
+        this.handleClick = this.callFullWork.bind(this)
+        this.handleClickMore = this.reqMoreWork.bind(this)
+    }
+
+
+    callFullWork(index){
+        console.log(index)
+        this.props.setFocusOn(index);
+    }
+
+    reqMoreWork(){
+        this.setState({ctxLength:this.state.ctxLength+9})
+    }
+
+    componentDidMount(){
+        this.props.setFocusOn(-1);
     }
 
     render(){
         const vw = this.props.vw
         const width= this.props.landscape?width:vw
-        const size = this.props.width/3.05
-        const margin = this.props.size/500
+        const size = this.props.width/3.1
         const shouldFetch = vw === undefined ? false:true;
-
-        // const soloContents = this.props.contents[0]
-        // const groupContents = this.props.contents[1]
+        const contents = this.props.contents.filter((item,index)=>index<this.state.ctxLength)
         return(
             <div
              {...css({
@@ -53,13 +70,15 @@ class Works extends PureComponent {
             >
                 {/*Img*/}
                 {
-                    this.props.contents.map((item,index)=>
+                    contents.map((item,index)=>
                         <div
                           {...css({
                             justifyContent:'flex-start',
-                            margin:`${margin}px`,
+                            margin:`1px`,
+                            cursor:'pointer',
                         })}
                         key = {`workimg_${index}`}
+                        onClick = {()=>{this.handleClick(index)}}
                         >
                             <IMG_WithLoader
                              src = {item.img}
@@ -71,6 +90,24 @@ class Works extends PureComponent {
                         </div>
                     )
                 }
+
+
+                {/*MORE*/}
+                <div
+                  {...css({
+                    display:'flex',
+                    width:'100%',
+                    justifyContent:'center',
+                    alignItems:'center',
+                    cursor:'pointer',
+                    height:'20vh',
+                    fontSize:'1.5rem',
+                })}
+                  onClick = {this.handleClickMore}
+                  >
+                    {'more'}
+                </div>
+
             </div>
         )/*return*/
     }/*render*/
@@ -87,6 +124,18 @@ const mapStateToProps = (state) => {
     });
 }
 
+const mapDispatchToProps = (dispatch) => {
+  return {
+    setFocusOn: bindActionCreators(setFocusOn, dispatch),
+  }
+}
 
-const Comp = connect(mapStateToProps,null)(Works)
+
+const Comp = connect(mapStateToProps,mapDispatchToProps)(Works)
 export default TAB()(Comp)
+
+
+
+
+
+

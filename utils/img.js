@@ -24,12 +24,21 @@ export const cloudinary = ( name ,w ,h ) =>
 
 
 // [WIX] Vesion
-export const wix = ( name ,w ,h ) =>
+export const wix = ( name ,w ,h ) =>{
+        if(w){
+            return (
+                `https://static.wixstatic.com/media/`
+                +`${name}/v1/fit/`
+                +`w_${Math.floor(w)},h_${Math.floor(h)}`
+                +`/${name}`
+            )
+        }else{
+            return (`https://static.wixstatic.com/media/${name}`)
 
-    `https://static.wixstatic.com/media/`
-    +`${name}/v1/fit/`
-    +`w_${Math.floor(w)},h_${Math.floor(h)}/`
-    +`${name}`;
+        }
+    }
+
+
 
 // WIX
 /*

@@ -33,18 +33,18 @@ const TAB =()=>
                 // 点击了该Tab , 当 nexprops  = 'BIOGRAPHY'
                 if(nextProps.onTab === this.props.tabName){
                     TweenMax.fromTo(
-                        `.${this.props.tabName}`,
+                        `.WRAPPER_${this.props.tabName}`,
                         0.5,
                         {
                             y:150,
                             opacity:0,
                             autoAlpha:0,
-                            // display: 'none',
+                            display: 'none',
                         },{
                             y:0,
                             ease: Power4.easeOut,
                             autoAlpha:1,//opacity:1,visibility:'visible'
-                            // display: 'block',
+                            display: 'flex',
                         },
                         0.2);/*TweenMax*/
                 }
@@ -52,13 +52,13 @@ const TAB =()=>
                 // 从这个Tab退出 , 激活其他Tabs 时
                 if(this.props.onTab === this.props.tabName){
                     TweenMax.to(
-                        `.${this.props.tabName}`,
+                        `.WRAPPER_${this.props.tabName}`,
                         0.5,
                         {
                             y:150,
                             opacity:0,
                             autoAlpha:0,
-                            // display: 'none',
+                            display: 'none',
                             ease: Power4.easeOut,
                         },
                         0.2);/*TweenMax*/
@@ -80,9 +80,13 @@ const TAB =()=>
                     <div
                      {...css({
                         position:'absolute',
-                        // display: 'none',// 初始阶段
-                        display:'flex',
-                        visibility:'hidden'
+                        /*居中*/
+                        // display:'flex',
+                        display:'none',
+                        width: '100vw',
+                        justifyContent:'center',
+                        /*居中*/
+                        visibility:'hidden',
                      })}
                      className = {`WRAPPER_${this.props.tabName}`}
                      key = {`TAB_${this.props.tabName}`}

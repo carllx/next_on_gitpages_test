@@ -16,6 +16,7 @@ class Button extends PureComponent {
              {...css({
                 marginRight:'3rem',
                 cursor:'pointer',
+                // width:'3rem',/*居中*/
                 color:this.props.on?ui.color.b_o1:ui.color.b_o2,
                 fontWeight:this.props.on?900:100,
              })}
@@ -54,24 +55,31 @@ class Exhibitions extends PureComponent {
         return(
             <div
              {...css({
-                    display:'flex',
-                    flexDirection:'column'
-                 })}
-            >
+                display:'flex',
+                flexDirection:'column',
+                width:this.props.width,
+            })}
+        >
 
                 <div
                   {...css({
-                    justifyContent:'flex-start',
+
                     display:'flex',
                     flexDirection:'row',
+                    justifyContent:this.props.landscape?'flex-start':'center',/*如果是手机居中*/
+                    // marginLeft:'auto',
+                    // marginRight:'auto',
                     marginTop:'2rem',
                     marginBottom:'3rem',
+
+
                 })}
                 >
                     <Button name = 'ALL' onClick={()=>{this.handleClick('ALL')}} on = {this.state.on ==='ALL'}/>
                     <Button name = 'Solo Exhibitions'onClick={()=>{this.handleClick('Solo')}} on = {this.state.on ==='Solo'}/>
                     <Button name = 'Group Exhibitions'onClick={()=>{this.handleClick('Group')}} on = {this.state.on ==='Group'}/>
                 </div>
+
 
 
 
@@ -82,7 +90,7 @@ class Exhibitions extends PureComponent {
                              {...css({
                                 justifyContent:'flex-start',
                                 display:'flex',
-                                flexDirection:'row'
+                                flexDirection:'row',
                              })}
                              key={`${this.props.tabName}_${Object.keys(item)}_${index}`}
                             >
@@ -112,6 +120,9 @@ class Exhibitions extends PureComponent {
                             </div>
                         )
                 }
+
+
+
             </div>
 
 
@@ -130,4 +141,16 @@ class Exhibitions extends PureComponent {
 // const Comp = connect(mapStateToProps,null)(Exhibitions)
 // export default TAB()(Comp)
 //
-export default TAB()(Exhibitions)
+const mapStateToProps = (state) => {
+
+    return ({
+        vw:state.Root.view_size.vw,
+        landscape:state.Root.view_size.is_landscape,
+        language:state.Root.language,
+        on:state.Tab.on,
+    });
+}
+
+
+const Comp = connect(mapStateToProps,null)(Exhibitions)
+export default TAB()(Comp)

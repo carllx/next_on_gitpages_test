@@ -21,6 +21,12 @@ import Biography from '~/components/artisti.tab.biography'
 import Exhibition from '~/components/artisti.tab.exhibitions'
 import Work from '~/components/artisti.tab.works'
 
+
+import FullWork from '~/components/artisti.tab.works.FULL_IMG'
+
+
+
+
 class Artisti extends PureComponent {
 
   static async getInitialProps({ isServer, query }) {
@@ -173,8 +179,9 @@ class Artisti extends PureComponent {
               <div
               {...css({
                   // display:'flex',
-                  // position:
+                  position:'relative',
                   width:this.props.view_size.vw,// 不许提供，否则不能居中
+                  left:0,
               })}
               className = 'TAB_MAIN'
               >
@@ -213,7 +220,7 @@ class Artisti extends PureComponent {
 
           {/*EXHIBITIONS*/}
 
-          {/*NEWS*/}
+
 
 
 
@@ -223,6 +230,7 @@ class Artisti extends PureComponent {
 
 
         </div>{/*3D Parallax*/}
+        <FullWork contents = {this.props.works} />
 
 
 

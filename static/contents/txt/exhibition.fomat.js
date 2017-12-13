@@ -33,6 +33,7 @@ var strings = `Solo <Exhibitions></Exhibitions>
         Representative Contemporary Mainland Painters Exhibition Series, Yanhuang Art Museum, Kaohsiung
 
 Group Exhibitions
+
     2016
         The Exhibition of Annual of Contemporary Art of China 2015  Minsheng Art Museum  Beijing
         The Visual Experience and Cultural Identity of Chinese Modernity  Yili Art Museum  Beijing

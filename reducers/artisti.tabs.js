@@ -4,6 +4,7 @@
 export const actionTypes = {
   TAB_ON_INIT:'TAB_ON_INIT',
   TOUCH_ON_TAB:'TOUCH_ON_TAB',
+  FOCUS_ON:'FOCUS_ON',
 }
 
 
@@ -33,6 +34,15 @@ export const touchOnTab = (name, pos) => (dispatch)=> {
     })
 }
 
+export const setFocusOn = (index) => (dispatch)=> {
+  // debugger
+  // console.log(window)
+  return dispatch({
+        type: actionTypes.FOCUS_ON,
+        index: index,
+    })
+}
+
 
 
 
@@ -50,12 +60,18 @@ export default (state = {}, action) => {
             ...action.obj
           }
 
-
         case actionTypes.TOUCH_ON_TAB:
             return {
                 ...state,
                 on:action.name,
             }
+
+        case actionTypes.FOCUS_ON:
+            return {
+                ...state,
+                worksFocusOn:action.index,
+            }
+
 
         default:
             return state

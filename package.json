@@ -39,7 +39,7 @@
     "testCross": "cross-var node -e \"console.log('now path on :', \\\"$npm_package_config_commitmessage\\\")\" && cross-var node -e \"console.log('now path on :', \\\"$npm_package_config_commitmessage\\\")\""
   },
   "config": {
-    "commitmessage": "AUSUS Station update tabs"
+    "commitmessage": "artist tab 完成 ,重新设置了艺术家静态数据的结构"
   },
   "name": "",
   "description": "## How to use",
