@@ -207,7 +207,6 @@ class Artisti extends PureComponent {
                  width = {WIDTH}
                  tabName = {'WORKS'}
                  contents = {this.props.works}
-                 // language = {language}
                 />
               </div>
 

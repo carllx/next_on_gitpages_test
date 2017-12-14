@@ -170,7 +170,9 @@ class ArtistiNav extends PureComponent {
             */
             pathname: '/artisti',
             query: { id: id },
-            asPath :`/artisti/${id}`
+            asPath :`/artisti/${id}`,
+            shallow: true
+
         })
         this.close()
     }

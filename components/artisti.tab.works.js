@@ -53,6 +53,13 @@ class Works extends PureComponent {
         this.props.setFocusOn(-1);
     }
 
+    componentshouldupdate(nextProps){
+        if(this.props.vw!==nextProps.vw||this.props.landscape!==nextProps.landscape
+            ){
+            return true
+        }else{return false}
+    }
+
     render(){
         const vw = this.props.vw
         const width= this.props.landscape?width:vw
@@ -78,7 +85,7 @@ class Works extends PureComponent {
                             margin:`1px`,
                             cursor:'pointer',
                         })}
-                        key = {`workimg_${index}`}
+                        key = {`working_${index}`}
                         onClick = {()=>{this.handleClick(index)}}
                         >
                             <IMG_WithLoader
@@ -120,8 +127,7 @@ const mapStateToProps = (state) => {
     return ({
         vw:state.Root.view_size.vw,
         landscape:state.Root.view_size.is_landscape,
-        language:state.Root.language,
-        on:state.Tab.on,
+        // on:state.Tab.on,
     });
 }
 

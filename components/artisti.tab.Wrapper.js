@@ -26,9 +26,7 @@ const TAB =()=>
             }
 
             componentWillReceiveProps(nextProps){
-                // 不需要
-                // if(this.props.onTab===nextProps.onTab)
-                // if(this.props.onTab!==nextProps.onTab)
+
 
                 // 点击了该Tab , 当 nexprops  = 'BIOGRAPHY'
                 if(nextProps.onTab === this.props.tabName){
@@ -65,12 +63,12 @@ const TAB =()=>
 
             // 过滤与这个Tab 无关的更新, 避免on 一更改就渲染一次
             // // 实测不需要
-            // componentshouldupdate(nextProps){
-            //     if(this.props.onTab!==this.props.tabName&&
-            //         nextProps.onTab!==this.props.tabName){
-            //         return false
-            //     }else{return true}
-            // }
+            componentshouldupdate(nextProps){
+                if(this.props.onTab!==this.props.tabName&&
+                    nextProps.onTab!==this.props.tabName){
+                    return true
+                }else{return false}
+            }
 
             render(){
               const show = this.props.tabName === this.props.onTab
@@ -99,7 +97,7 @@ const TAB =()=>
                    key = {`TAB_${this.props.tabName}_${language}`}
                   >
                       <Comp
-                       tabName = {this.props.tabName}
+                       // tabName = {this.props.tabName}
                        contents = {this.props.contents}
                        width = {this.props.width}
                       />
