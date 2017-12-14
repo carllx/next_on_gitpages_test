@@ -37,14 +37,13 @@ const TAB =()=>
                         0.5,
                         {
                             y:150,
-                            opacity:0,
                             autoAlpha:0,
                             display: 'none',
                         },{
                             y:0,
-                            ease: Power4.easeOut,
                             autoAlpha:1,//opacity:1,visibility:'visible'
                             display: 'flex',
+                            ease: Power4.easeOut,
                         },
                         0.2);/*TweenMax*/
                 }
@@ -56,7 +55,6 @@ const TAB =()=>
                         0.5,
                         {
                             y:150,
-                            opacity:0,
                             autoAlpha:0,
                             display: 'none',
                             ease: Power4.easeOut,
@@ -75,67 +73,68 @@ const TAB =()=>
             // }
 
             render(){
-                const {language } = this.props ||{language:'zh'}
-                let copyRight ;
-                if(language === 'zh') {
-                  copyRight = 'Copyright © 2017 中艺国际有限公司.All rights reserved'
-                }else if(language === 'it'){
-                  copyRight = 'Copyright © 2017 ZHONG ART INTERNATIONAL SRL.All rights reserved'
-                }else{
-                  copyRight = 'Copyright © 2017 ZHONG ART INTERNATIONAL LTD.All rights reserved'
-                }
-                return (
-                    <div
-                     {...css({
-                        position:'absolute',
-                        /*居中*/
-                        display:'flex',
-                        width: '100vw',
-                        flexDirection:'column',
+              const show = this.props.tabName === this.props.onTab
+              const {language } = this.props ||{language:'zh'}
+              let copyRight ;
+              if(language === 'zh') {
+                copyRight = 'Copyright © 2017 中艺国际有限公司.All rights reserved'
+              }else if(language === 'it'){
+                copyRight = 'Copyright © 2017 ZHONG ART INTERNATIONAL SRL.All rights reserved'
+              }else{
+                copyRight = 'Copyright © 2017 ZHONG ART INTERNATIONAL LTD.All rights reserved'
+              }
+              return (
+                  <div
+                   {...css({
+                      position:'absolute',
+                      /*居中*/
+                      display:show?'flex':'none',
+                      width: '100vw',
+                      flexDirection:'column',
+                      // justifyContent:'center',
+                      /*居中*/
+                      visibility:show?'visible':'hidden',
+                   })}
+                   className = {`WRAPPER_${this.props.tabName}`}
+                   key = {`TAB_${this.props.tabName}_${language}`}
+                  >
+                      <Comp
+                       tabName = {this.props.tabName}
+                       contents = {this.props.contents}
+                       width = {this.props.width}
+                      />
+
+                      {/*COPYRIGHT*/}
+                      <div
+                       {...css({
+                        color:ui.color.b_o2,
+                        // display:'flex',
                         // justifyContent:'center',
-                        /*居中*/
-                        visibility:'hidden',
-                     })}
-                     className = {`WRAPPER_${this.props.tabName}`}
-                     key = {`TAB_${this.props.tabName}_${language}`}
-                    >
-                        <Comp
-                         tabName = {this.props.tabName}
-                         contents = {this.props.contents}
-                         width = {this.props.width}
-                        />
-
-                        {/*COPYRIGHT*/}
-                        <div
-                         {...css({
-                          color:ui.color.b_o2,
-                          // display:'flex',
-                          // justifyContent:'center',
-                          // alignItems:'center',
-                          // flexDirection:'row',
-                          // width:`${this.props.vw}px`,
-                          // height:`${this.props.landscape?'10rem':'5rem'}`,
-                          //
+                        // alignItems:'center',
+                        // flexDirection:'row',
+                        // width:`${this.props.vw}px`,
+                        // height:`${this.props.landscape?'10rem':'5rem'}`,
+                        //
 
 
-                          position: 'absolute',
-                          right: 0,
-                          bottom: 0,
-                          left: 0,
-                          textAlign:'center',
-                          paddingTop: '3rem',
-                          paddingBottom: '1.5rem',
-                          // marginBottom:`${is_landscape?GR.vw(6):GR.vw(6)}vw`,
-                         })}
-                         key= {`COPYRIGHT_${language}`}
-                        >
-                          <div>
-                            {copyRight}
-                          </div>
+                        position: 'absolute',
+                        right: 0,
+                        bottom: 0,
+                        left: 0,
+                        textAlign:'center',
+                        paddingTop: '3rem',
+                        paddingBottom: '1.5rem',
+                        // marginBottom:`${is_landscape?GR.vw(6):GR.vw(6)}vw`,
+                       })}
+                       key= {`COPYRIGHT_${language}`}
+                      >
+                        <div>
+                          {copyRight}
                         </div>
-                    </div>
-                )
-            }
+                      </div>
+                  </div>
+              )
+          }
         }
 
         const mapStateToProps = (state) => {
