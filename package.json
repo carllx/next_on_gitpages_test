@@ -39,7 +39,7 @@
     "testCross": "cross-var node -e \"console.log('now path on :', \\\"$npm_package_config_commitmessage\\\")\" && cross-var node -e \"console.log('now path on :', \\\"$npm_package_config_commitmessage\\\")\""
   },
   "config": {
-    "commitmessage": "尝试修复切换语言时，work tab 的图片重新加载"
+    "commitmessage": "2017-12-14晚递交"
   },
   "name": "",
   "description": "## How to use",

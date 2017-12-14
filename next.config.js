@@ -11,9 +11,11 @@ module.exports = {
     cp('./static/robots.txt','./out/robots.txt');
     cp('./static/sitemap.xml','./out/sitemap.xml');
 
+    /*
     // we fetch our list of posts, this allow us to dynamically generate the exported pages
     const response = await fetch('http://jsonplaceholder.typicode.com/posts?_page=1')
     const postList = await response.json()
+    */
 
     /*{
       "userId": 1,
@@ -58,17 +60,17 @@ module.exports = {
     )
     // 尝试递交路由修正?id=FangLijun的形式2
     // http://localhost:3000/artisti?id=FangLijun
-    const artistPages2 = artisti.artistInfo.reduce(
-      (artistPages, obj) =>
-        Object.assign({}, artistPages, {
-          [`/artisti?id=${obj.id}`]: {
-            page: '/artisti',
-            query: { id: obj.id }
-          }
-        }),
-      {},
+    // const artistPages2 = artisti.artistInfo.reduce(
+    //   (artistPages, obj) =>
+    //     Object.assign({}, artistPages, {
+    //       [`/artisti/?id=${obj.id}`]: {
+    //         page: '/artisti',
+    //         query: { id: obj.id }
+    //       }
+    //     }),
+    //   {},
 
-    )
+    // )
     //  const eventsPages = artisti.artistInfo.reduce(
     //   (artistPages, obj) =>
     //     Object.assign({}, artistPages, {

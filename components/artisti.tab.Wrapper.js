@@ -144,6 +144,8 @@ const TAB =()=>
                 language:state.Root.language,
             });
         }
+
+
         return connect(mapStateToProps,null)(Tab)
      }
 

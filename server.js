@@ -39,8 +39,11 @@ app.prepare()
       id: req.params.id
     })
   })
-  // custom route for posts http://localhost:3000/artisti?id=EnzoCucchi
-  // server.get('/artisti?id=:id', (req, res) => {
+
+  /*
+    实现不了 custom route for posts http://localhost:3000/artisti?id=EnzoCucchi , 因为 文件夹命名不能使用 '?'
+   */
+  // server.get('/artisti/?id=:id', (req, res) => {
   //   return app.render(req, res, '/artisti', {
   //     id: req.params.id
   //   })
