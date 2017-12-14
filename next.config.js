@@ -56,18 +56,18 @@ module.exports = {
       {},
 
     )
+    // http://localhost:3000/artisti?id=FangLijun
+    const artistPages2 = artisti.artistInfo.reduce(
+      (artistPages, obj) =>
+        Object.assign({}, artistPages, {
+          [`/artisti?id=${obj.id}`]: {
+            page: '/artisti',
+            query: { id: obj.id }
+          }
+        }),
+      {},
 
-    // const artistPages2 = artisti.artistInfo.reduce(
-    //   (artistPages, obj) =>
-    //     Object.assign({}, artistPages, {
-    //       [`/artisti/${obj.id}`]: {
-    //         page: '/artisti?id=',
-    //         query: { id: obj.id }
-    //       }
-    //     }),
-    //   {},
-
-    // )
+    )
     //  const eventsPages = artisti.artistInfo.reduce(
     //   (artistPages, obj) =>
     //     Object.assign({}, artistPages, {

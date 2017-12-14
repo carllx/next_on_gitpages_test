@@ -26,7 +26,7 @@ class Biography extends PureComponent {
                     this.props.contents[this.props.language]
                         .split('\n')
                         .map((item, key) =>
-                          <span key={`${this.props.tabName}_${key}_${this.props.language}`}>{item}<br/></span>
+                          <span key={`${this.props.tabName}_${key}_${this.props.language}`}>{item}<br/><br/></span>
                         )
                 }
             </div>
