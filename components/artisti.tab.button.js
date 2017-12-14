@@ -64,7 +64,7 @@ class TABS extends PureComponent {
                     width:this.props.width,
                     display:'flex',
                     flexDirection:'column',
-                    justifyContent:'space-around',
+                    justifyContent:'flex-end',//space-around均匀分布
                     transformStyle: 'preserve-3d',
                     backfaceVisibility: 'hidden',
                  })}
@@ -76,7 +76,8 @@ class TABS extends PureComponent {
                          {...css({// button
                             transformStyle: 'preserve-3d',//@parallax
                             cursor: 'pointer',
-                            marginBottom:'.5em',
+                            marginTop:'2em',
+                            // marginBottom:'.5em',
                             textAlign:'right',
                          })}
                          ref = {c => this[`$${tab}`] = c}

@@ -56,6 +56,7 @@ module.exports = {
       {},
 
     )
+    // 尝试递交路由修正?id=FangLijun的形式2
     // http://localhost:3000/artisti?id=FangLijun
     const artistPages2 = artisti.artistInfo.reduce(
       (artistPages, obj) =>

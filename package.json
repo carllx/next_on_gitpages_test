@@ -39,7 +39,7 @@
     "testCross": "cross-var node -e \"console.log('now path on :', \\\"$npm_package_config_commitmessage\\\")\" && cross-var node -e \"console.log('now path on :', \\\"$npm_package_config_commitmessage\\\")\""
   },
   "config": {
-    "commitmessage": "尝试递交路由修正?id=FangLijun的形式"
+    "commitmessage": "Tab button 少于三时，间隔高度太多"
   },
   "name": "",
   "description": "## How to use",
