@@ -39,7 +39,7 @@
     "testCross": "cross-var node -e \"console.log('now path on :', \\\"$npm_package_config_commitmessage\\\")\" && cross-var node -e \"console.log('now path on :', \\\"$npm_package_config_commitmessage\\\")\""
   },
   "config": {
-    "commitmessage": "2017-12-14晚递交"
+    "commitmessage": "取消out上传文件夹限制"
   },
   "name": "",
   "description": "## How to use",
