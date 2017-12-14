@@ -39,7 +39,7 @@
     "testCross": "cross-var node -e \"console.log('now path on :', \\\"$npm_package_config_commitmessage\\\")\" && cross-var node -e \"console.log('now path on :', \\\"$npm_package_config_commitmessage\\\")\""
   },
   "config": {
-    "commitmessage": "Tab button 少于三时，间隔高度太多"
+    "commitmessage": "修改 eventi和moster 的svg nav形状，并添加 comming 提示 "
   },
   "name": "",
   "description": "## How to use",

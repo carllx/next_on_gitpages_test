@@ -5,7 +5,7 @@ import { css } from 'glamor'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
-// import {ui  ,GR}  from '~/utils/ui'
+import {ui }  from '~/utils/ui'
 import SVG_BACKGROUND  from '~/components/nav.bg.svg_SMIL'
 import Language  from '~/components/nav.language'
 import {BUTTONS}  from '~/components/nav.buttons'
@@ -14,7 +14,34 @@ import AboutNav  from '~/components/nav.about'
 
 import { setPanelOn } from '~/reducers/nav'
 
+class Triangle extends PureComponent{
+    constructor(props){
+        super(props)
+    }
 
+    render(){
+        const size = this.props.size
+        return(
+            <svg
+             {...css({
+                width:size,
+                position:'absolute'
+             })}
+             viewBox= {`0 0 1 1`}
+            >
+                <polygon
+                 fill={ui.color.w_o2}
+                 stroke="none"
+                 points={
+                    `0,0 `+//left_top
+                    `1,0 `+//right_top
+                    `0,1 `//right_bottom
+                }
+                />
+            </svg>
+        )
+    }
+}
 
 // // DATA
 const CONFIG = [{
@@ -139,6 +166,41 @@ class Nav extends PureComponent {
               />
               {/*语言切换*/}
               <Language is_landscape ={landscape}/>
+
+              {/*Sorry Comming*/}
+              { nav_on==='eventi'||nav_on==='mostre'?
+                <div
+                 {...css({
+                    display: 'flex',
+                    position:'fixed',
+                    top:0,
+                    left:0,
+                    justifyContent:'center',
+                    alignItems:'center',
+                    width: '100vw',
+                    height:'100vh',
+                    zIndex:9,
+                    pointerEvents:'none', //避免遮挡Logo点击
+                    overflowX: 'hidden',//@parallax
+                    overflowY: 'hidden',//@parallax
+                 })}
+                 className = 'carllx'
+                >
+                  <div
+                   {...css({
+                      display: 'flex',
+                      backgroundColor:ui.color.b_o2,
+                      padding:'0.5rem 8rem 0.5rem 8rem',
+                      color:'white',
+                   })}
+                  >
+                    <Triangle size = '2rem'/>
+                    {'Coming soon'}
+                  </div>
+                </div>
+                :
+                null
+              }
 
               {/*艺术家,新闻,关于,*/}
               <BUTTONS
