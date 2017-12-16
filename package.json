@@ -39,7 +39,7 @@
     "testCross": "cross-var node -e \"console.log('now path on :', \\\"$npm_package_config_commitmessage\\\")\" && cross-var node -e \"console.log('now path on :', \\\"$npm_package_config_commitmessage\\\")\""
   },
   "config": {
-    "commitmessage": "修复copyright 在exhibition 和 上方内容重叠问题，exhibition ，all 的合并不完整问题  "
+    "commitmessage": "修复copyright 在exhibition 和 上方内容重叠问题，exhibition ，all 的合并不完整问题 2 "
   },
   "name": "",
   "description": "## How to use",
