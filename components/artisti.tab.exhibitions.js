@@ -40,7 +40,7 @@ class Exhibitions extends PureComponent {
     }
     render(){
         // console.log('Exhibitions',this.props)
-        let content=[]
+        let content={}
         if (this.state.on ==='Solo'){
             content = this.props.contents[this.props.language][0]
         }else if (this.state.on ==='Group'){
@@ -48,21 +48,22 @@ class Exhibitions extends PureComponent {
         }else if(this.state.on ==='ALL'){
             // 遗憾 array 的数据没有合并在一起
             // 1.
-            let obj = Object.assign({},{...this.props.contents[this.props.language][0]},{...this.props.contents[this.props.language][1]})
-            console.log('all',content)
-            for (var key in obj) {
-                if(obj[key]){
-                    if(this.props.contents[this.props.language][1][key]){
-                        if(this.props.contents[this.props.language][1][key]!==obj[key]){
-                            content[key] = obj[key].concat( this.props.contents[this.props.language][1][key])
-                        }else{
-                            content[key] = obj[key]
-                        }
+            /*let obj = Object.assign({},{...this.props.contents[this.props.language][0]},{...this.props.contents[this.props.language][1]})*/
 
-                    }
-
+            const solo = this.props.contents[this.props.language][0]
+            const group = this.props.contents[this.props.language][1]
+            console.log(solo)
+            console.log(group)
+            let all = Object.assign({},{...solo})
+            for(let key in all){
+                if(group[key]){
+                    all[key]= all[key].concat(group[key])
                 }
             }
+            content = Object.assign({},{...group},{...all})
+
+
+
             // console.error(content)
         }
         // const soloContents = this.props.contents[this.props.language][0]

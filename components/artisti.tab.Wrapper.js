@@ -92,6 +92,8 @@ const TAB =()=>
                       // justifyContent:'center',
                       /*居中*/
                       visibility:show?'visible':'hidden',
+                      paddingBottom: '7rem',// for CopuRight
+
                    })}
                    className = {`WRAPPER_${this.props.tabName}`}
                    key = {`TAB_${this.props.tabName}_${language}`}
@@ -120,8 +122,8 @@ const TAB =()=>
                         bottom: 0,
                         left: 0,
                         textAlign:'center',
-                        paddingTop: '3rem',
-                        paddingBottom: '1.5rem',
+                        // paddingTop: '3rem',
+                        paddingBottom: '0.5rem',
                         // marginBottom:`${is_landscape?GR.vw(6):GR.vw(6)}vw`,
                        })}
                        key= {`COPYRIGHT_${language}`}
