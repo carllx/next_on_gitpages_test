@@ -10,6 +10,7 @@ module.exports = {
     cp('./static/CNAME','./out/CNAME');
     cp('./static/robots.txt','./out/robots.txt');
     cp('./static/sitemap.xml','./out/sitemap.xml');
+    cp('./static/baidu_verify_BWMAZPDlTw','./out/baidu_verify_BWMAZPDlTw');
 
     /*
     // we fetch our list of posts, this allow us to dynamically generate the exported pages
