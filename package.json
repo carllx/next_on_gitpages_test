@@ -39,7 +39,7 @@
     "testCross": "cross-var node -e \"console.log('now path on :', \\\"$npm_package_config_commitmessage\\\")\" && cross-var node -e \"console.log('now path on :', \\\"$npm_package_config_commitmessage\\\")\""
   },
   "config": {
-    "commitmessage": "next.config 似乎无效， 百度文件验证 ， artist 全部递交"
+    "commitmessage": "sitemap 更新"
   },
   "name": "",
   "description": "## How to use",
@@ -49,4 +49,5 @@
     "cross-var": "^1.1.0"
   }
 }
+
 
