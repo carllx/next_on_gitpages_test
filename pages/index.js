@@ -46,8 +46,6 @@ class Index extends PureComponent {
 
   componentDidMount(){
 
-    // window.Perf = Perf
-
     // DEVICE
     this.setDevice()
 
@@ -66,16 +64,15 @@ class Index extends PureComponent {
     // debugger
     const {language} = this.props.language ||{language:'zh'}
     const {vw,vh,is_landscape} = this.props.view_size||{view_size:{vw:0,vh:0,is_landscap:false}}
-    // if(vw>0) {debugger}
-      // debugger
+
     return (
       <main >
         <Head>
           <title>{'中艺国际 - ZAI - zhong art'}</title>
           <meta content={`中艺国际, ZAI, zhongart international`} name='title' />
           <meta content={`中艺国际, ZAI, zhongart international`} property='og:title' />
-          <meta content={`中艺国际, ZAI, zhong art international, 是一个致力于在意大利传播中国艺术文化的现实：我们的目标是让我们的传播者介绍中国传统和现代的艺术和文化，促进他们在意大利得到适当的赞赏。另一方面，我们在中国实现同样的目标，在两个地理遥远的国家之间的交流与互惠的逻辑，但接近精神`} name='description' />
-          <meta content={`中艺国际, ZAI, zhong art international,是一个致力于在意大利传播中国艺术文化的现实：我们的目标是让我们的传播者介绍中国传统和现代的艺术和文化，促进他们在意大利得到适当的赞赏。另一方面，我们在中国实现同样的目标，在两个地理遥远的国家之间的交流与互惠的逻辑，但接近精神`} property='og:description' />
+          <meta content={`中艺国际, ZAI, zhong art international, 中艺国际是一个位于意大利佛罗伦萨的国际性艺术与文化交流机构。成立于2017年，在中国北京和意大利佛罗伦萨均有办事机构，我们的宗旨是为中国和意大利两国提供文化领域的交流与合作，通过积极为两国的艺术机构之间和艺术家之间策划展览和艺术家之间的学术交流活动，推动促进两国文化积极友好的发展。我们与意大利很多国家级的很多重要文化机构如文化部、大使馆等都有长期项目往来，与一些艺术类高等院校如罗马美术学院、佛罗伦萨大学美术学院、欧洲设计学院等都有校际合作关系。我们为专业人士提供专业性对接交流，旨在为中国和意大利两国的艺术发展建立文化沟通的桥梁。`} name='description' />
+          <meta content={`中艺国际, ZAI, zhong art international,中艺国际是一个位于意大利佛罗伦萨的国际性艺术与文化交流机构。成立于2017年，在中国北京和意大利佛罗伦萨均有办事机构，我们的宗旨是为中国和意大利两国提供文化领域的交流与合作，通过积极为两国的艺术机构之间和艺术家之间策划展览和艺术家之间的学术交流活动，推动促进两国文化积极友好的发展。我们与意大利很多国家级的很多重要文化机构如文化部、大使馆等都有长期项目往来，与一些艺术类高等院校如罗马美术学院、佛罗伦萨大学美术学院、欧洲设计学院等都有校际合作关系。我们为专业人士提供专业性对接交流，旨在为中国和意大利两国的艺术发展建立文化沟通的桥梁。`} property='og:description' />
           <meta content={`中艺国际, ZAI, zhongart, zhong art international, 意大利, 佛罗伦萨, firenze, arte, Gallery`} name='keywords'/>
           <meta http-equiv="keyword" content="中艺国际, ZAI, zhongart, zhong art international, 意大利, 佛罗伦萨, firenze, arte, Gallery" />
             {/*name="twitter:site" content="@artstationhq"
@@ -94,8 +91,10 @@ class Index extends PureComponent {
 
         {/*THREE*/}
           <canvas
-        {...css({position:'absolute',top:0,left:0})}
-        id = "scene" width={vw} height={vh}/>
+        {...css({position:'absolute',top:0,left:0,cursor:'pointer',})}
+        id = "scene" width={vw} height={vh}
+        onClick = {()=>{this.props.setPanelOn('show')}}
+        />
 
 
         {/*LOGO*/}

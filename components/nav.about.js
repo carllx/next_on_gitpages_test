@@ -249,7 +249,7 @@ class AboutNav extends PureComponent {
                 <div
                  {...css({
                     fontSize:'14px',
-                    // overflowY:'scroll',
+                    overflowY:'scroll',
                     maxHeight: '40vh',
                     transform:`translateZ(${zp.description.translateZ}px) scale(${zp.description.scale})`
                  })}
