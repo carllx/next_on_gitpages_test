@@ -39,7 +39,7 @@
     "testCross": "cross-var node -e \"console.log('now path on :', \\\"$npm_package_config_commitmessage\\\")\" && cross-var node -e \"console.log('now path on :', \\\"$npm_package_config_commitmessage\\\")\""
   },
   "config": {
-    "commitmessage": "增加百度主动推送"
+    "commitmessage": "2017年12月21日 季威的内容修正 ,tab 间隙修正 , work full 全屏作品的尺寸修正(Ventimiglia)"
   },
   "name": "",
   "description": "## How to use",

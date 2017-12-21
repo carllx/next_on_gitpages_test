@@ -32,7 +32,7 @@ class AboutNav extends PureComponent {
 
         // 初始关闭 artisti显示
         TweenMax.set(
-            ".about",
+            "#nav_about",
             {
                 y:`${this.props.view_size.vh}`,
                 // opacity:0,
@@ -70,7 +70,7 @@ class AboutNav extends PureComponent {
     show(){
         console.log('nav-Artisti -show()')
         TweenMax.staggerFromTo(
-            ".about",
+            "#nav_about",
             0.5,
             {
                 y:`${this.props.view_size.vh}`,
@@ -86,7 +86,7 @@ class AboutNav extends PureComponent {
     }
     close(){
         console.log('nav-About-close()')
-        TweenMax.staggerTo(".about",
+        TweenMax.staggerTo("#nav_about",
             0.3,
             {
                 y:`${this.props.view_size.vh/9}`,
@@ -233,7 +233,7 @@ class AboutNav extends PureComponent {
                         `.split('\n')
                         .map((item, key) =>
                             <div
-                             key={key}
+                             key={`nav_about_content_${key}`}
                              {...css({
 
                                 transform:`translateZ(${zp.contact.translateZ-key*10}px) scale(${zp.contact.scale})`
@@ -280,7 +280,7 @@ class AboutNav extends PureComponent {
 
 const aboutInfo ={
   "it": "Zhong Art International una realtà con sede in Italia e in Cina, che opera nel campo dell'Arte e delle Attività Culturali Italia-Cina. La nostra attività principale consiste nell’organizzare mostre d’arte ed eventi culturali. Abbiamo parternship con Enti ed Istituzioni, tra cui il Ministero della Cultura cinese, Consolati e Ambasciate sia in Cina che in Italia, oltre scambi culturali tra Università ed Accademie, Musei statali e private. \nOltre alle mostre ci dedichiamo alla realizzazione di tutte quelle attività che possono creare un ponte culturale tra Italia e Cina: ad esempio lavoriamo per creare sempre nuovi e duraturi rapporti di scambio tra Enti ed Istituti dei due Paesi, progetti e collaborazioni che uniscono realtà simili sulla base dell’Arte e della Cultura.\nLa radice del nostro lavoro, il fine che guida tutta la nostra attività, è l’impegno a creare un forte collegamento tra due antiche culture quali la Cina e l’Italia.\nCrediamo che l’arte sia il mezzo di comunicazione più efficace ed immediato, l’unico in grado di superare ogni difficoltà e barriera linguistica. Stimolare, incuriosire, far conoscere cose nuove: questo oggi è il nostro proposito, e ci auguriamo per il futuro di farlo sempre meglio, per lasciare qualcosa di importante dopo di noi.\nPartendo da quelle che sono le esigenze ed i desideri del cliente siamo in grado di progettare, organizzare e realizzare Eventi e Mostre di qualità, con elevata creatività ed esperienza professionale, offrendo servizi e consulenze su misura per ogni occasione\nZhong Art International, Agenzia leader nell’ideazione, progettazione, comunicazione e realizzazione  di eventi  culturali e mostre.\nUn team di professionisti al tuo fianco per assicurare qualità, serietà e risultati. \nFondata nel 2017 Zhong Art International, Agenzia di Organizzazione Eventi fortemente radicata nel territorio fiorentino e Beijing, offre un ventaglio di servizi completo.",
-  "zh": "中艺国际是一个致力于在意大利传播中国艺术文化的现实：我们的目标是让我们的传播者介绍中国传统和现代的艺术和文化，促进他们在意大利得到适当的赞赏。另一方面，我们在中国实现同样的目标，在两个地理遥远的国家之间的交流与互惠的逻辑，但接近精神。",
+  "zh": "中艺国际是一个位于意大利佛罗伦萨的国际性艺术与文化交流机构。成立于2017年，在中国北京和意大利佛罗伦萨均有办事机构，我们的宗旨是为中国和意大利两国提供文化领域的交流与合作，通过积极为两国的艺术机构之间和艺术家之间策划展览和艺术家之间的学术交流活动，推动促进两国文化积极友好的发展。我们与意大利很多国家级的很多重要文化机构如文化部、大使馆等都有长期项目往来，与一些艺术类高等院校如罗马美术学院、佛罗伦萨大学美术学院、欧洲设计学院等都有校际合作关系。我们为专业人士提供专业性对接交流，旨在为中国和意大利两国的艺术发展建立文化沟通的桥梁。",
   "en": "Zhong Art International is a reality based in Italy and China, which operates in the field of Arts and Cultural Activities Italy-China. Our main activity is organizing art exhibitions and cultural events. We have parternships with Entities and Institutions, including the Chinese Ministry of Culture, Consulates and Embassies both in China and in Italy, as well as cultural exchanges between Universities and Academies, State and Private Museums, and the most important artistic organization of the country.\nIn addition to exhibitions, we are dedicated to the realization of all those activities that can create a cultural bridge between Italy and China: for example, we work to create new and lasting exchanges between institutions and institutes of the two countries, projects and collaborations that combine similar realities the basis of Art and Culture.\nThe root of our work, the will that drives our whole business, is the commitment to create a strong link between two ancient cultures—China and Italy. We believe that art is the most effective and immediate ways of communication, the only one able to overcome every difficulty and language barriers. Our purpose today is to stimulate the culture’s vitality, to excite our curiosity and to create some new meaningful activities,  and we hope that in the future we can make a prosperous world for our next generation.\nStarting from the demands of our customers, we are able to organize quality events with high creativity and professional experience, offering customized services and practical consultations for every occasions.\nFounded in 2017, Zhong Art International, a highly organized event agency in the Florence and Beijing areas, offers a full range of services.We are the propagators of Chinese art and culture, we strive to promote them to be duly appreciated in Italy. A team of professionals beside you to ensure the quality, reliability and results."
 }
 

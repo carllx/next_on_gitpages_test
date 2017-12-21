@@ -162,8 +162,8 @@ class FullWork extends PureComponent {
                 {/*IMG*/}
                 <IMG_WithLoader
                  src = {this.props.contents[this.props.worksFocusOn].img}
-                 height = {this.props.vw*0.7}
-                 width = {this.props.vw*0.7}
+                 height = {this.props.vh*0.98}
+                 width = {this.props.vw*0.98}
                  fullWidth = {true}
                  fetch = {true}
                  key = {this.props.contents[this.props.worksFocusOn].img}

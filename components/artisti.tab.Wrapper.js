@@ -92,6 +92,7 @@ const TAB =()=>
                       // justifyContent:'center',
                       /*居中*/
                       visibility:show?'visible':'hidden',
+                      paddingTop: `${this.props.landscape?'0rem':'3rem'}`,//手机需要和上面tab 按钮 有一定空隙
                       paddingBottom: '7rem',// for CopuRight
 
                    })}
@@ -142,7 +143,7 @@ const TAB =()=>
             return ({
                 onTab:state.Tab.on,
                 vw:state.Root.view_size.vw,
-                landscape:state.Root.view_size.landscape,
+                landscape:state.Root.view_size.is_landscape,
                 language:state.Root.language,
             });
         }

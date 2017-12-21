@@ -52,8 +52,8 @@ class Exhibitions extends PureComponent {
 
             const solo = this.props.contents[this.props.language][0]
             const group = this.props.contents[this.props.language][1]
-            console.log(solo)
-            console.log(group)
+            // console.log(solo)
+            // console.log(group)
             let all = Object.assign({},{...solo})
             for(let key in all){
                 if(group[key]){
