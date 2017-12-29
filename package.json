@@ -39,7 +39,7 @@
     "testCross": "cross-var node -e \"console.log('now path on :', \\\"$npm_package_config_commitmessage\\\")\" && cross-var node -e \"console.log('now path on :', \\\"$npm_package_config_commitmessage\\\")\""
   },
   "config": {
-    "commitmessage": "根据季威意见修改主页任意点击呼出Nav , nav about/contact 增加滚动属性"
+    "commitmessage": "更新contact/about 的信息，（意大利文/英文）"
   },
   "name": "",
   "description": "## How to use",
