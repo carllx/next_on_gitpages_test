@@ -177,7 +177,7 @@ class AboutNav extends PureComponent {
         const w =  is_landscape?`${GR.vw(3)}`:`${GR.vw(1)}`
         const margin_w = is_landscape?`${GR.vw(3)}`:`${GR.vw(5)}`
         const zp = is_landscape?this.Zp.pc:this.Zp.mobile
-        const top = is_landscape?`${GR.px(4,vh)}px`:`${GR.px(4,vh)+GR.px(8,vh)}px`//nav bg 斜边的高度+margin
+        const top = is_landscape?`${GR.px(2,vh)}px`:`${GR.px(4,vh)+GR.px(8,vh)}px`//nav bg 斜边的高度+margin
 
         return(
             <div
@@ -203,7 +203,7 @@ class AboutNav extends PureComponent {
 
 
                 {/*LOGO*/}
-                <div
+                {/*<div
                  {...css({
                     position:'relative',
                     width:`${w}vw`,//暂时
@@ -212,6 +212,25 @@ class AboutNav extends PureComponent {
                  })}
                 >
                     <LOGO/>
+                </div>*/}
+
+
+
+
+
+                {/*详细描述*/}
+                <div
+                 {...css({
+                    fontSize:'14px',
+                    overflowY:'scroll',
+                    maxHeight: '40vh',
+                    transform:`translateZ(${zp.description.translateZ}px) scale(${zp.description.scale})`
+                 })}
+                >
+                    {aboutInfo[`${language}`].split('\n')
+                .map((item, key) =>
+                    <span key={key}>{item}<br/></span>
+                )}
                 </div>
 
 
@@ -219,9 +238,8 @@ class AboutNav extends PureComponent {
                 <div
                  {...css({
                     position:'relative',
-
-                    // transform:`translateZ(${zp.contact.translateZ}px) scale(${zp.contact.scale})`,
                     transformStyle: 'preserve-3d',
+                    marginTop:'2rem',
                  })}
                 >
                     {
@@ -245,20 +263,10 @@ class AboutNav extends PureComponent {
                     }
 
                 </div>
-                {/*详细描述*/}
-                <div
-                 {...css({
-                    fontSize:'14px',
-                    overflowY:'scroll',
-                    maxHeight: '40vh',
-                    transform:`translateZ(${zp.description.translateZ}px) scale(${zp.description.scale})`
-                 })}
-                >
-                    {aboutInfo[`${language}`].split('\n')
-                .map((item, key) =>
-                    <span key={key}>{item}<br/></span>
-                )}
-                </div>
+                {/*主要信息*/}
+
+
+
                  {desktop?
 
                         <MOUSE_POS_DISPATCHER
