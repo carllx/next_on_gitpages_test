@@ -9,6 +9,17 @@ import LOGO  from '~/components/logo.svg'
 import MOUSE_POS_DISPATCHER from '~/components/controller.mousePosDispatcher'
 import DEVICE_ORIEN_DISPATCHER from '~/components/controller.deviceOrienDispatcher'
 
+
+class MapIframe extends PureComponent {
+  shouldComponentUpdate() {
+    return false;
+  }
+  render() {
+    return (<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1359.939041885581!2d11.251240249295027!3d43.77398979302729!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xb39cef323dcfa7e0!2zWkFJIOS4reiJuuWbvemZhQ!5e0!3m2!1szh-CN!2sit!4v1514654536015" width="400" height="200" frameborder="0"  allowfullscreen></iframe>);
+  }
+}
+
+
 class AboutNav extends PureComponent {
 
     constructor(props){
@@ -172,9 +183,9 @@ class AboutNav extends PureComponent {
     render(){
         const { view_size, language, device ,nav_on } = this.props
         const desktop = device ==='desktop';
-        const {vh,is_landscape} = view_size;
+        const {vw,vh,is_landscape} = view_size;
         const show =  nav_on==='about'
-        const w =  is_landscape?`${GR.vw(3)}`:`${GR.vw(1)}`
+        const mapWidth =  is_landscape?`${GR.px(1,vw)}`:`${GR.px(1,vw)}`
         const margin_w = is_landscape?`${GR.vw(3)}`:`${GR.vw(5)}`
         const zp = is_landscape?this.Zp.pc:this.Zp.mobile
         const top = is_landscape?`${GR.px(2,vh)}px`:`${GR.px(4,vh)+GR.px(8,vh)}px`//nav bg 斜边的高度+margin
@@ -243,11 +254,12 @@ class AboutNav extends PureComponent {
                  })}
                 >
                     {
-                        `Via del Giglio, 10-50123 ,Firenze, Italia
+                        `
+                        info@zhongart.it
                         Tel./Fax +39 055 268308
                         Cell. +39  32721  83721
-                        info@zhongart.it
-                        Presidente 张修中
+                        Presidente XiuzhongZhang
+                        Via del Giglio, 10-50123 ,Firenze, Italia
                         `.split('\n')
                         .map((item, key) =>
                             <div
@@ -262,6 +274,13 @@ class AboutNav extends PureComponent {
                              </div>)
                     }
 
+                    {/*<MapIframe/>*/}
+                    <iframe
+                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1359.939041885581!2d11.251240249295027!3d43.77398979302729!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xb39cef323dcfa7e0!2zWkFJIOS4reiJuuWbvemZhQ!5e0!3m2!1szh-CN!2sit!4v1514654536015"
+                     width={mapWidth}
+                     height="200"
+                     frameborder="0"
+                     ></iframe>
                 </div>
                 {/*主要信息*/}
 
