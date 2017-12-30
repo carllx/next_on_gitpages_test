@@ -57,11 +57,11 @@ class Artisti extends PureComponent {
     if (this.props.selectTexts){
       this.tab_names.push('SELECT TEXTS')
     }
-    if (this.props.exhibitions){
-      this.tab_names.push('EXHIBITIONS')
-    }
     if (this.props.news){
       this.tab_names.push('NEWS')
+    }
+    if (this.props.zaiExhibitions){
+      this.tab_names.push('EXHIBITIONS')
     }
   }
 
@@ -193,15 +193,15 @@ class Artisti extends PureComponent {
                 <Biography
                  width = {WIDTH}
                  tabName = {'BIOGRAPHY'}
-                 contents = {this.props.biography}
+                 contents = {{biography:this.props.biography,exhibitions:this.props.exhibitions}}
                 />
 
                 {/*EXHIBITIONS*/}
-               <Exhibition
+               {/*<Exhibition
                 width = {WIDTH}
                 tabName = {'EXHIBITIONS'}
                 contents = {this.props.exhibitions}
-                />
+                />*/}
                 {/*WORKS*/}
                 <Work
                  width = {WIDTH}

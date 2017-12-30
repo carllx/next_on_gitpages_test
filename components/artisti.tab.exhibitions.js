@@ -1,6 +1,6 @@
 import { css } from 'glamor'
 import { PureComponent } from 'react'
-import {ui  ,GR , makeKEY , perspZ}  from '~/utils/ui'
+import {ui }  from '~/utils/ui'
 
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
@@ -20,6 +20,7 @@ class Button extends PureComponent {
                 color:this.props.on?ui.color.b_o1:ui.color.b_o2,
                 fontWeight:this.props.on?900:100,
              })}
+
              onClick={this.props.onClick}
             >{this.props.name}</div>
         )
@@ -61,9 +62,6 @@ class Exhibitions extends PureComponent {
                 }
             }
             content = Object.assign({},{...group},{...all})
-
-
-
             // console.error(content)
         }
         // const soloContents = this.props.contents[this.props.language][0]
@@ -89,11 +87,9 @@ class Exhibitions extends PureComponent {
                     // marginRight:'auto',
                     marginTop:'2rem',
                     marginBottom:'3rem',
-
-
                 })}
                 >
-                    <Button name = 'ALL' onClick={()=>{this.handleClick('ALL')}} on = {this.state.on ==='ALL'}/>
+                    <Button name = 'ALL Exhibitions' onClick={()=>{this.handleClick('ALL')}} on = {this.state.on ==='ALL'}/>
                     <Button name = 'Solo Exhibitions'onClick={()=>{this.handleClick('Solo')}} on = {this.state.on ==='Solo'}/>
                     <Button name = 'Group Exhibitions'onClick={()=>{this.handleClick('Group')}} on = {this.state.on ==='Group'}/>
                 </div>
@@ -134,16 +130,10 @@ class Exhibitions extends PureComponent {
                                          >{`${s}`}</div>
                                     )}
                                 </div>
-
                             </div>
                         )
                 }
-
-
-
             </div>
-
-
         )/*return*/
     }/*render*/
 }
@@ -162,7 +152,6 @@ class Exhibitions extends PureComponent {
 const mapStateToProps = (state) => {
 
     return ({
-        vw:state.Root.view_size.vw,
         landscape:state.Root.view_size.is_landscape,
         language:state.Root.language,
         on:state.Tab.on,

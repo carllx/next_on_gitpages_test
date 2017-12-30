@@ -39,7 +39,7 @@
     "testCross": "cross-var node -e \"console.log('now path on :', \\\"$npm_package_config_commitmessage\\\")\" && cross-var node -e \"console.log('now path on :', \\\"$npm_package_config_commitmessage\\\")\""
   },
   "config": {
-    "commitmessage": "更新contact/about 的信息，（意大利文/英文）"
+    "commitmessage": "artist exhibition 并入 biography"
   },
   "name": "",
   "description": "## How to use",

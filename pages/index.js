@@ -128,7 +128,7 @@ class Index extends PureComponent {
            // isLandscape={isLandscape}
            // language= {language}
            // marginW = {GR.vw(5)}
-           show_on_init = {!is_landscape}
+           show_on_init = {true}//默认打开
           />
         </NoSSR>
         <Resizer/>
