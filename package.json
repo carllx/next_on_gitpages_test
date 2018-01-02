@@ -39,7 +39,7 @@
     "testCross": "cross-var node -e \"console.log('now path on :', \\\"$npm_package_config_commitmessage\\\")\" && cross-var node -e \"console.log('now path on :', \\\"$npm_package_config_commitmessage\\\")\""
   },
   "config": {
-    "commitmessage": "修复nav contact 在iphone端闪退 , 修改fullwork 的样式 由黑->白 "
+    "commitmessage": "显示artisti 所有可用的Tab button"
   },
   "name": "",
   "description": "## How to use",
