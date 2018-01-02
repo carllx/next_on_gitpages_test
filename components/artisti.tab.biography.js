@@ -101,9 +101,21 @@ class Biography extends PureComponent {
                     marginBottom:'3rem',
                 })}
                 >
-                    <Button name = 'ALL Exhibitions' onClick={()=>{this.handleClick('ALL')}} on = {this.state.on ==='ALL'}/>
-                    <Button name = 'Solo Exhibitions'onClick={()=>{this.handleClick('Solo')}} on = {this.state.on ==='Solo'}/>
-                    <Button name = 'Group Exhibitions'onClick={()=>{this.handleClick('Group')}} on = {this.state.on ==='Group'}/>
+                    <Button
+                     name = 'ALL Exhibitions'
+                     width =  {this.props.width}
+                     onClick={()=>{this.handleClick('ALL')}}
+                     on = {this.state.on ==='ALL'}/>
+                    <Button
+                     name = 'Solo Exhibitions'
+                     width = {this.props.width}
+                     onClick={()=>{this.handleClick('Solo')}}
+                     on = {this.state.on ==='Solo'}/>
+                    <Button
+                     name = 'Group Exhibitions'
+                     width = {this.props.width}
+                     onClick={()=>{this.handleClick('Group')}}
+                     on = {this.state.on ==='Group'}/>
                 </div>
 
                 {/* 个展&群展 */}
