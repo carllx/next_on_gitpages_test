@@ -54,7 +54,7 @@ export default class MyDocument extends Document {
           <meta charSet="utf-8" />
           <meta httpEquiv="Content-Type" content="text/html; charSet=utf-8" />
           <meta name="baidu-site-verification" content="BWMAZPDlTw" />
-          <meta name="viewport" content="width=device-width,maximum-scale=1,minimum-scale=1,user-scalable=no,shrink-to-fit=no" />
+          <meta name="viewport" content="width=device-width,maximum-scale=1,minimum-scale=1,user-scalable=no" />
 
            {/*favicon*/}
           <link rel="apple-touch-icon" sizes="57x57" href="/static/favicon/apple-icon-57x57.png"/>

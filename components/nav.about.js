@@ -165,17 +165,21 @@ class AboutNav extends PureComponent {
         /*
         https://segmentfault.com/a/1190000005988744
         */
+        let direction
+        if(window.screen.orientation===undefined){//safari
+            direction = window.orientation || 0
+        }else{
+            direction = window.screen.orientation.angle || 0;
+        }
 
-
-        const direction = window.orientation || window.screen.orientation.angle || 0;
         let {alpha,beta,gamma} = this.props.gyo
 
-
-        // console.log(`gamma:${gamma} , beta:${beta} , alpha:${alpha}`)
         const rot3d = this.getRotate3d( alpha , beta - direction- 30   , gamma) // 手持角度 30
         // debugger
         // android chrome work!
         TweenMax.to(`#nav_about`, 1, {transform:`rotate3d(${rot3d.x},${-rot3d.y},${rot3d.z},${rot3d.rotate}deg)`, ease:Power2.easeOut});
+
+
     }
     /* EVENT */
 
