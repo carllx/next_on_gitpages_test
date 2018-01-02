@@ -23,7 +23,7 @@ class Triangle extends PureComponent{
              viewBox= {`0 0 1 1`}
             >
                 <polygon
-                 fill={ui.color.w_o2}
+                 fill={ui.color.b_o2}
                  stroke="none"
                  points={
                     `0,0 `+//left_top
@@ -61,8 +61,8 @@ class FullWork extends PureComponent {
                 top:0,
                 right: 0,
                 zIndex:9,
-                backgroundColor:ui.color.w_o3,
-                background:`rgba(0,0,0,0.5)`,
+                backgroundColor:'rgba(240,240,240,.87)',
+                background:'rgba(240,240,240,.87)',
                 transition:'background 1s cubic-bezier(0, 0.6, 0, 1)',
                 willChange:'background',
              })}
@@ -91,11 +91,12 @@ class FullWork extends PureComponent {
                         display: 'flex',
                         justifyContent:'center',
                         alignItems:'flex-end',
-                        backgroundColor:ui.color.b_o2,
+                        // backgroundColor:ui.color.b_o2,
                         // flexDirection:landscape?'row':'column',
                         width:this.props.vw,
                      })}
                     >
+                        {/*三角形*/}
                         {
                             landscape?
                             <div
@@ -113,11 +114,10 @@ class FullWork extends PureComponent {
                         }
 
 
-                        {/*time*/}
+                        {/*time year*/}
                         <div
                          {...css({
-
-                            color:ui.color.w_o3,
+                            color:ui.color.b_o3,
                             fontWeight:1000,
                             fontSize:landscape?'1.5rem':'1rem',
                             paddingBottom:'2rem',
@@ -133,7 +133,7 @@ class FullWork extends PureComponent {
                         {/*title text*/}
                         <div
                          {...css({
-                            color:ui.color.w_o1,
+                            color:ui.color.b_o1,
                             paddingBottom:'2rem',
                             paddingTop:'2rem',
                             paddingLeft:landscape?'1rem':'.5rem',
@@ -145,7 +145,7 @@ class FullWork extends PureComponent {
                         {/*dim*/}
                         <div
                          {...css({
-                            color:ui.color.w_o2,
+                            color:ui.color.b_o2,
                             fontSize:landscape?'0.8rem':'0.4rem',
                             paddingBottom:'2rem',
                             paddingTop:'2rem',
@@ -154,7 +154,6 @@ class FullWork extends PureComponent {
                         >
                             {this.props.contents[this.props.worksFocusOn].dim}
                         </div>
-
                     </div>
 
                 </div>
@@ -162,8 +161,8 @@ class FullWork extends PureComponent {
                 {/*IMG*/}
                 <IMG_WithLoader
                  src = {this.props.contents[this.props.worksFocusOn].img}
-                 height = {this.props.vh*0.98}
-                 width = {this.props.vw*0.98}
+                 height = {this.props.vh*0.8}
+                 width = {this.props.vw*0.8}
                  fullWidth = {true}
                  fetch = {true}
                  key = {this.props.contents[this.props.worksFocusOn].img}

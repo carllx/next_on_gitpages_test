@@ -21,9 +21,9 @@ module.exports.ui = {
 		b_o1:'rgba(0,0,0,.87)',
 		b_o2:'rgba(0,0,0,.54)',
 		b_o3:'rgba(0,0,0,.38)',
-		b_1:"rgb(11,11,11 )",
-		b_2:"rgb(33,33,33)",
-		b_3:"rgb(55,55,55)",
+		b_1: 'rgb(11,11,11)',
+		b_2: 'rgb(33,33,33)',
+		b_3: 'rgb(55,55,55)',
 	},
 	// breakpoint
 	breakpoints:{
