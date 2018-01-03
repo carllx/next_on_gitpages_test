@@ -39,7 +39,7 @@
     "testCross": "cross-var node -e \"console.log('now path on :', \\\"$npm_package_config_commitmessage\\\")\" && cross-var node -e \"console.log('now path on :', \\\"$npm_package_config_commitmessage\\\")\""
   },
   "config": {
-    "commitmessage": "显示artisti 所有可用的Tab button"
+    "commitmessage": "正在编写selectText 的convertor"
   },
   "name": "",
   "description": "## How to use",

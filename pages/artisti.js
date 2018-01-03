@@ -18,6 +18,7 @@ import  debounce  from 'lodash/debounce'
 
 import TabButton from '~/components/artisti.tab.button'
 import Biography from '~/components/artisti.tab.biography'
+import SelectText from '~/components/artisti.tab.selectText'
 import Exhibition from '~/components/artisti.tab.exhibitions'
 import Work from '~/components/artisti.tab.works'
 
