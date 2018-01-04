@@ -50,7 +50,7 @@ class Artisti extends PureComponent {
     this.tab_names = [
     'BIOGRAPHY',
     'WORKS',
-    'SELECT TEXTS',
+    'SELECTTEXTS',
     'NEWS',
     'EXHIBITIONS',
   ];
@@ -215,7 +215,23 @@ class Artisti extends PureComponent {
                  tabName = {'WORKS'}
                  contents = {this.props.works}
                 />
-              </div>
+
+
+                {/*SELECT TEXT*/}
+                { this.props.selectTexts?
+                  <SelectText
+                   width = {WIDTH}
+                   tabName = {'SELECTTEXTS'}
+                   contents = {this.props.selectTexts}
+                  />:null
+                }
+
+
+
+              </div>{/*TABS*/}
+
+
+
 
           </div>
           </NoSSR>

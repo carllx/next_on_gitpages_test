@@ -6,27 +6,30 @@ import { bindActionCreators } from 'redux'
 import TAB from '~/components/artisti.tab.Wrapper'
 
 
-// Author
-// class AuthorButton extends PureComponent {
-//     constructor(props){
-//         super(props);
-//     }
-//     render(){
-//         return(
-//             <div
-//              {...css({
-//                 marginRight:'3rem',
-//                 cursor:'pointer',
-//                 // width:'3rem',/*居中*/
-//                 color:this.props.on?ui.color.b_o1:ui.color.b_o2,
-//                 fontWeight:this.props.on?900:100,
-//              })}
+/*根据title 显示selectText*/
+class TitleButton extends PureComponent {
+    constructor(props){
+        super(props);
+    }
+    render(){
 
-//              onClick={this.props.onClick}
-//             >{this.props.name}</div>
-//         )
-//     }
-// }
+        return(
+            <div
+             {...css({
+                marginRight:'3rem',
+                cursor:'pointer',
+                // width:'3rem',/*居中*/
+                color:this.props.activated?ui.color.b_o1:ui.color.b_o2,
+                fontWeight:this.props.activated?900:100,
+             })}
+             className = {'TITLEBUTTON'}
+             // key = {this.props.key}
+             onClick={this.props.onClick}
+            >{this.props.name}
+            </div>
+        )
+    }
+}
 
 
 
@@ -42,14 +45,12 @@ class SelectText extends PureComponent {
     }
 
     render(){
-        // debugger
-        // /*author*/
+
+        const language = this.props.language
         const CONTENTS = this.props.contents
-        const titles = CONTENTS.map(item =>item.title)
-
-        const content = CONTENTS[this.state.on]
-        // const author={}
-
+        const content = this.props.contents[this.state.on]['content'][language]||this.props.contents[this.state.on]['content']['zh']
+        const title = this.props.contents[this.state.on]['title'][language]||this.props.contents[this.state.on]['title']['zh']
+        // debugger
 
         return(
             <div
@@ -61,18 +62,6 @@ class SelectText extends PureComponent {
               })}
             className = {this.props.tabName}
             >
-
-
-                {
-                    BIOGRAPHY[this.props.language]
-                        .split('\n')
-                        .map((item, key) =>
-                          <span key={`${this.props.tabName}_${key}_${this.props.language}`}>{item}<br/><br/></span>
-                        )
-                }
-
-
-
 
                 <div
                   {...css({
@@ -86,47 +75,26 @@ class SelectText extends PureComponent {
                     marginBottom:'3rem',
                 })}
                 >
-                    <Button name = 'ALL Exhibitions' onClick={()=>{this.handleClick('ALL')}} on = {this.state.on ==='ALL'}/>
-                    <Button name = 'Solo Exhibitions'onClick={()=>{this.handleClick('Solo')}} on = {this.state.on ==='Solo'}/>
-                    <Button name = 'Group Exhibitions'onClick={()=>{this.handleClick('Group')}} on = {this.state.on ==='Group'}/>
+                    {this.props.contents.map((item,index)=>
+                        <TitleButton
+                         name = {item['title'][language]}
+                         onClick={()=>{this.handleClick(index)}}
+                         activated = {this.state.on === index}
+                         key = {'TITLEBUTTON'+language+index}
+                         ></TitleButton>
+                    )}
                 </div>
+                {/* Selectext 内容 */}
 
-                {/* 个展&群展 */}
                 {
-                     Object.keys(exhibitions).map((item, index) =>
-                            <div
-                             {...css({
-                                justifyContent:'flex-start',
-                                display:'flex',
-                                flexDirection:'row',
-                             })}
-                             key={`${this.props.tabName}_exhibitions_${Object.keys(item)}_${this.props.language}_${index}`}
-                            >
-                                <div
-                                 {...css({
-                                    color:ui.color.b_o2,
-                                    fontWeight:900,
-
-                                 })}
-                                >{item}</div>
-                                <div
-                                 {...css({
-                                    justifyContent:'flex-start',
-                                    display:'flex',
-                                    flexDirection:'column',
-                                    marginLeft:'2rem',
-                                    marginBottom:'1rem',
-                                 })}
-                                >
-                                    {exhibitions[item].map((s,i)=>
-                                        <div
-                                         key = {`${this.props.tabName}_exhibitions_${Object.keys(item)}_${index}_${i}`}
-                                         >{`${s}`}</div>
-                                    )}
-                                </div>
-                            </div>
+                    content
+                        .split('\n')
+                        .map((item, index) =>
+                          <span key={`${title}_${index}_${language}`}>{item}<br/><br/></span>
                         )
                 }
+
+                {/* Selectext 内容 */}
 
 
             </div>
