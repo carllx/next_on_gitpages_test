@@ -119,7 +119,11 @@ class SelectText extends PureComponent {
                     {/*title*/}
 
                     {/*author*/}
-                    <div>{author}</div>
+                    <div
+                    {...css({
+                        color:ui.color.b_o2,
+                    })}
+                    >{author}</div>
                     {/*author*/}
                 </div>
 

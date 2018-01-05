@@ -38,7 +38,7 @@
     "testCross": "cross-var node -e \"console.log('now path on :', \\\"$npm_package_config_commitmessage\\\")\" && cross-var node -e \"console.log('now path on :', \\\"$npm_package_config_commitmessage\\\")\""
   },
   "config": {
-    "commitmessage": "⛄️增加缩进功能"
+    "commitmessage": "⛄️selectText 作者灰色显示"
   },
   "name": "",
   "description": "## How to use",
