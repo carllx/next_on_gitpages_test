@@ -48,8 +48,20 @@ class SelectText extends PureComponent {
 
         const language = this.props.language
         const CONTENTS = this.props.contents
-        const content = this.props.contents[this.state.on]['content'][language]||this.props.contents[this.state.on]['content']['zh']
-        const title = this.props.contents[this.state.on]['title'][language]||this.props.contents[this.state.on]['title']['zh']
+        const content = this.props.contents[this.state.on]['content'][language]||
+        this.props.contents[this.state.on]['content']['en']||
+        this.props.contents[this.state.on]['content']['it']||
+        this.props.contents[this.state.on]['content']['zh']
+
+        const title = this.props.contents[this.state.on]['title'][language]||
+        this.props.contents[this.state.on]['title']['en']||
+        this.props.contents[this.state.on]['title']['it']||
+        this.props.contents[this.state.on]['title']['zh']
+
+        const author = this.props.contents[this.state.on]['author'][language]||
+        this.props.contents[this.state.on]['author']['en']||
+        this.props.contents[this.state.on]['author']['it']||
+        this.props.contents[this.state.on]['author']['zh']
         // debugger
 
         return(
@@ -84,6 +96,31 @@ class SelectText extends PureComponent {
                          ></TitleButton>
                     )}
                 </div>
+
+
+                {/*title*/}
+                <div
+                 {...css({
+
+                    display:'flex',
+                    flexDirection:'column',
+                    justifyContent:'center',/*如果是手机居中*/
+                    alignItems: 'center',
+                    // marginLeft:'auto',
+                    // marginRight:'auto',
+                    marginTop:'2rem',
+                    marginBottom:'3rem',
+                })}>
+                    {/*title*/}
+                    <div>{`《${title}》`}</div>
+                    {/*title*/}
+
+                    {/*author*/}
+                    <div>{author}</div>
+                    {/*author*/}
+                </div>
+
+
                 {/* Selectext 内容 */}
 
                 {
@@ -105,6 +142,7 @@ class SelectText extends PureComponent {
 const mapStateToProps = (state) => {
 
     return ({
+
         // vw:state.Root.view_size.vw,
         // landscape:state.Root.view_size.is_landscape,
         language:state.Root.language,
