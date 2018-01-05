@@ -38,7 +38,7 @@
     "testCross": "cross-var node -e \"console.log('now path on :', \\\"$npm_package_config_commitmessage\\\")\" && cross-var node -e \"console.log('now path on :', \\\"$npm_package_config_commitmessage\\\")\""
   },
   "config": {
-    "commitmessage": "�增加 wangyi selectText 的数据 ; �selecttext title 居中; �缺乏某语言时- 按照 en it zh 顺序寻找有效数据 "
+    "commitmessage": "⛄️增加 wangyi selectText 的数据 ; ⛄️selecttext title 居中; ⛄️缺乏某语言时- 按照 en it zh 顺序寻找有效数据 ,⛄️ 尝试用 emoji commit显示"
   },
   "name": "",
   "description": "## How to use",
