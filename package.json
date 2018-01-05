@@ -38,7 +38,7 @@
     "testCross": "cross-var node -e \"console.log('now path on :', \\\"$npm_package_config_commitmessage\\\")\" && cross-var node -e \"console.log('now path on :', \\\"$npm_package_config_commitmessage\\\")\""
   },
   "config": {
-    "commitmessage": "⛄️手机端 selectect 切换button位置居中(暂时) ⛄️biography 展览部分手机端排版调整"
+    "commitmessage": "⛄️正在做"
   },
   "name": "",
   "description": "## How to use",

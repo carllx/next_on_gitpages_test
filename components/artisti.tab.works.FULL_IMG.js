@@ -1,11 +1,14 @@
 
 import { css } from 'glamor'
 import { PureComponent } from 'react'
-import {ui  ,GR , makeKEY , perspZ}  from '~/utils/ui'
+import { ui  ,GR , makeKEY , perspZ }  from '~/utils/ui'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import {IMG_WithLoader} from '~/components/img.work'
 import {setFocusOn} from'~/reducers/artisti.tabs'
+
+
+
 
 class Triangle extends PureComponent{
     constructor(props){
@@ -46,11 +49,20 @@ class FullWork extends PureComponent {
         this.props.setFocusOn(-1);
     }
 
+    nextOnClick(index){
+        this.props.setFocusOn(index+1);
+    }
+
+    prevOnClick(index){
+        this.props.setFocusOn(index-1);
+    }
+
     render(){
         if(this.props.worksFocusOn === undefined || this.props.worksFocusOn === -1 ) return null
-        // debugger
-        const index = this.props.worksFocusOn
+        const index = this.props.worksFocusOn/*跳转前一张或者后一张*/
         const landscape = this.props.landscape
+        // debugger
+
         return(
             <div
              {...css({
