@@ -18,6 +18,7 @@ class Button extends PureComponent {
                 // width:'3rem',/*居中*/
                 color:this.props.on?ui.color.b_o1:ui.color.b_o2,
                 fontWeight:this.props.on?900:100,
+                userSelect: 'none',
              })}
 
              onClick={this.props.onClick}
@@ -73,6 +74,7 @@ class Biography extends PureComponent {
                   width:`${this.props.width}`,
                   margin:'auto',//居中
                   minHeight:'60vh',//为了footer
+                  userSelect: 'none',
               })}
             className = {this.props.tabName}
             >

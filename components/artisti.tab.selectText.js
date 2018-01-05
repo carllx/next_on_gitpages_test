@@ -71,6 +71,7 @@ class SelectText extends PureComponent {
                   width:`${this.props.width}`,
                   margin:'auto',//居中
                   minHeight:'60vh',//为了footer
+                  userSelect: 'none',
               })}
             className = {this.props.tabName}
             >
@@ -83,6 +84,7 @@ class SelectText extends PureComponent {
                     justifyContent:this.props.landscape?'flex-start':'center',/*如果是手机居中*/
                     // marginLeft:'auto',
                     // marginRight:'auto',
+
                     marginTop:'2rem',
                     marginBottom:'3rem',
                 })}
@@ -106,6 +108,7 @@ class SelectText extends PureComponent {
                     flexDirection:'column',
                     justifyContent:'center',/*如果是手机居中*/
                     alignItems: 'center',
+                    userSelect: 'none',
                     // marginLeft:'auto',
                     // marginRight:'auto',
                     marginTop:'2rem',
@@ -119,7 +122,6 @@ class SelectText extends PureComponent {
                     <div>{author}</div>
                     {/*author*/}
                 </div>
-
 
                 {/* Selectext 内容 */}
 
