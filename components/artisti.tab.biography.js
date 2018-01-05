@@ -13,7 +13,7 @@ class Button extends PureComponent {
         return(
             <div
              {...css({
-                marginRight:'3rem',
+                marginRight:this.props.landscape?'3rem':0,
                 cursor:'pointer',
                 // width:'3rem',/*居中*/
                 color:this.props.on?ui.color.b_o1:ui.color.b_o2,
@@ -99,22 +99,26 @@ class Biography extends PureComponent {
                     justifyContent:this.props.landscape?'flex-start':'center',/*如果是手机居中*/
                     // marginLeft:'auto',
                     // marginRight:'auto',
+                    // alignItems: 'center',
                     marginTop:'2rem',
                     marginBottom:'3rem',
                 })}
                 >
                     <Button
                      name = 'ALL Exhibitions'
+                     landscape = {this.props.landscape}
                      width =  {this.props.width}
                      onClick={()=>{this.handleClick('ALL')}}
                      on = {this.state.on ==='ALL'}/>
                     <Button
                      name = 'Solo Exhibitions'
+                     landscape = {this.props.landscape}
                      width = {this.props.width}
                      onClick={()=>{this.handleClick('Solo')}}
                      on = {this.state.on ==='Solo'}/>
                     <Button
                      name = 'Group Exhibitions'
+                     landscape = {this.props.landscape}
                      width = {this.props.width}
                      onClick={()=>{this.handleClick('Group')}}
                      on = {this.state.on ==='Group'}/>
@@ -143,14 +147,19 @@ class Biography extends PureComponent {
                                     justifyContent:'flex-start',
                                     display:'flex',
                                     flexDirection:'column',
-                                    marginLeft:'2rem',
+                                    marginLeft:this.props.landscape?'2rem':'0.8em',
                                     marginBottom:'1rem',
                                  })}
                                 >
                                     {exhibitions[item].map((s,i)=>
-                                        <div
+                                        <p
+                                        {...css({
+                                          marginTop:'0.3em',
+                                          marginBottom:'0.3em',
+                                          userSelect: 'none',
+                                       })}
                                          key = {`${this.props.tabName}_exhibitions_${Object.keys(item)}_${index}_${i}`}
-                                         >{`${s}`}</div>
+                                         >{`${s}`}</p>
                                     )}
                                 </div>
                             </div>

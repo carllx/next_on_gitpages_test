@@ -100,7 +100,7 @@ const TAB =()=>
                    key = {`TAB_${this.props.tabName}_${language}`}
                   >
                       <Comp
-                       // tabName = {this.props.tabName}
+                       tabName = {this.props.tabName}
                        contents = {this.props.contents}
                        width = {this.props.width}
                       />

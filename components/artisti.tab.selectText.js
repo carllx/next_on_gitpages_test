@@ -16,7 +16,7 @@ class TitleButton extends PureComponent {
         return(
             <div
              {...css({
-                marginRight:'3rem',
+                // marginRight:'3rem',
                 cursor:'pointer',
                 // width:'3rem',/*居中*/
                 color:this.props.activated?ui.color.b_o1:ui.color.b_o2,
