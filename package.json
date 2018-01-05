@@ -38,7 +38,7 @@
     "testCross": "cross-var node -e \"console.log('now path on :', \\\"$npm_package_config_commitmessage\\\")\" && cross-var node -e \"console.log('now path on :', \\\"$npm_package_config_commitmessage\\\")\""
   },
   "config": {
-    "commitmessage": "⛄️artisti 的 biography 和selectText  中设置userSelect ,鼠标不可选 "
+    "commitmessage": "⛄️增加缩进功能"
   },
   "name": "",
   "description": "## How to use",

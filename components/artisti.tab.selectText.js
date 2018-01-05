@@ -129,7 +129,13 @@ class SelectText extends PureComponent {
                     content
                         .split('\n')
                         .map((item, index) =>
-                          <span key={`${title}_${index}_${language}`}>{item}<br/><br/></span>
+                          <p
+                           {...css({
+                                textIndent: '2em',
+                           })}
+                           key={`${title}_${index}_${language}`}
+
+                           >{item}<br/></p>
                         )
                 }
 
