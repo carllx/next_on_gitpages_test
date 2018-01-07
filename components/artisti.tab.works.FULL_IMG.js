@@ -82,8 +82,8 @@ class FullWork extends PureComponent {
                 top:0,
                 right: 0,
                 zIndex:9,
-                backgroundColor:'rgba(240,240,240,.87)',
-                background:'rgba(240,240,240,.87)',
+                // backgroundColor:'rgba(240,240,240,.95)',
+                background:'rgba(240,240,240,.99)',
                 transition:'background 1s cubic-bezier(0, 0.6, 0, 1)',
                 willChange:'background',
                 pointerEvents:'none',
@@ -125,9 +125,10 @@ class FullWork extends PureComponent {
                          zIndex:12,
                          display:'flex',
                          alignItems:'center',
-                         justifyContent: 'center',
+                         justifyContent: landscape?'center':'flex-start',
+                         margin:landscape?'0':'.6em',
                          height:'100vh',
-                         width:'20vw',
+                         width:'33vw',
                          pointerEvents:'all',
                          cursor:'pointer',
                      })}
@@ -149,7 +150,7 @@ class FullWork extends PureComponent {
                          display:'flex',
                          alignItems:'center',
                          height:'100vh',
-                         width:'60vw',
+                         width:'33vw',
                          pointerEvents:'all',
 
                          cursor:'pointer',
@@ -167,9 +168,10 @@ class FullWork extends PureComponent {
                          zIndex:12,
                          display:'flex',
                          alignItems:'center',
-                         justifyContent: 'center',
+                         justifyContent: landscape?'center':'flex-end',
+                         margin:landscape?'0':'.6em',
                          height:'100vh',
-                         width:'20vw',
+                         width:'33vw',
                          pointerEvents:'all',
                          cursor:'pointer',
                      })}
@@ -208,7 +210,7 @@ class FullWork extends PureComponent {
                         position:'absolute',
                         display: 'flex',
                         justifyContent:'center',
-                        alignItems:'flex-end',
+                        alignItems:'flex-start',
                         // backgroundColor:ui.color.b_o2,
                         // flexDirection:landscape?'row':'column',
                         width:this.props.vw,
@@ -255,6 +257,7 @@ class FullWork extends PureComponent {
                             paddingBottom:'2rem',
                             paddingTop:'2rem',
                             paddingLeft:landscape?'1rem':'.5rem',
+                            width:landscape?'auto':'13em',
                          })}
                         >
                             {this.props.contents[this.props.worksFocusOn].title[this.props.language]}

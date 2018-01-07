@@ -1,5 +1,4 @@
 
-import {PureComponent} from 'react'
 import { css } from 'glamor'
 import {ui,GR}  from '~/utils/ui'
 
