@@ -5,8 +5,9 @@ import { ui  ,GR , makeKEY , perspZ }  from '~/utils/ui'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import {IMG_WithLoader} from '~/components/img.work'
-import {setFocusOn} from'~/reducers/artisti.tabs'
-
+import {setFocusOn} from '~/reducers/artisti.tabs'
+import LeftArrow from '~/components/svg/chevron-left.svg'
+import RightArrow from '~/components/svg/chevron-right.svg'
 
 
 
@@ -43,19 +44,27 @@ class FullWork extends PureComponent {
     constructor(props){
         super(props);
         this.handleClickClose = this.closeOnClick.bind(this)
+
+        this.state = {showArrows:false}
     }
+
 
     closeOnClick(){
         this.props.setFocusOn(-1);
     }
 
     nextOnClick(index){
+        // debugger
+        if(index+1===this.props.contents.length) {index=-1;}
         this.props.setFocusOn(index+1);
     }
 
     prevOnClick(index){
+        // if(index===this.props.contents.length) {index=-1;debugger}
         this.props.setFocusOn(index-1);
     }
+
+
 
     render(){
         if(this.props.worksFocusOn === undefined || this.props.worksFocusOn === -1 ) return null
@@ -77,16 +86,111 @@ class FullWork extends PureComponent {
                 background:'rgba(240,240,240,.87)',
                 transition:'background 1s cubic-bezier(0, 0.6, 0, 1)',
                 willChange:'background',
+                pointerEvents:'none',
              })}
              className ="FullWork"
             >
+
+                {/*控制器Next/Prev*/}
+                <div
+                 {...css({
+                    /*居中*/
+                     position: 'fixed',
+                     display:'flex',
+                     justifyContent:'space-between',
+                     left:0,
+                     top:0,
+                     width:'100vw',
+                     height:'100vh',
+                     pointerEvents:'auto',
+                     zIndex:11,
+                     opacity:0,
+                     // height: `fit-content`,
+                     // width: landscape?`${GR.vw(8)}vw`:`${GR.vw(5)}vw`,
+                     cursor:'pointer',
+                     ':hover':{
+                        opacity:1,
+                        transition:'opacity 1s'
+                    }
+                })}
+
+                >
+                    {/*Prev*/}
+                    <div
+                     {...css({
+                        /*居中*/
+                         // position: 'fixed',
+                         // left:0,
+                         // top:0,
+                         zIndex:12,
+                         display:'flex',
+                         alignItems:'center',
+                         justifyContent: 'center',
+                         height:'100vh',
+                         width:'20vw',
+                         pointerEvents:'all',
+                         cursor:'pointer',
+                     })}
+                     onClick = {()=>{this.prevOnClick(this.props.worksFocusOn)}}
+                    >
+                        <LeftArrow
+                             size = {30}
+                             color = {ui.color.b_o2}
+                             strokeWidth = {0.75}
+                            />
+
+                    </div>
+                    {/*Close*/}
+                    <div
+                     {...css({
+                        /*居中*/
+                         // position: 'fixed',
+                         zIndex:12,
+                         display:'flex',
+                         alignItems:'center',
+                         height:'100vh',
+                         width:'60vw',
+                         pointerEvents:'all',
+
+                         cursor:'pointer',
+                     })}
+                     onClick = {this.handleClickClose}
+                    />
+
+                    {/*Next*/}
+                    <div
+                     {...css({
+                        /*居中*/
+                         // position: 'fixed',
+                         // left:0,
+                         // top:0,
+                         zIndex:12,
+                         display:'flex',
+                         alignItems:'center',
+                         justifyContent: 'center',
+                         height:'100vh',
+                         width:'20vw',
+                         pointerEvents:'all',
+                         cursor:'pointer',
+                     })}
+                     onClick = {()=>{this.nextOnClick(this.props.worksFocusOn)}}
+                    >
+                        <RightArrow
+                         size = {30}
+                         color = {ui.color.b_o2}
+                         strokeWidth = {0.75}
+                        />
+                    </div>
+
+                </div>
+
                 {/*保护 WALL*/}
                 <div
                  {...css({
                     position:'absolute',
                     display: 'flex',
                     justifyContent:'center',
-
+                    pointerEvents:'auto',
                     alignItems:landscape?'flex-end':'flex-start',
                     // width:this.props.vw,
                     zIndex:10,
@@ -95,8 +199,10 @@ class FullWork extends PureComponent {
                     height:'100vh',
                     width:'100vw',
                  })}
-                 onClick = {this.handleClickClose}
+
                 >
+
+                    {/*作品详细说明*/}
                     <div
                      {...css({
                         position:'absolute',
@@ -179,6 +285,10 @@ class FullWork extends PureComponent {
                  fetch = {true}
                  key = {this.props.contents[this.props.worksFocusOn].img}
                 />
+
+
+
+
             </div>
         )
     }
@@ -200,6 +310,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     setFocusOn: bindActionCreators(setFocusOn, dispatch),
+
   }
 }
 

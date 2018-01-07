@@ -8,6 +8,8 @@ import {IMG_WithLoader} from '~/components/img'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import {setFocusOn} from'~/reducers/artisti.tabs'
+import { setPanelOn } from '~/reducers/nav'
+
 /*Button_IMG */
 // class Button_IMG extends PureComponent {
 //     constructor(props){
@@ -43,6 +45,7 @@ class Works extends PureComponent {
     callFullWork(index){
         console.log(index)
         this.props.setFocusOn(index);
+        this.props.setPanelOn('close')
     }
 
     reqMoreWork(){
@@ -134,6 +137,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     setFocusOn: bindActionCreators(setFocusOn, dispatch),
+    //nav
+    setPanelOn:bindActionCreators(setPanelOn, dispatch )
   }
 }
 

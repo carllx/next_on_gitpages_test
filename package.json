@@ -38,7 +38,7 @@
     "testCross": "cross-var node -e \"console.log('now path on :', \\\"$npm_package_config_commitmessage\\\")\" && cross-var node -e \"console.log('now path on :', \\\"$npm_package_config_commitmessage\\\")\""
   },
   "config": {
-    "commitmessage": "⛄️正在做"
+    "commitmessage": "⛄️FullWork组件增加 Next/Prev 功能， 制作 svg"
   },
   "name": "",
   "description": "## How to use",
