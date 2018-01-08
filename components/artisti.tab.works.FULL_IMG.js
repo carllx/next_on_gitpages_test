@@ -6,8 +6,8 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import {IMG_WithLoader} from '~/components/img.work'
 import {setFocusOn} from '~/reducers/artisti.tabs'
-import LeftArrow from '~/components/svg/chevron-left.svg'
-import RightArrow from '~/components/svg/chevron-right.svg'
+import LeftArrow from '~/components/svg/icons_chevron-left'
+import RightArrow from '~/components/svg/icons_chevron-right'
 
 
 
