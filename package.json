@@ -38,7 +38,7 @@
     "testCross": "cross-var node -e \"console.log('now path on :', \\\"$npm_package_config_commitmessage\\\")\" && cross-var node -e \"console.log('now path on :', \\\"$npm_package_config_commitmessage\\\")\""
   },
   "config": {
-    "commitmessage": "⛄️ 更正artisti fullwork的next/ prev按钮svg引用 命名错误"
+    "commitmessage": "⛄️ 更正artisti fullwork的next/ prev按钮svg引用 命名错误2"
   },
   "name": "",
   "description": "## How to use",
