@@ -10,7 +10,7 @@ import SVG_BACKGROUND  from '~/components/nav.bg.svg_SMIL'
 import Language  from '~/components/nav.language'
 import {BUTTONS}  from '~/components/nav.buttons'
 import ArtistiNav  from '~/components/nav.artisti'
-import AboutNav  from '~/components/nav.about'
+import AboutNav  from '~/components/nav.contact'
 
 import { setPanelOn } from '~/reducers/nav'
 

@@ -13,7 +13,7 @@ const CONFIG = [{
         'id':'eventi',
     },{
         'title':{zh:'联系',en:'CONTACT',it:'CONTATTO'},
-        'id':'about',
+        'id':'contact',
     }
 ]
 

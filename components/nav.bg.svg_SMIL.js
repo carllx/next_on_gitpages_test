@@ -92,7 +92,7 @@ class SVG_BACKGROUND extends PureComponent {
                 pt_2_x:vw,pt_2_y:GR.px(3,vw),
                 pt_3_x:vw,pt_3_y:vh,
                 pt_4_x:0, pt_4_y:vh,
-              },about:{
+              },contact:{
                 pt_1_x:0, pt_1_y:GR.px(6,vw),
                 pt_2_x:vw,pt_2_y:GR.px(4,vw),
                 pt_3_x:vw,pt_3_y:vw,
@@ -131,7 +131,7 @@ class SVG_BACKGROUND extends PureComponent {
                 pt_2_x:vw,pt_2_y:GR.px(3,vh),
                 pt_3_x:vw,pt_3_y:vh,
                 pt_4_x:0, pt_4_y:vh,
-              },about:{
+              },contact:{
                 pt_1_x:0, pt_1_y:GR.px(5,vh),
                 pt_2_x:vw,pt_2_y:0,
                 pt_3_x:vw,pt_3_y:vh,

@@ -8,21 +8,20 @@ import { css } from 'glamor'
 import {ui,GR}  from '~/utils/ui'
 
 import LOGO from '~/components/svg/icons_logo'
-import INFO from '~/components/svg/icons_info'
-import BGShape from '~/components/infoBackGround'//class=infoBG
+import BGShape from '~/components/aboutBackGround'//class=infoBG
 
 
 
 
 
-class InfoLogo extends PureComponent{
+class Logo2About extends PureComponent{
     constructor(props){
         super(props)
-        this.state ={showInfo:false}
+        this.state ={showAbout:false}
     }
 
     LogoClick=()=>{
-        this.setState({showInfo:!this.state.showInfo})
+        this.setState({showAbout:!this.state.showAbout})
     }
 
     render(){
@@ -57,7 +56,7 @@ class InfoLogo extends PureComponent{
 
 
                 <BGShape
-                 showInfo = {this.state.showInfo}
+                 showAbout = {this.state.showAbout}
                 />
             </div>
         )
@@ -83,6 +82,6 @@ const mapStateToProps = (state) => {
 
 
 
-export default connect(mapStateToProps,null)(InfoLogo)
+export default connect(mapStateToProps,null)(Logo2About)
 
 

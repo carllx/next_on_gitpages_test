@@ -1,5 +1,5 @@
 
-import {TweenLite} from "gsap";
+import {TweenMax} from "gsap";
 
 // TYPE  --帮助避免重复 type
 export const actionTypes = {
@@ -24,7 +24,7 @@ const INITIALSTATE = {
 
 // ------ NAV 背景 和状态切换
 export const setBackGroundPoints = (o1,o2) => (dispatch)=> {
-      TweenLite
+      TweenMax
           .to(o1,0.4, {
             ...o2,
             onUpdate:()=> {

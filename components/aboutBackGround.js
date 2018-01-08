@@ -85,8 +85,8 @@ class InfoBG extends PureComponent {
 
 
     componentWillReceiveProps(nextProps){
-        if(nextProps.showInfo !== this.props.showInfo) {
-            if(nextProps.showInfo===false) {
+        if(nextProps.showAbout !== this.props.showAbout) {
+            if(nextProps.showAbout===false) {
                 this.toLogo();
             }else{
                 this.toInfo();
@@ -122,7 +122,7 @@ class InfoBG extends PureComponent {
                  width = {vw}
                  height = {vh}/>
                 {/*详细描述*/}
-                {this.props.showInfo?
+                {this.props.showAbout?
                     <div
                      {...css({
                         // fontSize:'14px',

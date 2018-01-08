@@ -11,7 +11,7 @@ import NoSSR from 'react-no-ssr';
 import Head from 'next/head'
 import SEO from '~/components/SEO.index'
 import Nav from '~/components/nav'
-import INFOLOGO from '~/components/infoLogo'
+import About from '~/components/about'
 
 import Resizer from '~/components/controller.resize'
 import {ThreeInit} from'~/components/section.welcome.THREE.sphere.js'
@@ -102,7 +102,7 @@ class Index extends PureComponent {
 
 
         {/*INFO_LOGO*/}
-        <INFOLOGO></INFOLOGO>
+        <About></About>
 
         {/*NAV*/}
         <NoSSR>
