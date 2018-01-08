@@ -24,7 +24,7 @@ const Shape= (props) => (
         width:`${props.width||1400}px`,
         height:`${props.height||1400}px`,
        })}
-     className = {'infoBG'}
+     className = {'aboutBG'}
      >
 
     </div>
@@ -54,7 +54,7 @@ class InfoBG extends PureComponent {
         // console.log(`toInfo_${rot_value}`)
 
         this.props.setPanelOn('show')
-        TweenMax.staggerTo(".infoBG",
+        TweenMax.staggerTo(".aboutBG",
             0.5,
             {
                 scale:1,
@@ -70,7 +70,7 @@ class InfoBG extends PureComponent {
         // console.log(`toLogo_${rot_value}`)
 
         this.props.setPanelOn('close')
-        TweenMax.staggerTo(".infoBG",
+        TweenMax.staggerTo(".aboutBG",
             0.5,
             {
                 scale:0.1,
@@ -148,7 +148,7 @@ class InfoBG extends PureComponent {
                                         // paddingRight:'2em',
                                  })}
                                  key={`aboutInfo_${this.props.language}_${key}`}
-                                 // className = {'infoBG'}
+                                 // className = {'aboutBG'}
                                  >
                                     {item}<br/>
                                 </div>

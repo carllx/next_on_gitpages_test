@@ -38,7 +38,7 @@
     "testCross": "cross-var node -e \"console.log('now path on :', \\\"$npm_package_config_commitmessage\\\")\" && cross-var node -e \"console.log('now path on :', \\\"$npm_package_config_commitmessage\\\")\""
   },
   "config": {
-    "commitmessage": "⛄️ 纠正 about 和 contact 的命名混淆"
+    "commitmessage": "⛄️ 纠正 about 和 contact 的命名混淆2"
   },
   "name": "",
   "description": "## How to use",

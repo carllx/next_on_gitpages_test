@@ -8,7 +8,7 @@ import { css } from 'glamor'
 import {ui,GR}  from '~/utils/ui'
 
 import LOGO from '~/components/svg/icons_logo'
-import BGShape from '~/components/aboutBackGround'//class=infoBG
+import BGShape from '~/components/aboutBackGround'//class=aboutBG
 
 
 
