@@ -7,8 +7,8 @@ import { css } from 'glamor'
 
 import {ui,GR}  from '~/utils/ui'
 
-import LOGO from '~/components/svg/logo.svg'
-import INFO from '~/components/svg/info.svg'
+import LOGO from '~/components/svg/icons_logo'
+import INFO from '~/components/svg/icons_info'
 import BGShape from '~/components/infoBackGround'//class=infoBG
 
 
@@ -55,16 +55,7 @@ class InfoLogo extends PureComponent{
                 {/*LOGO*/}
                 <LOGO/>
 
-                {/*INFO*/}
-                <div
-                {...css({
-                    marginTop:'2em',
-                })}>
-                    <INFO
-                     size = {20}
-                     color = {ui.color.b_o2}
-                    />
-                </div>
+
                 <BGShape
                  showInfo = {this.state.showInfo}
                 />

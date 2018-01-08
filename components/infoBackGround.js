@@ -50,12 +50,15 @@ class InfoBG extends PureComponent {
     }
 
     toInfo(){
+        let rot_value = this.props.landscape?500:-122
+        // console.log(`toInfo_${rot_value}`)
+
         this.props.setPanelOn('show')
         TweenMax.staggerTo(".infoBG",
             0.5,
             {
                 scale:1,
-                rotationZ:this.getRandomInt(-360,360),
+                rotationZ:rot_value,
                 transformOrigin: "center center",
                 ease: Power4.easeOut,
                 autoAlpha:1,//opacity:0,visibility:'hidden'
@@ -63,12 +66,15 @@ class InfoBG extends PureComponent {
             0.06)
     }
     toLogo(){
+        let rot_value =this.getRandomInt(-360,360)
+        // console.log(`toLogo_${rot_value}`)
+
         this.props.setPanelOn('close')
         TweenMax.staggerTo(".infoBG",
             0.5,
             {
                 scale:0.1,
-                rotationZ:this.getRandomInt(-360,360),
+                rotationZ:rot_value,
                 transformOrigin: "center center",
                 ease: Power4.easeOut,
                 autoAlpha:0,//opacity:0,visibility:'hidden'
@@ -122,7 +128,7 @@ class InfoBG extends PureComponent {
                         // fontSize:'14px',
                         // position:'fixed',
                         // zIndex:11,
-                        width:landscape?`60vw`:`80vw`,
+                        width:landscape?`30vw`:`80vw`,
                         // height:'100vh',
                         zIndex:10,
 

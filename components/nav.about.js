@@ -5,7 +5,7 @@ import {TweenMax} from "gsap";
 
 import {perspZ  ,GR}  from '~/utils/ui'
 
-import LOGO  from '~/components/svg/logo.svg'
+import LOGO  from '~/components/svg/icons_logo'
 
 
 // import MOUSE_POS_DISPATCHER from '~/components/controller.mousePosDispatcher'
