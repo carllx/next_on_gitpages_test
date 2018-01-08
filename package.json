@@ -38,7 +38,7 @@
     "testCross": "cross-var node -e \"console.log('now path on :', \\\"$npm_package_config_commitmessage\\\")\" && cross-var node -e \"console.log('now path on :', \\\"$npm_package_config_commitmessage\\\")\""
   },
   "config": {
-    "commitmessage": "⛄️修复svg 因下班仓促造成的加载问题 ，⛄️主页Nav 修改为默认关闭nav ， ⛄️ 确定info background的最终旋转值 "
+    "commitmessage": "⛄️ 规定了info 的高度，和超出滚动"
   },
   "name": "",
   "description": "## How to use",

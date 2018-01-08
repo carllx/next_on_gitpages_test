@@ -66,7 +66,7 @@ class Index extends PureComponent {
 
   render () {
     // debugger
-    const {language} = this.props.language ||{language:'zh'}
+    const language = this.props.language ||'zh'
     const {vw,vh,is_landscape} = this.props.view_size||{view_size:{vw:0,vh:0,is_landscap:false}}
 
     return (

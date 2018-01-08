@@ -129,6 +129,8 @@ class InfoBG extends PureComponent {
                         // position:'fixed',
                         // zIndex:11,
                         width:landscape?`30vw`:`80vw`,
+                        overflowY:'scroll',
+                        maxHeight: landscape?null:'58vh',
                         // height:'100vh',
                         zIndex:10,
 
@@ -140,6 +142,7 @@ class InfoBG extends PureComponent {
                             .map((item, key) =>
                                 <div
                                  {...css({
+                                        // fontSize:'.5em',
                                         // paddingTop:'2em',
                                         // paddingLeft:'2em',
                                         // paddingRight:'2em',
@@ -163,7 +166,8 @@ class InfoBG extends PureComponent {
     }/*render*/
 }
 
-
+//aboutInfo[`en`]
+//aboutInfo[`${this.props.language}`]
 const mapStateToProps = (state) => {
 
     return ({
