@@ -38,7 +38,7 @@
     "testCross": "cross-var node -e \"console.log('now path on :', \\\"$npm_package_config_commitmessage\\\")\" && cross-var node -e \"console.log('now path on :', \\\"$npm_package_config_commitmessage\\\")\""
   },
   "config": {
-    "commitmessage": "⛄️Mac AI 制作 svg  "
+    "commitmessage": "⛄️2018-1-8公司下班上传"
   },
   "name": "",
   "description": "## How to use",
