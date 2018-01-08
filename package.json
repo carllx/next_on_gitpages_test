@@ -38,7 +38,7 @@
     "testCross": "cross-var node -e \"console.log('now path on :', \\\"$npm_package_config_commitmessage\\\")\" && cross-var node -e \"console.log('now path on :', \\\"$npm_package_config_commitmessage\\\")\""
   },
   "config": {
-    "commitmessage": "⛄️删除facebook svg中,无用glamor 导入"
+    "commitmessage": "⛄️Mac AI 制作 svg  "
   },
   "name": "",
   "description": "## How to use",
