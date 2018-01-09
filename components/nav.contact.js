@@ -4,6 +4,7 @@ import { css } from 'glamor'
 import {TweenMax} from "gsap";
 
 import {perspZ  ,GR}  from '~/utils/ui'
+// import { GoogleMap, Marker } from "react-google-maps"
 
 // import LOGO  from '~/components/svg/icons_logo'
 import LOGO  from '~/components/svg/icons_logo_marca'
@@ -12,6 +13,30 @@ import LOGO  from '~/components/svg/icons_logo_marca'
 import {Mobile,Address,Mail,Phone}  from '~/components/svg/icons_static_svg'
 
 import {Twitter,WeiChat,Youtube,Viemo,Weibo,Facebook,Instagram}  from '~/components/svg/icons_social_svg'
+
+
+import {
+  withScriptjs,
+  withGoogleMap,
+  GoogleMap,
+  Marker,
+} from "react-google-maps";
+
+const MapWithAMarker = withScriptjs(withGoogleMap(props =>
+  <GoogleMap
+    defaultZoom={15}
+    defaultCenter={{ lat: 43.7738564, lng: 11.2512034 }}
+    defaultOptions={{ styles: MapStyles }}
+  >
+    <Marker
+      position={{ lat: 43.7738564, lng: 11.2512034 }}
+    />
+  </GoogleMap>
+));
+
+
+
+
 
 class MapIframe extends PureComponent {
   shouldComponentUpdate() {
@@ -95,9 +120,10 @@ class NavContact extends PureComponent {
         const mapWidth =  is_landscape?`${GR.px(1,vw)}`:`${GR.px(1,vw)}`
         const margin_w = is_landscape?`${GR.vw(3)}`:`${GR.vw(5)}`
         // const zp = is_landscape?this.Zp.pc:this.Zp.mobile
-        const top = is_landscape?`${GR.px(3,vh)}px`:`${GR.px(4,vh)+GR.px(8,vh)}px`//手机端  nav bg 斜边的高度+margin
+        const top = is_landscape?`${GR.px(4,vh)}px`:`${GR.px(4,vh)+GR.px(8,vh)}px`//手机端  nav bg 斜边的高度+margin
 
         return(
+
             <div
              {...css({
                 display:'flex',
@@ -132,6 +158,7 @@ class NavContact extends PureComponent {
                     display:'flex',
                     justifyContent:'center',
                     width:'100%',
+                    marginBottom:'2.5em',
                 })}>
                     <LOGO size= {60}/>
                 </div>
@@ -140,6 +167,7 @@ class NavContact extends PureComponent {
                     display:'flex',
                     justifyContent:'center',
                     width:'100%',
+                    marginBottom:'1.5em',
                 })}>
                     Presidente: Xiuzhong Zhang
                 </div>
@@ -151,13 +179,13 @@ class NavContact extends PureComponent {
                     width:'100%',
                 })}>
 
-                    <Twitter/>
-                    <WeiChat/>
-                    <Weibo/>
-                    <Facebook/>
-                    <Instagram/>
-                    <Youtube/>
-                    <Viemo/>
+                    <div {...css({marginRight:'1em'})}><Twitter/></div>
+                    <div {...css({marginRight:'1em'})}><WeiChat/></div>
+                    <div {...css({marginRight:'1em'})}><Weibo/></div>
+                    <div {...css({marginRight:'1em'})}><Facebook/></div>
+                    <div {...css({marginRight:'1em'})}><Instagram/></div>
+                    <div {...css({marginRight:'1em'})}><Youtube/></div>
+                    <div {...css({marginRight:'1em'})}><Viemo/></div>
 
                 </div>
 
@@ -189,13 +217,31 @@ class NavContact extends PureComponent {
 
 
                     {/*<MapIframe/>*/}
-                    <iframe
+
+                    {/*<iframe
+                     src={`https://maps.googleapis.com/maps/api/staticmap?key=YOUR_API_KEY&center=-33.9,151.14999999999998&zoom=12&format=png&maptype=roadmap&style=element:geometry%7Ccolor:0xf5f5f5&style=element:labels.icon%7Cvisibility:off&style=element:labels.text.fill%7Ccolor:0x616161&style=element:labels.text.stroke%7Ccolor:0xf5f5f5&style=feature:administrative%7Celement:geometry%7Cvisibility:off&style=feature:administrative.land_parcel%7Celement:labels%7Cvisibility:off&style=feature:administrative.land_parcel%7Celement:labels.text.fill%7Ccolor:0xbdbdbd&style=feature:poi%7Cvisibility:off&style=feature:poi%7Celement:geometry%7Ccolor:0xeeeeee&style=feature:poi%7Celement:labels.text%7Cvisibility:off&style=feature:poi%7Celement:labels.text.fill%7Ccolor:0x757575&style=feature:poi.park%7Celement:geometry%7Ccolor:0xe5e5e5&style=feature:poi.park%7Celement:labels.text.fill%7Ccolor:0x9e9e9e&style=feature:road%7Celement:geometry%7Ccolor:0xffffff&style=feature:road%7Celement:labels.icon%7Cvisibility:off&style=feature:road.arterial%7Celement:labels%7Cvisibility:off&style=feature:road.arterial%7Celement:labels.text.fill%7Ccolor:0x757575&style=feature:road.highway%7Celement:geometry%7Ccolor:0xdadada%7Cvisibility:off&style=feature:road.highway%7Celement:labels%7Cvisibility:off&style=feature:road.highway%7Celement:labels.text.fill%7Ccolor:0x616161&style=feature:road.local%7Cvisibility:off&style=feature:road.local%7Celement:labels%7Cvisibility:off&style=feature:road.local%7Celement:labels.text.fill%7Ccolor:0x9e9e9e&style=feature:transit%7Cvisibility:off&style=feature:transit.line%7Celement:geometry%7Ccolor:0xe5e5e5&style=feature:transit.station%7Celement:geometry%7Ccolor:0xeeeeee&style=feature:water%7Celement:geometry%7Ccolor:0xc9c9c9&style=feature:water%7Celement:labels.text.fill%7Ccolor:0x9e9e9e&size={480x360}`}
+                     width={mapWidth}
+                     height="200"
+                     frameborder="0"
+                     ></iframe>*/}
+                <MapWithAMarker
+                  googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyC4R6AN7SmujjPUIGKdyao2Kqitzr1kiRg&v=3.exp&libraries=geometry,drawing,places"
+                  loadingElement={<div style={{ height: `100%` }} />}
+                  containerElement={<div style={{ height: `400px`,backgroundColor: 'hsla(0, 0%, 0%, 0)' }} />}
+                  mapElement={<div style={{ height: `100%` }} />}
+
+                />
+                {/*<div id = 'map' {...css({height:'300px',width:'300px'})}/>*/}
+                {/*主要信息*/}
+                <iframe
                      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1359.939041885581!2d11.251240249295027!3d43.77398979302729!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xb39cef323dcfa7e0!2zWkFJIOS4reiJuuWbvemZhQ!5e0!3m2!1szh-CN!2sit!4v1514654536015"
                      width={mapWidth}
                      height="200"
                      frameborder="0"
                      ></iframe>
-                {/*主要信息*/}
+
+
+
 
 
 
@@ -236,7 +282,173 @@ const mapStateToProps = (state) => ({
 // export default Nav;
 export default connect(mapStateToProps)(NavContact)
 
-
+const MapStyles = [
+    {
+        "featureType": "all",
+        "elementType": "labels.text.fill",
+        "stylers": [
+            {
+                "saturation": 36
+            },
+            {
+                "color": "#120d19"
+            }
+        ]
+    },
+    {
+        "featureType": "all",
+        "elementType": "labels.text.stroke",
+        "stylers": [
+            {
+                "visibility": "on"
+            },
+            {
+                "color": "#ffffff"
+            },
+            {
+                "lightness": 16
+            }
+        ]
+    },
+    {
+        "featureType": "all",
+        "elementType": "labels.icon",
+        "stylers": [
+            {
+                "visibility": "off"
+            }
+        ]
+    },
+    {
+        "featureType": "administrative",
+        "elementType": "geometry.fill",
+        "stylers": [
+            {
+                "color": "#fefefe"
+            },
+            {
+                "lightness": 20
+            }
+        ]
+    },
+    {
+        "featureType": "administrative",
+        "elementType": "geometry.stroke",
+        "stylers": [
+            {
+                "color": "#fefefe"
+            },
+            {
+                "lightness": 17
+            },
+            {
+                "weight": 1.2
+            }
+        ]
+    },
+    {
+        "featureType": "landscape",
+        "elementType": "geometry",
+        "stylers": [
+            {
+                "color": "#efefef"
+            }
+        ]
+    },
+    {
+        "featureType": "poi",
+        "elementType": "geometry",
+        "stylers": [
+            {
+                "color": "#f5f5f5"
+            },
+            {
+                "lightness": 21
+            }
+        ]
+    },
+    {
+        "featureType": "poi.park",
+        "elementType": "geometry",
+        "stylers": [
+            {
+                "color": "#dedede"
+            },
+            {
+                "lightness": 21
+            }
+        ]
+    },
+    {
+        "featureType": "road.highway",
+        "elementType": "geometry.fill",
+        "stylers": [
+            {
+                "color": "#7a7a7a"
+            }
+        ]
+    },
+    {
+        "featureType": "road.highway",
+        "elementType": "geometry.stroke",
+        "stylers": [
+            {
+                "color": "#ffffff"
+            },
+            {
+                "lightness": 29
+            },
+            {
+                "weight": 0.2
+            }
+        ]
+    },
+    {
+        "featureType": "road.arterial",
+        "elementType": "geometry",
+        "stylers": [
+            {
+                "color": "#7a7a7a"
+            },
+            {
+                "lightness": 25
+            }
+        ]
+    },
+    {
+        "featureType": "road.local",
+        "elementType": "geometry",
+        "stylers": [
+            {
+                "color": "#7a7a7a"
+            },
+            {
+                "lightness": 70
+            }
+        ]
+    },
+    {
+        "featureType": "transit",
+        "elementType": "geometry",
+        "stylers": [
+            {
+                "color": "#f2f2f2"
+            },
+            {
+                "lightness": 19
+            }
+        ]
+    },
+    {
+        "featureType": "water",
+        "elementType": "geometry",
+        "stylers": [
+            {
+                "color": "#353535"
+            }
+        ]
+    }
+]
 
 
 

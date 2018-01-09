@@ -17,7 +17,7 @@ const Svg = (obj) =>
          height={props.size||32}
          viewBox="0 0 32 32">
             <title>{obj.title}</title>
-            <path class={'icons'} d= {obj.d} />
+            <path className={'icons'} d= {obj.d} />
         </svg>
 
 
