@@ -22,7 +22,7 @@
     "redux": "^3.7.2",
     "redux-devtools-extension": "^2.13.2",
     "redux-thunk": "^2.2.0",
-    "serve": "^6.4.3",
+    "serve": "^6.4.4",
     "three": "^0.89.0"
   },
   "scripts": {
@@ -38,7 +38,7 @@
     "testCross": "cross-var node -e \"console.log('now path on :', \\\"$npm_package_config_commitmessage\\\")\" && cross-var node -e \"console.log('now path on :', \\\"$npm_package_config_commitmessage\\\")\""
   },
   "config": {
-    "commitmessage": "⛄️ 更正artisti fullwork的next/ prev按钮svg引用 命名错误2"
+    "commitmessage": "⛄️ 完善  app 和 常用 svg 集合,⛄️ contact 排版进一步"
   },
   "name": "",
   "description": "## How to use",

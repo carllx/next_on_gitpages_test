@@ -5,12 +5,13 @@ import {TweenMax} from "gsap";
 
 import {perspZ  ,GR}  from '~/utils/ui'
 
-import LOGO  from '~/components/svg/icons_logo'
+// import LOGO  from '~/components/svg/icons_logo'
+import LOGO  from '~/components/svg/icons_logo_marca'
 
 
-// import MOUSE_POS_DISPATCHER from '~/components/controller.mousePosDispatcher'
-// import DEVICE_ORIEN_DISPATCHER from '~/components/controller.deviceOrienDispatcher'
+import {Mobile,Address,Mail,Phone}  from '~/components/svg/icons_static_svg'
 
+import {Twitter,WeiChat,Youtube,Viemo,Weibo,Facebook,Instagram}  from '~/components/svg/icons_social_svg'
 
 class MapIframe extends PureComponent {
   shouldComponentUpdate() {
@@ -27,18 +28,6 @@ class NavContact extends PureComponent {
     constructor(props){
         super(props)
         this.PERSP = 1000;
-        // this.Zp = {
-        //     pc:{
-        //         logo : perspZ(10,this.PERSP),
-        //         contact : perspZ(20,this.PERSP),
-        //         description : perspZ(-30,this.PERSP),
-        //     },
-        //     mobile:{
-        //         logo : perspZ(10,this.PERSP),
-        //         contact : perspZ(20,this.PERSP),
-        //         description : perspZ(-30,this.PERSP),
-        //     }
-        // }
     }
 
     componentDidMount(){
@@ -48,9 +37,6 @@ class NavContact extends PureComponent {
             "#nav_contact",
             {
                 y:`${this.props.view_size.vh}`,
-                // opacity:0,
-                // visbility:'hidden',
-                display:'block',
                 autoAlpha:0,
                 pointerEvents: 'none',
             })
@@ -69,16 +55,6 @@ class NavContact extends PureComponent {
                 this.close();
             }
         }
-
-        // EVERNT Dipatcher
-        // if(nextProps.nav_on==='contact'){
-
-        //     if(this.props.device ==='desktop'){
-        //         if (this.props.mouse!==nextProps.mouse) this.onMouseRot();
-        //     }else{ // mobile || tablet
-        //         if (this.props.gyo!==nextProps.gyo) this.onDeviceRot();
-        //     }
-        // }
     }
 
     show(){
@@ -111,82 +87,6 @@ class NavContact extends PureComponent {
             0.05);
     }
 
-
-    /* EVENT */
-    // onMouseRot(){// mouse on tweenmax
-
-    //     const cx = this.props.view_size.vw/ 2;
-    //     const cy = this.props.view_size.vh/ 2;
-    //     const dx = this.props.mouse.x - cx;
-    //     const dy = this.props.mouse.y - cy;
-    //     const tiltx =   ( dy / cx) ;
-    //     const tilty = - ( dx / cy) ;
-    //     const radius = Math.sqrt(Math.pow(tiltx,2) + Math.pow(tilty,2));
-    //     const degree = (radius * 20);
-    //     // animation
-    //     TweenMax.to(`#nav_contact`, 1, {transform:'rotate3d(' + tiltx + ', ' + tilty + ', 0, ' + degree + 'deg)', ease:Power2.easeOut});
-    // }
-    /*
-    参考这个鞋 四元数公式 :https://segmentfault.com/a/1190000005988744
-     */
-    // getRotate3d( alpha, beta, gamma ) {  //官方求四元数方法
-    //     // - 转换的范围 PI/2 around the x-axis
-    //     const degtorad = Math.PI / 180;
-    //     // const degtorad = 1;
-
-    //     // getQuaternion
-    //     const _x = beta  ? beta  * degtorad : 0; // beta value
-    //     const _y = gamma ? gamma * degtorad : 0; // gamma value
-    //     const _z = alpha ? alpha * degtorad : 0; // alpha value
-    //     //
-
-    //     // debugger
-    //     const cX = Math.cos( _x/2 );
-    //     const cY = Math.cos( _y/2 );
-    //     const cZ = Math.cos( _z/2 );
-    //     const sX = Math.sin( _x/2 );
-    //     const sY = Math.sin( _y/2 );
-    //     const sZ = Math.sin( _z/2 );
-
-    //     const W = cX * cY * cZ - sX * sY * sZ;
-    //     const X = sX * cY * cZ - cX * sY * sZ;
-    //     const Y = cX * sY * cZ + sX * cY * sZ;
-    //     const Z = cX * cY * sZ + sX * sY * cZ;
-
-    //     // return [ w, x, y, z ];
-
-    //     // getRota3d
-    //     const rotate = 2 * Math.acos(W)/degtorad ;
-
-    //     const x = X / Math.sin(degtorad * rotate/2) || 0;
-    //     const y = Y / Math.sin(degtorad * rotate/2) || 0;
-    //     const z = Z / Math.sin(degtorad * rotate/2) || 0;
-    //     return {x:x,y:y,z:z,rotate:rotate};
-    // }
-
-    // onDeviceRot(){// mouse on tweenmax
-    //     /*
-    //     https://segmentfault.com/a/1190000005988744
-    //     */
-    //     let direction
-    //     if(window.screen.orientation===undefined){//safari
-    //         direction = window.orientation || 0
-    //     }else{
-    //         direction = window.screen.orientation.angle || 0;
-    //     }
-
-    //     let {alpha,beta,gamma} = this.props.gyo
-
-    //     const rot3d = this.getRotate3d( alpha , beta - direction- 30   , gamma) // 手持角度 30
-    //     // debugger
-    //     // android chrome work!
-    //     TweenMax.to(`#nav_contact`, 1, {transform:`rotate3d(${rot3d.x},${-rot3d.y},${rot3d.z},${rot3d.rotate}deg)`, ease:Power2.easeOut});
-
-
-    // }
-    /* EVENT */
-
-
     render(){
         const { view_size, language, device ,nav_on } = this.props
         const desktop = device ==='desktop';
@@ -195,31 +95,27 @@ class NavContact extends PureComponent {
         const mapWidth =  is_landscape?`${GR.px(1,vw)}`:`${GR.px(1,vw)}`
         const margin_w = is_landscape?`${GR.vw(3)}`:`${GR.vw(5)}`
         // const zp = is_landscape?this.Zp.pc:this.Zp.mobile
-        const top = is_landscape?`${GR.px(2,vh)}px`:`${GR.px(4,vh)+GR.px(8,vh)}px`//nav bg 斜边的高度+margin
+        const top = is_landscape?`${GR.px(3,vh)}px`:`${GR.px(4,vh)+GR.px(8,vh)}px`//手机端  nav bg 斜边的高度+margin
 
         return(
             <div
              {...css({
+                display:'flex',
+                flexDirection:'column',
                 /*居中*/
                  position: 'absolute',
-                 top:top,//nav bg 斜边的高度+margin
+                 top:top,//手机端 nav bg 斜边的高度+margin
                  left:0,
                  marginLeft:`${margin_w}vw`,
                  marginRight:`${margin_w}vw`,
                  pointerEvents:'none',
                  alignContent: 'center',
-                 //初始状态,减少渲染
+                 //初始, 隐藏
                  visbility:'hidden',
-                 display:'none',
-                 // 3D 效果
-                 // transformStyle: 'preserve-3d',
              })}
              className = 'contact'
              id = 'nav_contact' // 3D 效果
             >
-
-
-
                 {/*LOGO*/}
                 {/*<div
                  {...css({
@@ -232,40 +128,65 @@ class NavContact extends PureComponent {
                     <LOGO/>
                 </div>*/}
 
+                <div {...css({
+                    display:'flex',
+                    justifyContent:'center',
+                    width:'100%',
+                })}>
+                    <LOGO size= {60}/>
+                </div>
 
+                <div {...css({
+                    display:'flex',
+                    justifyContent:'center',
+                    width:'100%',
+                })}>
+                    Presidente: Xiuzhong Zhang
+                </div>
+                {/* SOCIAL App */}
+                <div {...css({
+                    display:'flex',
+                    flexDirection:'row',
+                    justifyContent:'center',
+                    width:'100%',
+                })}>
 
+                    <Twitter/>
+                    <WeiChat/>
+                    <Weibo/>
+                    <Facebook/>
+                    <Instagram/>
+                    <Youtube/>
+                    <Viemo/>
 
+                </div>
 
 
 
 
                 {/*主要信息*/}
-                <div
-                 {...css({
-                    position:'relative',
-                    transformStyle: 'preserve-3d',
-                 })}
-                >
-                    {
-                        `
+                    {/*Mail*/}
+                    <div {...css({display:'flex',flexDirection:'row'})}>
+                        <div {...css({marginRight:'1.5em'})}><Mail size={18}/></div>
                         info@zhongart.it
-                        Tel./Fax +39 055 268308
-                        Cell. +39  32721  83721
-                        Presidente XiuzhongZhang
+                    </div>
+                    {/*Tel./Fax */}
+                    <div {...css({display:'flex',flexDirection:'row'})}>
+                        <div {...css({marginRight:'1.5em'})}><Phone size={18}/></div>
+                        +39  055 268308
+                    </div>
+                    {/*Cell. */}
+                    <div {...css({display:'flex',flexDirection:'row'})}>
+                        <div {...css({marginRight:'1.5em'})}><Mobile size={18}/></div>
+                        +39  32721  83721
+                    </div>
+                    {/*Address*/}
+                    <div {...css({display:'flex',flexDirection:'row'})}>
+                        <div {...css({marginRight:'1.5em'})}><Address size={18}/></div>
                         Via del Giglio, 10-50123 ,Firenze, Italia
-                        `.split('\n')
-                        .map((item, key) =>
-                            <div
-                             key={`nav_contact_content_${key}`}
-                             {...css({
+                    </div>
 
-                                // transform:`translateZ(${zp.contact.translateZ-key*10}px) scale(${zp.contact.scale})`
-                             })}
-                            >
-                             {item}
-                             <br/>
-                             </div>)
-                    }
+
 
                     {/*<MapIframe/>*/}
                     <iframe
@@ -274,7 +195,6 @@ class NavContact extends PureComponent {
                      height="200"
                      frameborder="0"
                      ></iframe>
-                </div>
                 {/*主要信息*/}
 
 
@@ -324,7 +244,6 @@ export default connect(mapStateToProps)(NavContact)
 
 /*
 icons_mobile.js
-icons_quote_right.js
 icons_Weibo.js
 icons_youtube.js
 icons_Address.js
@@ -338,10 +257,10 @@ icons_Viemo.js
 icons_Wechat.js
 icons-site.js
 icons-Weibo.js
-icons_chevron-left.js
-icons_chevron-right.js
 icons_info.js
 icons_logo.js
-
-
+icons_quote_right.js
+icons_quote_left.js
+icons_chevron-left.js
+icons_chevron-right.js
  */
