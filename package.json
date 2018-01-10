@@ -39,7 +39,7 @@
     "testCross": "cross-var node -e \"console.log('now path on :', \\\"$npm_package_config_commitmessage\\\")\" && cross-var node -e \"console.log('now path on :', \\\"$npm_package_config_commitmessage\\\")\""
   },
   "config": {
-    "commitmessage": "⛄️ 更新 Mac的AI  "
+    "commitmessage": "⛄️ 使用 react-google-maps 库制作地图 ⛄️ contact 排版调整"
   },
   "name": "",
   "description": "## How to use",

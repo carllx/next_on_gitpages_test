@@ -38,16 +38,6 @@ const MapWithAMarker = withScriptjs(withGoogleMap(props =>
 
 
 
-class MapIframe extends PureComponent {
-  shouldComponentUpdate() {
-    return false;
-  }
-  render() {
-    return (<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1359.939041885581!2d11.251240249295027!3d43.77398979302729!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xb39cef323dcfa7e0!2zWkFJIOS4reiJuuWbvemZhQ!5e0!3m2!1szh-CN!2sit!4v1514654536015" width="400" height="200" frameborder="0"  allowfullscreen></iframe>);
-  }
-}
-
-
 class NavContact extends PureComponent {
 
     constructor(props){
@@ -120,7 +110,7 @@ class NavContact extends PureComponent {
         const mapWidth =  is_landscape?`${GR.px(1,vw)}`:`${GR.px(1,vw)}`
         const margin_w = is_landscape?`${GR.vw(3)}`:`${GR.vw(5)}`
         // const zp = is_landscape?this.Zp.pc:this.Zp.mobile
-        const top = is_landscape?`${GR.px(4,vh)}px`:`${GR.px(4,vh)+GR.px(8,vh)}px`//手机端  nav bg 斜边的高度+margin
+        const top = is_landscape?`${GR.px(4,vh)}px`:`${GR.px(6,vh)}px`//手机端  nav bg 斜边的高度+margin
 
         return(
 
@@ -132,10 +122,12 @@ class NavContact extends PureComponent {
                  position: 'absolute',
                  top:top,//手机端 nav bg 斜边的高度+margin
                  left:0,
-                 marginLeft:`${margin_w}vw`,
-                 marginRight:`${margin_w}vw`,
+                 // marginLeft:`${margin_w}vw`,
+                 // marginRight:`${margin_w}vw`,
+                 width:'100%',
                  pointerEvents:'none',
-                 alignContent: 'center',
+                 justifyContent:'center',
+                 // alignContent: 'center',
                  //初始, 隐藏
                  visbility:'hidden',
              })}
@@ -177,6 +169,7 @@ class NavContact extends PureComponent {
                     flexDirection:'row',
                     justifyContent:'center',
                     width:'100%',
+                    marginBottom:'2em',
                 })}>
 
                     <div {...css({marginRight:'1em'})}><Twitter/></div>
@@ -191,54 +184,66 @@ class NavContact extends PureComponent {
 
 
 
+                <div {...css({
+                    display:'flex',
+                    flexDirection:'column',
+                    justifyContent:'center',
+                    alignItems: 'center',
+                    width:'100%',
+                    marginBottom:'1em',
+                })}>
 
-                {/*主要信息*/}
-                    {/*Mail*/}
-                    <div {...css({display:'flex',flexDirection:'row'})}>
-                        <div {...css({marginRight:'1.5em'})}><Mail size={18}/></div>
-                        info@zhongart.it
+
+                    {/*主要信息*/}
+                        {/*Mail*/}
+                        <div {...css({display:'flex',flexDirection:'row',width: '21em',})}>
+                            <div {...css({marginRight:'1.5em'})}><Mail size={18}/></div>
+                            info@zhongart.it
+                        </div>
+                        {/*Tel./Fax */}
+                        <div {...css({display:'flex',flexDirection:'row',width: '21em',})}>
+                            <div {...css({marginRight:'1.5em'})}><Phone size={18}/></div>
+                            +39  055 268308
+                        </div>
+                        {/*Cell. */}
+                        <div {...css({display:'flex',flexDirection:'row',width: '21em',})}>
+                            <div {...css({marginRight:'1.5em'})}><Mobile size={18}/></div>
+                            +39  32721  83721
+                        </div>
+                        {/*Address*/}
+                        <div {...css({display:'flex',flexDirection:'row',width: '21em',})}>
+                            <div {...css({marginRight:'1.5em'})}><Address size={18}/></div>
+                            Via del Giglio, 10-50123 ,Firenze, Italia
+                        </div>
                     </div>
-                    {/*Tel./Fax */}
-                    <div {...css({display:'flex',flexDirection:'row'})}>
-                        <div {...css({marginRight:'1.5em'})}><Phone size={18}/></div>
-                        +39  055 268308
+
+
+
+
+                    <div {...css({
+                        display:'flex',
+                        justifyContent:'center',
+                        width:'100%',
+                    })}>
+                        <MapWithAMarker
+                          googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyC4R6AN7SmujjPUIGKdyao2Kqitzr1kiRg&v=3.exp&libraries=geometry,drawing,places"
+                          loadingElement={<div style={{ height: `100%` }} />}
+                          containerElement={<div style={{
+                            height:is_landscape?'60vh':`100vw`,
+                            width:is_landscape?'100vw':`100vw`,
+                            // marginLeft:`-${margin_w}vw`,//居中
+                            backgroundColor: 'hsla(0, 0%, 0%, 0)' }} />}
+                          mapElement={<div style={{ height: `100%` }} />}
+
+                        />
                     </div>
-                    {/*Cell. */}
-                    <div {...css({display:'flex',flexDirection:'row'})}>
-                        <div {...css({marginRight:'1.5em'})}><Mobile size={18}/></div>
-                        +39  32721  83721
-                    </div>
-                    {/*Address*/}
-                    <div {...css({display:'flex',flexDirection:'row'})}>
-                        <div {...css({marginRight:'1.5em'})}><Address size={18}/></div>
-                        Via del Giglio, 10-50123 ,Firenze, Italia
-                    </div>
 
 
 
-                    {/*<MapIframe/>*/}
 
-                    {/*<iframe
-                     src={`https://maps.googleapis.com/maps/api/staticmap?key=YOUR_API_KEY&center=-33.9,151.14999999999998&zoom=12&format=png&maptype=roadmap&style=element:geometry%7Ccolor:0xf5f5f5&style=element:labels.icon%7Cvisibility:off&style=element:labels.text.fill%7Ccolor:0x616161&style=element:labels.text.stroke%7Ccolor:0xf5f5f5&style=feature:administrative%7Celement:geometry%7Cvisibility:off&style=feature:administrative.land_parcel%7Celement:labels%7Cvisibility:off&style=feature:administrative.land_parcel%7Celement:labels.text.fill%7Ccolor:0xbdbdbd&style=feature:poi%7Cvisibility:off&style=feature:poi%7Celement:geometry%7Ccolor:0xeeeeee&style=feature:poi%7Celement:labels.text%7Cvisibility:off&style=feature:poi%7Celement:labels.text.fill%7Ccolor:0x757575&style=feature:poi.park%7Celement:geometry%7Ccolor:0xe5e5e5&style=feature:poi.park%7Celement:labels.text.fill%7Ccolor:0x9e9e9e&style=feature:road%7Celement:geometry%7Ccolor:0xffffff&style=feature:road%7Celement:labels.icon%7Cvisibility:off&style=feature:road.arterial%7Celement:labels%7Cvisibility:off&style=feature:road.arterial%7Celement:labels.text.fill%7Ccolor:0x757575&style=feature:road.highway%7Celement:geometry%7Ccolor:0xdadada%7Cvisibility:off&style=feature:road.highway%7Celement:labels%7Cvisibility:off&style=feature:road.highway%7Celement:labels.text.fill%7Ccolor:0x616161&style=feature:road.local%7Cvisibility:off&style=feature:road.local%7Celement:labels%7Cvisibility:off&style=feature:road.local%7Celement:labels.text.fill%7Ccolor:0x9e9e9e&style=feature:transit%7Cvisibility:off&style=feature:transit.line%7Celement:geometry%7Ccolor:0xe5e5e5&style=feature:transit.station%7Celement:geometry%7Ccolor:0xeeeeee&style=feature:water%7Celement:geometry%7Ccolor:0xc9c9c9&style=feature:water%7Celement:labels.text.fill%7Ccolor:0x9e9e9e&size={480x360}`}
-                     width={mapWidth}
-                     height="200"
-                     frameborder="0"
-                     ></iframe>*/}
-                <MapWithAMarker
-                  googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyC4R6AN7SmujjPUIGKdyao2Kqitzr1kiRg&v=3.exp&libraries=geometry,drawing,places"
-                  loadingElement={<div style={{ height: `100%` }} />}
-                  containerElement={<div style={{ height: `400px`,backgroundColor: 'hsla(0, 0%, 0%, 0)' }} />}
-                  mapElement={<div style={{ height: `100%` }} />}
 
-                />
                 {/*<div id = 'map' {...css({height:'300px',width:'300px'})}/>*/}
                 {/*主要信息*/}
-                <iframe
-                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1359.939041885581!2d11.251240249295027!3d43.77398979302729!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xb39cef323dcfa7e0!2zWkFJIOS4reiJuuWbvemZhQ!5e0!3m2!1szh-CN!2sit!4v1514654536015"
-                     width={mapWidth}
-                     height="200"
-                     frameborder="0"
-                     ></iframe>
 
 
 
@@ -476,3 +481,19 @@ icons_quote_left.js
 icons_chevron-left.js
 icons_chevron-right.js
  */
+
+
+
+/*<iframe
+ src={`https://maps.googleapis.com/maps/api/staticmap?key=YOUR_API_KEY&center=-33.9,151.14999999999998&zoom=12&format=png&maptype=roadmap&style=element:geometry%7Ccolor:0xf5f5f5&style=element:labels.icon%7Cvisibility:off&style=element:labels.text.fill%7Ccolor:0x616161&style=element:labels.text.stroke%7Ccolor:0xf5f5f5&style=feature:administrative%7Celement:geometry%7Cvisibility:off&style=feature:administrative.land_parcel%7Celement:labels%7Cvisibility:off&style=feature:administrative.land_parcel%7Celement:labels.text.fill%7Ccolor:0xbdbdbd&style=feature:poi%7Cvisibility:off&style=feature:poi%7Celement:geometry%7Ccolor:0xeeeeee&style=feature:poi%7Celement:labels.text%7Cvisibility:off&style=feature:poi%7Celement:labels.text.fill%7Ccolor:0x757575&style=feature:poi.park%7Celement:geometry%7Ccolor:0xe5e5e5&style=feature:poi.park%7Celement:labels.text.fill%7Ccolor:0x9e9e9e&style=feature:road%7Celement:geometry%7Ccolor:0xffffff&style=feature:road%7Celement:labels.icon%7Cvisibility:off&style=feature:road.arterial%7Celement:labels%7Cvisibility:off&style=feature:road.arterial%7Celement:labels.text.fill%7Ccolor:0x757575&style=feature:road.highway%7Celement:geometry%7Ccolor:0xdadada%7Cvisibility:off&style=feature:road.highway%7Celement:labels%7Cvisibility:off&style=feature:road.highway%7Celement:labels.text.fill%7Ccolor:0x616161&style=feature:road.local%7Cvisibility:off&style=feature:road.local%7Celement:labels%7Cvisibility:off&style=feature:road.local%7Celement:labels.text.fill%7Ccolor:0x9e9e9e&style=feature:transit%7Cvisibility:off&style=feature:transit.line%7Celement:geometry%7Ccolor:0xe5e5e5&style=feature:transit.station%7Celement:geometry%7Ccolor:0xeeeeee&style=feature:water%7Celement:geometry%7Ccolor:0xc9c9c9&style=feature:water%7Celement:labels.text.fill%7Ccolor:0x9e9e9e&size={480x360}`}
+ width={mapWidth}
+ height="200"
+ frameborder="0"
+ ></iframe>*/
+/*有效*/
+/*<iframe
+ src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1359.939041885581!2d11.251240249295027!3d43.77398979302729!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xb39cef323dcfa7e0!2zWkFJIOS4reiJuuWbvemZhQ!5e0!3m2!1szh-CN!2sit!4v1514654536015"
+ width={mapWidth}
+ height="200"
+ frameborder="0"
+ ></iframe>*/
