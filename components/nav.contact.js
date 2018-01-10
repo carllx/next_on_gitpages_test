@@ -80,11 +80,11 @@ class NavContact extends PureComponent {
             {
                 y:`${this.props.view_size.vh}`,
                 opacity:0,
-                pointerEvents: 'none',
+                // pointerEvents: 'none',
             },{
                 y:0,
                 ease: Power4.easeOut,
-                pointerEvents: 'visible',
+                // pointerEvents: 'visible',
                 autoAlpha:1,//opacity:1,visibility:'visible'
             },
             0.2);
@@ -96,7 +96,7 @@ class NavContact extends PureComponent {
             {
                 y:`${this.props.view_size.vh/9}`,
                 // ease: Power4.easeOut,
-                pointerEvents: 'none',
+                // pointerEvents: 'none',
                 autoAlpha:0,//opacity:0,visibility:'hidden'
             },
             0.05);
@@ -129,7 +129,7 @@ class NavContact extends PureComponent {
                  justifyContent:'center',
                  // alignContent: 'center',
                  //初始, 隐藏
-                 visbility:'hidden',
+                 visibility:'hidden',
              })}
              className = 'contact'
              id = 'nav_contact' // 3D 效果
@@ -171,6 +171,8 @@ class NavContact extends PureComponent {
                     flexDirection:'row',
                     justifyContent:'center',
                     marginBottom:'2em',
+                    pointerEvents:'auto',
+
                 })}>
 
                     <div {...css({marginRight:'1em'})}><Twitter/></div>

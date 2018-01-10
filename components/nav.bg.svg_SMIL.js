@@ -195,8 +195,8 @@ class SVG_BACKGROUND extends PureComponent {
                         {...css({
                             width:  `100%`,
                             height: `100%`,
-                            pointerEvents:'visiblePainted',//auto 相同svg 禁用了pointerEvents
-                            cursor:'pointer',// 提示可关闭
+                            // pointerEvents:'visiblePainted',//auto 相同svg 禁用了pointerEvents
+                            // cursor:'pointer',// 提示可关闭
                             // points:this.state.pointsKayFrame,
                             // animation: 'move 0.7s',
                             // this.state.pointsKayFrame[nav_on]
