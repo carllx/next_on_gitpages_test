@@ -71,10 +71,10 @@ class NavContact extends PureComponent {
             }
         }
     }
-
+    //stagger
     show(){
         console.log('nav-Artisti -show()')
-        TweenMax.staggerFromTo(
+        TweenMax.fromTo(
             "#nav_contact",
             0.5,
             {
@@ -88,10 +88,28 @@ class NavContact extends PureComponent {
                 autoAlpha:1,//opacity:1,visibility:'visible'
             },
             0.2);
+
+        var tl = new TimelineMax({repeat:0,delay:0.3})
+        tl.staggerTo(//targets, duration, fromVars, toVars
+                '.social_icons',
+                0.02,//
+                {
+                    fill:'black',
+                    // delay:2,
+
+                },0.05)
+            .staggerTo(//targets, duration, fromVars, toVars
+                '.social_icons',
+                0.01,//
+                {
+                    fill:'none',
+                    // delay:2,
+                },0.05)
+            .set('.social_icons', {clearProps:"all"});//还原 原有的hover 样式
     }
     close(){
         console.log('nav-About-close()')
-        TweenMax.staggerTo("#nav_contact",
+        TweenMax.to("#nav_contact",
             0.3,
             {
                 y:`${this.props.view_size.vh/9}`,
@@ -175,13 +193,13 @@ class NavContact extends PureComponent {
 
                 })}>
 
-                    <div {...css({marginRight:'1em'})}><Twitter/></div>
-                    <div {...css({marginRight:'1em'})}><WeiChat/></div>
-                    <div {...css({marginRight:'1em'})}><Weibo/></div>
-                    <div {...css({marginRight:'1em'})}><Facebook/></div>
-                    <div {...css({marginRight:'1em'})}><Instagram/></div>
-                    <div {...css({marginRight:'1em'})}><Youtube/></div>
-                    <div {...css({marginRight:'1em'})}><Viemo/></div>
+                    <div {...css({marginRight:'1em'})} className = 'flashIcons'><Twitter/></div>
+                    <div {...css({marginRight:'1em'})} className = 'flashIcons'><WeiChat/></div>
+                    <div {...css({marginRight:'1em'})} className = 'flashIcons'><Weibo/></div>
+                    <div {...css({marginRight:'1em'})} className = 'flashIcons'><Facebook/></div>
+                    <div {...css({marginRight:'1em'})} className = 'flashIcons'><Instagram/></div>
+                    <div {...css({marginRight:'1em'})} className = 'flashIcons'><Youtube/></div>
+                    <div {...css({marginRight:'1em'})} className = 'flashIcons'><Viemo/></div>
 
                 </div>
 

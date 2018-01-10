@@ -15,9 +15,10 @@ const Svg = (obj) =>
              })}
          width={props.size||32}
          height={props.size||32}
-         viewBox="0 0 32 32">
+         viewBox="0 0 32 32"
+         className={'social_icons'}>
             <title>{obj.title}</title>
-            <path className={'social_icons'} d= {obj.d} />
+            <path d= {obj.d} />
         </svg>
 
 
