@@ -84,7 +84,7 @@ class NavContact extends PureComponent {
             },{
                 y:0,
                 ease: Power4.easeOut,
-                pointerEvents: 'auto',
+                pointerEvents: 'visible',
                 autoAlpha:1,//opacity:1,visibility:'visible'
             },
             0.2);
@@ -166,9 +166,9 @@ class NavContact extends PureComponent {
                 {/* SOCIAL App */}
                 <div {...css({
                     display:'flex',
+                    width:'100%',
                     flexDirection:'row',
                     justifyContent:'center',
-                    width:'100%',
                     marginBottom:'2em',
                 })}>
 
@@ -224,6 +224,7 @@ class NavContact extends PureComponent {
                         display:'flex',
                         justifyContent:'center',
                         width:'100%',
+                        pointerEvents:'auto',
                     })}>
                         <MapWithAMarker
                           googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyBQdch5IcgcQaKNG76sbMQv1MEBEKLeQ-8&v=3.exp&libraries=geometry,drawing,places"

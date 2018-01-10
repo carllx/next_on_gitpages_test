@@ -126,13 +126,13 @@ class InfoBG extends PureComponent {
                     <div
                      {...css({
                         // fontSize:'14px',
-                        // position:'fixed',
-                        // zIndex:11,
+                        position:'fixed',
+                        zIndex:13,
                         width:landscape?`30vw`:`80vw`,
                         overflowY:'scroll',
                         maxHeight: landscape?null:'58vh',
                         // height:'100vh',
-                        zIndex:10,
+                        // zIndex:10,
 
 
                      })}

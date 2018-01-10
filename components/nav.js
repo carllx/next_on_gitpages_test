@@ -145,13 +145,13 @@ class Nav extends PureComponent {
              className = 'nav'
              id='nav'
              onClick={(e)=>{
-              e.stopPropagation();
               e.preventDefault();
-              if(landscape){
-                nav_on==='menu'?this.onPanel('show'):this.onPanel('close')
-              }else{
-                this.onPanel('close')
-              }
+              e.stopPropagation();
+              // if(landscape){
+              //   nav_on==='menu'?this.onPanel('show'):this.onPanel('close')
+              // }else{
+              //   this.onPanel('close')
+              // }
 
             }}
              /*在close的状态下 结合pointerEvents 和 this.onPanel('close') 点击nav会关闭 nav */
