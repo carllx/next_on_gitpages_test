@@ -43,21 +43,21 @@ class Triangle extends PureComponent{
     }
 }
 
-// // DATA
-const CONFIG = [{
-        'title':{zh:'艺术家',en:'ARTISTS',it:'ARTISTI'},
-        'id':'artisti',
-    },{
-        'title':{zh:'展览',en:'EXHIBITIONS',it:'MOSTRE'},
-        'id':'mostre',
-    },{
-        'title':{zh:'新闻',en:'NEWS',it:'EVENTI'},
-        'id':'eventi',
-    },{
-        'title':{zh:'关于',en:'ABOUT',it:'DI NOI'},
-        'id':'about',
-    }
-]
+// // // DATA
+// const CONFIG = [{
+//         'title':{zh:'艺术家',en:'ARTISTS',it:'ARTISTI'},
+//         'id':'artisti',
+//     },{
+//         'title':{zh:'展览',en:'EXHIBITIONS',it:'MOSTRE'},
+//         'id':'mostre',
+//     },{
+//         'title':{zh:'新闻',en:'NEWS',it:'EVENTI'},
+//         'id':'eventi',
+//     },{
+//         'title':{zh:'关于',en:'ABOUT',it:'DI NOI'},
+//         'id':'about',
+//     }
+// ]
 
 
 
@@ -129,7 +129,7 @@ class Nav extends PureComponent {
                 bottom: '0',
                 width: '100%',
                 height:'100%',
-                zIndex:9,
+                zIndex:20,
                 pointerEvents:'none', //避免遮挡Logo点击
                 // pointerEvents:nav.on!=='close'?'none':'auto',
                 background:`rgba(0,0,0,${nav_on!=='close'&&nav_on!=='show'&&nav_on!=='menu'?0.38:0})`,

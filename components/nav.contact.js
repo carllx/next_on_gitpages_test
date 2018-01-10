@@ -151,6 +151,7 @@ class NavContact extends PureComponent {
                     justifyContent:'center',
                     width:'100%',
                     marginBottom:'2.5em',
+                    pointerEvents:'none',
                 })}>
                     <LOGO size= {60}/>
                 </div>

@@ -87,6 +87,17 @@ class Index extends PureComponent {
             name="twitter:image"*/}
         </Head>
 
+        {/*NAV*/}
+        <NoSSR>
+          <Nav
+           // vw = {vw}
+           // vh = {vh}
+           // isLandscape={isLandscape}
+           // language= {language}
+           // marginW = {GR.vw(5)}
+           show_on_init = {false}//默认关闭
+          />
+        </NoSSR>
 
         {/*服务器初始内容*/}
         <NoSSR onSSR={<SEO/>}>
@@ -104,17 +115,6 @@ class Index extends PureComponent {
         {/*INFO_LOGO*/}
         <About></About>
 
-        {/*NAV*/}
-        <NoSSR>
-          <Nav
-           // vw = {vw}
-           // vh = {vh}
-           // isLandscape={isLandscape}
-           // language= {language}
-           // marginW = {GR.vw(5)}
-           show_on_init = {false}//默认关闭
-          />
-        </NoSSR>
         <Resizer/>
 
       </main>

@@ -39,7 +39,7 @@
     "testCross": "cross-var node -e \"console.log('now path on :', \\\"$npm_package_config_commitmessage\\\")\" && cross-var node -e \"console.log('now path on :', \\\"$npm_package_config_commitmessage\\\")\""
   },
   "config": {
-    "commitmessage": "⛄️ 取消点击Nav trigger close/open ,避免map 拖动时会自动close nav "
+    "commitmessage": "⛄️ 公司下班 2018年1月10日"
   },
   "name": "",
   "description": "## How to use",

@@ -56,6 +56,7 @@ export class BUTTONS extends PureComponent{
                                 paddingBottom:`${GR.vw(6)}vw`,
                                 cursor: 'pointer',
                                 userSelect: 'none',
+                                pointerEvents:'auto',
                              })}
                              key= {`nav_button_${items.id}`}
                              onClick = {(e)=>{
