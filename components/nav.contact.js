@@ -106,7 +106,7 @@ class NavContact extends PureComponent {
         const { view_size, language, device ,nav_on } = this.props
         const desktop = device ==='desktop';
         const {vw,vh,is_landscape} = view_size;
-        const show =  nav_on==='contact'
+        const show =  nav_on ==='contact'
         const mapWidth =  is_landscape?`${GR.px(1,vw)}`:`${GR.px(1,vw)}`
         const margin_w = is_landscape?`${GR.vw(3)}`:`${GR.vw(5)}`
         // const zp = is_landscape?this.Zp.pc:this.Zp.mobile

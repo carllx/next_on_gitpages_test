@@ -97,11 +97,6 @@ class SVG_BACKGROUND extends PureComponent {
                 pt_2_x:vw,pt_2_y:GR.px(4,vw),
                 pt_3_x:vw,pt_3_y:vw,
                 pt_4_x:0, pt_4_y:GR.px(2,vw),
-              },menu:{
-                pt_1_x:vw-GR.px(5,vw), pt_1_y:0,
-                pt_2_x:vw,pt_2_y:0,
-                pt_3_x:vw,pt_3_y:GR.px(4,vh),
-                pt_4_x:vw, pt_4_y:GR.px(4,vh),
               }
             }//this._pts_data
         }else{ //

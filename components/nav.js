@@ -74,8 +74,6 @@ class Nav extends PureComponent {
 
     constructor (props) {
       super(props)
-      //this._onAnimating =false;//避免tweening时重叠tweening
-      // this._on = this.props.show_on_init?'show':'close'
       this.PERSP = 1000;
 
     }
@@ -88,34 +86,20 @@ class Nav extends PureComponent {
       /*若props(外)更新服从外部*/
       // debugger
       if(nextProps.is_Scroll_up!==this.props.is_Scroll_up){
-
-          if(this.props.landscape){
-            nextProps.is_Scroll_up
-            ?this.onPanel('menu')
-            :this.onPanel('close');
-          }else{
-            nextProps.is_Scroll_up
+          nextProps.is_Scroll_up
             ?this.onPanel('show')
             :this.onPanel('close');
-          }
       }
     }
 
     onPanel =(next_on)=>{//切换 场景 //artisti,mostre,eventi,about
       //--如果和目前状态不一致才切换
+      //console.log(`next_on:\t${next_on}\nthis._on:\t${this._on}\nthis.props.nav_on:\t${this.props.nav_on}`)
+      // debugger
+      if (next_on !== this.props.nav_on) {
 
-      if (next_on !== this._on) {
         console.log('switch to Panel '+next_on)
         this.props.setPanelOn(next_on)
-        this._on= next_on
-        //--滚动
-        // const html = document.getElementsByTagName("html")
-        if(next_on=='show'||next_on=='close'||next_on=='menu') {//artisti,mostre,eventi 禁止滚动
-
-          // document.body.style.overflow = "auto"
-        }else{
-          // document.body.style.overflow = "hidden"
-          }
       }
     }
 
@@ -132,7 +116,7 @@ class Nav extends PureComponent {
                 zIndex:20,
                 pointerEvents:'none', //避免遮挡Logo点击
                 // pointerEvents:nav.on!=='close'?'none':'auto',
-                background:`rgba(0,0,0,${nav_on!=='close'&&nav_on!=='show'&&nav_on!=='menu'?0.38:0})`,
+                background:`rgba(0,0,0,${nav_on!=='close'&&nav_on!=='show'?0.38:0})`,
                 transition:'background 1s cubic-bezier(0, 0.6, 0, 1)',
                 willChange:'background',
 
@@ -206,7 +190,7 @@ class Nav extends PureComponent {
               <BUTTONS
               language={language}
               is_landscape = {landscape}
-              show = {nav_on!=='close'&&nav_on!=='menu'}
+              show = {nav_on!=='close'}
               foo = {this.onPanel}
               />
 
