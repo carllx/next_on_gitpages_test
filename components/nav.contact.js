@@ -8,6 +8,7 @@ import {perspZ  ,GR}  from '~/utils/ui'
 
 // import LOGO  from '~/components/svg/icons_logo'
 import LOGO  from '~/components/svg/icons_logo_marca'
+import QRWe  from '~/components/svg/icons_QR_Wechat'
 
 
 import {Mobile,Address,Mail,Phone}  from '~/components/svg/icons_static_svg'
@@ -157,7 +158,7 @@ class NavContact extends PureComponent {
         const margin_w = is_landscape?`${GR.vw(3)}`:`${GR.vw(5)}`
         // const zp = is_landscape?this.Zp.pc:this.Zp.mobile
         const top = is_landscape?`${GR.px(4,vh)}px`:`${GR.px(6,vh)}px`//手机端  nav bg 斜边的高度+margin
-
+        const logoSize = is_landscape?vw/12:vw/4
         return(
 
             <div
@@ -193,13 +194,30 @@ class NavContact extends PureComponent {
                 </div>*/}
 
                 <div {...css({
+                    position:'relative',
                     display:'flex',
                     justifyContent:'center',
                     width:'100%',
                     marginBottom:'2.5em',
                     pointerEvents:'none',
                 })}>
-                    <LOGO size= {60}/>
+                    <LOGO size= {logoSize}/>
+                    {this.state.showQr?
+                        <div
+                         {...css({
+                            width: logoSize,
+                            height: logoSize,
+                            position:'absolute',
+                            margin: 'auto',
+
+                         })}
+                        >
+                            <QRWe
+                             size= {logoSize}
+                            />
+                        </div>
+
+                    :null}
                 </div>
 
                 <div {...css({
@@ -231,10 +249,7 @@ class NavContact extends PureComponent {
 
                      >
                         <WeiChat/>
-                        {this.state.showQr?
-                            <QrWeiChat
-                             size= {this.props.vw/6}
-                            />:null}
+
                     </div>
 
                     <div {...css({marginRight:'1em'})} className = 'flashIcons'><Weibo/></div>
