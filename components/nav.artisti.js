@@ -250,7 +250,7 @@ class ArtistiNav extends PureComponent {
 
                         <MOUSE_POS_DISPATCHER
                          track={show} //开启
-                         windowId={'nav'} //监听元素
+                         //windowId={'nav'} //监听元素
                         />
                     :
 

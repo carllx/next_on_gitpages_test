@@ -32,7 +32,7 @@ const Shape= (props) => (
 
 
 
-class InfoBG extends PureComponent {
+class AboutBG extends PureComponent {
     constructor(props){
         super(props);
 
@@ -187,7 +187,7 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(mapStateToProps,mapDispatchToProps)(InfoBG)
+export default connect(mapStateToProps,mapDispatchToProps)(AboutBG)
 
 
 

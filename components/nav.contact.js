@@ -35,14 +35,38 @@ const MapWithAMarker = withScriptjs(withGoogleMap(props =>
 ));
 
 
+class QrWeiChat extends PureComponent {
+    constructor(props){
+        super(props)
 
+    }
+    componentDidMount(){}
+    /*https://mp.weixin.qq.com/mp/qrcode?scene=10000005&size=900&__biz=MzU1NjEyMTc2Nw==&mid=2247483931&idx=1&sn=7d9b9d74a95fcf3fa8acac5f29ddad92*/
+    render(){
+        return(
+            <div>
+                <div
+                 {...css({
+                    backgroundImage:`url(\"https://mp.weixin.qq.com/mp/qrcode?scene=10000005&size=${this.props.size}&__biz=MzU1NjEyMTc2Nw==&mid=2247483931&idx=1&sn=7d9b9d74a95fcf3fa8acac5f29ddad92\")`,
+                    backgroundSize:'cover',
+                    backgroundRepeat:'no-repeat',
+                    backgroundPosition:'center center',
+                 })}
+                 className ='QRWeichat'
+                >
+                </div>
+            </div>
+
+    )}
+
+}
 
 
 class NavContact extends PureComponent {
 
     constructor(props){
         super(props)
-        this.PERSP = 1000;
+        this.state ={showQr : false}
     }
 
     componentDidMount(){
@@ -120,6 +144,10 @@ class NavContact extends PureComponent {
             0.05);
     }
 
+    clickWeichat = ()=>{
+        this.setState({showQr:!this.state.showQr})
+    }
+
     render(){
         const { view_size, language, device ,nav_on } = this.props
         const desktop = device ==='desktop';
@@ -182,6 +210,8 @@ class NavContact extends PureComponent {
                 })}>
                     Presidente: Xiuzhong Zhang
                 </div>
+
+
                 {/* SOCIAL App */}
                 <div {...css({
                     display:'flex',
@@ -194,15 +224,30 @@ class NavContact extends PureComponent {
                 })}>
 
                     <div {...css({marginRight:'1em'})} className = 'flashIcons'><Twitter/></div>
-                    <div {...css({marginRight:'1em'})} className = 'flashIcons'><WeiChat/></div>
+                    <div
+                     {...css({marginRight:'1em'})}
+                     className = 'flashIcons'
+                     onClick = {this.clickWeichat}
+
+                     >
+                        <WeiChat/>
+                        {this.state.showQr?
+                            <QrWeiChat
+                             size= {this.props.vw/6}
+                            />:null}
+                    </div>
+
                     <div {...css({marginRight:'1em'})} className = 'flashIcons'><Weibo/></div>
+
+
+
                     <div {...css({marginRight:'1em'})} className = 'flashIcons'><Facebook/></div>
                     <div {...css({marginRight:'1em'})} className = 'flashIcons'><Instagram/></div>
                     <div {...css({marginRight:'1em'})} className = 'flashIcons'><Youtube/></div>
                     <div {...css({marginRight:'1em'})} className = 'flashIcons'><Viemo/></div>
 
                 </div>
-
+                {/* SOCIAL App */}
 
 
                 <div {...css({

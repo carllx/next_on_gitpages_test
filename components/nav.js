@@ -11,6 +11,7 @@ import Language  from '~/components/nav.language'
 import {BUTTONS}  from '~/components/nav.buttons'
 import ArtistiNav  from '~/components/nav.artisti'
 import AboutNav  from '~/components/nav.contact'
+import Info  from '~/components/info'
 
 import { setPanelOn } from '~/reducers/nav'
 
@@ -170,17 +171,13 @@ class Nav extends PureComponent {
                  })}
                  className = 'carllx'
                 >
-                  <div
-                   {...css({
-                      display: 'flex',
-                      backgroundColor:ui.color.b_o2,
-                      padding:'0.5rem 8rem 0.5rem 8rem',
-                      color:'white',
-                   })}
-                  >
-                    <Triangle size = '2rem'/>
-                    {'Coming soon'}
-                  </div>
+
+                  <Info
+                   contents = {'Coming soon ...'}
+                   backgroundColor = {ui.color.b_o2}
+                   contentColor = {ui.color.w_o1}
+                  />
+
                 </div>
                 :
                 null

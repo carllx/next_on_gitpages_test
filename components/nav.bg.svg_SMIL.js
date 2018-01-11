@@ -5,6 +5,9 @@ import { PureComponent } from 'react'
 import { css } from 'glamor'
 import { ui, GR } from '~/utils/ui'
 import { setBackGroundPoints } from '~/reducers/nav'
+
+
+import { setPanelOn } from '~/reducers/nav'
  /**
  * NAV底部 BACKGROUND梯形
  * @props  {[FLOAT]} width 一般恒定vw
@@ -60,78 +63,93 @@ class SVG_BACKGROUND extends PureComponent {
 
     }
 
-    setPtsData = () => {
-            const landscape = this.props.is_landscape;
-            const vw = this.props.vw;
-            const vh = this.props.vh;
+    close=()=>{
+        this.props.setPanelOn('close')
+    }
 
-            if (landscape) {
-                return {
-                    close: {
-                pt_1_x:vw, pt_1_y:0,
-                pt_2_x:vw,pt_2_y:0,
-                pt_3_x:vw,pt_3_y:0,
-                pt_4_x:vw, pt_4_y:0,
-              },show:{
-                pt_1_x:GR.px(2,vw), pt_1_y:0,
-                pt_2_x:vw,pt_2_y:0,
-                pt_3_x:vw,pt_3_y:GR.px(3,vh),
-                pt_4_x:vw, pt_4_y:GR.px(3,vh),
-              },artisti:{
-                pt_1_x:0, pt_1_y:GR.px(4,vw),
-                pt_2_x:vw,pt_2_y:GR.px(5,vw),
-                pt_3_x:GR.px(6,vw),pt_3_y:vw,
-                pt_4_x:0, pt_4_y:vw,
-              },mostre:{
-                pt_1_x:0, pt_1_y:GR.px(4,vw),
-                pt_2_x:vh,pt_2_y:vh,
-                pt_3_x:vw,pt_3_y:vh,
-                pt_4_x:0, pt_4_y:vh,
-              },eventi:{
-                pt_1_x:0, pt_1_y:GR.px(6,vw),
-                pt_2_x:vw,pt_2_y:GR.px(3,vw),
-                pt_3_x:vw,pt_3_y:vh,
-                pt_4_x:0, pt_4_y:vh,
-              },contact:{
-                pt_1_x:0, pt_1_y:GR.px(6,vw),
-                pt_2_x:vw,pt_2_y:GR.px(4,vw),
-                pt_3_x:vw,pt_3_y:vw,
-                pt_4_x:0, pt_4_y:GR.px(2,vw),
-              }
+
+    // 两个数之间的随机值
+    getRandomInt(min, max) {
+
+      min = Math.ceil(min);
+      max = Math.floor(max);
+      const result = Math.floor(Math.random() * (max - min)) + min;
+      consoloe.log(`\n${result},`)
+      return Math.floor(Math.random() * (max - min)) + min; //The maximum is exclusive and the minimum is inclusive
+    }
+
+    setPtsData = () => {
+        const landscape = this.props.is_landscape;
+        const vw = this.props.vw;
+        const vh = this.props.vh;
+
+        if (landscape) {
+            return {
+                close: {
+                    pt_1_x:vw, pt_1_y:0,
+                    pt_2_x:vw,pt_2_y:0,
+                    pt_3_x:vw,pt_3_y:0,
+                    pt_4_x:vw, pt_4_y:0,
+                },show:{
+                    pt_1_x:GR.px(2,vw), pt_1_y:0,
+                    pt_2_x:vw,pt_2_y:0,
+                    pt_3_x:vw,pt_3_y:GR.px(3,vh),
+                    pt_4_x:vw, pt_4_y:GR.px(3,vh),
+                },artisti:{
+                    pt_1_x:0, pt_1_y:GR.px(4,vw),
+                    pt_2_x:vw,pt_2_y:GR.px(5,vw),
+                    pt_3_x:GR.px(6,vw),pt_3_y:vw,
+                    pt_4_x:0, pt_4_y:vw,
+                },mostre:{
+                    pt_1_x:0, pt_1_y:GR.px(4,vw),
+                    pt_2_x:vh,pt_2_y:vh,
+                    pt_3_x:vw,pt_3_y:vh,
+                    pt_4_x:0, pt_4_y:vh,
+                },eventi:{
+                    pt_1_x:0, pt_1_y:GR.px(6,vw),
+                    pt_2_x:vw,pt_2_y:GR.px(3,vw),
+                    pt_3_x:vw,pt_3_y:vh,
+                    pt_4_x:0, pt_4_y:vh,
+                },contact:{
+                    pt_1_x:0, pt_1_y:GR.px(6,vw),
+                    pt_2_x:vw,pt_2_y:GR.px(4,vw),
+                    pt_3_x:vw,pt_3_y:vw,
+                    pt_4_x:0, pt_4_y:GR.px(2,vw),
+                }
             }//this._pts_data
         }else{ //
             return {
                 close:{
-                pt_1_x:0, pt_1_y:vh,//left_top
-                pt_2_x:vw,pt_2_y:vh,//right_top
-                pt_3_x:vw,pt_3_y:vh,
-                pt_4_x:0, pt_4_y:vh,
-              },show:{
-                pt_1_x:0, pt_1_y:(GR.px(3,vh)-vh)*-1,
-                pt_2_x:vw,pt_2_y:(GR.px(4,vh)-vh)*-1,
-                pt_3_x:vw,pt_3_y:vh+500,//right_bottom 修复positioned incorrectly when dropdown search box display,
-                pt_4_x:0, pt_4_y:vh+500,//right_bottom 修复positioned incorrectly when dropdown search box display,
-              },artisti:{
-                pt_1_x:0, pt_1_y:GR.px(6,vh),
-                pt_2_x:vw,pt_2_y:GR.px(2,vh),
-                pt_3_x:vw,pt_3_y:vh,
-                pt_4_x:0, pt_4_y:vh,
-              },mostre:{
-                pt_1_x:0, pt_1_y:GR.px(4,vh),
-                pt_2_x:vw,pt_2_y:GR.px(2,vh),
-                pt_3_x:vw,pt_3_y:vh,
-                pt_4_x:0, pt_4_y:vh,
-              },eventi:{
-                pt_1_x:0, pt_1_y:GR.px(6,vh),
-                pt_2_x:vw,pt_2_y:GR.px(3,vh),
-                pt_3_x:vw,pt_3_y:vh,
-                pt_4_x:0, pt_4_y:vh,
-              },contact:{
-                pt_1_x:0, pt_1_y:GR.px(5,vh),
-                pt_2_x:vw,pt_2_y:0,
-                pt_3_x:vw,pt_3_y:vh,
-                pt_4_x:0, pt_4_y:vh,
-              }
+                    pt_1_x:0, pt_1_y:vh,//left_top
+                    pt_2_x:vw,pt_2_y:vh,//right_top
+                    pt_3_x:vw,pt_3_y:vh,
+                    pt_4_x:0, pt_4_y:vh,
+                },show:{
+                    pt_1_x:0, pt_1_y:(GR.px(3,vh)-vh)*-1,
+                    pt_2_x:vw,pt_2_y:(GR.px(4,vh)-vh)*-1,
+                    pt_3_x:vw,pt_3_y:vh+500,//right_bottom 修复positioned incorrectly when dropdown search box display,
+                    pt_4_x:0, pt_4_y:vh+500,//right_bottom 修复positioned incorrectly when dropdown search box display,
+                },artisti:{
+                    pt_1_x:0, pt_1_y:GR.px(6,vh),
+                    pt_2_x:vw,pt_2_y:GR.px(2,vh),
+                    pt_3_x:vw,pt_3_y:vh,
+                    pt_4_x:0, pt_4_y:vh,
+                },mostre:{
+                    pt_1_x:0, pt_1_y:GR.px(4,vh),
+                    pt_2_x:vw,pt_2_y:GR.px(2,vh),
+                    pt_3_x:vw,pt_3_y:vh,
+                    pt_4_x:0, pt_4_y:vh,
+                },eventi:{
+                    pt_1_x:0, pt_1_y:GR.px(6,vh),
+                    pt_2_x:vw,pt_2_y:GR.px(3,vh),
+                    pt_3_x:vw,pt_3_y:vh,
+                    pt_4_x:0, pt_4_y:vh,
+                },contact:{
+                    pt_1_x:0, pt_1_y:GR.px(5,vh),
+                    pt_2_x:vw,pt_2_y:0,
+                    pt_3_x:vw,pt_3_y:vh,
+                    pt_4_x:0, pt_4_y:vh,
+                }
             }//this._pts_data
         }//if
     }//this.setPtsData
@@ -187,8 +205,11 @@ class SVG_BACKGROUND extends PureComponent {
                     height: '100%',//@
                     position: 'fixed' ,//@
                     top: 0,//@
+
+
                 })}
                  key = {`${this.props.nav_on}_svg`}//否则没有动画过度效果
+
 
                  >
                     <polygon
@@ -200,7 +221,9 @@ class SVG_BACKGROUND extends PureComponent {
                             // points:this.state.pointsKayFrame,
                             // animation: 'move 0.7s',
                             // this.state.pointsKayFrame[nav_on]
+                            pointerEvents: 'visibleFill',
                         })}
+                     onClick = {this.close}
                      fill={ui.color.w_o1}
                      stroke="none"
                      points= {this.state.pre_points}
@@ -250,13 +273,32 @@ const mapStateToProps = (state) => ({
     nav_BG_PTs:state.nav.background_pts
 });
 
+/*关闭的时候,切换的时候使用*/
+const mapDispatchToProps = (dispatch) => {
+  return {
+    setPanelOn: bindActionCreators(setPanelOn, dispatch),
 
+  }
+}
 
 
 // export default Nav;
-export default connect(mapStateToProps ,null)(SVG_BACKGROUND)
+export default connect(mapStateToProps ,mapDispatchToProps)(SVG_BACKGROUND)
 
 
 
 
 
+/*
+mostre:{
+                pt_1_x:0, pt_1_y:GR.px(4,vw),
+                pt_2_x:vh,pt_2_y:vh,
+                pt_3_x:vw,pt_3_y:vh,
+                pt_4_x:0, pt_4_y:vh,
+              },eventi:{
+                pt_1_x:0, pt_1_y:GR.px(6,vw),
+                pt_2_x:vw,pt_2_y:GR.px(3,vw),
+                pt_3_x:vw,pt_3_y:vh,
+                pt_4_x:0, pt_4_y:vh,
+
+ */

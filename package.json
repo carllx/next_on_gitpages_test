@@ -39,7 +39,7 @@
     "testCross": "cross-var node -e \"console.log('now path on :', \\\"$npm_package_config_commitmessage\\\")\" && cross-var node -e \"console.log('now path on :', \\\"$npm_package_config_commitmessage\\\")\""
   },
   "config": {
-    "commitmessage": "⛄️ contact social icon 加入动画"
+    "commitmessage": "⛄️ 2018-1-11 下班上传"
   },
   "name": "",
   "description": "## How to use",

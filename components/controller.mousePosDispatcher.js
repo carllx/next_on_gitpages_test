@@ -47,6 +47,8 @@ class mousePosDispatcher extends PureComponent {
         // this.camera = new THREE.PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 1, 5000 );
         // this.camera.position.z = 2000;
         // {three}
+        //
+
         this._$window.addEventListener('mousemove', this.haddleMouseTrackOn, false);//onDocumentMouseMove
         // for debounce
         this._$window.addEventListener('mousemove', this.haddleMouseTrackOff, false);//onDocumentMouseMove
