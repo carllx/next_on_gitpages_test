@@ -134,7 +134,7 @@ class NavContact extends PureComponent {
         const margin_w = is_landscape?`${GR.vw(3)}`:`${GR.vw(5)}`
         // const zp = is_landscape?this.Zp.pc:this.Zp.mobile
         const top = is_landscape?`${GR.px(4,vh)}px`:`${GR.px(6,vh)}px`//手机端  nav bg 斜边的高度+margin
-        const logoSize = is_landscape?vw/12:vw/4
+        const logoSize = is_landscape?vw/20:vw/6
         return(
 
             <div
