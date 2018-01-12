@@ -39,7 +39,7 @@
     "testCross": "cross-var node -e \"console.log('now path on :', \\\"$npm_package_config_commitmessage\\\")\" && cross-var node -e \"console.log('now path on :', \\\"$npm_package_config_commitmessage\\\")\""
   },
   "config": {
-    "commitmessage": "⛄️ 矫正了QR /logo 的大小"
+    "commitmessage": "⛄️ 正在处理facekbook 的链接跳转"
   },
   "name": "",
   "description": "## How to use",

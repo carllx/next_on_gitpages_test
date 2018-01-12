@@ -2,6 +2,7 @@ import { connect } from 'react-redux'
 import {PureComponent} from 'react'
 import { css } from 'glamor'
 import {TweenMax} from "gsap";
+import Link from 'next/link';
 
 import {ui,GR}  from '~/utils/ui'
 // import { GoogleMap, Marker } from "react-google-maps"
@@ -219,8 +220,14 @@ class NavContact extends PureComponent {
                     </div>
 
                     <div {...css({marginRight:'1em'})} className = 'flashIcons'><Weibo/></div>
+                    {/*https://www.facebook.com/zhong.art.it/*/}
+                    <div {...css({marginRight:'1em'})} className = 'flashIcons'>
+                        <Link href = 'https://www.facebook.com/zhong.art.it'>
+                        {/*<a>face</a>*/}
+                            <Facebook/>
+                        </Link>
 
-                    <div {...css({marginRight:'1em'})} className = 'flashIcons'><Facebook/></div>
+                    </div>
                     <div {...css({marginRight:'1em'})} className = 'flashIcons'><Instagram/></div>
                     <div {...css({marginRight:'1em'})} className = 'flashIcons'><Youtube/></div>
                     <div {...css({marginRight:'1em'})} className = 'flashIcons'><Viemo/></div>
