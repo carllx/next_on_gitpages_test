@@ -39,7 +39,7 @@
     "testCross": "cross-var node -e \"console.log('now path on :', \\\"$npm_package_config_commitmessage\\\")\" && cross-var node -e \"console.log('now path on :', \\\"$npm_package_config_commitmessage\\\")\""
   },
   "config": {
-    "commitmessage": "⛄️ 修复nav 点击的bug ⛄️ 增加weichat Qr ⛄️ 方力均展览资料跟新"
+    "commitmessage": "⛄️ 修复微信二维码 和logo 的重叠造成扫描失败问题"
   },
   "name": "",
   "description": "## How to use",

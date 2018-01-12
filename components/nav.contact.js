@@ -3,7 +3,7 @@ import {PureComponent} from 'react'
 import { css } from 'glamor'
 import {TweenMax} from "gsap";
 
-import {perspZ  ,GR}  from '~/utils/ui'
+import {ui,GR}  from '~/utils/ui'
 // import { GoogleMap, Marker } from "react-google-maps"
 
 // import LOGO  from '~/components/svg/icons_logo'
@@ -36,31 +36,7 @@ const MapWithAMarker = withScriptjs(withGoogleMap(props =>
 ));
 
 
-class QrWeiChat extends PureComponent {
-    constructor(props){
-        super(props)
 
-    }
-    componentDidMount(){}
-    /*https://mp.weixin.qq.com/mp/qrcode?scene=10000005&size=900&__biz=MzU1NjEyMTc2Nw==&mid=2247483931&idx=1&sn=7d9b9d74a95fcf3fa8acac5f29ddad92*/
-    render(){
-        return(
-            <div>
-                <div
-                 {...css({
-                    backgroundImage:`url(\"https://mp.weixin.qq.com/mp/qrcode?scene=10000005&size=${this.props.size}&__biz=MzU1NjEyMTc2Nw==&mid=2247483931&idx=1&sn=7d9b9d74a95fcf3fa8acac5f29ddad92\")`,
-                    backgroundSize:'cover',
-                    backgroundRepeat:'no-repeat',
-                    backgroundPosition:'center center',
-                 })}
-                 className ='QRWeichat'
-                >
-                </div>
-            </div>
-
-    )}
-
-}
 
 
 class NavContact extends PureComponent {
@@ -169,12 +145,9 @@ class NavContact extends PureComponent {
                  position: 'absolute',
                  top:top,//手机端 nav bg 斜边的高度+margin
                  left:0,
-                 // marginLeft:`${margin_w}vw`,
-                 // marginRight:`${margin_w}vw`,
                  width:'100%',
                  pointerEvents:'none',
                  justifyContent:'center',
-                 // alignContent: 'center',
                  //初始, 隐藏
                  visibility:'hidden',
              })}
@@ -182,16 +155,6 @@ class NavContact extends PureComponent {
              id = 'nav_contact' // 3D 效果
             >
                 {/*LOGO*/}
-                {/*<div
-                 {...css({
-                    position:'relative',
-                    width:`${w}vw`,//暂时
-                    backfaceVisibility:'hidden',
-                    transform:`translateZ(${zp.logo.translateZ}px) scale(${zp.logo.scale})`
-                 })}
-                >
-                    <LOGO/>
-                </div>*/}
 
                 <div {...css({
                     position:'relative',
@@ -201,7 +164,12 @@ class NavContact extends PureComponent {
                     marginBottom:'2.5em',
                     pointerEvents:'none',
                 })}>
-                    <LOGO size= {logoSize}/>
+                    <LOGO
+                     strokeColor = {
+                        this.state.showQr?
+                            'none'
+                            :ui.color.b_o1}
+                     size= {logoSize}/>
                     {this.state.showQr?
                         <div
                          {...css({
@@ -209,16 +177,16 @@ class NavContact extends PureComponent {
                             height: logoSize,
                             position:'absolute',
                             margin: 'auto',
-
                          })}
                         >
                             <QRWe
                              size= {logoSize}
                             />
                         </div>
-
                     :null}
                 </div>
+
+
 
                 <div {...css({
                     display:'flex',
@@ -246,15 +214,11 @@ class NavContact extends PureComponent {
                      {...css({marginRight:'1em'})}
                      className = 'flashIcons'
                      onClick = {this.clickWeichat}
-
                      >
                         <WeiChat/>
-
                     </div>
 
                     <div {...css({marginRight:'1em'})} className = 'flashIcons'><Weibo/></div>
-
-
 
                     <div {...css({marginRight:'1em'})} className = 'flashIcons'><Facebook/></div>
                     <div {...css({marginRight:'1em'})} className = 'flashIcons'><Instagram/></div>
