@@ -161,6 +161,7 @@ class NavContact extends PureComponent {
              })}
              className = 'contact'
              id = 'nav_contact' // 3D 效果
+             key = 'nav_contact'
             >
                 {/*LOGO*/}
 
@@ -230,9 +231,12 @@ class NavContact extends PureComponent {
 
                     {/*facebook*/}
                     <div {...css({marginRight:'1em'})}
-                     onClick={(e)=>{
-                        e.preventDefault()
-                        Router.push('/','//www.facebook.com/zhong.art.it')}}
+                     onClick={()=>{
+                        // e.preventDefault()
+                        // Router.push('/','//www.facebook.com/zhong.art.it')}}
+                        // Router.replace('/','//www\.facebook\.com/zhong\.art\.it')
+                        window.location.replace('//www\.facebook\.com/zhong\.art\.it');
+                        }}
                      className = 'flashIcons'>
                             <Facebook/>
                     </div>
