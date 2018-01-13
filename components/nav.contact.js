@@ -230,7 +230,9 @@ class NavContact extends PureComponent {
 
                     {/*facebook*/}
                     <div {...css({marginRight:'1em'})}
-                     onClick={()=>{Router.push('https://www.facebook.com/zhong.art.it')}}
+                     onClick={(e)=>{
+                        e.preventDefault()
+                        Router.push('/','//www.facebook.com/zhong.art.it')}}
                      className = 'flashIcons'>
                             <Facebook/>
                     </div>
