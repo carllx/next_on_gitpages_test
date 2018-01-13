@@ -39,7 +39,7 @@
     "testCross": "cross-var node -e \"console.log('now path on :', \\\"$npm_package_config_commitmessage\\\")\" && cross-var node -e \"console.log('now path on :', \\\"$npm_package_config_commitmessage\\\")\""
   },
   "config": {
-    "commitmessage": "⛄️ 天假facebook 社交链接，⛄️ 修复about 滚动条的出现"
+    "commitmessage": "⛄️ 修复facebook 社交链接"
   },
   "name": "",
   "description": "## How to use",

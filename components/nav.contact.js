@@ -42,11 +42,8 @@ const MapWithAMarker = withScriptjs(withGoogleMap(props =>
 import Router from 'next/router'
 
 /*https://www.facebook.com/zhong.art.it*/
-const linkDirectTo = (url) =>
-  Router.push({
-    pathname: url,
-    // query: { name: 'Zeit' }
-  })
+// const linkDirectTo = (url) =>
+
 
 
 
@@ -233,7 +230,7 @@ class NavContact extends PureComponent {
 
                     {/*facebook*/}
                     <div {...css({marginRight:'1em'})}
-                     onClick={()=>{linkDirectTo('http://www.facebook.com/zhong.art.it')}}
+                     onClick={()=>{Router.push('https://www.facebook.com/zhong.art.it')}}
                      className = 'flashIcons'>
                             <Facebook/>
                     </div>
