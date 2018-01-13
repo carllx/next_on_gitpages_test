@@ -129,7 +129,7 @@ class AboutBG extends PureComponent {
                         position:'fixed',
                         zIndex:13,
                         width:landscape?`30vw`:`80vw`,
-                        overflowY:'scroll',
+                        overflowY:'auto',
                         maxHeight: landscape?null:'58vh',
                         // height:'100vh',
                         // zIndex:10,

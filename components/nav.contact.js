@@ -39,6 +39,16 @@ const MapWithAMarker = withScriptjs(withGoogleMap(props =>
 
 
 
+import Router from 'next/router'
+
+/*https://www.facebook.com/zhong.art.it*/
+const linkDirectTo = (url) =>
+  Router.push({
+    pathname: url,
+    // query: { name: 'Zeit' }
+  })
+
+
 
 class NavContact extends PureComponent {
 
@@ -94,7 +104,7 @@ class NavContact extends PureComponent {
         var tl = new TimelineMax({repeat:0,delay:0.3})
         tl.staggerTo(//targets, duration, fromVars, toVars
                 '.social_icons',
-                0.02,//
+                0.01,//
                 {
                     fill:'black',
                     // delay:2,
@@ -220,14 +230,15 @@ class NavContact extends PureComponent {
                     </div>
 
                     <div {...css({marginRight:'1em'})} className = 'flashIcons'><Weibo/></div>
-                    {/*https://www.facebook.com/zhong.art.it/*/}
-                    <div {...css({marginRight:'1em'})} className = 'flashIcons'>
-                        <Link href = 'https://www.facebook.com/zhong.art.it'>
-                        {/*<a>face</a>*/}
-                            <Facebook/>
-                        </Link>
 
+                    {/*facebook*/}
+                    <div {...css({marginRight:'1em'})}
+                     onClick={()=>{linkDirectTo('http://www.facebook.com/zhong.art.it')}}
+                     className = 'flashIcons'>
+                            <Facebook/>
                     </div>
+
+
                     <div {...css({marginRight:'1em'})} className = 'flashIcons'><Instagram/></div>
                     <div {...css({marginRight:'1em'})} className = 'flashIcons'><Youtube/></div>
                     <div {...css({marginRight:'1em'})} className = 'flashIcons'><Viemo/></div>
