@@ -96,9 +96,9 @@ class deviceOrienDispatcher extends PureComponent {
 
     startOrientTrack=(e)=>{
 
-        window.cancelAnimationFrame(this.reqAnimFrame);
         e.preventDefault();  // 阻止事件继续传播
         e.stopPropagation(); // 取消事件的默认行为
+        window.cancelAnimationFrame(this.reqAnimFrame);
         console.log('webkitCompassHeading:',e.webkitCompassHeading)
         if(e.alpha===null) return
         this.alpha = e.alpha

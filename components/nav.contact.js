@@ -101,7 +101,7 @@ class NavContact extends PureComponent {
         var tl = new TimelineMax({repeat:0,delay:0.3})
         tl.staggerTo(//targets, duration, fromVars, toVars
                 '.social_icons',
-                0.01,//
+                0.1,//
                 {
                     fill:'black',
                     // delay:2,
@@ -109,11 +109,11 @@ class NavContact extends PureComponent {
                 },0.05)
             .staggerTo(//targets, duration, fromVars, toVars
                 '.social_icons',
-                0.01,//
+                0.1,//
                 {
                     fill:'none',
                     // delay:2,
-                },0.05)
+                },0.08 ,'-=0.05')
             .set('.social_icons', {clearProps:"all"});//还原 原有的hover 样式
     }
     close(){
@@ -235,7 +235,11 @@ class NavContact extends PureComponent {
                         // e.preventDefault()
                         // Router.push('/','//www.facebook.com/zhong.art.it')}}
                         // Router.replace('/','//www\.facebook\.com/zhong\.art\.it')
-                        window.location.replace('//www\.facebook\.com/zhong\.art\.it');
+                        // window.location.replace('//www\.facebook\.com/zhong\.art\.it');
+                        window.open(
+                          '//www\.facebook\.com/zhong\.art\.it',
+                          '_blank' // <- This is what makes it open in a new window.
+                        );
                         }}
                      className = 'flashIcons'>
                             <Facebook/>

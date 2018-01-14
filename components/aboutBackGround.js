@@ -48,7 +48,18 @@ class AboutBG extends PureComponent {
       max = Math.floor(max);
       return Math.floor(Math.random() * (max - min)) + min; //The maximum is exclusive and the minimum is inclusive
     }
+    /*
+                // ease: Power4.easeOut,
 
+                // ease: Elastic.easeOut.config(1, 0.3),
+
+                 ease:Back.easeOut.config(2),
+
+                // ease: Elastic.easeOut.config(1, 0.3),
+
+                ease: Back.easeIn.config(2)
+
+     */
     toInfo(){
         let rot_value = this.props.landscape?500:-122
         // console.log(`toInfo_${rot_value}`)
@@ -71,12 +82,12 @@ class AboutBG extends PureComponent {
 
         this.props.setPanelOn('close')
         TweenMax.staggerTo(".aboutBG",
-            0.5,
+            0.3,
             {
                 scale:0.1,
                 rotationZ:rot_value,
                 transformOrigin: "center center",
-                ease: Power4.easeOut,
+                // ease: Power4.easeOut,
                 autoAlpha:0,//opacity:0,visibility:'hidden'
             },
             0.06);
