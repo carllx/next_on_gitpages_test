@@ -39,7 +39,7 @@
     "testCross": "cross-var node -e \"console.log('now path on :', \\\"$npm_package_config_commitmessage\\\")\" && cross-var node -e \"console.log('now path on :', \\\"$npm_package_config_commitmessage\\\")\""
   },
   "config": {
-    "commitmessage": "⛄️ 尝试 facebook 社交链接,弹出新的tab访问"
+    "commitmessage": "⛄️ 修复小尺寸 macpro about显示不居中,字体太大"
   },
   "name": "",
   "description": "## How to use",

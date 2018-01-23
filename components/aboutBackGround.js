@@ -17,7 +17,7 @@ const Shape= (props) => (
         /*初始值*/
         /*center*/
         zIndex:10,
-        position:'fixed',
+        position:'absolute',
 
         /*center*/
         background: props.color||ui.color.w_o2,
@@ -139,9 +139,10 @@ class AboutBG extends PureComponent {
                         // fontSize:'14px',
                         position:'fixed',
                         zIndex:13,
-                        width:landscape?`30vw`:`80vw`,
+                        width:landscape?`45vw`:`80vw`,
                         overflowY:'auto',
-                        maxHeight: landscape?null:'58vh',
+                        maxHeight: landscape?'58vh':'58vh',
+                        fontSize:'0.8em',
                         // height:'100vh',
                         // zIndex:10,
 

@@ -34,7 +34,7 @@ class Logo2About extends PureComponent{
             <div
              {...css({
                 /*居中*/
-                 display:'flex',
+                 display:'static',
                  flexDirection:'column',
                  alignItems:'center',
                  position:'absolute',
