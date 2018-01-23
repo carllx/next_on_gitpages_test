@@ -20,6 +20,8 @@ const Shape= (props) => (
         position:'absolute',
 
         /*center*/
+        left:0,
+        right:0,
         background: props.color||ui.color.w_o2,
         width:`${props.width||1400}px`,
         height:`${props.height||1400}px`,
@@ -137,7 +139,7 @@ class AboutBG extends PureComponent {
                     <div
                      {...css({
                         // fontSize:'14px',
-                        position:'fixed',
+                        position:'relative',
                         zIndex:13,
                         width:landscape?`45vw`:`80vw`,
                         overflowY:'auto',
