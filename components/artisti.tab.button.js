@@ -1,5 +1,5 @@
 import { css } from 'glamor'
-import {ui  ,GR ,makeKEY ,perspZ}  from '../utils/ui'
+import { ui  ,GR ,makeKEY ,perspZ }  from '../utils/ui'
 import { PureComponent } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
@@ -29,25 +29,31 @@ class TABS extends PureComponent {
 
         super(props)
         this.handleClick = this._onClickTab
+        this.tabs =['BIOGRAPHY','WORKS','SELECTTEXTS','NEWS','EXHIBITIONS']
+        this.tabsName = {
+            it:['BIOGRAFIA','LAVORI','SELECTTEXTS','NOTIZIE','MOSTRE'],
+            zh:['介  绍','作  品','摘  文','新  闻','展  览'],
+            en:['BIOGRAPHY','WORKS','SELECTTEXTS','NEWS','EXHIBITIONS'],
+        }
     }
 
     componentDidMount(){
 
         let obj ={}
-        this.props.tabs.map((tab)=>
+        this.tabs.map((tab)=>
             obj[tab] = findPos(this[`$${tab}`])
         )
 
-        this.props.initTabs(obj)
-
+        this.props.initTabs(obj)/*用于网页刷新/跳转时初始化 各个Tabs 的状态*/
 
         // 默认选择第一个Tab
-        const firstTab = this.props.tabs[0]
+        const firstTab = this.tabs[0]
         this.props.touchOnTab(firstTab)
     }
 
-    _onClickTab(tabName){
+    _onClickTab(index){
         // debugger
+        const tabName = this.tabs[index]
         this.props.touchOnTab(tabName)
     }
 
@@ -71,7 +77,7 @@ class TABS extends PureComponent {
                  key = {`TABS`}
                  className = {'Buttons'}
                 >
-                    {this.props.tabs.map((tab,index)=>
+                    {this.tabsName[this.props.language].map((tab,index)=>
                         <div
                          {...css({// button
                             transformStyle: 'preserve-3d',//@parallax
@@ -80,12 +86,11 @@ class TABS extends PureComponent {
                             // marginBottom:'.5em',
                             textAlign:'right',
                          })}
-                         ref = {c => this[`$${tab}`] = c}
+                         ref = {c => this[`$${this.tabs[index]}`] = c}
                          key = {`tabs_${index}`}
-                         // ref = {c => this.pppp = c}
-                         id = {tab}
+                         id = {this.tabs[index]}
                          className = {'tabsButtons'}
-                         onClick = {this._onClickTab.bind(this,tab)}//传入tabName
+                         onClick = {this._onClickTab.bind(this,index)}//传入tabName
                         >
                             {tab}
                         </div>
@@ -105,7 +110,9 @@ class TABS extends PureComponent {
     }
 }
 
-
+const mapStateToProps = (state) => ({
+    language:state.Root.language,
+});
 
 const mapDispatchToProps = (dispatch ) =>{
     return {
@@ -115,4 +122,9 @@ const mapDispatchToProps = (dispatch ) =>{
 }
 
 // export default Nav;
-export default connect(null ,mapDispatchToProps)(TABS)
+export default connect(mapStateToProps ,mapDispatchToProps)(TABS)
+
+// Post2Tabs = () => {
+//     this.tab_names = [
+
+//   ];,

@@ -27,7 +27,6 @@ export const initTabs = (obj) => (dispatch)=> {
 
 export const touchOnTab = (name, pos) => (dispatch)=> {
   // debugger
-  // console.log(window)
   return dispatch({
         type: actionTypes.TOUCH_ON_TAB,
         name: name,
