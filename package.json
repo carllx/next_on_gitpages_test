@@ -39,7 +39,7 @@
     "testCross": "cross-var node -e \"console.log('now path on :', \\\"$npm_package_config_commitmessage\\\")\" && cross-var node -e \"console.log('now path on :', \\\"$npm_package_config_commitmessage\\\")\""
   },
   "config": {
-    "commitmessage": "artisti button 名称增加语言翻译"
+    "commitmessage": "artisti biography exhibitions 增加语言支持"
   },
   "name": "",
   "description": "## How to use",

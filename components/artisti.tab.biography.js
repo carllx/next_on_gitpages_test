@@ -34,6 +34,11 @@ class Biography extends PureComponent {
         super(props);
         this.state = {on:'ALL'}
         this.handleClick  = this.onClick.bind(this)
+        this.exhibitionButtons = {
+            en:['ALL EXHIBITIONS','SOLO EXHIBITIONS','GROUP EXHIBITIONS'],
+            it:['TUTTE LE MOSTRE','MOSTRE PERSONALI','MOSTRE COLLETTIVE'],
+            zh:['所有展览','个展','群展'],
+        }
     }
 
     onClick(name){
@@ -48,9 +53,9 @@ class Biography extends PureComponent {
 
 
         if (this.state.on ==='Solo'){
-            exhibitions =EXHIBITIONS[this.props.language][0]
+            exhibitions = EXHIBITIONS[this.props.language][0]
         }else if (this.state.on ==='Group'){
-            exhibitions =EXHIBITIONS[this.props.language][1]
+            exhibitions = EXHIBITIONS[this.props.language][1]
         }else if(this.state.on ==='ALL'){
             // 遗憾 array 的数据没有合并在一起
             // 1.
@@ -105,19 +110,19 @@ class Biography extends PureComponent {
                 })}
                 >
                     <Button
-                     name = 'ALL Exhibitions'
+                     name = {this.exhibitionButtons[this.props.language][0]}
                      landscape = {this.props.landscape}
                      width =  {this.props.width}
                      onClick={()=>{this.handleClick('ALL')}}
                      on = {this.state.on ==='ALL'}/>
                     <Button
-                     name = 'Solo Exhibitions'
+                     name = {this.exhibitionButtons[this.props.language][1]}
                      landscape = {this.props.landscape}
                      width = {this.props.width}
                      onClick={()=>{this.handleClick('Solo')}}
                      on = {this.state.on ==='Solo'}/>
                     <Button
-                     name = 'Group Exhibitions'
+                     name = {this.exhibitionButtons[this.props.language][2]}
                      landscape = {this.props.landscape}
                      width = {this.props.width}
                      onClick={()=>{this.handleClick('Group')}}

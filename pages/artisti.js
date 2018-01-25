@@ -19,7 +19,6 @@ import  debounce  from 'lodash/debounce'
 import TabButton from '~/components/artisti.tab.button'
 import Biography from '~/components/artisti.tab.biography'
 import SelectText from '~/components/artisti.tab.selectText'
-import Exhibition from '~/components/artisti.tab.exhibitions'
 import Work from '~/components/artisti.tab.works'
 
 
@@ -54,22 +53,7 @@ class Artisti extends PureComponent {
     'NEWS',
     'EXHIBITIONS',
   ];
-    // this.tab_names = []
-    // if (this.props.biography){
-    //   this.tab_names.push('BIOGRAPHY')
-    // }
-    // if (this.props.works){
-    //   this.tab_names.push('WORKS')
-    // }
-    // if (this.props.selectTexts){
-    //   this.tab_names.push('SELECT TEXTS')
-    // }
-    // if (this.props.news){
-    //   this.tab_names.push('NEWS')
-    // }
-    // if (this.props.zaiExhibitions){
-    //   this.tab_names.push('EXHIBITIONS')
-    // }
+
   }
 
 
