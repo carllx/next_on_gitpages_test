@@ -34,7 +34,7 @@ export class BUTTONS extends PureComponent{
                 transform: this.props.is_landscape? 'translate(0, 0)':'translate(50%, -100%)' ,
                 width: this.props.is_landscape? '40%':'100%',
                 opacity:this.props.show?1:0,
-                pointerEvents:this.props.show?'auto':'none',//svg 禁用了pointerEvents
+                pointerEvents:'none',
 
                 justifyContent:'space-around',
                 position:'fixed',
@@ -52,11 +52,12 @@ export class BUTTONS extends PureComponent{
                         (items) =>
                             <div
                              {...css({
-                                paddingTop:this.props.is_landscape?`${GR.vw(8)}vw`:`${GR.vw(6)}vw`,
-                                paddingBottom:`${GR.vw(6)}vw`,
+                                // paddingTop:this.props.is_landscape?`${GR.vw(8)}vw`:`${GR.vw(6)}vw`,
+                                // paddingBottom:this.props.is_landscape?`${GR.vw(8)}vw`:`${GR.vw(6)}vw`,
+                                padding:this.props.is_landscape?`${GR.vw(8)}vw`:`${GR.vw(6)}vw`,
                                 cursor: 'pointer',
                                 userSelect: 'none',
-                                pointerEvents:'auto',
+                                pointerEvents:'auto',//svg 禁用了pointerEvents
                              })}
                              key= {`nav_button_${items.id}`}
                              onClick = {(e)=>{

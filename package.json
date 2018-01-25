@@ -39,7 +39,7 @@
     "testCross": "cross-var node -e \"console.log('now path on :', \\\"$npm_package_config_commitmessage\\\")\" && cross-var node -e \"console.log('now path on :', \\\"$npm_package_config_commitmessage\\\")\""
   },
   "config": {
-    "commitmessage": "artisti biography exhibitions 增加语言支持"
+    "commitmessage": "优化 nav buttons 的点击选区 , 避免如背面内容上有按钮会遮挡的问题 "
   },
   "name": "",
   "description": "## How to use",
