@@ -10,7 +10,7 @@ import SVG_BACKGROUND  from '~/components/nav.bg.svg_SMIL'
 import Language  from '~/components/nav.language'
 import {BUTTONS}  from '~/components/nav.buttons'
 import ArtistiNav  from '~/components/nav.artisti'
-import AboutNav  from '~/components/nav.contact'
+import ContactNav  from '~/components/nav.contact'
 import Info  from '~/components/info'
 
 import { setPanelOn } from '~/reducers/nav'
@@ -43,24 +43,6 @@ class Triangle extends PureComponent{
         )
     }
 }
-
-// // // DATA
-// const CONFIG = [{
-//         'title':{zh:'艺术家',en:'ARTISTS',it:'ARTISTI'},
-//         'id':'artisti',
-//     },{
-//         'title':{zh:'展览',en:'EXHIBITIONS',it:'MOSTRE'},
-//         'id':'mostre',
-//     },{
-//         'title':{zh:'新闻',en:'NEWS',it:'EVENTI'},
-//         'id':'eventi',
-//     },{
-//         'title':{zh:'关于',en:'ABOUT',it:'DI NOI'},
-//         'id':'about',
-//     }
-// ]
-
-
 
 /**
  * NAV 组件
@@ -146,14 +128,13 @@ class Nav extends PureComponent {
 
               {/*ARTISTA*/}
               <ArtistiNav/>
-              {/*ABOUT*/}
-              <AboutNav showLogo={true}
-              />
+              {/*CONTACT*/}
+              <ContactNav />
               {/*语言切换*/}
               <Language is_landscape ={landscape}/>
 
               {/*Sorry Comming*/}
-              { nav_on==='eventi'||nav_on==='mostre'?
+              { nav_on === 'news'||nav_on === 'mostre'?
                 <div
                  {...css({
                     display: 'flex',
@@ -166,10 +147,8 @@ class Nav extends PureComponent {
                     height:'100vh',
                     zIndex:9,
                     pointerEvents:'none', //避免遮挡Logo点击
-                    overflowX: 'hidden',//@parallax
-                    overflowY: 'hidden',//@parallax
+                    overflow: 'hidden',//@parallax
                  })}
-                 className = 'carllx'
                 >
 
                   <Info
@@ -185,7 +164,7 @@ class Nav extends PureComponent {
 
               {/*艺术家,新闻,关于,*/}
               <BUTTONS
-              language={language}
+              language = {language}
               is_landscape = {landscape}
               show = {nav_on!=='close'}
               foo = {this.onPanel}

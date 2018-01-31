@@ -35,7 +35,6 @@ import {QuoteLeft,QuoteRight}  from '~/components/svg/icons_static_svg'
 export default class Info extends PureComponent {
     constructor(props){
         super(props);
-
     }
 
     componentDidMount(){

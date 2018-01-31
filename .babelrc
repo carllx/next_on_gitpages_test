@@ -4,10 +4,10 @@
   ],
   "env": {
     "development": {
-      "plugins": ["babel-plugin-root-import"]
+      "plugins": ["babel-plugin-root-import","markdown-in-js/babel"]
     },
     "production": {
-      "plugins": ["babel-plugin-root-import"]
+      "plugins": ["babel-plugin-root-import","markdown-in-js/babel"]
     }
   }
 }

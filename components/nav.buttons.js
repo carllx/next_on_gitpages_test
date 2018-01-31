@@ -10,7 +10,7 @@ const CONFIG = [{
         'id':'mostre',
     },{
         'title':{zh:'新闻',en:'NEWS',it:'EVENTI'},
-        'id':'eventi',
+        'id':'news',
     },{
         'title':{zh:'联系',en:'CONTACT',it:'CONTATTO'},
         'id':'contact',

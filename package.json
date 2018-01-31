@@ -4,11 +4,12 @@
     "babel-plugin-root-import": "^5.1.0",
     "express": "^4.16.2",
     "glamor": "^2.20.40",
-    "glamorous": "^4.11.2",
+    "glamorous": "^4.11.4",
     "gsap": "^1.20.3",
     "isomorphic-fetch": "^2.2.1",
     "lodash": "^4.17.4",
-    "next": "^4.2.1",
+    "markdown-in-js": "^1.1.3",
+    "next": "^4.2.3",
     "next-redux-wrapper": "^1.3.5",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
@@ -23,7 +24,7 @@
     "redux": "^3.7.2",
     "redux-devtools-extension": "^2.13.2",
     "redux-thunk": "^2.2.0",
-    "serve": "^6.4.4",
+    "serve": "^6.4.9",
     "three": "^0.89.0"
   },
   "scripts": {
@@ -39,7 +40,7 @@
     "testCross": "cross-var node -e \"console.log('now path on :', \\\"$npm_package_config_commitmessage\\\")\" && cross-var node -e \"console.log('now path on :', \\\"$npm_package_config_commitmessage\\\")\""
   },
   "config": {
-    "commitmessage": "优化 nav buttons 的点击选区 , 避免如背面内容上有按钮会遮挡的问题 "
+    "commitmessage": "正在尝试 -- 为 News , 增加 markdown 功能"
   },
   "name": "",
   "description": "## How to use",
