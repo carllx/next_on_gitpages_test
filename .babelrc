@@ -2,12 +2,13 @@
   "presets": [
     "next/babel",
   ],
+  "plugins": ["markdown-in-js/babel"],
   "env": {
     "development": {
-      "plugins": ["babel-plugin-root-import","markdown-in-js/babel"]
+      "plugins": ["markdown-in-js/babel","babel-plugin-root-import"]
     },
     "production": {
-      "plugins": ["babel-plugin-root-import","markdown-in-js/babel"]
+      "plugins": ["markdown-in-js/babel","babel-plugin-root-import"]
     }
   }
 }

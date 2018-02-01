@@ -1,8 +1,9 @@
+import md from 'markdown-in-js'
 module.exports =
 {
   "id": "2018_artists_plan",
   "title": {
-    "it": "2018 L'artista cinese ha intenzione di rimanere a Firenze, in Italia",
+    "it": "2018 L'artista cinese ha intenzione di rimanere a Firenze",
     "zh": "2018 中国艺术家赴意大利佛罗伦萨驻留计划",
     "en": "2018 Chinese artists plan to stay in Florence, Italy"
   },
@@ -15,9 +16,10 @@ module.exports =
     "佛罗伦萨",
     "中国艺术家赴意大利",
   ],
-  "md": {
-    "it": "Vincenzo Ventimiglia nasce a Cinisi (Palermo) nel 1968.Nel 1986  consegue la maturità al Liceo Artistico di Palermo.Nel 1987 si  trasferisce a Firenze per frequentare il corso di scultura dell’Accademia di Belle Arti,  diplomandosi nel 1991.Dal 1988 è attivo presso il laboratorio Leonetto Tintori di Prato e studia le tecniche di pittura murale antiche e moderne.Dal 1990 insegna presso il laboratorio e partecipa alle iniziative dell’associazione Tintori per lo studio delle antiche tecniche legate all’affresco (conferenze, workshop, mostre e pubblicazioni). Esegue commissioni di grandi affreschi in Sicilia. Ha svolto un’intensa attività anche nel campo della conservazione e restauro delle pitture murali.Nel 1995 e nel 1997 lavora come docente nell’ambito dei corsi di formazione  professionale della Regione Toscana, in convenzione con la Provincia di Prato.Dal 1992 al 1996 ha lavorato come assistente di scultura presso la Syracuse University of Florence.Nel 1996 e nel 1997 ha insegnato Plastica Ornamentale presso l’Accademia di Belle Arti di Firenze e Palermo.Dal 1998 è docente di ruolo presso la scuola di Scultura dell’ Accademia di Belle Arti di Firenze. Dal 2008 insegna presso la stessa Accademia nel Biennio specialistico sperimentale di Arti visive e nuovi linguaggi espressivi.Presso l’Accademia di Belle Arti è stato Prodirettore e Consigliere Accademico per sei anni consecutivi.Lavora come artista in ambiti diversi. Le sue opere fanno parte di collezioni private e pubbliche.Svolge un’intensa attività anche come organizzatore e curatore d’iniziative culturali.",
-    "zh": `# 2018中国艺术家赴意大利佛罗伦萨驻留计划
+  "content": {
+    "it": `# 2018 L'artista cinese ha intenzione di rimanere a Firenze\n\n中国、意大利两国都是文明古国`,
+    "en": `# 2018 Chinese artists plan to stay in Florence, Italy\n\n中国、意大利两国都是文明古国，`,
+    "zh": `## 2018中国艺术家赴意大利佛罗伦萨驻留计划
 
 中国、意大利两国都是文明古国，在世界文明的发展史上有着不可替代的地位。在浩瀚的历史的长河中，两国之间的文化交流很早就有确凿的史料记述，早在我国明代，意大利传教士利玛窦来华，将西方优秀文化带入中国，并在中国绘制了《山海舆地图》。清代，又有意大利艺术家郎世宁来华任宫廷画师，曾参与皇家园林圆明园西洋楼的设计。郎世宁的画作创造了新的样式，兼顾了中国审美观念，同时又把西方创作的方式结合起来，其诸多作品至今都还收藏在故宫博物院中。纵观艺术发展史，中意两国艺术源远流长，作为文艺复兴发祥地的意大利率先将绘画从宗教和祭坛中独立出来，成为重要的艺术门类后，影响了整个欧洲继而影响到全世界。而作为中华文明象征的水墨艺术历经千年传承，在21世纪的今天也成为世界范围内的重要艺术表达手段。就像这两种不同的艺术样式间日渐交融的趋势一样，中意两国的艺术也在不断地深入交流与发展。在这一趋势下，青年艺术家之间的交流显得尤为重要，他们是当今青年艺术的现实面貌，代表着两国当代艺术的发展的未来。
 新世纪以来，越来越多的学子进入艺术院校学习，越来越多的艺术青年也从高校步入社会。高等艺术教育的发展蓬勃，同时，众多富有艺术才华的青年学子初毕业，即因市场与就业的压力，放弃了艺术之路，这实在是高等艺术教育、乃至中国文化事业发展的一大憾事。同样，西方也面临着相似的问题。
@@ -79,8 +81,6 @@ module.exports =
 中国国家当代艺术档案库
 中国国家画院文化产业研究中心
 Le Murate 当代艺术中心
-中艺国际文化艺术中心`,
-    "en": "Vincenzo Ventimiglia nasce a Cinisi (Palermo) nel 1968.Nel 1986  consegue la maturità al Liceo Artistico di Palermo.Nel 1987 si  trasferisce a Firenze per frequentare il corso di scultura dell’Accademia di Belle Arti,  diplomandosi nel 1991.Dal 1988 è attivo presso il laboratorio Leonetto Tintori di Prato e studia le tecniche di pittura murale antiche e moderne.Dal 1990 insegna presso il laboratorio e partecipa alle iniziative dell’associazione Tintori per lo studio delle antiche tecniche legate all’affresco (conferenze, workshop, mostre e pubblicazioni). Esegue commissioni di grandi affreschi in Sicilia. Ha svolto un’intensa attività anche nel campo della conservazione e restauro delle pitture murali.Nel 1995 e nel 1997 lavora come docente nell’ambito dei corsi di formazione  professionale della Regione Toscana, in convenzione con la Provincia di Prato.Dal 1992 al 1996 ha lavorato come assistente di scultura presso la Syracuse University of Florence.Nel 1996 e nel 1997 ha insegnato Plastica Ornamentale presso l’Accademia di Belle Arti di Firenze e Palermo.Dal 1998 è docente di ruolo presso la scuola di Scultura dell’ Accademia di Belle Arti di Firenze. Dal 2008 insegna presso la stessa Accademia nel Biennio specialistico sperimentale di Arti visive e nuovi linguaggi espressivi.Presso l’Accademia di Belle Arti è stato Prodirettore e Consigliere Accademico per sei anni consecutivi.Lavora come artista in ambiti diversi. Le sue opere fanno parte di collezioni private e pubbliche.Svolge un’intensa attività anche come organizzatore e curatore d’iniziative culturali."
+中艺国际文化艺术中心`
   }
-
 }

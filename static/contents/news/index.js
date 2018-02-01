@@ -13,20 +13,19 @@
  *
  */
 
-const artistplan2018 = require("./artistplan2018.js");
+const artistplan2018 = require("./2018_artists_plan.js");
 
 
-const ARTISTI =  [
-    artistplan2018,
+const NEWS =  [artistplan2018]
 
-]
 
-// 发送到 nav artisti 使用
-module.exports.artistInfo = ARTISTI.map(
+// 发送到 nav NEWS 使用
+module.exports.newsInfo = NEWS.map(
 
         (item)=>{
             return {
                 id:item.id,
+                title:item.title,
                 // avatar:item.avatar,??? 图片
                 data:item.data,
             }

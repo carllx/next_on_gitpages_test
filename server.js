@@ -40,6 +40,12 @@ app.prepare()
     })
   })
 
+  server.get('/news/:id', (req, res) => {
+    return app.render(req, res, '/news', {
+      id: req.params.id
+    })
+  })
+
   /*
     实现不了 custom route for posts http://localhost:3000/artisti?id=EnzoCucchi , 因为 文件夹命名不能使用 '?'
    */
