@@ -237,7 +237,7 @@ class Artisti extends PureComponent {
             <Nav show_on_init = {!is_landscape}/>
         </NoSSR>
         <NoSSR>
-          <Scroller />
+          <Scroller BarOnId = 'win_scroller' />
         </NoSSR>
         <Resizer/>
 

@@ -40,7 +40,7 @@
     "testCross": "cross-var node -e \"console.log('now path on :', \\\"$npm_package_config_commitmessage\\\")\" && cross-var node -e \"console.log('now path on :', \\\"$npm_package_config_commitmessage\\\")\""
   },
   "config": {
-    "commitmessage": "2018-2-1 正在尝试 -- 为 News , 增加 markdown 功能"
+    "commitmessage": "修复在制作 news 2018 artisti 时候发现scroller 组件问题"
   },
   "name": "",
   "description": "## How to use",

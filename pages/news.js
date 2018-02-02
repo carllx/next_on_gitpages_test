@@ -14,7 +14,7 @@ import Nav from '~/components/nav'
 import Seczione from '~/components/section'
 import {initStore} from '~/store'
 
-import md from 'markdown-in-js'
+import markdown from 'markdown-in-js'
 
 
 
@@ -83,7 +83,15 @@ class News extends PureComponent {
 
 
       {/*3D Parallax*/}
-      <div>
+      <div
+       {
+       ...css({
+        overflowY: 'auto',//@parallax
+        // height: '100%',//@parallax
+      })}
+
+
+      >
 
 
         {/* 头像和描述
@@ -100,9 +108,10 @@ class News extends PureComponent {
               // transition: `transform 1s cubic-bezier(0.1, 0.5, 0.4, 1)`,
             })}
            key= {`${this.props.id}-${this.props.language}`}
+           id ='win_scroller'
           >
 
-            {md`## 2018中国艺术家赴意大利佛罗伦萨驻留计划
+            {markdown`## 2018中国艺术家赴意大利佛罗伦萨驻留计划
 
 中国、意大利两国都是文明古国，在世界文明的发展史上有着不可替代的地位。在浩瀚的历史的长河中，两国之间的文化交流很早就有确凿的史料记述，早在我国明代，意大利传教士利玛窦来华，将西方优秀文化带入中国，并在中国绘制了《山海舆地图》。清代，又有意大利艺术家郎世宁来华任宫廷画师，曾参与皇家园林圆明园西洋楼的设计。郎世宁的画作创造了新的样式，兼顾了中国审美观念，同时又把西方创作的方式结合起来，其诸多作品至今都还收藏在故宫博物院中。纵观艺术发展史，中意两国艺术源远流长，作为文艺复兴发祥地的意大利率先将绘画从宗教和祭坛中独立出来，成为重要的艺术门类后，影响了整个欧洲继而影响到全世界。而作为中华文明象征的水墨艺术历经千年传承，在21世纪的今天也成为世界范围内的重要艺术表达手段。就像这两种不同的艺术样式间日渐交融的趋势一样，中意两国的艺术也在不断地深入交流与发展。在这一趋势下，青年艺术家之间的交流显得尤为重要，他们是当今青年艺术的现实面貌，代表着两国当代艺术的发展的未来。
 新世纪以来，越来越多的学子进入艺术院校学习，越来越多的艺术青年也从高校步入社会。高等艺术教育的发展蓬勃，同时，众多富有艺术才华的青年学子初毕业，即因市场与就业的压力，放弃了艺术之路，这实在是高等艺术教育、乃至中国文化事业发展的一大憾事。同样，西方也面临着相似的问题。
@@ -192,7 +201,9 @@ Le Murate 当代艺术中心
         <NoSSR>
             <Nav show_on_init = {!is_landscape}/>
         </NoSSR>
-
+        <NoSSR>
+          <Scroller />
+        </NoSSR>
         <Resizer/>
 
       </main>
@@ -207,8 +218,6 @@ Le Murate 当代艺术中心
 const mapStateToProps = (state) => ({
     view_size:state.Root.view_size,
     language:state.Root.language,
-
-    // device:state.Root.device,
 });
 
 const mapDispatchToProps = (dispatch) => {

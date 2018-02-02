@@ -1,4 +1,6 @@
-import md from 'markdown-in-js'
+
+
+
 module.exports =
 {
   "id": "2018_artists_plan",

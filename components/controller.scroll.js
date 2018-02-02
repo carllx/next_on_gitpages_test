@@ -25,7 +25,7 @@ class Scroller extends PureComponent {
     isScrollUp = () => {
 
         // debugger
-        this._scrollY =this.$win.scrollTop
+        this._scrollY = this.props.BarOnId?this.$win.scrollTop:window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
         if (this._scrollY === this._prevScrollY) return
 
         if (this._scrollY - this._prevScrollY <= 0) { // is up ?
@@ -41,7 +41,7 @@ class Scroller extends PureComponent {
     }
 
     updateY = () => {
-        const y = this.$win.scrollTop
+        const y = this.props.BarOnId?this.$win.scrollTop:window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
         this._scrollY = y;
         // this.props.setScrollOffsetY(y);
         // debounce(this.props.setScrollOffsetY, 100);
@@ -56,12 +56,11 @@ class Scroller extends PureComponent {
     }
 
     componentDidMount() {
-        // LISTENERS
 
-        // this.$win = this.props.element?this.props.element:window
-        // this.$win = ReactDOM.findDOMNode(this).parentNode
-        this.$win = document.getElementById('win_scroller')
-        this._prevScrollY = this.$win.scrollTop;
+        // 根据是否设置了滚动区域 ,决定 Listener 安装的元素
+        this.$win = this.props.BarOnId?document.getElementById(this.props.BarOnId):window
+        // 根据是否设置了滚动区域 ,决定从哪个元素获取 scroltop 的参数
+        this._prevScrollY = this.props.BarOnId?this.$win.scrollTop:window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
         this.$win.addEventListener('scroll', this.handleScroll,false)
         // debugger
     }
