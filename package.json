@@ -40,7 +40,7 @@
     "testCross": "cross-var node -e \"console.log('now path on :', \\\"$npm_package_config_commitmessage\\\")\" && cross-var node -e \"console.log('now path on :', \\\"$npm_package_config_commitmessage\\\")\""
   },
   "config": {
-    "commitmessage": "修复在制作 news 2018 artisti 时候发现scroller 组件问题"
+    "commitmessage": "上传 2018 艺术家 计划 pdf"
   },
   "name": "",
   "description": "## How to use",

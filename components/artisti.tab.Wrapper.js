@@ -5,6 +5,7 @@ import {ui}  from '~/utils/ui'
 
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
+import Copyright from '~/components/copyright'
 /*
  Wrapper Function(VERSION redux )
  Usage: import 该 Wrapper ,
@@ -105,35 +106,9 @@ const TAB =()=>
                        width = {this.props.width}
                       />
 
-                      {/*COPYRIGHT*/}
-                      <div
-                       {...css({
-                        color:ui.color.b_o2,
-                        // display:'flex',
-                        // justifyContent:'center',
-                        // alignItems:'center',
-                        // flexDirection:'row',
-                        // width:`${this.props.vw}px`,
-                        // height:`${this.props.landscape?'10rem':'5rem'}`,
-                        //
-
-
-                        position: 'absolute',
-                        right: 0,
-                        bottom: 0,
-                        left: 0,
-                        textAlign:'center',
-                        // paddingTop: '3rem',
-                        paddingBottom: '0.5rem',
-                        // marginBottom:`${is_landscape?GR.vw(6):GR.vw(6)}vw`,
-                       })}
-                       key= {`COPYRIGHT_${language}`}
-                      >
-                        <div>
-                          {copyRight}
-                        </div>
-                      </div>
+                      <Copyright/>
                   </div>
+
               )
           }
         }

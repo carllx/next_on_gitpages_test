@@ -1,6 +1,6 @@
 
 import {PureComponent} from 'react'
-import glamorous,{withTheme} from 'glamorous'
+// import glamorous,{withTheme} from 'glamorous'
 import {css} from 'glamor'
 import NoSSR from 'react-no-ssr';
 
