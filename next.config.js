@@ -1,7 +1,7 @@
 const fetch = require('isomorphic-fetch')
 const cp = require('recursive-copy')
 const artisti =  require('./static/contents/artisti/')
-const news =  require('./static/contents/news/')
+// const news =  require('./static/contents/news/')
 
 
 
@@ -26,22 +26,22 @@ module.exports = {
     )
 
 
-    const newsPages = news.newsInfo.reduce(
-      (newsPages, obj) =>
-        Object.assign({}, newsPages, {
-          [`/news/${obj.id}`]: {
-            page: '/news',
-            query: { id: obj.id }
-          }
-        }),
-      {},
-    )
+    // const newsPages = news.newsInfo.reduce(
+    //   (newsPages, obj) =>
+    //     Object.assign({}, newsPages, {
+    //       [`/news/${obj.id}`]: {
+    //         page: '/news',
+    //         query: { id: obj.id }
+    //       }
+    //     }),
+    //   {},
+    // )
     // combine the map of post pages with the home
     return Object.assign(
       {},
       // pages,
       artistPages ,
-      newsPages ,
+      // newsPages ,
       {
       '/': { page: '/' }
     })

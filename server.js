@@ -5,33 +5,11 @@ const dev = process.env.NODE_ENV !== 'production'
 const app = next({ dev })
 const handle = app.getRequestHandler()
 
-/*静态文件*/
-// const robotsOpt = {
-//   root: __dirname + '/static/',
-//   headers: {
-//     'Content-Type': 'text/plain;charset=UTF-8',
-//   }
-// };
-// const siteMapOpt = {
-//   root: __dirname + '/static/',
-//   headers: {
-//     'Content-Type': 'text/xml',//,application/xml
-//   }
-// };
 
 
 
-
-app.prepare()
-.then(() => {
+app.prepare().then(() => {
   const server = express()
-
-  // custom route for posts
-  // server.get('/post/:id', (req, res) => {
-  //   return app.render(req, res, '/post', {
-  //     id: req.params.id
-  //   })
-  // })
 
   // custom route for posts
   server.get('/artisti/:id', (req, res) => {
@@ -40,23 +18,16 @@ app.prepare()
     })
   })
 
-  server.get('/news/:id', (req, res) => {
-    return app.render(req, res, '/news', {
-      id: req.params.id
-    })
-  })
-
-  /*
-    实现不了 custom route for posts http://localhost:3000/artisti?id=EnzoCucchi , 因为 文件夹命名不能使用 '?'
-   */
-  // server.get('/artisti/?id=:id', (req, res) => {
-  //   return app.render(req, res, '/artisti', {
+  // server.get('/news/:id', (req, res) => {
+  //   return app.render(req, res, '/news', {
   //     id: req.params.id
   //   })
   // })
 
 
-
+  server.get('/news/:slug', (req, res) => {
+    renderPost(app, req, res)
+  })
   server.get('*', (req, res) => {
     return handle(req, res)
   })
@@ -77,3 +48,33 @@ app.prepare()
     console.log('> Ready on http://localhost:3000')
   })
 })
+
+
+
+function renderPost(app, req, res) {
+  if (dev) {
+    handle(req, res)
+    return
+  }
+
+  // if (pageCache.has(req.path)) {
+  //   res.send(pageCache.get(req.path))
+  //   return
+  // }
+
+  app
+    .renderToHTML(req, res, req.path, req.query)
+    .then(html => {
+      // // Let's cache this page
+      // // eslint-disable-next-line no-console
+      // console.log(`CACHE MISS: ${req.path}`);
+      // pageCache.set(req.path, html);
+
+      // send it
+      res.send(html);
+    })
+    .catch(err => {
+      console.error(err.stack)
+      app.renderError(err, req, res, req.path, req.query);
+    });
+}

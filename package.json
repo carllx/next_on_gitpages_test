@@ -40,7 +40,7 @@
     "testCross": "cross-var node -e \"console.log('now path on :', \\\"$npm_package_config_commitmessage\\\")\" && cross-var node -e \"console.log('now path on :', \\\"$npm_package_config_commitmessage\\\")\""
   },
   "config": {
-    "commitmessage": "2018年2月2日下班"
+    "commitmessage": "测试根据arunoda/arunoda.me 设置的路由方式"
   },
   "name": "",
   "description": "## How to use",
