@@ -27,8 +27,8 @@ module.exports = {
     )
 
     const newsPages = {
-      '/news/all-about-basic-attention-token':{
-        page: '/news/all-about-basic-attention-token',
+      '/news/2018_artists_plan':{
+        page: '/news/2018_artists_plan',
         // query: { title: 'all-about-basic-attention-token' }
       }
     }
