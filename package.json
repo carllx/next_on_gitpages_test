@@ -40,7 +40,7 @@
     "testCross": "cross-var node -e \"console.log('now path on :', \\\"$npm_package_config_commitmessage\\\")\" && cross-var node -e \"console.log('now path on :', \\\"$npm_package_config_commitmessage\\\")\""
   },
   "config": {
-    "commitmessage": "4.根据 arunoda/arunoda.me 设置的路由方式,export静态网页"
+    "commitmessage": "5.根据 arunoda/arunoda.me 设置的路由方式,export静态网页"
   },
   "name": "",
   "description": "## How to use",
