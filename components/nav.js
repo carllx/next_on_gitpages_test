@@ -10,6 +10,7 @@ import SVG_BACKGROUND  from '~/components/nav.bg.svg_SMIL'
 import Language  from '~/components/nav.language'
 import {BUTTONS}  from '~/components/nav.buttons'
 import ArtistiNav  from '~/components/nav.artisti'
+import NewsNav  from '~/components/nav.news'
 import ContactNav  from '~/components/nav.contact'
 import Info  from '~/components/info'
 
@@ -128,13 +129,16 @@ class Nav extends PureComponent {
 
               {/*ARTISTA*/}
               <ArtistiNav/>
+
+              <NewsNav/>
+
               {/*CONTACT*/}
               <ContactNav />
               {/*语言切换*/}
               <Language is_landscape ={landscape}/>
 
               {/*Sorry Comming*/}
-              { nav_on === 'news'||nav_on === 'mostre'?
+              { nav_on === 'mostre'?
                 <div
                  {...css({
                     display: 'flex',

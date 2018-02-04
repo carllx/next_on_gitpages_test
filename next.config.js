@@ -1,3 +1,4 @@
+/*生成静态网页*/
 const fetch = require('isomorphic-fetch')
 const cp = require('recursive-copy')
 const artisti =  require('./static/contents/artisti/')
@@ -25,6 +26,12 @@ module.exports = {
       {},
     )
 
+    const newsPages = {
+      '/news/all-about-basic-attention-token':{
+        page: '/news/all-about-basic-attention-token',
+        // query: { title: 'all-about-basic-attention-token' }
+      }
+    }
 
     // const newsPages = news.newsInfo.reduce(
     //   (newsPages, obj) =>
@@ -41,9 +48,8 @@ module.exports = {
       {},
       // pages,
       artistPages ,
-      // newsPages ,
-      {
-      '/': { page: '/' }
+      newsPages ,
+      {'/': { page: '/' }
     })
   }
 
