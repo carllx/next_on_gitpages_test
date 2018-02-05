@@ -115,9 +115,9 @@ export default WithDoc(outline)(markdown`
 
 ### 附件二、2018中国青年艺术家赴意大利佛罗伦萨驻留计划申请表
 
-[PDF 版本表格下载](https://raw.githubusercontent.com/carllx/zhongart_Pages/master/static/2018%E4%B8%AD%E5%9B%BD%E9%9D%92%E5%B9%B4%E8%89%BA%E6%9C%AF%E5%AE%B6%E8%B5%B4%E6%84%8F%E5%A4%A7%E5%88%A9%E4%BD%9B%E7%BD%97%E4%BC%A6%E8%90%A8%E9%A9%BB%E7%95%99%E8%AE%A1%E5%88%92%E7%94%B3%E8%AF%B7%E8%A1%A8.pdf)
+[PDF 版本表格下载](zhongart_Pages/static/contents/news/附件 2018中国青年艺术家赴意大利佛罗伦萨驻留计划申请表.pdf)
 
-[Word 版本表格下载](https://raw.githubusercontent.com/carllx/zhongart_Pages/master/static/2018%E4%B8%AD%E5%9B%BD%E9%9D%92%E5%B9%B4%E8%89%BA%E6%9C%AF%E5%AE%B6%E8%B5%B4%E6%84%8F%E5%A4%A7%E5%88%A9%E4%BD%9B%E7%BD%97%E4%BC%A6%E8%90%A8%E9%A9%BB%E7%95%99%E8%AE%A1%E5%88%92%E7%94%B3%E8%AF%B7%E8%A1%A8.pdf)
+[Word 版本表格下载](https://raw.githubusercontent.com/carllx/zhongart_Pages/master/static/contents/news/%E9%99%84%E4%BB%B6%202018%E4%B8%AD%E5%9B%BD%E9%9D%92%E5%B9%B4%E8%89%BA%E6%9C%AF%E5%AE%B6%E8%B5%B4%E6%84%8F%E5%A4%A7%E5%88%A9%E4%BD%9B%E7%BD%97%E4%BC%A6%E8%90%A8%E9%A9%BB%E7%95%99%E8%AE%A1%E5%88%92%E7%94%B3%E8%AF%B7%E8%A1%A8.docx)
 `)
 
 // ![zhanghuang in firenze](http://www.anaussieinitaly.com/wp-content/uploads/2013/10/Buddha.jpg)

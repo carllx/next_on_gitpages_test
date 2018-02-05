@@ -40,7 +40,7 @@
     "testCross": "cross-var node -e \"console.log('now path on :', \\\"$npm_package_config_commitmessage\\\")\" && cross-var node -e \"console.log('now path on :', \\\"$npm_package_config_commitmessage\\\")\""
   },
   "config": {
-    "commitmessage": "为nav.news 修改合适的Router方式, 添加pdf& word 版本艺术家申请表格"
+    "commitmessage": "根据上传的附件申请表格更换下载地址"
   },
   "name": "",
   "description": "## How to use",
