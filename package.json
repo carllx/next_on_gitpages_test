@@ -40,7 +40,7 @@
     "testCross": "cross-var node -e \"console.log('now path on :', \\\"$npm_package_config_commitmessage\\\")\" && cross-var node -e \"console.log('now path on :', \\\"$npm_package_config_commitmessage\\\")\""
   },
   "config": {
-    "commitmessage": "根据上传的附件申请表格更换下载地址"
+    "commitmessage": "修复pdf 附件下载"
   },
   "name": "",
   "description": "## How to use",
