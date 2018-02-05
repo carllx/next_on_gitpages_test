@@ -95,22 +95,19 @@ class NavNews extends PureComponent {
     }
 
     _fillLinkWith(id){
-        // Router.push({
+        Router.push({
+            // http://localhost:3000/artisti/EnzoCucchi
+            // pathname :`/artisti/${id}`
+            // http://localhost:3000/artisti?id=EnzoCucchi
+            pathname: `/news/${id}`,
+            shallow: true
+        })
 
-        //     http://localhost:3000/artisti/EnzoCucchi
-        //     pathname :`/artisti/${id}`
-        //     http://localhost:3000/artisti?id=EnzoCucchi
-
-        //     pathname: '/news',
-        //     query: { slug: id },
-        //     asPath :`/news/${id}`,
-        //     shallow: true
-
-        // })
-        window.open(
-                          `//www\.zhongart\.it/news/${id}`,
-                          '_blank'
-                        );
+        // window.open(
+        //                   `//www\.zhongart\.it/news/${id}`,
+        //                   '_blank'
+        //                 );
+        //
     }
 
     render(){

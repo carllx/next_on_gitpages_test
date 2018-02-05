@@ -162,19 +162,33 @@ class ArtistiNav extends PureComponent {
     }
 
     _fillLinkWith(id){
-        Router.push({
-            /*
+        /*
             http://localhost:3000/artisti/EnzoCucchi
             pathname :`/artisti/${id}`
             http://localhost:3000/artisti?id=EnzoCucchi
             */
+
+
+        this.close()
+
+        /*不会刷新网页方案,比较好在服务器上*/
+        Router.push({
             pathname: '/artisti',
             query: { id: id },
             asPath :`/artisti/${id}`,
             shallow: true
-
         })
-        this.close()
+
+        /*刷新网页*/
+        // Router.push(`/artisti/${id}`,`/artisti/${id}`,{shallow: true})
+
+        /*刷新网页*/
+        Router.replace(`/artisti/${id}`,`/artisti/${id}`,{ shallow: true })
+
+
+
+
+
     }
 
     render(){

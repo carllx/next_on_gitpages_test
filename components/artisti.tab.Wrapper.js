@@ -131,12 +131,5 @@ const TAB =()=>
 
 
 
-
-
-
-
-
-
-
 export default  TAB
 // export default connect(mapStateToProps,null)(TAB)
