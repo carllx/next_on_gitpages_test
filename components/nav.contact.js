@@ -1,3 +1,4 @@
+/* global google */
 import { connect } from 'react-redux'
 import {PureComponent} from 'react'
 import { css } from 'glamor'
@@ -52,6 +53,7 @@ class NavContact extends PureComponent {
     constructor(props){
         super(props)
         this.state ={showQr : false}
+        // this.canGoogle = require(`/maps.googleapis.com/maps/api/js?key=AIzaSyBQdch5IcgcQaKNG76sbMQv1MEBEKLeQ-8&v=3.exp&libraries=geometry,drawing,places`);
     }
 
     componentDidMount(){
@@ -134,6 +136,7 @@ class NavContact extends PureComponent {
     }
 
     render(){
+        console.log(this.canGoogle)
         const { view_size, language, device ,nav_on } = this.props
         const desktop = device ==='desktop';
         const {vw,vh,is_landscape} = view_size;
@@ -143,6 +146,8 @@ class NavContact extends PureComponent {
         // const zp = is_landscape?this.Zp.pc:this.Zp.mobile
         const top = is_landscape?`${GR.px(4,vh)}px`:`${GR.px(6,vh)}px`//手机端  nav bg 斜边的高度+margin
         const logoSize = is_landscape?vw/20:vw/6
+
+        const google=window.google
         return(
 
             <div
@@ -296,17 +301,18 @@ class NavContact extends PureComponent {
                         width:'100%',
                         pointerEvents:'auto',
                     })}>
-                        <MapWithAMarker
-                          googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyBQdch5IcgcQaKNG76sbMQv1MEBEKLeQ-8&v=3.exp&libraries=geometry,drawing,places"
-                          loadingElement={<div style={{ height: `100%` }} />}
-                          containerElement={<div style={{
-                            height:is_landscape?'60vh':`100vw`,
-                            width:is_landscape?'100vw':`100vw`,
-                            // marginLeft:`-${margin_w}vw`,//居中
-                            backgroundColor: 'hsla(0, 0%, 0%, 0)' }} />}
-                          mapElement={<div style={{ height: `100%` }} />}
 
-                        />
+                      {this.props.canVistiGoogle?<MapWithAMarker
+                                                googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyBQdch5IcgcQaKNG76sbMQv1MEBEKLeQ-8&v=3.exp&libraries=geometry,drawing,places"
+                                                loadingElement={<div style={{ height: `100%` }} />}
+                                                containerElement={<div style={{
+                                                  height:is_landscape?'60vh':`100vw`,
+                                                  width:is_landscape?'100vw':`100vw`,
+                                                  // marginLeft:`-${margin_w}vw`,//居中
+                                                  backgroundColor: 'hsla(0, 0%, 0%, 0)' }} />}
+                                                mapElement={<div style={{ height: `100%` }} />}
+
+                                              />:null}
                     </div>
 
 
@@ -350,6 +356,7 @@ const mapStateToProps = (state) => ({
     // mouse:state.Root.mouse,
     // gyo:state.Root.gyo,
     nav_on:state.nav.on,
+    canVistiGoogle:state.Root.canVistiGoogle,
 });
 
 

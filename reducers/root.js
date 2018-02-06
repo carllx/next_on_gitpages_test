@@ -16,7 +16,8 @@ const INITIALSTATE = {
   scroll:{up:false,y:0},
   mouse:{x:0,y:0},
   gyo:{alpha:0,beta:0,gamma:0},
-  view_size:{vw:0,vh:0,is_landscape:false}
+  view_size:{vw:0,vh:0,is_landscape:false},
+  canVistiGoogle:false
 
 }
 // TYPE  --帮助避免重复 type
@@ -30,6 +31,7 @@ export const TYPES = {
   ON_EVENT_GYOCHANGE:'ON_EVENT_GYOCHANGE',
   IS_SCROLL_UP: 'IS_SCROLL_UP',
   ON_SCROLL_Y:'ON_SCROLL_Y',
+  GOOGLEMAP:'GOOGLEMAP'
 }
 
 
@@ -97,6 +99,14 @@ export const setgyo = ({alpha=alpha,beta=beta,gamma=gamma}) => dispatch => {
     })
 }
 
+export const setCanGoogleMap = (b) => dispatch => {
+    return dispatch({
+        type:TYPES.GOOGLEMAP,
+        canVistiGoogle:b,
+    })
+}
+
+
 
 //REDUCERS
 export default (state = INITIALSTATE ,action)=>{
@@ -113,6 +123,8 @@ export default (state = INITIALSTATE ,action)=>{
           view_size:{vw:0,vh:0,is_landscape:false}
         })
       /*DEVICE*/
+      case TYPES.GOOGLEMAP:
+        return Object.assign({},state,{canVistiGoogle:action.canVistiGoogle})
       case TYPES.ON_DEVICE:
         return Object.assign({},state,{device:action.device})
       case TYPES.ON_BROWSER:

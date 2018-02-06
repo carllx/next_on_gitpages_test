@@ -32,6 +32,8 @@ class Artisti extends PureComponent {
   static async getInitialProps({ isServer, query }) {
       /*es: query :{ id: 'EnzoCucchi' }*/
       const post = require(`../static/contents/artisti/${query.id}`);
+
+
       return { ...post }
   }
 

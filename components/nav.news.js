@@ -163,6 +163,7 @@ const mapStateToProps = (state) => ({
     language:state.Root.language,
     device:state.Root.device,
     nav_on:state.nav.on,
+
 });
 
 
