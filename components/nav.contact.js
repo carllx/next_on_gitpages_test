@@ -307,16 +307,15 @@ class NavContact extends PureComponent {
                     })}>
 
                       {google?<MapWithAMarker
-                                                googleMapURL="http://maps.google.cn/maps/api/js?key=AIzaSyBQdch5IcgcQaKNG76sbMQv1MEBEKLeQ-8&v=3.exp&libraries=geometry,drawing,places"
-                                                loadingElement={<div style={{ height: `100%` }} />}
-                                                containerElement={<div style={{
-                                                  height:is_landscape?'60vh':`100vw`,
-                                                  width:is_landscape?'100vw':`100vw`,
-                                                  // marginLeft:`-${margin_w}vw`,//居中
-                                                  backgroundColor: 'hsla(0, 0%, 0%, 0)' }} />}
-                                                mapElement={<div style={{ height: `100%` }} />}
-
-                                              />:null}
+                            googleMapURL="http://maps.google.cn/maps/api/js?key=AIzaSyBQdch5IcgcQaKNG76sbMQv1MEBEKLeQ-8&v=3.exp&libraries=geometry,drawing,places"
+                            loadingElement={<div style={{ height: `100%` }} />}
+                            containerElement={<div style={{
+                              height:is_landscape?'60vh':`100vw`,
+                              width:is_landscape?'100vw':`100vw`,
+                              // marginLeft:`-${margin_w}vw`,//居中
+                              backgroundColor: 'hsla(0, 0%, 0%, 0)' }} />}
+                            mapElement={<div style={{ height: `100%` }} />}
+                          />:null}
                     </div>
 
 

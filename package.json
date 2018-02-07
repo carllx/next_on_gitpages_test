@@ -40,7 +40,7 @@
     "testCross": "cross-var node -e \"console.log('now path on :', \\\"$npm_package_config_commitmessage\\\")\" && cross-var node -e \"console.log('now path on :', \\\"$npm_package_config_commitmessage\\\")\""
   },
   "config": {
-    "commitmessage": "尝试CN 访问google map"
+    "commitmessage": "修改2018 项目叙述"
   },
   "name": "",
   "description": "## How to use",

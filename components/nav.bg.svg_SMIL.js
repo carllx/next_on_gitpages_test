@@ -26,15 +26,6 @@ class SVG_BACKGROUND extends PureComponent {
         super(props);
         this._pts_data = this.setPtsData() //将计算结果储存数据
         this.state= this.makeKeyFrames(this.props.nav_on,this.props.nav_on,true)
-        this.PERSP = 1000;
-        this.Zp = {
-            pc:{
-                bg : perspZ(-1000,this.PERSP),
-            },
-            mobile:{
-                bg : perspZ(-1000,this.PERSP),
-            }
-        }
     }
     /*
         pt_1-------pt_2
@@ -68,15 +59,7 @@ class SVG_BACKGROUND extends PureComponent {
     }
 
 
-    // 两个数之间的随机值
-    getRandomInt(min, max) {
 
-      min = Math.ceil(min);
-      max = Math.floor(max);
-      const result = Math.floor(Math.random() * (max - min)) + min;
-      consoloe.log(`\n${result},`)
-      return Math.floor(Math.random() * (max - min)) + min; //The maximum is exclusive and the minimum is inclusive
-    }
 
     setPtsData = () => {
         const landscape = this.props.is_landscape;
@@ -180,33 +163,28 @@ class SVG_BACKGROUND extends PureComponent {
     _ObjectToSVGPts=(obj)=>{
         const arr = this._ObjectToVectorArray(obj,2)
         return arr.reduce((prev, curr)=> prev+' '+curr)
-        /*"1,1 2,2 3,3 4,4"*/
-        // debugger
     }
 
     render(){
 
         const nav_on = this.props.nav_on
-        const zp = this.props.is_landscape?this.Zp.pc:this.Zp.mobile
+
         return(
             <div
              {...css({
                 pointerEvents: 'none',
                 width:  `100%`,
                 height: `100%`,
-                transform:`translateZ(${zp.bg.translateZ}px) scale(${zp.bg.scale})`
+                // transform:`translateZ(${zp.bg.translateZ}px) scale(${zp.bg.scale})`
               })}
             >
                 <svg
                  {...css({
-
                     // @ 还未修复 iphone safari svg上移问题
                     width:  `100%`,
                     height: '100%',//@
                     position: 'fixed' ,//@
                     top: 0,//@
-
-
                 })}
                  key = {`${this.props.nav_on}_svg`}//否则没有动画过度效果
 
@@ -227,9 +205,6 @@ class SVG_BACKGROUND extends PureComponent {
                      fill={ui.color.w_o1}
                      stroke="none"
                      points= {this.state.pre_points}
-
-                     // points= {`100,10 40,180 190,60 10,60 160,180 100,10`}
-
                     >
                         <animate
                          attributeName="points"
@@ -251,7 +226,6 @@ class SVG_BACKGROUND extends PureComponent {
                          to={'360 500 500'}
                          fill='freeze'
                           />*/}
-
                 </polygon>
 
                 </svg>
@@ -267,8 +241,6 @@ const mapStateToProps = (state) => ({
     vw:state.Root.view_size.vw,
     vh:state.Root.view_size.vh,
     is_landscape:state.Root.view_size.is_landscape,
-    // device:state.Root.device,
-    // is_Scroll_up:state.Root.is_Scroll_up,
     nav_on:state.nav.on,
     nav_BG_PTs:state.nav.background_pts
 });
