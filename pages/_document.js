@@ -91,7 +91,7 @@ export default class MyDocument extends Document {
                       })()
             }`}} />
           {/*百度主动推送*/}
-
+          <script src="http://maps.google.cn/maps/api/js?key=AIzaSyBQdch5IcgcQaKNG76sbMQv1MEBEKLeQ-8&v=3.exp&libraries=geometry,drawing,places" type="text/javascript"></script>
           <style dangerouslySetInnerHTML={{ __html: this.props.css }} />
 
 

@@ -4,15 +4,13 @@ import {PureComponent} from 'react'
 import { css } from 'glamor'
 import {TweenMax} from "gsap";
 import Link from 'next/link';
-
 import {ui,GR}  from '~/utils/ui'
-// import { GoogleMap, Marker } from "react-google-maps"
+// import {canGoogle} from'~/reducers/root'
+// import { bindActionCreators } from 'redux'
 
 // import LOGO  from '~/components/svg/icons_logo'
 import LOGO  from '~/components/svg/icons_logo_marca'
 import QRWe  from '~/components/svg/icons_QR_Wechat'
-
-
 import {Mobile,Address,Mail,Phone}  from '~/components/svg/icons_static_svg'
 
 import {Twitter,WeiChat,Youtube,Viemo,Weibo,Facebook,Instagram}  from '~/components/svg/icons_social_svg'
@@ -45,10 +43,18 @@ import Router from 'next/router'
 /*https://www.facebook.com/zhong.art.it*/
 // const linkDirectTo = (url) =>
 
-
-
-
 class NavContact extends PureComponent {
+    // /*验证客户端是否能访问 google map */
+    // static async getInitialProps () {
+
+    //     // eslint-disable-next-line no-undef
+    //     const res = await fetch('https://maps.googleapis.com/maps/api/js?key=AIzaSyBQdch5IcgcQaKNG76sbMQv1MEBEKLeQ-8&v=3.exp&libraries=geometry,drawing,places')
+    //     if(res.status===200){
+    //         return { googlepass: true }
+    //     }else{
+    //         return { googlepass: false }
+    //     }
+    //   }
 
     constructor(props){
         super(props)
@@ -67,6 +73,7 @@ class NavContact extends PureComponent {
                 pointerEvents: 'none',
             })
 
+        // this.props.canGoogle()
     }
 
     //Immutable??redux
@@ -101,13 +108,13 @@ class NavContact extends PureComponent {
             0.2);
 
         var tl = new TimelineMax({repeat:0,delay:0.3})
-        tl.staggerTo(//targets, duration, fromVars, toVars
+        tl.staggerTo(
+                //targets, duration, fromVars, toVars
                 '.social_icons',
                 0.1,//
                 {
                     fill:'black',
                     // delay:2,
-
                 },0.05)
             .staggerTo(//targets, duration, fromVars, toVars
                 '.social_icons',
@@ -136,7 +143,7 @@ class NavContact extends PureComponent {
     }
 
     render(){
-        console.log(this.canGoogle)
+        console.log(this.props.googlePass)
         const { view_size, language, device ,nav_on } = this.props
         const desktop = device ==='desktop';
         const {vw,vh,is_landscape} = view_size;
@@ -146,8 +153,9 @@ class NavContact extends PureComponent {
         // const zp = is_landscape?this.Zp.pc:this.Zp.mobile
         const top = is_landscape?`${GR.px(4,vh)}px`:`${GR.px(6,vh)}px`//手机端  nav bg 斜边的高度+margin
         const logoSize = is_landscape?vw/20:vw/6
-
         const google=window.google
+        // console.log( 'googlepass:',this.props.googlepass )
+
         return(
 
             <div
@@ -200,8 +208,6 @@ class NavContact extends PureComponent {
                     :null}
                 </div>
 
-
-
                 <div {...css({
                     display:'flex',
                     justifyContent:'center',
@@ -220,7 +226,6 @@ class NavContact extends PureComponent {
                     justifyContent:'center',
                     marginBottom:'2em',
                     pointerEvents:'auto',
-
                 })}>
 
                     <div {...css({marginRight:'1em'})} className = 'flashIcons'><Twitter/></div>
@@ -257,7 +262,6 @@ class NavContact extends PureComponent {
 
                 </div>
                 {/* SOCIAL App */}
-
 
                 <div {...css({
                     display:'flex',
@@ -302,8 +306,8 @@ class NavContact extends PureComponent {
                         pointerEvents:'auto',
                     })}>
 
-                      {this.props.canVistiGoogle?<MapWithAMarker
-                                                googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyBQdch5IcgcQaKNG76sbMQv1MEBEKLeQ-8&v=3.exp&libraries=geometry,drawing,places"
+                      {google?<MapWithAMarker
+                                                googleMapURL="http://maps.google.cn/maps/api/js?key=AIzaSyBQdch5IcgcQaKNG76sbMQv1MEBEKLeQ-8&v=3.exp&libraries=geometry,drawing,places"
                                                 loadingElement={<div style={{ height: `100%` }} />}
                                                 containerElement={<div style={{
                                                   height:is_landscape?'60vh':`100vw`,
@@ -356,14 +360,19 @@ const mapStateToProps = (state) => ({
     // mouse:state.Root.mouse,
     // gyo:state.Root.gyo,
     nav_on:state.nav.on,
-    canVistiGoogle:state.Root.canVistiGoogle,
+    googlePass:state.Root.googlePass,
 });
 
 
-
+// const mapDispatchToProps = (dispatch) => {
+//   return {
+//     // root
+//     canGoogle: bindActionCreators(canGoogle, dispatch),
+//   }
+// }
 
 // export default Nav;
-export default connect(mapStateToProps)(NavContact)
+export default connect(mapStateToProps,null)(NavContact)
 
 const MapStyles = [
     {

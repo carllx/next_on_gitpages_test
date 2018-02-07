@@ -8,6 +8,7 @@ import Router from 'next/router'
 // import markdown from 'markdown-in-js'
 import outlines from  '~/static/contents/news'
 
+
 const MyDATE = ({ children }) => (
   <div
     {...css({
@@ -24,7 +25,6 @@ const Title = ({ children }) => (
   <div
     {...css({
         color:ui.color.b_o1,
-
         fontSize:'1.5em',
     })}
   >
@@ -37,8 +37,6 @@ class NavNews extends PureComponent {
     constructor(props){
         super(props);
     }
-
-
 
     componentWillReceiveProps(nextProps){
         if(nextProps.nav_on !== this.props.nav_on) {
@@ -163,7 +161,6 @@ const mapStateToProps = (state) => ({
     language:state.Root.language,
     device:state.Root.device,
     nav_on:state.nav.on,
-
 });
 
 

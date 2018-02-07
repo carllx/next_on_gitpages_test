@@ -40,7 +40,7 @@
     "testCross": "cross-var node -e \"console.log('now path on :', \\\"$npm_package_config_commitmessage\\\")\" && cross-var node -e \"console.log('now path on :', \\\"$npm_package_config_commitmessage\\\")\""
   },
   "config": {
-    "commitmessage": "关闭Google地图,测试是否能通过国内访问4"
+    "commitmessage": "尝试CN 访问google map"
   },
   "name": "",
   "description": "## How to use",
