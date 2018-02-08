@@ -326,10 +326,6 @@ class NavContact extends PureComponent {
                 {/*主要信息*/}
 
 
-
-
-
-
                  {/*desktop?
 
                         <MOUSE_POS_DISPATCHER
@@ -346,10 +342,6 @@ class NavContact extends PureComponent {
     )}
 
 }
-
-
-
-
 
 
 const mapStateToProps = (state) => ({

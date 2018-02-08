@@ -1,7 +1,7 @@
 import markdown from 'markdown-in-js'
 import WithDoc from '~/container/withNews'
 
-// import Image from '~/components/Image'
+import Image from '~/components/img_in_md'
 
 export const outline = {
   "title": {
@@ -28,9 +28,18 @@ export const outline = {
   }
 }
 
+// ![alt text](https://static.wixstatic.com/media/1f2952_0fddca5bc8284fb6aca92bc033e8dd17~mv2.jpg)
+/*
 
+ */
 export default WithDoc(outline)(markdown`
-![alt text](https://static.wixstatic.com/media/1f2952_0fddca5bc8284fb6aca92bc033e8dd17~mv2.jpg)
+${<Image
+  src={`1f2952_0fddca5bc8284fb6aca92bc033e8dd17~mv2.jpg`}
+  // ratio={w}
+  key = {'eeww'}
+  show = {true}
+  fetch={ true }
+  />}
 ## 一. 项目简介
 
 中国、意大利两国都是文明古国，在世界文明的发展史上有着不可替代的地位。在浩瀚的历史的长河中，中意两国的文化交流便有非常丰富的史料记述。早在明代时期，意大利传教士利玛窦来华，将西方文化带入中国，绘制了《山海舆地图》。清代时期，又有意大利艺术家郎世宁来华任宫廷画师，并曾参与圆明园西洋楼的建设。郎世宁的画作创造了新的样式，兼顾了中国审美观念，同时又把西方创作的方式结合起来，其诸多作品至今都还收藏在故宫博物院中。纵观艺术发展史， 中意两国艺术源远流长，作为文艺复兴发祥地的意大利率先将绘画从宗教和祭坛中独立出来，成为重要的艺术门类后，影响了整个欧洲继而影响到全世界。而作为中华文明象征的水墨艺术历经千年传承，在21世纪的今天也成为世界范围内的重要艺术表达手段。就像这两种不同的艺术样式间日渐交融的趋势一样，中意两国的艺术也在不断地深入交流与发展。在这一趋势下，青年艺术家之间的交流显得尤为重要，因为他们是当今青年艺术的现实面貌，代表着两国当代艺术的发展的未来。

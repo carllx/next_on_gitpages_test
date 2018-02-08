@@ -19,9 +19,7 @@ import Copyright from '~/components/copyright'
 export default function WithNews (options) {
   return function (content) {
     class News extends PureComponent {
-      // getUrl(slug) {
-      //   return `${ROOT_URL}/blog/${options.slug}`
-      // }
+
 
       getShareLink(link) {
         return `/share?slug=${options.slug}&redirectTo=${encodeURIComponent(link)}`
@@ -58,22 +56,19 @@ export default function WithNews (options) {
                 {
                 ...css({
                 overflowY: 'auto',
-                // height: '100%',
-                // weight:'100%',
+
                 marginTop: `${is_landscape?GR.vw(4):GR.vw(6)}vw`,
-                marginBottom: is_landscape?`${GR.vw(7)}vh`:`${GR.vw(7)}vw`,
+                marginBottom: `0`,
                 display:'flex',
                 flexDirection:'column',
                 justifyContent:'center',
                 alignItems:'center',
                 })}
-
-
                 >
                     {/*TITLE*/}
                     <div
                     {...css({
-                      margin:is_landscape?'0 20em 1em 20em':'0 1em 1em 1em',
+                      width:`${is_landscape?`65vw`:'90vw'}`,
                     })}
                     >
                     <h1 {
@@ -89,13 +84,11 @@ export default function WithNews (options) {
 
                     <div
                     {...css({
+                      width:`${is_landscape?`65vw`:'95vw'}`,
                       // is_landscape
                       display:'flex',
                       flexDirection:'column',
-                      margin:is_landscape?'0 20em 15em 20em':'0 1em 15em 1em',
-
-                      // transform: `rotate3d(${this.state.tiltx},${this.state.tilty},0,${this.state.degree}deg)`,
-                      // transition: `transform 1s cubic-bezier(0.1, 0.5, 0.4, 1)`,
+                      marginBottom: `${GR.vw(3)}vh`,
                     })}
                     key= {`${options.slug}-${this.props.language}`}
                     id ='win_scroller'

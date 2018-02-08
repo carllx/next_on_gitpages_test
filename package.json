@@ -40,7 +40,7 @@
     "testCross": "cross-var node -e \"console.log('now path on :', \\\"$npm_package_config_commitmessage\\\")\" && cross-var node -e \"console.log('now path on :', \\\"$npm_package_config_commitmessage\\\")\""
   },
   "config": {
-    "commitmessage": "修改2018 项目叙述,下班"
+    "commitmessage": "2018-2-8 下班"
   },
   "name": "",
   "description": "## How to use",

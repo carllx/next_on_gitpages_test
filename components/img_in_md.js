@@ -4,11 +4,9 @@
  *  :AVATAR(艺术家)
  *  支持png
  *
- *
  * 组件 IMG_WithLoader
  *  + _IMG
  *  + _LOADER
- *
  *
  * active {false} 在未(可见)到的时候 隐藏,
  * active {true} loader三角形动画转动
@@ -16,14 +14,13 @@
  *  NoSSR, 需要使用 NoSSR (import NoSSR from 'react-no-ssr';)
  *
  */
+
+import { connect } from 'react-redux'
 import {PureComponent} from 'react'
 import { css } from 'glamor'
 import XHRProgress from '~/utils/Progress'
 import {ui ,makeKEY}  from '~/utils/ui'
 import {wix} from '~/utils/img'
-
-
-
 
 /**
  * simple Image
@@ -39,31 +36,21 @@ export class _IMG extends PureComponent{
   render(){
 
     return(
-      <div
+      <img
          {...css({
-          position:'absolute',//文件流识别
-          justifyContent:   'space-around',
-          backgroundRepeat: 'no-repeat',
-          backgroundSize:   this.props.fullWidth?'cover':'auto',
-          overflow:         'hidden',
-          backgroundColor:  'transparent',
-          backgroundPosition: 'center',
-
-
-          left:this.props.left,
-          top:this.props.top,
+          overflow:'hidden',
+          // backgroundColor:  'transparent',
+          // backgroundPosition: 'center',
+          // left:this.props.left,
+          // top:this.props.top,
           opacity: this.props.show?1:0,
-          width: this.props.width?this.props.width:'auto',
-          height: this.props.height?this.props.height:'auto',
-          // minWidth: '70%',
-          // minHeight: '70%',
-          //在这里找渐变模板 https: //webgradients.com/
-          // backgroundColor:  this.props.src?`url(${this.props.src})`:'white',
-          backgroundImage:  this.props.show?`url(${this.props.src})`:null,
+          width: '100%',
+          height:'100%',
+          // backgroundImage:  this.props.show?`url(${this.props.src})`:null,
           transition: `opacity 1s cubic-bezier(0.24, 0.49, 0.82, 0.6)`,
           })}
-        >
-        </div>
+        src={this.props.show?`${this.props.src}`:null}
+        />
       )
   }
 }
@@ -98,7 +85,7 @@ const _Loading =(props)=>
         left:props.left?props.left:0,
         top:props.top?props.top:0,
         width: '100%',
-        height:props.height,
+        height:'100%',
         opacity:props.show?1:0,
 
         })}
@@ -119,17 +106,15 @@ const _Loading =(props)=>
           />
         </svg>
 
-        <p {...css({
+        <div {...css({
           color:ui.color.disabled_on_light,
           fontSize:'0.2rem',
         })}
         className={"loader"}
         >
           {props.percent+'%'}
-        </p>
+        </div>
       </div>
-
-
 
 /**
      <IMG_WithLoader
@@ -142,7 +127,7 @@ const _Loading =(props)=>
     />
 */
 
-export class IMG_WithLoader extends PureComponent {
+class IMG_WithLoader extends PureComponent {
 
   constructor (props) {
 
@@ -151,29 +136,36 @@ export class IMG_WithLoader extends PureComponent {
     this.state = {
       percent: 0,
       src:this.props.src,
-      loaded:false
+      loaded:false,
     };
-    this._src= this.props.src;//辨认是否刷新变动
+    this._src = this.props.src;//辨认是否刷新变动
     this.progress = this.onProgress.bind(this);
-    this.key=makeKEY();
+    this.key = makeKEY();
   }
 
   componentDidMount(){
     //如果 #Daddy 激活后开始请求
-    if(this.props.fetch ==true) {
-      // this.fetchImg(this.props.src);
-      this.fetchImg();
-    }
+    // if(this.props.fetch ==true) {
+    //     console.log('wwwwwwww',this.props.vw)
+
+    // }
   }
 
   componentWillReceiveProps(nextProps,nextState){
     // debugger
     // update 过程 #Daddy 随时刷新地址后开始请求
-    // if(nextProps.fetch ==true && nextProps.src!=this.props.src){
     if(nextProps.fetch!==this.props.fetch&&nextProps.fetch === true ){
 
-      this.fetchImg(nextProps.src);
-      return
+        // debugger
+        if(this.props.vw===0) return
+        this.fetchImg(nextProps.src);
+        return
+    }
+
+    if(nextProps.vw!==this.props.vw){
+        // debugger
+        if(this.props.vw===0) return
+        this.fetchImg();
     }
   }
 
@@ -193,27 +185,30 @@ export class IMG_WithLoader extends PureComponent {
     }
   }
 
+
   async fetchImg (nextSrc) {
 
-    const w = this.props.width;
-    const h = this.props.height;
+    const w =  this.props.landscape?0.65*this.props.vw:0.95*this.props.vw;
+    console.log('dddddddddddddddd',w)
     const new_src = nextSrc?nextSrc:this.props.src;//父亲变动后传下来的
     /**
       @{wix}  from '../utils/img'
      {wix}转换src
      需要<NoSSR> 否则这里的 w h 取回来是 0
      */
-    const full_src = wix (new_src,w,h)
-    // const full_src = wix (new_src,w,h,'fill')
+
+    const src_wix = wix (new_src,w,w)
+    console.log(src_wix)
     let XHR = new XHRProgress();
     XHR.onProgress = this.progress;
     /*若要测试logder 高质量图片
     let isOk = await XHR.send(`http://cdn.wallpapersafari.com/23/11/clBNRq.jpg`)*/
-    const Done = await XHR.send(full_src)
+    const Done = await XHR.send(src_wix)
 
     if(Done) {
+
       this.setState({
-        src:full_src,
+        src:src_wix,
         loaded:true,
       },()=>{
         this._src= new_src;//帮助辨认是否刷新变动
@@ -228,34 +223,28 @@ export class IMG_WithLoader extends PureComponent {
       return(
           <div
            {...css({
-            position: 'relative',
-            width : this.props.width,//this.props.width,
-            height : this.props.height,
-            transform: 'inherit',//为了section上层skew
+            // position: 'relative',
+            // width : this.props.width,//this.props.width,
+            // height : this.props.height,
+            // transform: 'inherit',//为了section上层skew
             })}
            className = 'imgLoader'
-
           >
               <_IMG
-               width = {this.props.width}
-               height = {this.props.height}
+               // width={}
+               // height={}
                src = {this.state.src}
                show = {this.state.loaded}//显示Img
-               left = {this.props.left}
-               top = {this.props.top}
                key={`_IMG_${this.key}`}
                fullWidth={this.props.fullWidth}
                />
 
               <_Loading
-               width = {this.props.width}
-               height = {this.props.height}
+               // width={}
+               // height={}
                show = {(this.state.loaded==false)}
                percent = {this.state.percent}
-               left = {this.props.left}
-               top = {this.props.top}
                key={`_LOADIMGER_${this.key}`}
-
               />
           </div>
           );
@@ -263,6 +252,13 @@ export class IMG_WithLoader extends PureComponent {
 }
 
 
+
+const mapStateToProps = (state) => ({
+    vw:state.Root.view_size.vw,
+    landscape:state.Root.view_size.is_landscape,
+});
+
+export default connect(mapStateToProps,null)(IMG_WithLoader)
 
 
 
