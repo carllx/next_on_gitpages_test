@@ -183,7 +183,7 @@ class ArtistiNav extends PureComponent {
         // Router.push(`/artisti/${id}`,`/artisti/${id}`,{shallow: true})
 
         /*刷新网页*/
-        Router.replace(`/artisti/${id}`,`/artisti/${id}`,{ shallow: true })
+        // Router.replace(`/artisti/${id}`,`/artisti/${id}`,{ shallow: true })
 
 
 
