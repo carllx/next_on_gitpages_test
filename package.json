@@ -40,7 +40,7 @@
     "testCross": "cross-var node -e \"console.log('now path on :', \\\"$npm_package_config_commitmessage\\\")\" && cross-var node -e \"console.log('now path on :', \\\"$npm_package_config_commitmessage\\\")\""
   },
   "config": {
-    "commitmessage": "2018-2-8 下班"
+    "commitmessage": " 上传 2018 artistplan 的修正内容 "
   },
   "name": "",
   "description": "## How to use",
