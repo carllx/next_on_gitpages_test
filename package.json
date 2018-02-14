@@ -40,7 +40,7 @@
     "testCross": "cross-var node -e \"console.log('now path on :', \\\"$npm_package_config_commitmessage\\\")\" && cross-var node -e \"console.log('now path on :', \\\"$npm_package_config_commitmessage\\\")\""
   },
   "config": {
-    "commitmessage": "修复artisti page 路由 "
+    "commitmessage": "修改艺术家驻留标题 英文/意大利文 "
   },
   "name": "",
   "description": "## How to use",
