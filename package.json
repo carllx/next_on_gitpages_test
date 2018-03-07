@@ -4,27 +4,27 @@
     "babel-plugin-root-import": "^5.1.0",
     "express": "^4.16.2",
     "glamor": "^2.20.40",
-    "glamorous": "^4.11.4",
-    "gsap": "^1.20.3",
+    "glamorous": "^4.12.0",
+    "gsap": "^1.20.4",
     "isomorphic-fetch": "^2.2.1",
-    "lodash": "^4.17.4",
+    "lodash": "^4.17.5",
     "markdown-in-js": "^1.1.3",
     "next": "^4.2.3",
     "next-redux-wrapper": "^1.3.5",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-google-maps": "^9.4.5",
-    "react-jss": "^8.2.1",
+    "react-jss": "^8.3.3",
     "react-motion": "^0.5.2",
     "react-no-ssr": "^1.1.0",
-    "react-redux": "^5.0.6",
+    "react-redux": "^5.0.7",
     "react-tap-event-plugin": "^3.0.2",
     "react-transition-group": "^2.2.1",
     "react-vr": "^2.0.0",
     "redux": "^3.7.2",
     "redux-devtools-extension": "^2.13.2",
     "redux-thunk": "^2.2.0",
-    "serve": "^6.4.9",
+    "serve": "^6.5.2",
     "three": "^0.89.0"
   },
   "scripts": {
@@ -40,7 +40,7 @@
     "testCross": "cross-var node -e \"console.log('now path on :', \\\"$npm_package_config_commitmessage\\\")\" && cross-var node -e \"console.log('now path on :', \\\"$npm_package_config_commitmessage\\\")\""
   },
   "config": {
-    "commitmessage": "修改艺术家驻留标题 英文/意大利文 "
+    "commitmessage": "暂时将<有限公司>删掉; 修复 http-equiv 错误 "
   },
   "name": "",
   "description": "## How to use",

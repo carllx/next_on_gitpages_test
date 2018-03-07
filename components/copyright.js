@@ -8,11 +8,19 @@ class Copyright extends PureComponent{
     constructor(props){
         super(props)
         this.ctx ={
+            'zh':'Copyright © 2017 中艺国际 All rights reserved',
+            'it':'Copyright © 2017 ZHONG ART INTERNATIONAL All rights reserved',
+            'en':'Copyright © 2017 ZHONG ART INTERNATIONAL All rights reserved',
+        }
+    }
+
+    /*
+    this.ctx ={
             'zh':'Copyright © 2017 中艺国际有限公司.All rights reserved',
             'it':'Copyright © 2017 ZHONG ART INTERNATIONAL SRL.All rights reserved',
             'en':'Copyright © 2017 ZHONG ART INTERNATIONAL LTD.All rights reserved',
         }
-    }
+     */
 
     render(){
         return(
