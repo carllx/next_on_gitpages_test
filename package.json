@@ -40,7 +40,7 @@
     "testCross": "cross-var node -e \"console.log('now path on :', \\\"$npm_package_config_commitmessage\\\")\" && cross-var node -e \"console.log('now path on :', \\\"$npm_package_config_commitmessage\\\")\""
   },
   "config": {
-    "commitmessage": "庞茂琨作品更换 , Nextjs, threejs 等库文件版本升级重要升级"
+    "commitmessage": "庞茂琨作品图片新增意大利语翻译"
   },
   "name": "",
   "description": "## How to use",
