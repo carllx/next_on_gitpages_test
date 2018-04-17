@@ -40,7 +40,7 @@
     "testCross": "cross-var node -e \"console.log('now path on :', \\\"$npm_package_config_commitmessage\\\")\" && cross-var node -e \"console.log('now path on :', \\\"$npm_package_config_commitmessage\\\")\""
   },
   "config": {
-    "commitmessage": "增加3in1 zip文件, 2018佛美交换报名pdf 修改申请表错误修复  "
+    "commitmessage": "News增加2018交换佛美项目 "
   },
   "name": "",
   "description": "## How to use",

@@ -132,7 +132,7 @@ class NavNews extends PureComponent {
                  {...css({
                     display:'flex',
                     justifyContent:'center',
-
+                    flexDirection:'column',
                     // backgroundColor:this.props.backgroundColor||ui.color.w_o2,
                  })}
                  className = {'News'}
