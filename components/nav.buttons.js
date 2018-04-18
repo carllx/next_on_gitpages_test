@@ -9,7 +9,7 @@ const CONFIG = [{
         'title':{zh:'展览',en:'EXHIBITIONS',it:'MOSTRE'},
         'id':'mostre',
     },{
-        'title':{zh:'驻留项目',en:'NEWS',it:'EVENTI'},
+        'title':{zh:'项目',en:'NEWS',it:'EVENTI'},
         'id':'news',
     },{
         'title':{zh:'联系',en:'CONTACT',it:'CONTATTO'},
