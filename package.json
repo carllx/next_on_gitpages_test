@@ -40,7 +40,7 @@
     "testCross": "cross-var node -e \"console.log('now path on :', \\\"$npm_package_config_commitmessage\\\")\" && cross-var node -e \"console.log('now path on :', \\\"$npm_package_config_commitmessage\\\")\""
   },
   "config": {
-    "commitmessage": "2018佛美项目加入后, 导航'项目'更贴切"
+    "commitmessage": "pdf修正"
   },
   "name": "",
   "description": "## How to use",
