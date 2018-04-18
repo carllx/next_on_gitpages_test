@@ -40,8 +40,7 @@ ${<Image
   />}
  */
 
-export default WithDoc(outline)(markdown`![img](https://mmbiz.qpic.cn/mmbiz_jpg/xx633NLgDwyZgpB4dx6K30NSawFXm4sJ5hmjC9kKFU1HS8kpY3pcNvUPhrMdia7EDsJSiaNHykbGbBicLaAjevufw/640?wx_fmt=jpeg)
-
+export default WithDoc(outline)(markdown`
 项目历程
 
 佛罗伦萨美术学院，建校可追溯到14世纪的文艺复兴时期，前身是意大利绘画学院，成立于1562年，背靠文艺复兴之都佛罗伦萨，为西方艺术教育作出了杰出贡献，是世界上第一所美术学院，现隶属意大利教育部。“世界美术学院之母，四大美术学院之首”这是对佛罗伦萨美术学院最简洁的评价。
@@ -162,9 +161,9 @@ export default WithDoc(outline)(markdown`![img](https://mmbiz.qpic.cn/mmbiz_jpg/
 
 **报名表格**
 
-2018暑期佛美报名所需材料（护照可适时后补） [下载](https://raw.githubusercontent.com/carllx/zhongart_Pages/master/static/contents/news/2018佛美暑期交换生项目申请表.pdf)
+2018暑期佛美报名所需材料（护照可适时后补） [下载](https://raw.githubusercontent.com/carllx/zhongart_Pages/master/static/contents/news/2018%E6%9A%91%E6%9C%9F%E4%BD%9B%E7%BE%8E%E6%8A%A5%E5%90%8D%E6%89%80%E9%9C%80%E6%9D%90%E6%96%99%EF%BC%88%E6%8A%A4%E7%85%A7%E5%8F%AF%E9%80%82%E6%97%B6%E5%90%8E%E8%A1%A5%EF%BC%89.pdf)
 
-2018暑期佛美交换生项目申请表  [下载](https://raw.githubusercontent.com/carllx/zhongart_Pages/master/static/contents/news/2018暑期佛美交换生项目申请表.pdf)
+2018暑期佛美交换生项目申请表  [下载](https://raw.githubusercontent.com/carllx/zhongart_Pages/master/static/contents/news/2018%E4%BD%9B%E7%BE%8E%E6%9A%91%E6%9C%9F%E4%BA%A4%E6%8D%A2%E7%94%9F%E9%A1%B9%E7%9B%AE%E7%94%B3%E8%AF%B7%E8%A1%A8.pdf)
 
 2018暑期交换课程川美学生出国（境）家长知情保证书 [下载](https://raw.githubusercontent.com/carllx/zhongart_Pages/master/static/contents/news/2018%E6%9A%91%E6%9C%9F%E4%BA%A4%E6%8D%A2%E8%AF%BE%E7%A8%8B%E5%B7%9D%E7%BE%8E%E5%AD%A6%E7%94%9F%E5%87%BA%E5%9B%BD%EF%BC%88%E5%A2%83%EF%BC%89%E5%AE%B6%E9%95%BF%E7%9F%A5%E6%83%85%E4%BF%9D%E8%AF%81%E4%B9%A6.pdf)`)
 
