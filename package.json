@@ -40,7 +40,7 @@
     "testCross": "cross-var node -e \"console.log('now path on :', \\\"$npm_package_config_commitmessage\\\")\" && cross-var node -e \"console.log('now path on :', \\\"$npm_package_config_commitmessage\\\")\""
   },
   "config": {
-    "commitmessage": "pdf修正"
+    "commitmessage": "markdown 格式修正"
   },
   "name": "",
   "description": "## How to use",
