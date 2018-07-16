@@ -1,4 +1,9 @@
-/*生成静态网页*/
+/*
+
+ 静态网页生成
+ 静态文件传放
+
+*/
 const fetch = require('isomorphic-fetch')
 const cp = require('recursive-copy')
 const artisti =  require('./static/contents/artisti/')
@@ -31,6 +36,8 @@ module.exports = {
         page: '/news/2018_artists_plan',
       },'/news/2018_accademia':{
         page: '/news/2018_accademia',
+      },'/news/2018_Actuality_of_the_past':{
+        page: '/news/2018_Actuality_of_the_past',
       }
     }
 

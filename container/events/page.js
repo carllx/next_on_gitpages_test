@@ -11,7 +11,6 @@ export default connect(state => state.Root)(({name,language,pageSEO
       <h1>{name[language]}</h1>
       <h2>{pageSEO?'on SEO':'on CLIENT'}</h2>
     </div>
-
   )
 })
 

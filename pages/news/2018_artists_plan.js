@@ -23,8 +23,8 @@ export const outline = {
     "中国艺术家赴意大利",
   ],
   links: {
-    twitter: 'https://twitter.com/arunoda/status/876828315570421761',
-    facebook: 'https://www.facebook.com/arunoda.susiripala/posts/10155578306283606'
+    // twitter: 'https://twitter.com/arunoda/status/876828315570421761',
+    facebook: 'https://www.facebook.com/zhong.art.it'
   }
 }
 

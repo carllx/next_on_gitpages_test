@@ -32,7 +32,7 @@ class TABS extends PureComponent {
         this.tabs =['BIOGRAPHY','WORKS','SELECTTEXTS','NEWS','EXHIBITIONS']
         this.tabsName = {
             it:['BIOGRAFIA','LAVORI','SELECTTEXTS','NOTIZIE','MOSTRE'],
-            zh:['介  绍','作  品','摘  文','新  闻','展  览'],
+            zh:['简  历','作  品','摘  文','新  闻','展  览'],
             en:['BIOGRAPHY','WORKS','SELECTTEXTS','NEWS','EXHIBITIONS'],
         }
     }
