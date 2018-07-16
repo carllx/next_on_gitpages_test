@@ -8,10 +8,12 @@ CMD
 npm run dev
 ```
 chrome :[localhost:3000/](http://localhost:3000/):
+mac :[http://169.254.141.96:3000/](http://169.254.141.96:3000/):
 
 递交
 ```bash
-git add . && git commit -m "...." && git push origin master
+*递交开发版本*
+npm run pushde
 ```
 
 
@@ -19,25 +21,24 @@ git add . && git commit -m "...." && git push origin master
 ## 输出
 在 out 目录
 ```bash
-npm run preexport
+npm run pushsito
+
+//如果递交失败,在out文件夹中
+git reset --hard
+//or
+git pull
 
 //如果递交失败
 npm run prestart
 npm run preexport
 ```
 
-> This example requires [Node.js 8](https://nodejs.org/en/download/current/) or a later version.<br>
-> (That's for the use of "async await" in the `next.config.js`.)
 
-Install it and run:
 
-```bash
-npm install
-npm run dev
-```
+## Next step
 
-## The idea behind the example
 
-This example show how to export to static HTML files your Next.js application fetching data from an API to generate a dynamic list of pages. This use a custom Express server in development to configure custom routing and then generate a map of pages to export for production.
-
-When trying to run `npm start` it will build and export your pages into the `out` folder and serve them on `localhost:5000`.
+更新 nextjs 到 6+
+更新 next-redux-wrapper 到 2.0+
+更新 redux 到 4.0.0+
+修复 更新后 的cross-env 失败
