@@ -8,8 +8,8 @@ import _CONTENT from './section.content'
 import { PureComponent } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import {setSectionPostionY,setClose,setFetch} from '~/reducers/section'
-import {findPos} from '~/utils/mouse'
+import {setSectionPostionY,setClose,setFetch} from 'reducers/section'
+import {findPos} from 'utils/mouse'
 /*
 参考 https://wangwang.taobao.com/+
     div transform: skew(0deg,-5deg) relative

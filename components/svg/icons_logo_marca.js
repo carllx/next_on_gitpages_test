@@ -1,5 +1,5 @@
 // import {PureComponent} from 'react'
-import {ui,GR}  from '~/utils/ui'
+import {ui,GR}  from 'utils/ui'
 import { css } from 'glamor'
 
 const Svg = (props) =>

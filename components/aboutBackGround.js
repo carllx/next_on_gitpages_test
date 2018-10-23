@@ -1,11 +1,11 @@
 import { css } from 'glamor'
-import {ui,GR}  from '~/utils/ui'
+import {ui,GR}  from 'utils/ui'
 import {PureComponent} from 'react'
 import {TweenMax} from "gsap";
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import {setFocusOn} from'~/reducers/artisti.tabs'
-import { setPanelOn } from '~/reducers/nav'
+import {setFocusOn} from'reducers/artisti.tabs'
+import { setPanelOn } from 'reducers/nav'
 
 const Shape= (props) => (
     <div

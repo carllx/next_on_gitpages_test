@@ -1,14 +1,26 @@
 {
   "presets": [
-    "next/babel",
+    "next/babel"
   ],
-  "plugins": ["markdown-in-js/babel"],
-  "env": {
-    "development": {
-      "plugins": ["markdown-in-js/babel","babel-plugin-root-import"]
-    },
-    "production": {
-      "plugins": ["markdown-in-js/babel","babel-plugin-root-import"]
-    }
-  }
+  "plugins": [
+    [
+      "markdown-in-js/babel"
+    ],
+    [
+      "module-resolver",
+      {
+        "root": [
+          "./"
+        ],
+        "alias": {
+          "test": "./test",
+          "components": "./components",
+          "container": "./container",
+          "utils": "./utils",
+          "reducers": "./reducers"
+        }
+      }
+    ]
+  ]
+  
 }

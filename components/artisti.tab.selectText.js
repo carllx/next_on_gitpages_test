@@ -1,9 +1,9 @@
 import { css } from 'glamor'
 import { PureComponent } from 'react'
-import {ui }  from '~/utils/ui'
+import {ui }  from 'utils/ui'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import TAB from '~/components/artisti.tab.Wrapper'
+import TAB from 'components/artisti.tab.Wrapper'
 
 
 /*根据title 显示selectText*/

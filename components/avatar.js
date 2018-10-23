@@ -4,7 +4,7 @@ import {PureComponent} from 'react'
 import {css} from 'glamor'
 import NoSSR from 'react-no-ssr';
 
-import {ui, GR, perspZ}  from '~/utils/ui'
+import {ui, GR, perspZ}  from 'utils/ui'
 import {IMG_WithLoader} from './img'
 
 import { connect } from 'react-redux'

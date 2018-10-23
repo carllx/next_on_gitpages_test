@@ -1,14 +1,14 @@
 import {PureComponent} from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { setPanelOn } from '~/reducers/nav'
+import { setPanelOn } from 'reducers/nav'
 // import withRedux from 'next-redux-wrapper'
 import { css } from 'glamor'
 
-import {ui,GR}  from '~/utils/ui'
+import {ui,GR}  from 'utils/ui'
 
-import LOGO from '~/components/svg/icons_logo'
-import BGShape from '~/components/aboutBackGround'//class=aboutBG
+import LOGO from 'components/svg/icons_logo'
+import BGShape from 'components/aboutBackGround'//class=aboutBG
 
 
 

@@ -16,8 +16,8 @@ import {ui  ,GR ,makeKEY}  from '../utils/ui'
 import { PureComponent } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import {setSectionPostionY,setClose,setFetch} from '~/reducers/section'
-import {findPos} from '~/utils/mouse'
+import {setSectionPostionY,setClose,setFetch} from 'reducers/section'
+import {findPos} from 'utils/mouse'
 
 /**
 props 输入group_Name
@@ -40,7 +40,7 @@ class IS_IN_View extends PureComponent{
         // this.props.groupName='section_event'
         // this.props.zGroup = ;// 识别深度0:group_root
         // this.props.parentHeight //更改了,自动更新state
-        this.props.top = ;
+        // this.props.top = ;
     }
 
     componentWillReceiveProps(){

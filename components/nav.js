@@ -5,16 +5,16 @@ import { css } from 'glamor'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
-import {ui }  from '~/utils/ui'
-import SVG_BACKGROUND  from '~/components/nav.bg.svg_SMIL'
-import Language  from '~/components/nav.language'
-import {BUTTONS}  from '~/components/nav.buttons'
-import ArtistiNav  from '~/components/nav.artisti'
-import NewsNav  from '~/components/nav.news'
-import ContactNav  from '~/components/nav.contact'
-import Info  from '~/components/info'
+import {ui }  from 'utils/ui'
+import SVG_BACKGROUND  from 'components/nav.bg.svg_SMIL'
+import Language  from 'components/nav.language'
+import {BUTTONS}  from 'components/nav.buttons'
+import ArtistiNav  from 'components/nav.artisti'
+import NewsNav  from 'components/nav.news'
+import ContactNav  from 'components/nav.contact'
+import Info  from 'components/info'
 
-import { setPanelOn } from '~/reducers/nav'
+import { setPanelOn } from 'reducers/nav'
 
 class Triangle extends PureComponent{
     constructor(props){

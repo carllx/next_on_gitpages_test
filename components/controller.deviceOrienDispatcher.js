@@ -16,7 +16,7 @@ import { connect } from 'react-redux'
 import  debounce  from 'lodash/debounce'
 import {Math as THREE_Math ,Vector3 as THREE_Vector3 ,Quaternion as THREE_Quaternion ,Euler as THREE_Euler ,Matrix4 as THREE_Matrix4 } from 'three'
 
-import { setgyo } from '~/reducers/root'
+import { setgyo } from 'reducers/root'
 
 class deviceOrienDispatcher extends PureComponent {
 

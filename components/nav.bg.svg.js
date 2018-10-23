@@ -3,8 +3,8 @@ import { connect } from 'react-redux'
 import { PureComponent } from 'react'
 
 import { css } from 'glamor'
-import { ui, GR } from '~/utils/ui'
-import { setBackGroundPoints } from '~/reducers/nav'
+import { ui, GR } from 'utils/ui'
+import { setBackGroundPoints } from 'reducers/nav'
  /**
  * NAV底部 BACKGROUND梯形
  * @props  {[FLOAT]} width 一般恒定vw

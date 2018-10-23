@@ -4,16 +4,16 @@ import {PureComponent} from 'react'
 import { css } from 'glamor'
 import {TweenMax} from "gsap";
 import Link from 'next/link';
-import {ui,GR}  from '~/utils/ui'
-// import {canGoogle} from'~/reducers/root'
+import {ui,GR}  from 'utils/ui'
+// import {canGoogle} from'reducers/root'
 // import { bindActionCreators } from 'redux'
 
-// import LOGO  from '~/components/svg/icons_logo'
-import LOGO  from '~/components/svg/icons_logo_marca'
-import QRWe  from '~/components/svg/icons_QR_Wechat'
-import {Mobile,Address,Mail,Phone}  from '~/components/svg/icons_static_svg'
+// import LOGO  from 'components/svg/icons_logo'
+import LOGO  from 'components/svg/icons_logo_marca'
+import QRWe  from 'components/svg/icons_QR_Wechat'
+import {Mobile,Address,Mail,Phone}  from 'components/svg/icons_static_svg'
 
-import {Twitter,WeiChat,Youtube,Viemo,Weibo,Facebook,Instagram}  from '~/components/svg/icons_social_svg'
+import {Twitter,WeiChat,Youtube,Viemo,Weibo,Facebook,Instagram}  from 'components/svg/icons_social_svg'
 
 
 import {

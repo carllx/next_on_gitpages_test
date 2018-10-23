@@ -1,15 +1,15 @@
 // import  {Component} from 'react'
 import fetch from 'isomorphic-fetch'
 import { css } from 'glamor'
-import {ui, GR, perspZ, makeKEY}  from '~/utils/ui'
+import {ui, GR, perspZ, makeKEY}  from 'utils/ui'
 // import _IMG from './img.skew'
 import _IMG from './img.parallax'
 import { PureComponent } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-// import {setSectionPostionY} from '~/reducers/section'
-import {findPos} from '~/utils/mouse'
-// import {parallaxInView} from '~/utils/inView'
+// import {setSectionPostionY} from 'reducers/section'
+import {findPos} from 'utils/mouse'
+// import {parallaxInView} from 'utils/inView'
 /*
 参考 https://wangwang.taobao.com/+
     div transform: skew(0deg,-5deg) relative

@@ -1,7 +1,7 @@
 
 import {PureComponent} from 'react'
 import {css} from 'glamor'
-import {ui}  from '~/utils/ui'
+import {ui}  from 'utils/ui'
 import { connect } from 'react-redux'
 
 class Copyright extends PureComponent{

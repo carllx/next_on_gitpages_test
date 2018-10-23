@@ -3,18 +3,18 @@ import { bindActionCreators } from 'redux'
 import withRedux from 'next-redux-wrapper'
 
 import { css  } from 'glamor'
-import {initStore} from '~/store'
-import {setScroll,switchLanguage,setViewSize,onDevice ,setBrowser} from'~/reducers/root'
-import { setPanelOn } from '~/reducers/nav'
+import {initStore} from 'store'
+import {setScroll,switchLanguage,setViewSize,onDevice ,setBrowser} from'reducers/root'
+import { setPanelOn } from 'reducers/nav'
 
 import NoSSR from 'react-no-ssr';
 import Head from 'next/head'
-import SEO from '~/components/SEO.index'
-import Nav from '~/components/nav'
-import About from '~/components/about'
+import SEO from 'components/SEO.index'
+import Nav from 'components/nav'
+import About from 'components/about'
 
-import Resizer from '~/components/controller.resize'
-import {ThreeInit} from'~/components/section.welcome.THREE.sphere.js'
+import Resizer from 'components/controller.resize'
+import {ThreeInit} from'components/section.welcome.THREE.sphere.js'
 
 import {isMobile  ,isTablet ,isLandscape, getLanguer}  from '../utils/device'
 

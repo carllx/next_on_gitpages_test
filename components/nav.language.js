@@ -1,10 +1,10 @@
 // nav.language.js
 import {PureComponent} from 'react'
 import { css } from 'glamor'
-import {ui  ,GR}  from '~/utils/ui'
+import {ui  ,GR}  from 'utils/ui'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import  {switchLanguage}  from '~/reducers/root'
+import  {switchLanguage}  from 'reducers/root'
 
 class Language extends PureComponent {
     constructor(props){

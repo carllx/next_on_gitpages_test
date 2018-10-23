@@ -4,17 +4,17 @@ import withRedux from 'next-redux-wrapper'
 import {css} from 'glamor'
 import NoSSR from 'react-no-ssr';
 import Head from 'next/head'
-import {GR , makeKEY , perspZ}  from '~/utils/ui'
-import {isMobile  ,isTablet , getLanguer}  from '~/utils/device'
-import {switchLanguage,onDevice} from'~/reducers/root'
+import {GR , makeKEY , perspZ}  from 'utils/ui'
+import {isMobile  ,isTablet , getLanguer}  from 'utils/device'
+import {switchLanguage,onDevice} from'reducers/root'
 
-import Scroller from '~/components/controller.scroll'
-import Resizer from '~/components/controller.resize'
-import Nav from '~/components/nav'
-import Seczione from '~/components/section'
-import {initStore} from '~/store'
+import Scroller from 'components/controller.scroll'
+import Resizer from 'components/controller.resize'
+import Nav from 'components/nav'
+import Seczione from 'components/section'
+import {initStore} from 'store'
 
-import Copyright from '~/components/copyright'
+import Copyright from 'components/copyright'
 
 export default function WithNews (options) {
   return function (content) {

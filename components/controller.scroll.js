@@ -3,9 +3,9 @@ import  {PureComponent} from 'react'
 // import fetch from 'isomorphic-fetch' //
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import {isMobile}  from '~/utils/device'
-import {setScroll,setViewSize,setScrollOffsetY } from'~/reducers/root'
-// import {throttle, debounce}  from '~/utils/throttle'
+import {isMobile}  from 'utils/device'
+import {setScroll,setViewSize,setScrollOffsetY } from'reducers/root'
+// import {throttle, debounce}  from 'utils/throttle'
 import  throttle  from 'lodash/throttle'
 import  debounce  from 'lodash/debounce'
 import NoSSR from 'react-no-ssr';

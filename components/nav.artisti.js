@@ -5,13 +5,13 @@ import { css } from 'glamor'
 import Router from 'next/router'
 import {TweenMax} from "gsap";
 
-import {GR ,perspZ}  from '~/utils/ui'
-import AVATAR from '~/components/avatar'
-import {artistInfo} from '~/static/contents/artisti'
-import { initStore } from '~/store'
+import {GR ,perspZ}  from 'utils/ui'
+import AVATAR from 'components/avatar'
+import {artistInfo} from 'static/contents/artisti'
+import { initStore } from 'store'
 
-import MOUSE_POS_DISPATCHER from '~/components/controller.mousePosDispatcher'
-import DEVICE_ORIEN_DISPATCHER from '~/components/controller.deviceOrienDispatcher'
+import MOUSE_POS_DISPATCHER from 'components/controller.mousePosDispatcher'
+import DEVICE_ORIEN_DISPATCHER from 'components/controller.deviceOrienDispatcher'
 
 class ArtistiNav extends PureComponent {
 

@@ -16,7 +16,7 @@ import  {PureComponent} from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import  debounce  from 'lodash/debounce'
-import { setMousePos } from '~/reducers/root'
+import { setMousePos } from 'reducers/root'
 // import * as THREE from 'three';
 class mousePosDispatcher extends PureComponent {
 

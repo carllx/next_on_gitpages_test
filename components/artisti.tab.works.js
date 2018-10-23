@@ -1,14 +1,14 @@
 import { css } from 'glamor'
 import { PureComponent } from 'react'
-import {ui  ,GR , makeKEY , perspZ}  from '~/utils/ui'
+import {ui  ,GR , makeKEY , perspZ}  from 'utils/ui'
 
-import TAB from '~/components/artisti.tab.Wrapper'
-import {IMG_WithLoader} from '~/components/img'
+import TAB from 'components/artisti.tab.Wrapper'
+import {IMG_WithLoader} from 'components/img'
 
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import {setFocusOn} from'~/reducers/artisti.tabs'
-import { setPanelOn } from '~/reducers/nav'
+import {setFocusOn} from'reducers/artisti.tabs'
+import { setPanelOn } from 'reducers/nav'
 
 /*Button_IMG */
 // class Button_IMG extends PureComponent {

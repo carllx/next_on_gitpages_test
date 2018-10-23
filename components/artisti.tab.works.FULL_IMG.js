@@ -1,13 +1,13 @@
 
 import { css } from 'glamor'
 import { PureComponent } from 'react'
-import { ui  ,GR , makeKEY , perspZ }  from '~/utils/ui'
+import { ui  ,GR , makeKEY , perspZ }  from 'utils/ui'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import {IMG_WithLoader} from '~/components/img.work'
-import {setFocusOn} from '~/reducers/artisti.tabs'
-import LeftArrow from '~/components/svg/icons_chevron-left'
-import RightArrow from '~/components/svg/icons_chevron-right'
+import {IMG_WithLoader} from 'components/img.work'
+import {setFocusOn} from 'reducers/artisti.tabs'
+import LeftArrow from 'components/svg/icons_chevron-left'
+import RightArrow from 'components/svg/icons_chevron-right'
 
 
 

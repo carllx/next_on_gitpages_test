@@ -13,7 +13,7 @@ mac :[http://169.254.141.96:3000/](http://169.254.141.96:3000/):
 递交
 ```bash
 *递交开发版本*
-npm run pushde
+npm run pushdev
 ```
 
 

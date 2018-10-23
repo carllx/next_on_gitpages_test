@@ -1,30 +1,29 @@
 {
   "main": "server.js",
   "dependencies": {
-    "babel-plugin-root-import": "^5.1.0",
-    "express": "^4.16.3",
+    "express": "^4.16.4",
     "glamor": "^2.20.40",
-    "glamorous": "^4.12.5",
-    "gsap": "^1.20.4",
+    "glamorous": "^4.13.1",
+    "gsap": "^1.20.6",
     "isomorphic-fetch": "^2.2.1",
-    "lodash": "^4.17.10",
+    "lodash": "^4.17.11",
     "markdown-in-js": "^1.1.4",
-    "next": "^5.1.0",
+    "next": "^7.0.2",
     "next-redux-wrapper": "^1.3.5",
-    "react": "^16.3.2",
-    "react-dom": "^16.3.2",
+    "react": "^16.5.2",
+    "react-dom": "^16.5.2",
     "react-google-maps": "^9.4.5",
-    "react-jss": "^8.4.0",
+    "react-jss": "^8.6.1",
     "react-motion": "^0.5.2",
     "react-no-ssr": "^1.1.0",
     "react-redux": "^5.0.7",
-    "react-tap-event-plugin": "^3.0.2",
-    "react-transition-group": "^2.3.1",
+    "react-tap-event-plugin": "^3.0.3",
+    "react-transition-group": "^2.5.0",
     "react-vr": "^2.0.0",
     "redux": "^3.7.2",
-    "redux-devtools-extension": "^2.13.2",
-    "redux-thunk": "^2.2.0",
-    "serve": "^6.5.6",
+    "redux-devtools-extension": "^2.13.5",
+    "redux-thunk": "^2.3.0",
+    "serve": "^6.5.8",
     "three": "^0.91.0"
   },
   "scripts": {
@@ -40,13 +39,14 @@
     "testCross": "cross-var node -e \"console.log('now path on :', \\\"$npm_package_config_commitmessage\\\")\" && cross-var node -e \"console.log('now path on :', \\\"$npm_package_config_commitmessage\\\")\""
   },
   "config": {
-    "commitmessage": "整理开发命令提醒"
+    "commitmessage": "库重要升级next5--next7, babel-plugin-module-resolver取代 babel-plugin-root-import"
   },
   "name": "",
   "description": "## How to use",
   "version": "0.0.1",
   "devDependencies": {
-    "cross-env": "^5.1.4",
+    "babel-plugin-module-resolver": "^3.1.1",
+    "cross-env": "^5.2.0",
     "cross-var": "^1.1.0"
   }
 }

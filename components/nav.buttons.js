@@ -1,5 +1,5 @@
 import { css } from 'glamor'
-import {ui  ,GR}  from '~/utils/ui'
+import {ui  ,GR}  from 'utils/ui'
 import { PureComponent } from 'react'
 
 const CONFIG = [{

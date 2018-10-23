@@ -18,9 +18,9 @@
  */
 import {PureComponent} from 'react'
 import { css } from 'glamor'
-import XHRProgress from '~/utils/Progress'
-import {ui ,makeKEY}  from '~/utils/ui'
-import {wix} from '~/utils/img'
+import XHRProgress from 'utils/Progress'
+import {ui ,makeKEY}  from 'utils/ui'
+import {wix} from 'utils/img'
 
 
 

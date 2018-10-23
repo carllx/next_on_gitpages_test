@@ -1,7 +1,7 @@
 import markdown from 'markdown-in-js'
-import WithDoc from '~/container/withNews'
+import WithDoc from 'container/withNews'
 
-// import Image from '~/components/img_in_md'
+// import Image from 'components/img_in_md'
 
 export const outline = {
   "title": {

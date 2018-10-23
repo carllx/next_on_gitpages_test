@@ -1,10 +1,10 @@
 import { css } from 'glamor'
-import {ui,GR}  from '~/utils/ui'
+import {ui,GR}  from 'utils/ui'
 import {PureComponent} from 'react'
 import {TweenMax} from "gsap";
 
 // SVG
-import {QuoteLeft,QuoteRight}  from '~/components/svg/icons_static_svg'
+import {QuoteLeft,QuoteRight}  from 'components/svg/icons_static_svg'
 
 
 // const Shape= (props) => (

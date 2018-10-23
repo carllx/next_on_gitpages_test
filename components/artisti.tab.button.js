@@ -3,8 +3,8 @@ import { ui  ,GR ,makeKEY ,perspZ }  from '../utils/ui'
 import { PureComponent } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import {initTabs , touchOnTab} from '~/reducers/artisti.tabs'
-import {findPos} from '~/utils/mouse'
+import {initTabs , touchOnTab} from 'reducers/artisti.tabs'
+import {findPos} from 'utils/mouse'
 /**
  * 位于Avatar 右侧 的tab 导航栏
  * *** Component
