@@ -39,7 +39,7 @@
     "testCross": "cross-var node -e \"console.log('now path on :', \\\"$npm_package_config_commitmessage\\\")\" && cross-var node -e \"console.log('now path on :', \\\"$npm_package_config_commitmessage\\\")\""
   },
   "config": {
-    "commitmessage": "库重要升级next5--next7, babel-plugin-module-resolver取代 babel-plugin-root-import"
+    "commitmessage": "修正-导航按钮意大利版翻译"
   },
   "name": "",
   "description": "## How to use",
