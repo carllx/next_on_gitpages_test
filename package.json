@@ -23,8 +23,8 @@
     "redux": "^3.7.2",
     "redux-devtools-extension": "^2.13.5",
     "redux-thunk": "^2.3.0",
-    "serve": "^6.5.8",
-    "three": "^0.91.0"
+    "serve": "^10.0.2",
+    "three": "^0.97.0"
   },
   "scripts": {
     "dev": "node .",
@@ -39,7 +39,7 @@
     "testCross": "cross-var node -e \"console.log('now path on :', \\\"$npm_package_config_commitmessage\\\")\" && cross-var node -e \"console.log('now path on :', \\\"$npm_package_config_commitmessage\\\")\""
   },
   "config": {
-    "commitmessage": "修正-导航按钮意大利版翻译"
+    "commitmessage": "修正-社交链接 库升级"
   },
   "name": "",
   "description": "## How to use",

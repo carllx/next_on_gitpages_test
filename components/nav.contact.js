@@ -13,7 +13,7 @@ import LOGO  from 'components/svg/icons_logo_marca'
 import QRWe  from 'components/svg/icons_QR_Wechat'
 import {Mobile,Address,Mail,Phone}  from 'components/svg/icons_static_svg'
 
-import {Twitter,WeiChat,Youtube,Viemo,Weibo,Facebook,Instagram}  from 'components/svg/icons_social_svg'
+import {Twitter,WeiChat,Youtube,Viemo,Weibo,Facebook,Instagram,Linkedin}  from 'components/svg/icons_social_svg'
 
 
 import {
@@ -228,7 +228,6 @@ class NavContact extends PureComponent {
                     pointerEvents:'auto',
                 })}>
 
-                    <div {...css({marginRight:'1em'})} className = 'flashIcons'><Twitter/></div>
                     <div
                      {...css({marginRight:'1em'})}
                      className = 'flashIcons'
@@ -237,29 +236,26 @@ class NavContact extends PureComponent {
                         <WeiChat/>
                     </div>
 
-                    <div {...css({marginRight:'1em'})} className = 'flashIcons'><Weibo/></div>
+
 
                     {/*facebook*/}
                     <div {...css({marginRight:'1em'})}
                      onClick={()=>{
-                        // e.preventDefault()
-                        // Router.push('/','//www.facebook.com/zhong.art.it')}}
-                        // Router.replace('/','//www\.facebook\.com/zhong\.art\.it')
-                        // window.location.replace('//www\.facebook\.com/zhong\.art\.it');
-                        window.open(
-                          '//www\.facebook\.com/zhong\.art\.it',
-                          '_blank' // <- This is what makes it open in a new window.
-                        );
-                        }}
+                         // e.preventDefault()
+                         // Router.push('/','//www.facebook.com/zhong.art.it')}}
+                         // Router.replace('/','//www\.facebook\.com/zhong\.art\.it')
+                         // window.location.replace('//www\.facebook\.com/zhong\.art\.it');
+                         window.open(
+                             '//www\.facebook\.com/zhong\.art\.it',
+                             '_blank' // <- This is what makes it open in a new window.
+                             );
+                            }}
                      className = 'flashIcons'>
                             <Facebook/>
                     </div>
-
-
-                    <div {...css({marginRight:'1em'})} className = 'flashIcons'><Instagram/></div>
-                    <div {...css({marginRight:'1em'})} className = 'flashIcons'><Youtube/></div>
-                    <div {...css({marginRight:'1em'})} className = 'flashIcons'><Viemo/></div>
-
+                    <div {...css({marginRight:'1em'})} onClick={()=>{window.open('//www\.linkedin.com\/in\/zhong-art-international-7063a3173','_blank');}} className = 'flashIcons'><Linkedin/></div>
+                    <div {...css({marginRight:'1em'})} onClick={()=>{window.open('//www\.instagram\.com\/zhong_art_international','_blank');}} className = 'flashIcons'><Instagram/></div>
+                    <div {...css({marginRight:'1em'})} onClick={()=>{window.open('//www\.youtube\.com/channel/UCMX1_p6fAUTzN49YXb8rwTA','_blank');}} className = 'flashIcons'><Youtube/></div>
                 </div>
                 {/* SOCIAL App */}
 
