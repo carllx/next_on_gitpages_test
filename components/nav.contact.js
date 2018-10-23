@@ -44,22 +44,12 @@ import Router from 'next/router'
 // const linkDirectTo = (url) =>
 
 class NavContact extends PureComponent {
-    // /*验证客户端是否能访问 google map */
-    // static async getInitialProps () {
 
-    //     // eslint-disable-next-line no-undef
-    //     const res = await fetch('https://maps.googleapis.com/maps/api/js?key=AIzaSyBQdch5IcgcQaKNG76sbMQv1MEBEKLeQ-8&v=3.exp&libraries=geometry,drawing,places')
-    //     if(res.status===200){
-    //         return { googlepass: true }
-    //     }else{
-    //         return { googlepass: false }
-    //     }
-    //   }
 
     constructor(props){
         super(props)
         this.state ={showQr : false}
-        // this.canGoogle = require(`/maps.googleapis.com/maps/api/js?key=AIzaSyBQdch5IcgcQaKNG76sbMQv1MEBEKLeQ-8&v=3.exp&libraries=geometry,drawing,places`);
+        
     }
 
     componentDidMount(){
