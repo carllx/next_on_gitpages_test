@@ -1,6 +1,6 @@
 import { PureComponent } from 'react'
 import { bindActionCreators } from 'redux'
-import withRedux from 'next-redux-wrapper'
+import {connect} from "react-redux";//upgrade -- import withRedux from "next-redux-wrapper";
 
 import { css  } from 'glamor'
 import {initStore} from 'store'

@@ -13,20 +13,18 @@ import Resizer from 'components/controller.resize'
 import Nav from 'components/nav'
 import Seczione from 'components/section'
 import {initStore} from 'store'
-
+import {connect} from "react-redux";//upgrade -- import withRedux from "next-redux-wrapper";
 import Copyright from 'components/copyright'
 
 export default function WithNews (options) {
   return function (content) {
     class News extends PureComponent {
 
-
       getShareLink(link) {
         return `/share?slug=${options.slug}&redirectTo=${encodeURIComponent(link)}`
       }
 
       render () {
-
         const {language } = this.props ||{language:'zh'}
         const {is_landscape} = this.props.view_size||{view_size:{is_landscap:false}}
 
@@ -128,7 +126,9 @@ export default function WithNews (options) {
       }
     }
 
-    return withRedux(initStore, mapStateToProps, mapDispatchToProps)(News)
+    // return withRedux(initStore, mapStateToProps, mapDispatchToProps)(News)
+    // export default connect( mapStateToProps, mapDispatchToProps)(Index);
+    return connect ( mapStateToProps, mapDispatchToProps)(News)
   }
 }
 

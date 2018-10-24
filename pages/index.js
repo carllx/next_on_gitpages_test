@@ -1,6 +1,6 @@
 import { PureComponent } from 'react'
 import { bindActionCreators } from 'redux'
-import withRedux from 'next-redux-wrapper'
+import {connect} from "react-redux";//upgrade -- import withRedux from "next-redux-wrapper";
 
 import { css  } from 'glamor'
 import {initStore} from 'store'
@@ -145,8 +145,9 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default withRedux(initStore, mapStateToProps, mapDispatchToProps)(Index)
-
+// export default withRedux(initStore, mapStateToProps, mapDispatchToProps)(Index)
+// export default connect(...)(WrappedComponent); 
+export default connect( mapStateToProps, mapDispatchToProps)(Index);
 
 
 const ABS = (props)=>

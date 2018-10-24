@@ -1,6 +1,6 @@
 import {PureComponent} from 'react'
 import {bindActionCreators} from 'redux'
-import withRedux from 'next-redux-wrapper'
+import {connect} from "react-redux";//upgrade -- import withRedux from "next-redux-wrapper";
 import {css} from 'glamor'
 import NoSSR from 'react-no-ssr';
 import Head from 'next/head'
@@ -268,4 +268,5 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default withRedux(initStore, mapStateToProps, mapDispatchToProps)(Artisti)
+// export default withRedux(initStore, mapStateToProps, mapDispatchToProps)(Artisti)
+export default connect( mapStateToProps, mapDispatchToProps)(Artisti);
