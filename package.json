@@ -43,7 +43,7 @@
     "testCross": "cross-var node -e \"console.log('now path on :', \\\"$npm_package_config_commitmessage\\\")\" && cross-var node -e \"console.log('now path on :', \\\"$npm_package_config_commitmessage\\\")\""
   },
   "config": {
-    "commitmessage": "改用 MDX 扩展markdown 功能"
+    "commitmessage": "改用 next-mdx,扩展 markdown 功能， about文字应用 markdown ,"
   },
   "name": "zhongart",
   "description": "## How to use",

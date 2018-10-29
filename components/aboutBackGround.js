@@ -4,7 +4,10 @@ import {PureComponent} from 'react'
 import {TweenMax} from "gsap";
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import {setFocusOn} from'reducers/artisti.tabs'
+// import {setFocusOn} from'reducers/artisti.tabs'
+import ABOUT_IT from 'components/about.it.md'
+import ABOUT_CN from 'components/about.cn.md'
+import ABOUT_EN from 'components/about.en.md'
 import { setPanelOn } from 'reducers/nav'
 
 const Shape= (props) => (
@@ -151,7 +154,7 @@ class AboutBG extends PureComponent {
 
                      })}
                     >
-                        {aboutInfo[`${this.props.language}`]
+                        {/* {aboutInfo[`${this.props.language}`]
                             .split('\n')
                             .map((item, key) =>
                                 <div
@@ -166,7 +169,8 @@ class AboutBG extends PureComponent {
                                  >
                                     {item}<br/>
                                 </div>
-                    )}
+                    )} */}
+                        {aboutInfo[`${this.props.language}`]}
                     </div>:null
 
                 }
@@ -207,7 +211,8 @@ export default connect(mapStateToProps,mapDispatchToProps)(AboutBG)
 
 
 const aboutInfo ={
-  "it": "Fondata nel 2017 la Zhong Art International è un’agenzia che opera nel campo dell'Arte e delle Attività Culturali. La Mission consiste nell’organizzare di mostre d’arte ed eventi. Abbiamo la parternship con Enti ed Istituzioni, tra cui il Ministero della Cultura cinese, i Consolati e le Ambasciate in Cina in Italia e siamo impegnati inoltre a favorire scambi culturali tra Università ed Accademie, Musei statali e privati. Essa è fortemente radicata nel territorio fiorentino e a Beijing, ed offre un ventaglio di servizi completo. Un team di professionisti al tuo fianco per assicurare qualità, serietà e risultati. \n\nPartendo da quelle che sono le esigenze ed i desideri del cliente siamo in grado di progettare, organizzare e realizzare Mostre ed Eventi di alto profilo scientifico, con elevata creatività ed esperienza professionale, offrendo servizi e consulenze su misura per ogni occasione.\nOltre all’organizzazione di mostre temporanee, ci dedichiamo alla realizzazione di tutte quelle attività che possano creare un ponte culturale tra Italia e Cina e favorire rapporti di scambio tra Enti ed Istituti dei due Paesi, progetti e collaborazioni che uniscono realtà che hanno come fondamento l’Arte e la Cultura.\nCrediamo che l’arte sia un mezzo di comunicazione efficace ed immediato, in grado di superare ogni difficoltà e barriere linguistiche, di stimolare, incuriosire e far conoscere nuove realtà.",
-  "zh": "中艺国际是一个位于意大利佛罗伦萨的国际性艺术与文化交流机构。\n成立于2017年，在中国北京和意大利佛罗伦萨均有办事机构，我们的宗旨是为中国和意大利两国提供文化领域的交流与合作，通过积极为两国的艺术机构之间和艺术家之间策划展览和艺术家之间的学术交流活动，推动促进两国文化积极友好的发展。\n我们与意大利很多国家级的很多重要文化机构如文化部、大使馆等都有长期项目往来，与一些艺术类高等院校如罗马美术学院、佛罗伦萨大学美术学院、欧洲设计学院等都有校际合作关系。\n我们为专业人士提供专业性对接交流，旨在为中国和意大利两国的艺术发展建立文化沟通的桥梁。\n",
-  "en": " Zhong Art International is a reality based in Italy and China, which operates in the field of Arts and Cultural Activities Italy-China. Our main activity is organizing art exhibitions and cultural events. We have parternships with Entities and Institutions, including the Chinese Ministry of Culture, Consulates and Embassies both in China and in Italy, as well as cultural exchanges between Universities and Academies, State and Private Museums, and the most important artistic organization of the country.\nIn addition to exhibitions, we are dedicated to the realization of all those activities that can create a cultural bridge between Italy and China: for example, we work to create new and lasting exchanges between institutions and institutes of the two countries, projects and collaborations that combine similar realities the basis of Art and Culture.\nThe root of our work, the will that drives our whole business, is the commitment to create a strong link between two ancient cultures—China and Italy. We believe that art is the most effective and immediate ways of communication, the only one able to overcome every difficulty and language barriers. Our purpose today is to stimulate the culture’s vitality, to excite our curiosity and to create some new meaningful activities,  and we hope that in the future we can make a prosperous world for our next generation.\nStarting from the demands of our customers, we are able to organize quality events with high creativity and professional experience, offering customized services and practical consultations for every occasions.\nFounded in 2017, Zhong Art International, a highly organized event agency in the Florence and Beijing areas, offers a full range of services.We are the propagators of Chinese art and culture, we strive to promote them to be duly appreciated in Italy. A team of professionals beside you to ensure the quality, reliability and results. "
+//   "it": "Fondata nel 2017 la Zhong Art International è un’agenzia che opera nel campo dell'Arte e delle Attività Culturali. La Mission consiste nell’organizzare di mostre d’arte ed eventi. Abbiamo la parternship con Enti ed Istituzioni, tra cui il Ministero della Cultura cinese, i Consolati e le Ambasciate in Cina in Italia e siamo impegnati inoltre a favorire scambi culturali tra Università ed Accademie, Musei statali e privati. Essa è fortemente radicata nel territorio fiorentino e a Beijing, ed offre un ventaglio di servizi completo. Un team di professionisti al tuo fianco per assicurare qualità, serietà e risultati. \n\nPartendo da quelle che sono le esigenze ed i desideri del cliente siamo in grado di progettare, organizzare e realizzare Mostre ed Eventi di alto profilo scientifico, con elevata creatività ed esperienza professionale, offrendo servizi e consulenze su misura per ogni occasione.\nOltre all’organizzazione di mostre temporanee, ci dedichiamo alla realizzazione di tutte quelle attività che possano creare un ponte culturale tra Italia e Cina e favorire rapporti di scambio tra Enti ed Istituti dei due Paesi, progetti e collaborazioni che uniscono realtà che hanno come fondamento l’Arte e la Cultura.\nCrediamo che l’arte sia un mezzo di comunicazione efficace ed immediato, in grado di superare ogni difficoltà e barriere linguistiche, di stimolare, incuriosire e far conoscere nuove realtà.",
+  "it": <ABOUT_IT/>,
+  "zh": <ABOUT_CN/>,
+  "en": <ABOUT_EN/>
 }
