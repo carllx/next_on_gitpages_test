@@ -15,6 +15,7 @@ import {Mobile,Address,Mail,Phone}  from 'components/svg/icons_static_svg'
 
 import {Twitter,WeiChat,Youtube,Viemo,Weibo,Facebook,Instagram,Linkedin}  from 'components/svg/icons_social_svg'
 
+import MMM from 'components/about.it.md'
 
 import {
   withScriptjs,
@@ -258,7 +259,7 @@ class NavContact extends PureComponent {
                     marginBottom:'1em',
                 })}>
 
-
+                    <MMM/>
                     {/*主要信息*/}
                         {/*Mail*/}
                         <div {...css({display:'flex',flexDirection:'row',width: '21em',})}>

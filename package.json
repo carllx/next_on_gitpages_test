@@ -1,6 +1,8 @@
 {
   "main": "server.js",
   "dependencies": {
+    "@mdx-js/mdx": "^0.15.5",
+    "@zeit/next-mdx": "^1.2.0",
     "express": "^4.16.4",
     "glamor": "^2.20.40",
     "glamorous": "^4.13.1",
@@ -23,6 +25,8 @@
     "redux": "^4.0.1",
     "redux-devtools-extension": "^2.13.5",
     "redux-thunk": "^2.3.0",
+    "remark-emoji": "^2.0.1",
+    "remark-images": "^0.8.1",
     "serve": "^10.0.2",
     "three": "^0.97.0"
   },
@@ -39,7 +43,7 @@
     "testCross": "cross-var node -e \"console.log('now path on :', \\\"$npm_package_config_commitmessage\\\")\" && cross-var node -e \"console.log('now path on :', \\\"$npm_package_config_commitmessage\\\")\""
   },
   "config": {
-    "commitmessage": "升级 react 16.5 至 16.6; about 文档修正@Giulia"
+    "commitmessage": "改用 MDX 扩展markdown 功能"
   },
   "name": "zhongart",
   "description": "## How to use",

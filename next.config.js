@@ -1,24 +1,36 @@
 /*
+  静态网页生成
+  静态文件传放
+  */
 
- 静态网页生成
- 静态文件传放
-
-*/
 const fetch = require('isomorphic-fetch')
 const cp = require('recursive-copy')
 const artisti =  require('./static/contents/artisti/')
-// const news =  require('./static/contents/news/')
 
+/*markdown*/ 
+const images = require('remark-images')
+const emoji = require('remark-emoji')
+const withMDX = require('@zeit/next-mdx')({options: {mdPlugins: [images,emoji]},extension: /.mdx?$/})
 
-
-module.exports = {
-  async exportPathMap () {
-    cp('./static/CNAME','./out/CNAME');
-    cp('./static/robots.txt','./out/robots.txt');
-    cp('./static/sitemap.xml','./out/sitemap.xml');
-    cp('./static/baidu_verify_BWMAZPDlTw.html','./out/baidu_verify_BWMAZPDlTw.html');
-
-    // tranform the list of posts into a map of pages with the pathname `/post/:id`
+/*Move the files*/
+const moveFiles = async function(){
+  cp('./static/CNAME','./out/CNAME');
+  console.log('./static/CNAME','./out/CNAME');
+  cp('./static/robots.txt','./out/robots.txt');
+  console.log('robots.txt');
+  cp('./static/sitemap.xml','./out/sitemap.xml');
+  cp('./static/baidu_verify_BWMAZPDlTw.html','./out/baidu_verify_BWMAZPDlTw.html');
+}
+moveFiles()
+module.exports = withMDX({
+  pageExtensions: ['js', 'jsx', 'md', 'mdx'],
+  
+  exportPathMap:async function () {
+    
+    // cp('./static/CNAME','./out/CNAME');
+    // cp('./static/robots.txt','./out/robots.txt');
+    // cp('./static/sitemap.xml','./out/sitemap.xml');
+    // cp('./static/baidu_verify_BWMAZPDlTw.html','./out/baidu_verify_BWMAZPDlTw.html');
 
     const artistPages = artisti.artistInfo.reduce(
       (artistPages, obj) =>
@@ -30,7 +42,6 @@ module.exports = {
         }),
       {},
     )
-
     const newsPages = {
       '/news/2018_artists_plan':{
         page: '/news/2018_artists_plan',
@@ -40,7 +51,7 @@ module.exports = {
         page: '/news/2018_Actuality_of_the_past',
       }
     }
-
+    
     // const newsPages = news.newsInfo.reduce(
     //   (newsPages, obj) =>
     //     Object.assign({}, newsPages, {
@@ -52,17 +63,15 @@ module.exports = {
     //   {},
     // )
     // combine the map of post pages with the home
+
     return Object.assign(
       {},
-      // pages,
       artistPages ,
       newsPages ,
-      {'/': { page: '/' }
+      {'/': { page: '/' },
     })
   }
-
-
-}
+})
 
 
 
