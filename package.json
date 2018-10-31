@@ -18,7 +18,7 @@
     "react-jss": "^8.6.1",
     "react-motion": "^0.5.2",
     "react-no-ssr": "^1.1.0",
-    "react-redux": "^5.0.7",
+    "react-redux": "^5.1.0",
     "react-tap-event-plugin": "^3.0.3",
     "react-transition-group": "^2.5.0",
     "react-vr": "^2.0.0",
@@ -43,7 +43,7 @@
     "testCross": "cross-var node -e \"console.log('now path on :', \\\"$npm_package_config_commitmessage\\\")\" && cross-var node -e \"console.log('now path on :', \\\"$npm_package_config_commitmessage\\\")\""
   },
   "config": {
-    "commitmessage": "改用 next-mdx,扩展 markdown 功能， about文字应用 markdown ,"
+    "commitmessage": "改用 next-mdx ，news路由修整 ,"
   },
   "name": "zhongart",
   "description": "## How to use",

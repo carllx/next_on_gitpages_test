@@ -1,3 +1,4 @@
+/*使用container可以 ：复用网页标签模板； 复用其他component*/
 import {PureComponent} from 'react'
 import {bindActionCreators} from 'redux'
 import withRedux from 'next-redux-wrapper'
