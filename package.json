@@ -43,7 +43,7 @@
     "testCross": "cross-var node -e \"console.log('now path on :', \\\"$npm_package_config_commitmessage\\\")\" && cross-var node -e \"console.log('now path on :', \\\"$npm_package_config_commitmessage\\\")\""
   },
   "config": {
-    "commitmessage": "改用 next-mdx ，news路由修整 ,"
+    "commitmessage": "改用 next-mdx ，news路由修整2 "
   },
   "name": "zhongart",
   "description": "## How to use",

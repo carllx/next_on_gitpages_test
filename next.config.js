@@ -17,8 +17,8 @@ const withMDX = require('@zeit/next-mdx')({options: {mdPlugins: [images,emoji]},
 /*NEWS*/
 // const news = require('./')
 
-/*Copying custom files*/
-/*参考 https://github.com/zeit/next.js/#copying-custom-files*/
+/*Copying custom files
+参考 https://github.com/zeit/next.js/#copying-custom-files*/
 const moveFiles = async function(){
   // await copyFile(join(dir, 'robots.txt'), join(outDir, 'robots.txt'))
   await copyFile('./static/CNAME','./out/CNAME');
@@ -44,7 +44,7 @@ module.exports = withMDX({
         }),
       {},
     )
-    /*用 map 的方法生成路由....*/
+    /*用 map/reduce 的方法生成路由....*/
     const newsPages = {
       '/news/2018_artists_plan':{page: '/news/2018_artists_plan'},
       '/news/2018_accademia':{page: '/news/2018_accademia'},
