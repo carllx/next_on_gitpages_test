@@ -43,7 +43,7 @@
     "testCross": "cross-var node -e \"console.log('now path on :', \\\"$npm_package_config_commitmessage\\\")\" && cross-var node -e \"console.log('now path on :', \\\"$npm_package_config_commitmessage\\\")\""
   },
   "config": {
-    "commitmessage": "改用 next-mdx ，news路由修整2 "
+    "commitmessage": "sorry, test 连接"
   },
   "name": "zhongart",
   "description": "## How to use",
@@ -52,5 +52,14 @@
     "babel-plugin-module-resolver": "^3.1.1",
     "cross-env": "^5.2.0",
     "cross-var": "^1.1.0"
-  }
+  },
+  "directories": {
+    "example": "examples"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@carllx:carllx/zhongart_Pages.git"
+  },
+  "author": "carllx",
+  "license": "ISC"
 }

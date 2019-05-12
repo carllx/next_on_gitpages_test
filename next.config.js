@@ -48,7 +48,8 @@ module.exports = withMDX({
     const newsPages = {
       '/news/2018_artists_plan':{page: '/news/2018_artists_plan'},
       '/news/2018_accademia':{page: '/news/2018_accademia'},
-      '/news/2018_Actuality_of_the_past':{page: '/news/2018_Actuality_of_the_past'}
+      '/news/2018_Actuality_of_the_past':{page: '/news/2018_Actuality_of_the_past'},
+      '/news/2018_Actuality_of_the_past2':{page: '/news/2018_Actuality_of_the_past'},
     }
 
     return Object.assign(
