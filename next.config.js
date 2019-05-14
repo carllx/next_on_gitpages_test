@@ -21,17 +21,13 @@ const outDir = './out/'
 /*Copying custom files
 参考 https://github.com/zeit/next.js/#copying-custom-files*/
 const moveFiles = async function(){
-  // await copyFile(join(dir, 'robots.txt'), join(outDir, 'robots.txt'))
-  // await copyFile('./static/CNAME','./out/CNAME');
-  // await copyFile('./static/robots.txt','./out/robots.txt');
-  // await copyFile('./static/sitemap.xml','./out/sitemap.xml');
-  // await copyFile('./static/baidu_verify_BWMAZPDlTw.html','./out/baidu_verify_BWMAZPDlTw.html');
   await copyFile(join(dir, 'robots.txt'), join(outDir, 'robots.txt'))
   await copyFile(join(dir, 'baidu_verify_BWMAZPDlTw.html'), join(outDir, 'baidu_verify_BWMAZPDlTw.html'))
   await copyFile(join(dir, 'CNAME'), join(outDir, 'CNAME'))
   await copyFile(join(dir, 'sitemap.xml'), join(outDir, 'sitemap.xml'))
+  await copyFile(join(dir, '.nojekyll'), join(outDir, '.nojekyll'))
 }
-moveFiles()
+
 
 
 module.exports = withMDX({
@@ -56,6 +52,8 @@ module.exports = withMDX({
       '/news/2018_Actuality_of_the_past':{page: '/news/2018_Actuality_of_the_past'},
       '/news/2018_Actuality_of_the_past2':{page: '/news/2018_Actuality_of_the_past'},
     }
+
+    moveFiles()
 
     return Object.assign(
       {},
