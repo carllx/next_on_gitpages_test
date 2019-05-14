@@ -1,19 +1,15 @@
 /*使用container可以 ：复用网页标签模板； 复用其他component*/
 import {PureComponent} from 'react'
 import {bindActionCreators} from 'redux'
-import withRedux from 'next-redux-wrapper'
 import {css} from 'glamor'
 import NoSSR from 'react-no-ssr';
 import Head from 'next/head'
-import {GR , makeKEY , perspZ}  from 'utils/ui'
-import {isMobile  ,isTablet , getLanguer}  from 'utils/device'
+import {GR}  from 'utils/ui'
 import {switchLanguage,onDevice} from'reducers/root'
 
 import Scroller from 'components/controller.scroll'
 import Resizer from 'components/controller.resize'
 import Nav from 'components/nav'
-import Seczione from 'components/section'
-import {initStore} from 'store'
 import {connect} from "react-redux";//upgrade -- import withRedux from "next-redux-wrapper";
 import Copyright from 'components/copyright'
 

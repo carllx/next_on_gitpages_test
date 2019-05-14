@@ -1,5 +1,5 @@
 import { css } from 'glamor'
-import {ui,GR}  from 'utils/ui'
+import {ui}  from 'utils/ui'
 import {PureComponent} from 'react'
 import {TweenMax} from "gsap";
 import { connect } from 'react-redux'

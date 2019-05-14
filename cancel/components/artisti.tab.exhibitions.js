@@ -3,7 +3,6 @@ import { PureComponent } from 'react'
 import {ui }  from '~/utils/ui'
 
 import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
 import TAB from '~/components/artisti.tab.Wrapper'
 
 class Button extends PureComponent {

@@ -3,7 +3,7 @@ import {PureComponent} from 'react'
 import { css } from 'glamor'
 import {TweenMax} from "gsap";
 // import Link from 'next/link';
-import {ui,GR}  from 'utils/ui'
+import {ui}  from 'utils/ui'
 import Router from 'next/router'
 // import markdown from 'markdown-in-js'
 import outlines from  '/pages/news/index'

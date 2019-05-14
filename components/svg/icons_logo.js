@@ -1,6 +1,6 @@
 import {PureComponent} from 'react'
 import { css } from 'glamor'
-import {ui,GR}  from 'utils/ui'
+import {ui}  from 'utils/ui'
 
 
 
@@ -76,74 +76,5 @@ class LOGO extends PureComponent {
 
 export default LOGO
 
-
-
-
-// const svg_style = css({
-//     width:`${gr(5)}rem`,
-//     height:`${gr(5)}rem`
-// });
-// const logo_default  = {filter:'url(#dropshadow)'}
-// const logo_s_top    = css({...logo_default,fill:'#E6E6E6'});
-// const logo_s_bottom = css({...logo_default,fill:'#E6E6E6'});
-// const logo_l_top    = css({...logo_default,fill:'#B3B3B3'});
-// const logo_l_bottom = css({...logo_default,fill:'#CCCCCC'});
-
-
-
-
-
-// const LogoRight = glamorous.div({
-
-//     fontSize      :`${gr(8)}rem`,
-//     fontFamily    :ZhoFont,
-
-//     color:'#B3B3B3',
-//     marginBottom:`${gr(10)}rem`,
-//     marginLeft:`${gr(9)}rem`,
-
-// });
-
-
-/*
-const SVGLogoCarta ()=>(
-  <filter id="dropshadow" height="130%">
-    <feGaussianBlur in="SourceAlpha" stdDeviation="1"/>
-    <feComponentTransfer xmlns="http://www.w3.org/2000/svg">
-      <feFuncA type="linear" slope="0.2"/>
-    </feComponentTransfer>
-
-    <feOffset dx="2" dy="2" result="offsetblur"/>
-    <feMerge>
-      <feMergeNode/>
-      <feMergeNode in="SourceGraphic"/>
-    </feMerge>
-  </filter>
-  <g>
-    <polygon
-     {...css(logo_l_top)}
-     points="35,35 5,35 5,5 35,5"
-    />
-    <polygon
-     {...css(logo_l_bottom)}
-     points="5,35 5,5 35,5"
-    />
-    <polygon
-     {...css(logo_s_top)}
-     points="35,27.9 35,35 27.9,35 "
-    />
-    <polygon
-     {...css(logo_s_bottom)}
-     points="5,16.5 5,5 16.5,5 "
-    />
-  </g>
-          <LogoRight>
-          <div>{'中艺国际'}</div>
-          <div>{'Zhong Art'}</div>
-          <div>{'Internazionale'}</div>
-        </LogoRight>
-)
-
-*/
 
 

@@ -1,6 +1,5 @@
 
 import { css } from 'glamor'
-import {ui,GR}  from 'utils/ui'
 
 const SVG= (props) => (
     <svg

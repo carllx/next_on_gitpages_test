@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 import {PureComponent} from 'react'
 import { css } from 'glamor'
 import {TweenMax} from "gsap";
-import Link from 'next/link';
 import {ui,GR}  from 'utils/ui'
 // import {canGoogle} from'reducers/root'
 // import { bindActionCreators } from 'redux'

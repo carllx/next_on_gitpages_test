@@ -1,7 +1,5 @@
 import React, {Component} from 'react'
 import glamorous from 'glamorous'
-
-import {debounce} from '../utils/throttle'
 import {mouseCenterElement} from '../utils/mouse'
 
 

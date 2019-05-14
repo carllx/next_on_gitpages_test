@@ -1,7 +1,7 @@
 // nav.language.js
 import {PureComponent} from 'react'
 import { css } from 'glamor'
-import {ui  ,GR}  from 'utils/ui'
+import {GR}  from 'utils/ui'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import  {switchLanguage}  from 'reducers/root'

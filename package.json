@@ -1,34 +1,29 @@
 {
   "main": "server.js",
   "dependencies": {
-    "@mdx-js/mdx": "^0.15.5",
-    "@zeit/next-mdx": "^1.2.0",
+    "@mdx-js/mdx": "^1.0.19",
+    "@zeit/next-mdx": "1.2.0",
     "express": "^4.16.4",
-    "glamor": "^2.20.40",
-    "glamorous": "^4.13.1",
-    "gsap": "^1.20.6",
-    "isomorphic-fetch": "^2.2.1",
+    "glamor": "2.20.40",
+    "glamorous": "5.0.0",
+    "gsap": "^2.1.2",
     "lodash": "^4.17.11",
     "markdown-in-js": "^1.1.4",
-    "next": "^7.0.2",
-    "next-redux-wrapper": "^2.0.0",
-    "react": "^16.6.0",
-    "react-dom": "^16.6.0",
+    "next": "^8.1.0",
+    "next-redux-wrapper": "^3.0.0-alpha.2",
+    "npm-check": "^5.9.0",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
     "react-google-maps": "^9.4.5",
-    "react-jss": "^8.6.1",
-    "react-motion": "^0.5.2",
     "react-no-ssr": "^1.1.0",
-    "react-redux": "^5.1.0",
-    "react-tap-event-plugin": "^3.0.3",
-    "react-transition-group": "^2.5.0",
-    "react-vr": "^2.0.0",
+    "react-redux": "^7.0.3",
     "redux": "^4.0.1",
-    "redux-devtools-extension": "^2.13.5",
+    "redux-devtools-extension": "latest",
     "redux-thunk": "^2.3.0",
     "remark-emoji": "^2.0.1",
-    "remark-images": "^0.8.1",
-    "serve": "^10.0.2",
-    "three": "^0.97.0"
+    "remark-images": "^0.18.0",
+    "serve": "^11.0.0",
+    "three": "^0.104.0"
   },
   "scripts": {
     "dev": "node .",
@@ -43,13 +38,13 @@
     "testCross": "cross-var node -e \"console.log('now path on :', \\\"$npm_package_config_commitmessage\\\")\" && cross-var node -e \"console.log('now path on :', \\\"$npm_package_config_commitmessage\\\")\""
   },
   "config": {
-    "commitmessage": "sorry, test 连接"
+    "commitmessage": "升级所有库，代码减肥，为改版准备"
   },
   "name": "zhongart",
   "description": "## How to use",
   "version": "0.0.1",
   "devDependencies": {
-    "babel-plugin-module-resolver": "^3.1.1",
+    "babel-plugin-module-resolver": "^3.2.0",
     "cross-env": "^5.2.0",
     "cross-var": "^1.1.0"
   },

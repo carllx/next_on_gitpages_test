@@ -5,10 +5,9 @@ import { css } from 'glamor'
 import Router from 'next/router'
 import {TweenMax} from "gsap";
 
-import {GR ,perspZ}  from 'utils/ui'
+import {GR }  from 'utils/ui'
 import AVATAR from 'components/avatar'
 import {artistInfo} from 'static/contents/artisti'
-import { initStore } from 'store'
 
 import MOUSE_POS_DISPATCHER from 'components/controller.mousePosDispatcher'
 import DEVICE_ORIEN_DISPATCHER from 'components/controller.deviceOrienDispatcher'
@@ -60,11 +59,12 @@ class ArtistiNav extends PureComponent {
     }
 
     show(){
-        console.log('nav-Artisti -show()')
+        // console.log('nav-Artisti -show()')
         TweenMax.staggerFromTo(
             ".avatars",
             0.6,
             {
+                y:`0`,
                 rotationZ:15,
                 autoAlpha:0,
             },{
@@ -97,6 +97,7 @@ class ArtistiNav extends PureComponent {
         const radius = Math.sqrt(Math.pow(tiltx,2) + Math.pow(tilty,2));
         const degree = (radius * 20);
         // animation
+        // console.log(`transform:'rotate3d(' + ${tiltx} + ', ' + ${tilty} + ', 0, ' + ${degree} + 'deg)', ease:Power2.easeOut`)
         TweenMax.to(`#nav_artist`, 1, {transform:'rotate3d(' + tiltx + ', ' + tilty + ', 0, ' + degree + 'deg)', ease:Power2.easeOut});
     }
     /*

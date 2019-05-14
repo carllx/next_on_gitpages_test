@@ -11,13 +11,12 @@
   <-- index
 
  */
-import { css } from 'glamor'
-import {ui  ,GR ,makeKEY}  from '../utils/ui'
+
 import { PureComponent } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import {setSectionPostionY,setClose,setFetch} from 'reducers/section'
-import {findPos} from 'utils/mouse'
+import {setClose} from 'reducers/section'
+
 
 /**
 props 输入group_Name

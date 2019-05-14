@@ -2,10 +2,9 @@ import  {PureComponent} from 'react'
 // import fetch from 'isomorphic-fetch' //
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import {setScroll,setViewSize,setScrollOffsetY } from'reducers/root'
-import {throttle, debounce}  from 'utils/throttle'
-import {isMobile  , isLandscape }  from 'utils/device'
-import NoSSR from 'react-no-ssr';
+import {setViewSize } from'reducers/root'
+import {debounce}  from 'utils/throttle'
+import {isLandscape }  from 'utils/device'
 
 
 

@@ -1,7 +1,7 @@
 
 import { css } from 'glamor'
 import { PureComponent } from 'react'
-import { ui  ,GR , makeKEY , perspZ }  from 'utils/ui'
+import { ui  }  from 'utils/ui'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import {IMG_WithLoader} from 'components/img.work'

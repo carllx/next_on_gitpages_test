@@ -1,5 +1,4 @@
 import { css } from 'glamor'
-import { ui  ,GR ,makeKEY ,perspZ }  from '../utils/ui'
 import { PureComponent } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'

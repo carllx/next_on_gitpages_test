@@ -2,7 +2,6 @@
 import {PureComponent} from 'react'
 // import glamorous,{withTheme} from 'glamorous'
 import {css} from 'glamor'
-import NoSSR from 'react-no-ssr';
 
 import {ui, GR, perspZ}  from 'utils/ui'
 import {IMG_WithLoader} from './img'

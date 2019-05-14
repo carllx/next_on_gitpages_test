@@ -1,5 +1,4 @@
-// import  {Component} from 'react'
-import fetch from 'isomorphic-fetch'
+
 import { css } from 'glamor'
 import {ui  ,GR ,makeKEY ,perspZ}  from '../utils/ui'
 // import _IMG from './img.skew'
@@ -8,7 +7,7 @@ import _CONTENT from './section.content'
 import { PureComponent } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import {setSectionPostionY,setClose,setFetch} from 'reducers/section'
+import {setSectionPostionY,setClose} from 'reducers/section'
 import {findPos} from 'utils/mouse'
 /*
 参考 https://wangwang.taobao.com/+
@@ -17,7 +16,6 @@ import {findPos} from 'utils/mouse'
  */
 const BACKGROUND_COLOR = ui.color.w_1;
 const BORDER_COLOR = ui.color.b_o3;
-const _pubblic_key= makeKEY()
 
 
 /**

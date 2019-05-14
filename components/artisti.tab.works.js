@@ -1,6 +1,5 @@
 import { css } from 'glamor'
 import { PureComponent } from 'react'
-import {ui  ,GR , makeKEY , perspZ}  from 'utils/ui'
 
 import TAB from 'components/artisti.tab.Wrapper'
 import {IMG_WithLoader} from 'components/img'

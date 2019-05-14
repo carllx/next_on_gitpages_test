@@ -1,10 +1,9 @@
 import { css } from 'glamor'
 import {TweenMax} from "gsap";
 import { PureComponent } from 'react'
-import {ui}  from 'utils/ui'
+
 
 import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
 import Copyright from 'components/copyright'
 /*
  Wrapper Function(VERSION redux )
