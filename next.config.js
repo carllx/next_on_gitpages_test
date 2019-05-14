@@ -8,7 +8,7 @@ const fs = require('fs')
 const { promisify } = require('util')
 const copyFile = promisify(fs.copyFile)
 const artisti =  require('./static/contents/artisti/')
-
+const { join } = require('path')
 /*IMPORT markdown*/ 
 const images = require('remark-images')
 const emoji = require('remark-emoji')
@@ -16,15 +16,20 @@ const withMDX = require('@zeit/next-mdx')({options: {mdPlugins: [images,emoji]},
 
 /*NEWS*/
 // const news = require('./')
-
+const dir = './movefile/'
+const outDir = './out/'
 /*Copying custom files
 参考 https://github.com/zeit/next.js/#copying-custom-files*/
 const moveFiles = async function(){
   // await copyFile(join(dir, 'robots.txt'), join(outDir, 'robots.txt'))
-  await copyFile('./static/CNAME','./out/CNAME');
-  await copyFile('./static/robots.txt','./out/robots.txt');
-  await copyFile('./static/sitemap.xml','./out/sitemap.xml');
-  await copyFile('./static/baidu_verify_BWMAZPDlTw.html','./out/baidu_verify_BWMAZPDlTw.html');
+  // await copyFile('./static/CNAME','./out/CNAME');
+  // await copyFile('./static/robots.txt','./out/robots.txt');
+  // await copyFile('./static/sitemap.xml','./out/sitemap.xml');
+  // await copyFile('./static/baidu_verify_BWMAZPDlTw.html','./out/baidu_verify_BWMAZPDlTw.html');
+  await copyFile(join(dir, 'robots.txt'), join(outDir, 'robots.txt'))
+  await copyFile(join(dir, 'baidu_verify_BWMAZPDlTw.html'), join(outDir, 'baidu_verify_BWMAZPDlTw.html'))
+  await copyFile(join(dir, 'CNAME'), join(outDir, 'CNAME'))
+  await copyFile(join(dir, 'sitemap.xml'), join(outDir, 'sitemap.xml'))
 }
 moveFiles()
 

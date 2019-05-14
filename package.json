@@ -38,7 +38,7 @@
     "testCross": "cross-var node -e \"console.log('now path on :', \\\"$npm_package_config_commitmessage\\\")\" && cross-var node -e \"console.log('now path on :', \\\"$npm_package_config_commitmessage\\\")\""
   },
   "config": {
-    "commitmessage": "style:升级所有库. chore:代码减肥,为改版准备 4"
+    "commitmessage": "style:升级所有库. chore:代码减肥,为改版准备 7"
   },
   "name": "zhongart",
   "description": "## How to use",
