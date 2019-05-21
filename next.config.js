@@ -4,7 +4,6 @@
   */
 const fs = require('fs')
 // const fetch = require('isomorphic-fetch')
-// const cp = require('recursive-copy')
 const { promisify } = require('util')
 const copyFile = promisify(fs.copyFile)
 const artisti =  require('./static/contents/artisti/')
@@ -32,7 +31,7 @@ const moveFiles = async function(){
 
 module.exports = withMDX({
   pageExtensions: ['js', 'jsx', 'md', 'mdx'],
-  
+  assetPrefix: process.env.NODE_ENV === 'production' ? '/zai' : '',
   exportPathMap:async function () {
 
     const artistPages = artisti.artistInfo.reduce(

@@ -29,16 +29,16 @@
     "dev": "node .",
     "build": "next build",
     "preexport": "npm run build",
-    "export": "next export",
+    "export": "npm run build && next export",
     "prestart": "npm run export",
-    "start": "serve out",
+    "start": "SET NODE_ENV=production node server.js",
     "push": "npm run pushdev && npm run pushsito",
     "pushsito": "npm run prestart && cd out/ && node -e \"console.log('now path on :',process.cwd())\" && git add . && git commit -m  \" %npm_package_config_commitmessage% \" && git push origin master",
     "pushdev": "git add . && cross-var git commit -m   \"$npm_package_config_commitmessage\"  && git push origin master",
     "testCross": "cross-var node -e \"console.log('now path on :', \\\"$npm_package_config_commitmessage\\\")\" && cross-var node -e \"console.log('now path on :', \\\"$npm_package_config_commitmessage\\\")\""
   },
   "config": {
-    "commitmessage": "style:升级所有库. chore:代码减肥,为改版准备 17"
+    "commitmessage": "增加meta 连接google console"
   },
   "name": "zhongart",
   "description": "## How to use",

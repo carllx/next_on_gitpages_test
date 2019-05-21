@@ -18,30 +18,9 @@ app.prepare().then(() => {
     })
   })
 
-  // server.get('/news/:id', (req, res) => {
-  //   return app.render(req, res, '/news', {
-  //     id: req.params.id
-  //   })
-  // })
-
-
-  // server.get('/news/:slug', (req, res) => {
-  //   renderPost(app, req, res)
-  // })
   server.get('*', (req, res) => {
     return handle(req, res)
   })
-
-
-  // server.get('/robots.txt', (req, res) => (
-  //   res.status(200).sendFile('robots.txt', robotsOpt)
-  // ));
-
-  // server.get('/sitemap.xml', (req, res) => (
-  //   res.status(200).sendFile('sitemap.xml', siteMapOpt)
-  // ));
-
-
 
   server.listen(3000, (err) => {
     if (err) throw err
