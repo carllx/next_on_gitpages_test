@@ -22,9 +22,10 @@ const outDir = './out/'
 const moveFiles = async function(){
   await copyFile(join(dir, 'robots.txt'), join(outDir, 'robots.txt'))
   await copyFile(join(dir, 'baidu_verify_BWMAZPDlTw.html'), join(outDir, 'baidu_verify_BWMAZPDlTw.html'))
-  await copyFile(join(dir, 'CNAME'), join(outDir, 'CNAME'))
+  // await copyFile(join(dir, 'CNAME'), join(outDir, 'CNAME'))
   await copyFile(join(dir, 'sitemap.xml'), join(outDir, 'sitemap.xml'))
   await copyFile(join(dir, '.nojekyll'), join(outDir, '.nojekyll'))
+  await copyFile(join(dir, 'google5c2c63a6b9470606.html'), join(outDir, 'google5c2c63a6b9470606.html'))
 }
 
 
