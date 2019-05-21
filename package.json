@@ -38,7 +38,7 @@
     "testCross": "cross-var node -e \"console.log('now path on :', \\\"$npm_package_config_commitmessage\\\")\" && cross-var node -e \"console.log('now path on :', \\\"$npm_package_config_commitmessage\\\")\""
   },
   "config": {
-    "commitmessage": "增加meta 连接google console"
+    "commitmessage": "增加meta 连接google console2"
   },
   "name": "zhongart",
   "description": "## How to use",
